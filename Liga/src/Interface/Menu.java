@@ -4,6 +4,8 @@
  */
 package Interface;
 
+import java.sql.*;
+
 /**
  *
  * @author a22marcorr
@@ -13,10 +15,14 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
+    private static String MYSQLUSER = "root";
+
+    private static String MYSQLPASS = "root";
+
     public Menu() {
         initComponents();
         pnlCrearCuenta.setVisible(false);
-        
+
     }
 
     /**
@@ -34,11 +40,17 @@ public class Menu extends javax.swing.JFrame {
         btnCrearCuenta = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         pnlCrearCuenta = new javax.swing.JPanel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jTextField1 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        txtCCContraseña = new javax.swing.JPasswordField();
+        txtCCNombre = new javax.swing.JTextField();
+        btnCCCreate = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        txtCCUsername = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtCCCorreo = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtCCApellidos = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         pnlClasificacion = new javax.swing.JPanel();
         pnlalineacion = new javax.swing.JPanel();
         pnlMenu = new javax.swing.JPanel();
@@ -69,17 +81,34 @@ public class Menu extends javax.swing.JFrame {
         pnlMenuInicial.getContentPane().add(panelMenuButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 500));
 
         pnlCrearCuenta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlCrearCuenta.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 160, 70));
-        pnlCrearCuenta.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 160, 50));
+        pnlCrearCuenta.add(txtCCContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 160, 70));
+        pnlCrearCuenta.add(txtCCNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 160, 50));
 
-        jButton3.setText("Crear cuenta");
-        pnlCrearCuenta.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 180, 80));
+        btnCCCreate.setText("Crear cuenta");
+        btnCCCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCCCreateActionPerformed(evt);
+            }
+        });
+        pnlCrearCuenta.add(btnCCCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, 180, 80));
 
         jLabel2.setText("Nombre usuario");
-        pnlCrearCuenta.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, -1));
+        pnlCrearCuenta.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, -1));
 
         jLabel3.setText("Contraseña");
-        pnlCrearCuenta.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, -1));
+        pnlCrearCuenta.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, -1, -1));
+        pnlCrearCuenta.add(txtCCUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 160, 50));
+
+        jLabel4.setText("Correo electronico");
+        pnlCrearCuenta.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
+        pnlCrearCuenta.add(txtCCCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 160, 50));
+
+        jLabel5.setText("Apellidos");
+        pnlCrearCuenta.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
+        pnlCrearCuenta.add(txtCCApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 160, 50));
+
+        jLabel6.setText("Nombre");
+        pnlCrearCuenta.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, -1));
 
         pnlMenuInicial.getContentPane().add(pnlCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 500));
 
@@ -131,8 +160,62 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         pnlCrearCuenta.setVisible(true);
         panelMenuButtons.setVisible(false);
-        
+
     }//GEN-LAST:event_btnCrearCuentaActionPerformed
+
+    private void btnCCCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCCCreateActionPerformed
+        // TODO add your handling code here:
+        String usuario = txtCCUsername.getText();
+        String contraseña = txtCCContraseña.getText();
+        String nombre = txtCCNombre.getText();
+        String apellidos = txtCCApellidos.getText();
+        String correo = txtCCCorreo.getText();
+
+        String insertString = "INSERT INTO `bbdd_fantasy`.`tbl_usuario` (`USUARIO`, `CONTRASEÑA`, `NOMBRE`, `APELLIDOS`, `CORREO`) VALUES (`" + usuario + "`, `" + contraseña + "`, `" + nombre + "`,`" + apellidos + "` , `" + correo + "`);";
+
+        escrituraSql(insertString);
+
+
+    }//GEN-LAST:event_btnCCCreateActionPerformed
+
+    public void escrituraSql(String insertString) {
+
+        Connection mysqlCon = null;
+        String mysqlUrl = "jdbc:mysql://localhost/bbdd_fantasy";
+        try {
+
+            mysqlCon = DriverManager.getConnection(mysqlUrl, MYSQLUSER, MYSQLPASS);
+            System.out.println("Escrito");
+        } catch (SQLException e) {
+
+            while (e != null) { //bucle que trata a cadea de excepcións
+
+                System.err.println("SQLState: " + e.getSQLState());
+
+                System.err.println(" Code: " + e.getErrorCode());
+
+                System.err.println(" Message:");
+
+                System.err.println(e.getMessage());
+
+                e = e.getNextException();
+
+            }
+
+        } finally {
+
+            if (mysqlCon != null) {
+
+                try {
+                    mysqlCon.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -170,19 +253,25 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCCCreate;
     private javax.swing.JButton btnCrearCuenta;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel panelMenuButtons;
     private javax.swing.JPanel pnlClasificacion;
     private javax.swing.JPanel pnlCrearCuenta;
     private javax.swing.JPanel pnlMenu;
     private javax.swing.JInternalFrame pnlMenuInicial;
     private javax.swing.JPanel pnlalineacion;
+    private javax.swing.JTextField txtCCApellidos;
+    private javax.swing.JPasswordField txtCCContraseña;
+    private javax.swing.JTextField txtCCCorreo;
+    private javax.swing.JTextField txtCCNombre;
+    private javax.swing.JTextField txtCCUsername;
     // End of variables declaration//GEN-END:variables
 }
