@@ -4,6 +4,11 @@
  */
 package Interface;
 
+import Methods.Usuario;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author a22marcorr
@@ -13,11 +18,54 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
     /**
      * Creates new form pantallaIniciarSesion
      */
+    private static String MYSQLUSER = "root";
+
+    private static String MYSQLPASS = "root";
+
     public pantallaIniciarSesion() {
         initComponents();
-        radioBtnGrpOptions.add(radioCorreo);
-        radioBtnGrpOptions.add(radioUsername);
-        
+
+    }
+
+    public boolean validarUsuario(Usuario us1) {
+        boolean inicio = false;
+        if (txtCCContraseña.getText() == us1.getContraseña()) {
+            inicio = true;
+
+        }
+        return inicio;
+
+    }
+
+    private void getSql(String consulta) {
+
+        try {
+
+            String mysqlUrl = "jdbc:mysql://localhost/bbdd_fantasy";
+
+            Connection mysqlCon = null;
+            mysqlCon = DriverManager.getConnection(mysqlUrl, MYSQLUSER, MYSQLPASS);
+
+            Statement mysqlSelect = mysqlCon.createStatement();
+            System.out.println(consulta);
+            ResultSet mysqlResult = mysqlSelect.executeQuery(consulta);
+
+            int contador = 0;
+            System.out.println(mysqlResult.getString(1));
+            // procesa cada fila do resultado
+            if(mysqlResult.next()){
+                Usuario us1 = new Usuario(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getString(3), mysqlResult.getString(4), mysqlResult.getString(5), mysqlResult.getString(6), mysqlResult.getString(7));
+
+            if (validarUsuario(us1)) {
+                pantallaSesionIniciada pantalla = new pantallaSesionIniciada();
+                pantalla.setVisible(true);
+                this.setVisible(false);
+            }
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(pantallaIniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -30,7 +78,6 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        radioBtnGrpOptions = new javax.swing.ButtonGroup();
         BG = new javax.swing.JLayeredPane();
         lblCrearCuenta = new javax.swing.JLabel();
         lblContraseña = new javax.swing.JLabel();
@@ -40,8 +87,6 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
         lblUsername = new javax.swing.JLabel();
         separatorUsername = new javax.swing.JSeparator();
         txtCCUsername = new javax.swing.JTextField();
-        radioUsername = new javax.swing.JRadioButton();
-        radioCorreo = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,58 +102,37 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
         lblContraseña.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         lblContraseña.setForeground(new java.awt.Color(92, 99, 112));
         lblContraseña.setText("Contraseña");
-        BG.add(lblContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, -1, -1));
-        BG.add(separatorContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, 260, 10));
+        BG.add(lblContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, -1, -1));
+        BG.add(separatorContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 260, 10));
 
         txtCCContraseña.setBackground(new java.awt.Color(206, 206, 206));
         txtCCContraseña.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         txtCCContraseña.setBorder(null);
         txtCCContraseña.setMaximumSize(new java.awt.Dimension(64, 22));
-        BG.add(txtCCContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 260, 50));
+        BG.add(txtCCContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 260, 50));
 
         btnCCCreate.setBackground(new java.awt.Color(45, 89, 141));
         btnCCCreate.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnCCCreate.setForeground(new java.awt.Color(206, 206, 206));
         btnCCCreate.setText("Crear cuenta");
+        btnCCCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCCCreateActionPerformed(evt);
+            }
+        });
         BG.add(btnCCCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 450, 180, 80));
 
         lblUsername.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         lblUsername.setForeground(new java.awt.Color(92, 99, 112));
-        lblUsername.setText("Nombre usuario");
-        BG.add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, -1, -1));
-        BG.add(separatorUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 260, 10));
+        lblUsername.setText("Nombre usuario o correo");
+        BG.add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, -1));
+        BG.add(separatorUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 260, 10));
 
         txtCCUsername.setBackground(new java.awt.Color(206, 206, 206));
         txtCCUsername.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         txtCCUsername.setBorder(null);
         txtCCUsername.setMaximumSize(new java.awt.Dimension(64, 22));
-        BG.add(txtCCUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 260, 50));
-
-        radioUsername.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        radioUsername.setForeground(new java.awt.Color(92, 99, 112));
-        radioUsername.setSelected(true);
-        radioUsername.setText("Nombre de usuario");
-        radioUsername.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                radioUsernameMouseEntered(evt);
-            }
-        });
-        radioUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioUsernameActionPerformed(evt);
-            }
-        });
-        BG.add(radioUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, -1));
-
-        radioCorreo.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        radioCorreo.setForeground(new java.awt.Color(92, 99, 112));
-        radioCorreo.setText("Correo electronico");
-        radioCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioCorreoActionPerformed(evt);
-            }
-        });
-        BG.add(radioCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
+        BG.add(txtCCUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 260, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,19 +148,22 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void radioUsernameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioUsernameMouseEntered
+    private void btnCCCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCCCreateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_radioUsernameMouseEntered
+        String consulta = null;
+        if (txtCCUsername.getText().contains("@")) {
+            consulta = ("SELECT * FROM tbl_usuario WHERE CORREO='" + txtCCUsername.getText() + "';");
 
-    private void radioUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioUsernameActionPerformed
-        // TODO add your handling code here:
-        lblUsername.setText("Nombre usuario");
-    }//GEN-LAST:event_radioUsernameActionPerformed
+        } else {
+            consulta = ("SELECT * FROM tbl_usuario WHERE USUARIO='" + txtCCUsername.getText() + "';");
+        }
+        if (consulta != null) {
+            getSql(consulta);
 
-    private void radioCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioCorreoActionPerformed
-        // TODO add your handling code here:
-         lblUsername.setText("Correo electronico");
-    }//GEN-LAST:event_radioCorreoActionPerformed
+        }
+
+
+    }//GEN-LAST:event_btnCCCreateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,9 +206,6 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
     private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblCrearCuenta;
     private javax.swing.JLabel lblUsername;
-    private javax.swing.ButtonGroup radioBtnGrpOptions;
-    private javax.swing.JRadioButton radioCorreo;
-    private javax.swing.JRadioButton radioUsername;
     private javax.swing.JSeparator separatorContraseña;
     private javax.swing.JSeparator separatorUsername;
     private javax.swing.JPasswordField txtCCContraseña;
