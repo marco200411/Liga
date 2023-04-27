@@ -17,6 +17,7 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
         initComponents();
         radioBtnGrpOptions.add(radioCorreo);
         radioBtnGrpOptions.add(radioUsername);
+        
 
     }
 
@@ -85,6 +86,7 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
 
         radioUsername.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         radioUsername.setForeground(new java.awt.Color(92, 99, 112));
+        radioUsername.setSelected(true);
         radioUsername.setText("Nombre de usuario");
         radioUsername.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
