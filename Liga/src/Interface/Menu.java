@@ -15,13 +15,11 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
-    private static String MYSQLUSER = "root";
 
-    private static String MYSQLPASS = "root";
 
     public Menu() {
         initComponents();
-        pnlCrearCuenta.setVisible(false);
+        
 
     }
 
@@ -34,188 +32,66 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlMenuInicial = new javax.swing.JInternalFrame();
-        panelMenuButtons = new javax.swing.JPanel();
+        jLayeredPane2 = new javax.swing.JLayeredPane();
         jButton2 = new javax.swing.JButton();
         btnCrearCuenta = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        pnlCrearCuenta = new javax.swing.JPanel();
-        txtCCContraseña = new javax.swing.JPasswordField();
-        txtCCNombre = new javax.swing.JTextField();
-        btnCCCreate = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtCCUsername = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        txtCCCorreo = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtCCApellidos = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        pnlClasificacion = new javax.swing.JPanel();
-        pnlalineacion = new javax.swing.JPanel();
-        pnlMenu = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlMenuInicial.setVisible(true);
-        pnlMenuInicial.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLayeredPane2.setBackground(new java.awt.Color(206, 206, 206));
+        jLayeredPane2.setOpaque(true);
+        jLayeredPane2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelMenuButtons.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
+        jButton2.setBackground(new java.awt.Color(45, 89, 141));
+        jButton2.setForeground(new java.awt.Color(206, 206, 206));
         jButton2.setText("Iniciar sesion");
-        panelMenuButtons.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 132, 59));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jLayeredPane2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, 320, 59));
 
+        btnCrearCuenta.setBackground(new java.awt.Color(45, 89, 141));
+        btnCrearCuenta.setForeground(new java.awt.Color(206, 206, 206));
         btnCrearCuenta.setText("Crear cuenta");
         btnCrearCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearCuentaActionPerformed(evt);
             }
         });
-        panelMenuButtons.add(btnCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 132, 50));
+        jLayeredPane2.add(btnCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 320, 50));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Roboto", 0, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(92, 99, 112));
         jLabel1.setText("La Liga Fantasy");
-        panelMenuButtons.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 348, 99));
+        jLayeredPane2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 129, -1, 99));
 
-        pnlMenuInicial.getContentPane().add(panelMenuButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 500));
-
-        pnlCrearCuenta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlCrearCuenta.add(txtCCContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 160, 70));
-        pnlCrearCuenta.add(txtCCNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 160, 50));
-
-        btnCCCreate.setText("Crear cuenta");
-        btnCCCreate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCCCreateActionPerformed(evt);
-            }
-        });
-        pnlCrearCuenta.add(btnCCCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, 180, 80));
-
-        jLabel2.setText("Nombre usuario");
-        pnlCrearCuenta.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, -1));
-
-        jLabel3.setText("Contraseña");
-        pnlCrearCuenta.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, -1, -1));
-        pnlCrearCuenta.add(txtCCUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 160, 50));
-
-        jLabel4.setText("Correo electronico");
-        pnlCrearCuenta.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
-        pnlCrearCuenta.add(txtCCCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 160, 50));
-
-        jLabel5.setText("Apellidos");
-        pnlCrearCuenta.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
-        pnlCrearCuenta.add(txtCCApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 160, 50));
-
-        jLabel6.setText("Nombre");
-        pnlCrearCuenta.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, -1));
-
-        pnlMenuInicial.getContentPane().add(pnlCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 500));
-
-        getContentPane().add(pnlMenuInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 49, -1, -1));
-
-        javax.swing.GroupLayout pnlClasificacionLayout = new javax.swing.GroupLayout(pnlClasificacion);
-        pnlClasificacion.setLayout(pnlClasificacionLayout);
-        pnlClasificacionLayout.setHorizontalGroup(
-            pnlClasificacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 180, Short.MAX_VALUE)
-        );
-        pnlClasificacionLayout.setVerticalGroup(
-            pnlClasificacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 590, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(pnlClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 180, 590));
-
-        javax.swing.GroupLayout pnlalineacionLayout = new javax.swing.GroupLayout(pnlalineacion);
-        pnlalineacion.setLayout(pnlalineacionLayout);
-        pnlalineacionLayout.setHorizontalGroup(
-            pnlalineacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
-        );
-        pnlalineacionLayout.setVerticalGroup(
-            pnlalineacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(pnlalineacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 490, 430));
-
-        javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
-        pnlMenu.setLayout(pnlMenuLayout);
-        pnlMenuLayout.setHorizontalGroup(
-            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
-        );
-        pnlMenuLayout.setVerticalGroup(
-            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 150));
+        getContentPane().add(jLayeredPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCuentaActionPerformed
         // TODO add your handling code here:
-        pnlCrearCuenta.setVisible(true);
-        panelMenuButtons.setVisible(false);
+        pantallaCrearCuenta pantalla = new pantallaCrearCuenta();
+        pantalla.setVisible(true);
+        this.setVisible(false);
 
     }//GEN-LAST:event_btnCrearCuentaActionPerformed
 
-    private void btnCCCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCCCreateActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String usuario = txtCCUsername.getText();
-        String contraseña = txtCCContraseña.getText();
-        String nombre = txtCCNombre.getText();
-        String apellidos = txtCCApellidos.getText();
-        String correo = txtCCCorreo.getText();
+        pantallaIniciarSesion pantalla = new pantallaIniciarSesion();
+        pantalla.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-        String insertString = "INSERT INTO `bbdd_fantasy`.`tbl_usuario` (`USUARIO`, `CONTRASEÑA`, `NOMBRE`, `APELLIDOS`, `CORREO`) VALUES (`" + usuario + "`, `" + contraseña + "`, `" + nombre + "`,`" + apellidos + "` , `" + correo + "`);";
-
-        escrituraSql(insertString);
-
-
-    }//GEN-LAST:event_btnCCCreateActionPerformed
-
-    public void escrituraSql(String insertString) {
-
-        Connection mysqlCon = null;
-        String mysqlUrl = "jdbc:mysql://localhost/bbdd_fantasy";
-        try {
-
-            mysqlCon = DriverManager.getConnection(mysqlUrl, MYSQLUSER, MYSQLPASS);
-            System.out.println("Escrito");
-        } catch (SQLException e) {
-
-            while (e != null) { //bucle que trata a cadea de excepcións
-
-                System.err.println("SQLState: " + e.getSQLState());
-
-                System.err.println(" Code: " + e.getErrorCode());
-
-                System.err.println(" Message:");
-
-                System.err.println(e.getMessage());
-
-                e = e.getNextException();
-
-            }
-
-        } finally {
-
-            if (mysqlCon != null) {
-
-                try {
-                    mysqlCon.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-        }
-    }
+   
 
     /**
      * @param args the command line arguments
@@ -253,25 +129,9 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCCCreate;
     private javax.swing.JButton btnCrearCuenta;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel panelMenuButtons;
-    private javax.swing.JPanel pnlClasificacion;
-    private javax.swing.JPanel pnlCrearCuenta;
-    private javax.swing.JPanel pnlMenu;
-    private javax.swing.JInternalFrame pnlMenuInicial;
-    private javax.swing.JPanel pnlalineacion;
-    private javax.swing.JTextField txtCCApellidos;
-    private javax.swing.JPasswordField txtCCContraseña;
-    private javax.swing.JTextField txtCCCorreo;
-    private javax.swing.JTextField txtCCNombre;
-    private javax.swing.JTextField txtCCUsername;
+    private javax.swing.JLayeredPane jLayeredPane2;
     // End of variables declaration//GEN-END:variables
 }
