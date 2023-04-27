@@ -201,9 +201,15 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
         String nombre = txtCCNombre.getText();
         String apellidos = txtCCApellidos.getText();
         String correo = txtCCCorreo.getText();
+        if(!usuario.contains("*") && !usuario.contains("@")){
+            String insertString = "INSERT INTO tbl_usuario (`USUARIO`, `CONTRASENA`, `NOMBRE`, `APELLIDOS`, `CORREO`) VALUES ('" + usuario + "', '" + contraseña + "', '" + nombre + "','" + apellidos + "' , '" + correo + "');";
+        escrituraSql(insertString); 
+        }else{
+            
+        }
+        
 
-        String insertString = "INSERT INTO tbl_usuario (`USUARIO`, `CONTRASENA`, `NOMBRE`, `APELLIDOS`, `CORREO`) VALUES ('" + usuario + "', '" + contraseña + "', '" + nombre + "','" + apellidos + "' , '" + correo + "');";
-        escrituraSql(insertString);
+       
 
     }//GEN-LAST:event_btnCCCreateActionPerformed
 
