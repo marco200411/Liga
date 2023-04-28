@@ -29,10 +29,7 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
 
     public boolean validarUsuario(Usuario us1) {
         boolean inicio = false;
-        if (txtCCContraseña.getText() == us1.getContraseña()) {
-            inicio = true;
 
-        }
         return inicio;
 
     }
@@ -43,26 +40,34 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
 
             String mysqlUrl = "jdbc:mysql://localhost/bbdd_fantasy";
 
-            Connection mysqlCon = null;
-            mysqlCon = DriverManager.getConnection(mysqlUrl, MYSQLUSER, MYSQLPASS);
+            Connection mysqlCon = DriverManager.getConnection(mysqlUrl, MYSQLUSER, MYSQLPASS);
 
             Statement mysqlSelect = mysqlCon.createStatement();
             System.out.println(consulta);
             ResultSet mysqlResult = mysqlSelect.executeQuery(consulta);
 
             int contador = 0;
-            System.out.println(mysqlResult.getString(1));
-            // procesa cada fila do resultado
-            if(mysqlResult.next()){
-                Usuario us1 = new Usuario(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getString(3), mysqlResult.getString(4), mysqlResult.getString(5), mysqlResult.getString(6), mysqlResult.getString(7));
 
-            if (validarUsuario(us1)) {
-                pantallaSesionIniciada pantalla = new pantallaSesionIniciada();
-                pantalla.setVisible(true);
-                this.setVisible(false);
+            // procesa cada fila do resultado
+            if (mysqlResult.next()) {
+                System.out.println(txtCCUsername.getText());
+                System.out.println(mysqlResult.getString(4));
+                System.out.println(txtCCContraseña.getText());
+                System.out.println(mysqlResult.getString(5));
+                if (txtCCContraseña.getText().equalsIgnoreCase(mysqlResult.getString(5)) && (txtCCUsername.getText().equalsIgnoreCase(mysqlResult.getString(4)) || txtCCUsername.getText().equalsIgnoreCase(mysqlResult.getString(6)))) {
+
+                    Usuario us1 = new Usuario(mysqlResult.getString(2), mysqlResult.getString(3), mysqlResult.getString(4), mysqlResult.getString(5), mysqlResult.getString(6), mysqlResult.getString(7), mysqlResult.getString(8));
+                    System.out.println(us1.getContraseña());
+                    pantallaSesionIniciada pantalla = new pantallaSesionIniciada();
+                    pantalla.setVisible(true);
+                    this.setVisible(false);
+
+               } else {
+                    System.out.println("No encontrado");
+                }
+
             }
-            }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(pantallaIniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
         }
