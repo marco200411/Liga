@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Interface;
+package Interface.menus;
 
+import Interface.juego.pantallaSesionIniciada;
 import Methods.Usuario;
 import java.sql.*;
 import java.util.logging.Level;
