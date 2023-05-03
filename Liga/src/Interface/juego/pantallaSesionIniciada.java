@@ -4,6 +4,9 @@
  */
 package Interface.juego;
 
+import Interface.menus.Menu;
+import java.awt.geom.RoundRectangle2D;
+
 /**
  *
  * @author a22marcorr
@@ -51,6 +54,10 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(900, 700));
+        setUndecorated(true);
+        setResizable(false);
+        setShape(new RoundRectangle2D.Double(0, 0, 900,700, 50, 50));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         layerBG.setBackground(new java.awt.Color(206, 206, 206));
@@ -123,6 +130,8 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         btnHome.setForeground(new java.awt.Color(0, 0, 0));
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_90px.png"))); // NOI18N
         btnHome.setBorder(null);
+        btnHome.setBorderPainted(false);
+        btnHome.setContentAreaFilled(false);
         btnHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnHome.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
         btnHome.setName(""); // NOI18N
@@ -146,6 +155,8 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         btnPlantilla.setForeground(new java.awt.Color(0, 0, 0));
         btnPlantilla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stadium_90px.png"))); // NOI18N
         btnPlantilla.setBorder(null);
+        btnPlantilla.setBorderPainted(false);
+        btnPlantilla.setContentAreaFilled(false);
         btnPlantilla.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stadium_90px.click.png"))); // NOI18N
         btnPlantilla.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stadium_90px.hover.png"))); // NOI18N
         layerMenu.add(btnPlantilla);
@@ -155,6 +166,8 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         btnPerfil.setForeground(new java.awt.Color(0, 0, 0));
         btnPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
         btnPerfil.setBorder(null);
+        btnPerfil.setBorderPainted(false);
+        btnPerfil.setContentAreaFilled(false);
         btnPerfil.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.click.png"))); // NOI18N
         btnPerfil.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.hover.png"))); // NOI18N
         layerMenu.add(btnPerfil);
@@ -164,6 +177,8 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         btnClasificacion.setForeground(new java.awt.Color(0, 0, 0));
         btnClasificacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clasificacion.png"))); // NOI18N
         btnClasificacion.setBorder(null);
+        btnClasificacion.setBorderPainted(false);
+        btnClasificacion.setContentAreaFilled(false);
         btnClasificacion.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clasificacion.click.png"))); // NOI18N
         btnClasificacion.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clasificacion.hover.png"))); // NOI18N
         layerMenu.add(btnClasificacion);
@@ -173,6 +188,8 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         btnBuscarJugador.setForeground(new java.awt.Color(0, 0, 0));
         btnBuscarJugador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
         btnBuscarJugador.setBorder(null);
+        btnBuscarJugador.setBorderPainted(false);
+        btnBuscarJugador.setContentAreaFilled(false);
         btnBuscarJugador.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.click.png"))); // NOI18N
         btnBuscarJugador.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.hover.png"))); // NOI18N
         layerMenu.add(btnBuscarJugador);
@@ -182,6 +199,8 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         btnTienda.setForeground(new java.awt.Color(0, 0, 0));
         btnTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tienda.png"))); // NOI18N
         btnTienda.setBorder(null);
+        btnTienda.setBorderPainted(false);
+        btnTienda.setContentAreaFilled(false);
         btnTienda.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tienda.click.png"))); // NOI18N
         btnTienda.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tienda.hover.png"))); // NOI18N
         layerMenu.add(btnTienda);
@@ -191,6 +210,8 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         btnLiga.setForeground(new java.awt.Color(0, 0, 0));
         btnLiga.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_90px.png"))); // NOI18N
         btnLiga.setBorder(null);
+        btnLiga.setBorderPainted(false);
+        btnLiga.setContentAreaFilled(false);
         btnLiga.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_90px.click.png"))); // NOI18N
         btnLiga.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_90px.hover.png"))); // NOI18N
         layerMenu.add(btnLiga);
@@ -200,6 +221,8 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         btnExit.setForeground(new java.awt.Color(0, 0, 0));
         btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
         btnExit.setBorder(null);
+        btnExit.setBorderPainted(false);
+        btnExit.setContentAreaFilled(false);
         btnExit.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.press.png"))); // NOI18N
         btnExit.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.hover.png"))); // NOI18N
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -212,6 +235,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         getContentPane().add(layerMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 120));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
@@ -225,6 +249,10 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
+        Menu pantalla = new Menu();
+        pantalla.setVisible(true);
+        this.setVisible(false);
+
         
     }//GEN-LAST:event_btnExitActionPerformed
 

@@ -4,6 +4,7 @@
  */
 package Interface.menus;
 
+import java.awt.geom.RoundRectangle2D;
 import java.sql.*;
 
 /**
@@ -38,8 +39,13 @@ public class Menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(650, 650));
+        setMinimumSize(new java.awt.Dimension(650, 650));
         setUndecorated(true);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setPreferredSize(new java.awt.Dimension(650, 650));
+        setResizable(false);
+        setShape(new RoundRectangle2D.Double(0, 0, 650, 650, 50, 50));
+        setSize(new java.awt.Dimension(650, 650));
 
         jLayeredPane2.setBackground(new java.awt.Color(206, 206, 206));
         jLayeredPane2.setOpaque(true);
@@ -70,9 +76,19 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setText("La Liga Fantasy");
         jLayeredPane2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 129, -1, 99));
 
-        getContentPane().add(jLayeredPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 640));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCuentaActionPerformed

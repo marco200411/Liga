@@ -1,11 +1,57 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/Syste    @Override
+    public double getArcWidth() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public double getArcHeight() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void setRoundRect(double x, double y, double w, double h, double arcWidth, double arcHeight) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public double getX() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public double getY() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public double getWidth() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public double getHeight() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean isEmpty() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Rectangle2D getBounds2D() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+mFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Interface.menus;
 
 import Interface.juego.pantallaSesionIniciada;
 import Methods.Usuario;
+import java.awt.event.ComponentEvent;
+import java.awt.geom.RoundRectangle2D;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +80,9 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
         return inicio;
 
     }
-
+public void componentResized(ComponentEvent e) {
+                    setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 80, 80));
+                }
     private void getSql(String consulta) {
 
         try {
@@ -95,6 +143,11 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
         txtCCUsername = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(650, 650));
+        setMinimumSize(new java.awt.Dimension(650, 650));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(650, 650));
+        setShape(new RoundRectangle2D.Double(0, 0, 650, 650, 50, 50));
 
         BG.setBackground(new java.awt.Color(206, 206, 206));
         BG.setOpaque(true);
@@ -103,19 +156,19 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
         lblCrearCuenta.setFont(new java.awt.Font("Roboto", 0, 48)); // NOI18N
         lblCrearCuenta.setForeground(new java.awt.Color(92, 99, 112));
         lblCrearCuenta.setText("INICIAR SESION");
-        BG.add(lblCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 390, 60));
+        BG.add(lblCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 390, 60));
 
         lblContraseña.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         lblContraseña.setForeground(new java.awt.Color(92, 99, 112));
         lblContraseña.setText("Contraseña");
-        BG.add(lblContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, -1, -1));
-        BG.add(separatorContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 260, 10));
+        BG.add(lblContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, -1, -1));
+        BG.add(separatorContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 260, 10));
 
         txtCCContraseña.setBackground(new java.awt.Color(206, 206, 206));
         txtCCContraseña.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         txtCCContraseña.setBorder(null);
         txtCCContraseña.setMaximumSize(new java.awt.Dimension(64, 22));
-        BG.add(txtCCContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 260, 50));
+        BG.add(txtCCContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 260, 50));
 
         btnCCCreate.setBackground(new java.awt.Color(45, 89, 141));
         btnCCCreate.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -126,32 +179,33 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
                 btnCCCreateActionPerformed(evt);
             }
         });
-        BG.add(btnCCCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 450, 180, 80));
+        BG.add(btnCCCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 460, 180, 80));
 
         lblUsername.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         lblUsername.setForeground(new java.awt.Color(92, 99, 112));
         lblUsername.setText("Nombre usuario o correo");
-        BG.add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, -1));
-        BG.add(separatorUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 260, 10));
+        BG.add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
+        BG.add(separatorUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 260, 10));
 
         txtCCUsername.setBackground(new java.awt.Color(206, 206, 206));
         txtCCUsername.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         txtCCUsername.setBorder(null);
         txtCCUsername.setMaximumSize(new java.awt.Dimension(64, 22));
-        BG.add(txtCCUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 260, 50));
+        BG.add(txtCCUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 260, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
+            .addComponent(BG, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
+            .addComponent(BG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCCCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCCCreateActionPerformed
