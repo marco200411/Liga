@@ -4,11 +4,11 @@
  */
 package Interface.menus;
 
+import Interface.juego.pantallaSesionIniciada;
+import Methods.Juego;
+import Methods.Usuario;
+import OperacionesBBDD.OperacionesBBDD;
 import java.awt.geom.RoundRectangle2D;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
@@ -53,7 +53,6 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(650, 650));
         setMinimumSize(new java.awt.Dimension(650, 650));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(650, 650));
         setResizable(false);
         setShape(new RoundRectangle2D.Double(0, 0, 650, 650, 20, 20));
         setSize(new java.awt.Dimension(650, 650));
@@ -153,49 +152,7 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-     public void escrituraSql(String insertString) {
-        Statement insertFilm = null;
-        Connection mysqlCon = null;
-        String mysqlUrl = "jdbc:mysql://localhost/bbdd_fantasy";
-        try {
-
-            mysqlCon = DriverManager.getConnection(mysqlUrl, MYSQLUSER, MYSQLPASS);
-
-            insertFilm = mysqlCon.createStatement();
-
-            int inseridos = insertFilm.executeUpdate(insertString);
-
-            System.out.println("Resultado: " + inseridos + " inserido");
-        } catch (SQLException e) {
-
-            while (e != null) { //bucle que trata a cadea de excepcións
-
-                System.err.println("SQLState: " + e.getSQLState());
-
-                System.err.println(" Code: " + e.getErrorCode());
-
-                System.err.println(" Message:");
-
-                System.err.println(e.getMessage());
-
-                e = e.getNextException();
-
-            }
-
-        } finally {
-
-            if (mysqlCon != null) {
-
-                try {
-                    mysqlCon.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-        }
-    }
+     
     
     
     private void btnCCCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCCCreateActionPerformed
@@ -207,7 +164,22 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
         String correo = txtCCCorreo.getText();
         if(!usuario.contains("*") && !usuario.contains("@")){
             String insertString = "INSERT INTO tbl_usuario (`USUARIO`, `CONTRASENA`, `NOMBRE`, `APELLIDOS`, `CORREO`) VALUES ('" + usuario + "', '" + contraseña + "', '" + nombre + "','" + apellidos + "' , '" + correo + "');";
-        escrituraSql(insertString); 
+            
+            
+            OperacionesBBDD escritura = new OperacionesBBDD();
+            escritura.escrituraSql(insertString);
+            
+            
+            
+            Usuario us1 = new Usuario(nombre, apellidos, usuario, contraseña, correo, null, null);
+            
+            
+             this.setVisible(false);
+            pantallaSesionIniciada pantalla = new pantallaSesionIniciada(us1);
+                    pantalla.setVisible(true);
+           
+            
+       
         }else{
             
         }

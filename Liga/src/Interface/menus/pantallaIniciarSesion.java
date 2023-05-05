@@ -49,7 +49,9 @@ mFileSystem/Templates/Licenses/license-default.txt to change this license
 package Interface.menus;
 
 import Interface.juego.pantallaSesionIniciada;
+import Methods.Juego;
 import Methods.Usuario;
+import OperacionesBBDD.OperacionesBBDD;
 import java.awt.event.ComponentEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.sql.*;
@@ -74,29 +76,11 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
 
     }
 
-    public boolean validarUsuario(Usuario us1) {
-        boolean inicio = false;
-
-        return inicio;
-
-    }
-public void componentResized(ComponentEvent e) {
-                    setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 80, 80));
-                }
     private void getSql(String consulta) {
 
         try {
-
-            String mysqlUrl = "jdbc:mysql://localhost/bbdd_fantasy";
-
-            Connection mysqlCon = DriverManager.getConnection(mysqlUrl, MYSQLUSER, MYSQLPASS);
-
-            Statement mysqlSelect = mysqlCon.createStatement();
-            System.out.println(consulta);
-            ResultSet mysqlResult = mysqlSelect.executeQuery(consulta);
-
-            int contador = 0;
-
+            OperacionesBBDD escritura = new OperacionesBBDD();
+            ResultSet mysqlResult = escritura.getSQL(consulta);
             // procesa cada fila do resultado
             if (mysqlResult.next()) {
                 System.out.println(txtCCUsername.getText());
@@ -106,17 +90,20 @@ public void componentResized(ComponentEvent e) {
                 if (txtCCContraseña.getText().equalsIgnoreCase(mysqlResult.getString(5)) && (txtCCUsername.getText().equalsIgnoreCase(mysqlResult.getString(4)) || txtCCUsername.getText().equalsIgnoreCase(mysqlResult.getString(6)))) {
 
                     Usuario us1 = new Usuario(mysqlResult.getString(2), mysqlResult.getString(3), mysqlResult.getString(4), mysqlResult.getString(5), mysqlResult.getString(6), mysqlResult.getString(7), mysqlResult.getString(8));
-                    System.out.println(us1.getContraseña());
-                    pantallaSesionIniciada pantalla = new pantallaSesionIniciada();
-                    pantalla.setVisible(true);
+                    
+                    
+                  
                     this.setVisible(false);
+                    pantallaSesionIniciada pantalla = new pantallaSesionIniciada(us1);
+                    pantalla.setVisible(true);
 
-               } else {
+                } else {
                     System.out.println("No encontrado");
                 }
 
+            } else {
+                System.out.println("No encontrado");
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(pantallaIniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -173,7 +160,7 @@ public void componentResized(ComponentEvent e) {
         btnCCCreate.setBackground(new java.awt.Color(45, 89, 141));
         btnCCCreate.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnCCCreate.setForeground(new java.awt.Color(206, 206, 206));
-        btnCCCreate.setText("Crear cuenta");
+        btnCCCreate.setText("Iniciar sesion");
         btnCCCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCCCreateActionPerformed(evt);
