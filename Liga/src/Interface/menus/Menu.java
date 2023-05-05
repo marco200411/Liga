@@ -33,10 +33,13 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLayeredPane2 = new javax.swing.JLayeredPane();
+        BG = new javax.swing.JLayeredPane();
         jButton2 = new javax.swing.JButton();
         btnCrearCuenta = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        panelAcciones = new javax.swing.JLayeredPane();
+        btnMinimizar = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(650, 650));
@@ -44,12 +47,12 @@ public class Menu extends javax.swing.JFrame {
         setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(650, 650));
         setResizable(false);
-        setShape(new RoundRectangle2D.Double(0, 0, 650, 650, 50, 50));
+        setShape(new RoundRectangle2D.Double(0, 0, 650, 650, 20, 20));
         setSize(new java.awt.Dimension(650, 650));
 
-        jLayeredPane2.setBackground(new java.awt.Color(206, 206, 206));
-        jLayeredPane2.setOpaque(true);
-        jLayeredPane2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        BG.setBackground(new java.awt.Color(206, 206, 206));
+        BG.setOpaque(true);
+        BG.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton2.setBackground(new java.awt.Color(45, 89, 141));
         jButton2.setForeground(new java.awt.Color(206, 206, 206));
@@ -59,7 +62,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jLayeredPane2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, 320, 59));
+        BG.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, 320, 59));
 
         btnCrearCuenta.setBackground(new java.awt.Color(45, 89, 141));
         btnCrearCuenta.setForeground(new java.awt.Color(206, 206, 206));
@@ -69,22 +72,89 @@ public class Menu extends javax.swing.JFrame {
                 btnCrearCuentaActionPerformed(evt);
             }
         });
-        jLayeredPane2.add(btnCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 320, 50));
+        BG.add(btnCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 320, 50));
 
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(92, 99, 112));
         jLabel1.setText("La Liga Fantasy");
-        jLayeredPane2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 129, -1, 99));
+        BG.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 129, -1, 99));
+
+        panelAcciones.setMaximumSize(new java.awt.Dimension(95, 25));
+        panelAcciones.setMinimumSize(new java.awt.Dimension(95, 25));
+        panelAcciones.setOpaque(true);
+
+        btnMinimizar.setBackground(new java.awt.Color(206, 206, 206));
+        btnMinimizar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnMinimizar.setForeground(new java.awt.Color(153, 0, 0));
+        btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar (1).png"))); // NOI18N
+        btnMinimizar.setBorder(null);
+        btnMinimizar.setBorderPainted(false);
+        btnMinimizar.setContentAreaFilled(false);
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnMinimizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnMinimizar.setOpaque(true);
+        btnMinimizar.setRequestFocusEnabled(false);
+        btnMinimizar.setRolloverEnabled(false);
+        btnMinimizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinimizarActionPerformed(evt);
+            }
+        });
+
+        btnClose.setBackground(new java.awt.Color(206, 206, 206));
+        btnClose.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnClose.setForeground(new java.awt.Color(153, 0, 0));
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close (1).png"))); // NOI18N
+        btnClose.setBorder(null);
+        btnClose.setBorderPainted(false);
+        btnClose.setContentAreaFilled(false);
+        btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnClose.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnClose.setOpaque(true);
+        btnClose.setRequestFocusEnabled(false);
+        btnClose.setRolloverEnabled(false);
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
+
+        panelAcciones.setLayer(btnMinimizar, javax.swing.JLayeredPane.POPUP_LAYER);
+        panelAcciones.setLayer(btnClose, javax.swing.JLayeredPane.POPUP_LAYER);
+
+        javax.swing.GroupLayout panelAccionesLayout = new javax.swing.GroupLayout(panelAcciones);
+        panelAcciones.setLayout(panelAccionesLayout);
+        panelAccionesLayout.setHorizontalGroup(
+            panelAccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAccionesLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(btnMinimizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnClose)
+                .addContainerGap())
+        );
+        panelAccionesLayout.setVerticalGroup(
+            panelAccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAccionesLayout.createSequentialGroup()
+                .addGroup(panelAccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnMinimizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        BG.add(panelAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 90, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(BG, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(BG, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -106,6 +176,16 @@ public class Menu extends javax.swing.JFrame {
         this.setVisible(false);
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
+        this.setState(ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarActionPerformed
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+
+    }//GEN-LAST:event_btnCloseActionPerformed
 
    
 
@@ -145,9 +225,12 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLayeredPane BG;
+    private javax.swing.JButton btnClose;
     private javax.swing.JButton btnCrearCuenta;
+    private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLayeredPane jLayeredPane2;
+    private javax.swing.JLayeredPane panelAcciones;
     // End of variables declaration//GEN-END:variables
 }

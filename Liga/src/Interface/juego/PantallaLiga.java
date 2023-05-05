@@ -5,9 +5,13 @@
 package Interface.juego;
 
 import Interface.menus.Menu;
-import Methods.Juego;
+import Methods.Liga;
 import Methods.Usuario;
 import OperacionesBBDD.OperacionesBBDD;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -309,7 +313,44 @@ public class PantallaLiga extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnUnirseLigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnirseLigaActionPerformed
-        // TODO add your handling code here:
+        if(!txtNombreUnirseLiga.getText().isEmpty()){
+
+                String NombreLiga = txtNombreUnirseLiga.getText();
+                
+                String sentenciaSelect = "SELECT NOMBRE, (SELECT USUARIO FROM TBL_USUARIO  WHERE ID_USUARIO=ADMINISTRADOR)FROM TBL_LIGA WHERE NOMBRE='"+ NombreLiga +"';";
+                
+                
+                OperacionesBBDD get = new OperacionesBBDD();
+                ResultSet results = get.getSQL(sentenciaSelect);
+                
+                
+                
+            try {
+                System.out.println("aa:" + results.getString(1));
+                
+                
+                
+                
+//                Liga liga1 = new Liga(results.getString(1), results.getString(1));
+                
+//                String insertString2 = " UPDATE bbdd_fantasy.tbl_usuario SET LIGA_INSCRITO=(SELECT  L.ID_LIGA FROM TBL_LIGA AS L WHERE L.NOMBRE='"+NombreLiga +"') WHERE USUARIO='"+Actual.getNombreUsuario() +"';";
+//                
+//                System.out.println(insertString2);
+//                OperacionesBBDD escritura2 = new OperacionesBBDD();
+//                escritura2.escrituraSql(insertString2);
+            } catch (SQLException ex) {
+                Logger.getLogger(PantallaLiga.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+                
+                
+               
+                
+                
+           
+            
+            
+        }
     }//GEN-LAST:event_btnUnirseLigaActionPerformed
 
     private void btnUnirseLigaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnUnirseLigaKeyReleased

@@ -22,7 +22,8 @@ public class OperacionesBBDD {
 
     private static String MYSQLPASS = "root";
 
-    public void escrituraSql(String insertString) {
+    public boolean escrituraSql(String insertString) {
+        boolean resultado= false;
         Statement insertFilm = null;
         Connection mysqlCon = null;
         String mysqlUrl = "jdbc:mysql://localhost/bbdd_fantasy";
@@ -33,7 +34,11 @@ public class OperacionesBBDD {
             insertFilm = mysqlCon.createStatement();
 
             int inseridos = insertFilm.executeUpdate(insertString);
-
+            if(inseridos>0){
+                resultado=true;
+            }else{
+                resultado=false;
+            }
             System.out.println("Resultado: " + inseridos + " inserido");
         } catch (SQLException e) {
 
@@ -64,25 +69,26 @@ public class OperacionesBBDD {
             }
 
         }
+        return resultado;
     }
 
     public ResultSet getSQL(String consultaSql) {
         ResultSet mysqlResult = null;
+        Connection mysqlCon = null;
         try {
             String mysqlUrl = "jdbc:mysql://localhost/bbdd_fantasy";
-
-            Connection mysqlCon = DriverManager.getConnection(mysqlUrl, MYSQLUSER, MYSQLPASS);
+            System.out.println(consultaSql);
+             mysqlCon = DriverManager.getConnection(mysqlUrl, MYSQLUSER, MYSQLPASS);
 
             Statement mysqlSelect = mysqlCon.createStatement();
-            System.out.println(consultaSql);
             mysqlResult = mysqlSelect.executeQuery(consultaSql);
-
+           
         } catch (SQLException ex) {
             Logger.getLogger(OperacionesBBDD.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+       
         return mysqlResult;
-
+        
     }
     
      public ResultSet updateSQL(String consultaSql) {

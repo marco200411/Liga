@@ -49,7 +49,6 @@ mFileSystem/Templates/Licenses/license-default.txt to change this license
 package Interface.menus;
 
 import Interface.juego.pantallaSesionIniciada;
-import Methods.Juego;
 import Methods.Usuario;
 import OperacionesBBDD.OperacionesBBDD;
 import java.awt.event.ComponentEvent;
@@ -128,12 +127,15 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
         lblUsername = new javax.swing.JLabel();
         separatorUsername = new javax.swing.JSeparator();
         txtCCUsername = new javax.swing.JTextField();
+        panelAcciones = new javax.swing.JLayeredPane();
+        btnRetroceder = new javax.swing.JButton();
+        btnMinimizar = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(650, 650));
         setMinimumSize(new java.awt.Dimension(650, 650));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(650, 650));
         setShape(new RoundRectangle2D.Double(0, 0, 650, 650, 50, 50));
 
         BG.setBackground(new java.awt.Color(206, 206, 206));
@@ -143,19 +145,19 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
         lblCrearCuenta.setFont(new java.awt.Font("Roboto", 0, 48)); // NOI18N
         lblCrearCuenta.setForeground(new java.awt.Color(92, 99, 112));
         lblCrearCuenta.setText("INICIAR SESION");
-        BG.add(lblCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 390, 60));
+        BG.add(lblCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 390, 60));
 
         lblContraseña.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         lblContraseña.setForeground(new java.awt.Color(92, 99, 112));
         lblContraseña.setText("Contraseña");
-        BG.add(lblContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, -1, -1));
-        BG.add(separatorContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 260, 10));
+        BG.add(lblContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
+        BG.add(separatorContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 260, 10));
 
         txtCCContraseña.setBackground(new java.awt.Color(206, 206, 206));
         txtCCContraseña.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         txtCCContraseña.setBorder(null);
         txtCCContraseña.setMaximumSize(new java.awt.Dimension(64, 22));
-        BG.add(txtCCContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 260, 50));
+        BG.add(txtCCContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 260, 50));
 
         btnCCCreate.setBackground(new java.awt.Color(45, 89, 141));
         btnCCCreate.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -166,25 +168,113 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
                 btnCCCreateActionPerformed(evt);
             }
         });
-        BG.add(btnCCCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 460, 180, 80));
+        BG.add(btnCCCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 180, 80));
 
         lblUsername.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         lblUsername.setForeground(new java.awt.Color(92, 99, 112));
         lblUsername.setText("Nombre usuario o correo");
-        BG.add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
-        BG.add(separatorUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 260, 10));
+        BG.add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
+        BG.add(separatorUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 260, 10));
 
         txtCCUsername.setBackground(new java.awt.Color(206, 206, 206));
         txtCCUsername.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         txtCCUsername.setBorder(null);
         txtCCUsername.setMaximumSize(new java.awt.Dimension(64, 22));
-        BG.add(txtCCUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 260, 50));
+        BG.add(txtCCUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 260, 50));
+
+        panelAcciones.setMaximumSize(new java.awt.Dimension(95, 25));
+        panelAcciones.setMinimumSize(new java.awt.Dimension(95, 25));
+
+        btnRetroceder.setBackground(new java.awt.Color(206, 206, 206));
+        btnRetroceder.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnRetroceder.setForeground(new java.awt.Color(153, 0, 0));
+        btnRetroceder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retroceder.png"))); // NOI18N
+        btnRetroceder.setBorder(null);
+        btnRetroceder.setBorderPainted(false);
+        btnRetroceder.setContentAreaFilled(false);
+        btnRetroceder.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnRetroceder.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnRetroceder.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRetroceder.setOpaque(true);
+        btnRetroceder.setRequestFocusEnabled(false);
+        btnRetroceder.setRolloverEnabled(false);
+        btnRetroceder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetrocederActionPerformed(evt);
+            }
+        });
+
+        btnMinimizar.setBackground(new java.awt.Color(206, 206, 206));
+        btnMinimizar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnMinimizar.setForeground(new java.awt.Color(153, 0, 0));
+        btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar (1).png"))); // NOI18N
+        btnMinimizar.setBorder(null);
+        btnMinimizar.setBorderPainted(false);
+        btnMinimizar.setContentAreaFilled(false);
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnMinimizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnMinimizar.setOpaque(true);
+        btnMinimizar.setRequestFocusEnabled(false);
+        btnMinimizar.setRolloverEnabled(false);
+        btnMinimizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinimizarActionPerformed(evt);
+            }
+        });
+
+        btnClose.setBackground(new java.awt.Color(206, 206, 206));
+        btnClose.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnClose.setForeground(new java.awt.Color(153, 0, 0));
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close (1).png"))); // NOI18N
+        btnClose.setBorder(null);
+        btnClose.setBorderPainted(false);
+        btnClose.setContentAreaFilled(false);
+        btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnClose.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnClose.setOpaque(true);
+        btnClose.setRequestFocusEnabled(false);
+        btnClose.setRolloverEnabled(false);
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
+
+        panelAcciones.setLayer(btnRetroceder, javax.swing.JLayeredPane.POPUP_LAYER);
+        panelAcciones.setLayer(btnMinimizar, javax.swing.JLayeredPane.POPUP_LAYER);
+        panelAcciones.setLayer(btnClose, javax.swing.JLayeredPane.POPUP_LAYER);
+
+        javax.swing.GroupLayout panelAccionesLayout = new javax.swing.GroupLayout(panelAcciones);
+        panelAcciones.setLayout(panelAccionesLayout);
+        panelAccionesLayout.setHorizontalGroup(
+            panelAccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAccionesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnRetroceder)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnMinimizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(btnClose))
+        );
+        panelAccionesLayout.setVerticalGroup(
+            panelAccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAccionesLayout.createSequentialGroup()
+                .addGroup(panelAccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnRetroceder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMinimizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(31, 31, 31))
+        );
+
+        BG.add(panelAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 5, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BG, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(BG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,6 +301,24 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnCCCreateActionPerformed
+
+    private void btnRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrocederActionPerformed
+        // TODO add your handling code here:
+        Menu pantalla = new Menu();
+        pantalla.setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_btnRetrocederActionPerformed
+
+    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
+        this.setState(ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarActionPerformed
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+
+    }//GEN-LAST:event_btnCloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,9 +358,13 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane BG;
     private javax.swing.JButton btnCCCreate;
+    private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnMinimizar;
+    private javax.swing.JButton btnRetroceder;
     private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblCrearCuenta;
     private javax.swing.JLabel lblUsername;
+    private javax.swing.JLayeredPane panelAcciones;
     private javax.swing.JSeparator separatorContraseña;
     private javax.swing.JSeparator separatorUsername;
     private javax.swing.JPasswordField txtCCContraseña;
