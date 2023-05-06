@@ -22,24 +22,20 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
     public pantallaSesionIniciada(Usuario usuario) {
         initComponents();
         usuarioActual = usuario;
-        if(usuarioActual.getLiga()== null){
+        if (usuarioActual.getLiga() == null) {
             layerCabecera.setVisible(false);
             layerCabeceraSinLiga.setVisible(true);
-            
-        }else{
+
+        } else {
             layerCabecera.setVisible(true);
             layerCabeceraSinLiga.setVisible(false);
         }
 
-        
     }
-
-    
 
     public Usuario getUsuarioActual() {
         return usuarioActual;
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -284,11 +280,18 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
 
     private void btnLigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLigaActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        PantallaLiga pantalla = new PantallaLiga(usuarioActual);
-                    pantalla.setVisible(true);
-        
-        
+        if (usuarioActual.getLiga() == null) {
+            this.setVisible(false);
+            PantallaLiga pantalla = new PantallaLiga(usuarioActual);
+            pantalla.setVisible(true);
+        } else {
+
+            this.setVisible(false);
+            PantallaLigaAbandonar pantalla = new PantallaLigaAbandonar(usuarioActual);
+            pantalla.setVisible(true);
+        }
+
+
     }//GEN-LAST:event_btnLigaActionPerformed
 
     /**
@@ -321,7 +324,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
             }
         });
     }

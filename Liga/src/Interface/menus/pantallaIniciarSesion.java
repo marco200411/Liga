@@ -49,6 +49,7 @@ mFileSystem/Templates/Licenses/license-default.txt to change this license
 package Interface.menus;
 
 import Interface.juego.pantallaSesionIniciada;
+import Methods.Liga;
 import Methods.Usuario;
 import OperacionesBBDD.OperacionesBBDD;
 import java.awt.event.ComponentEvent;
@@ -86,12 +87,10 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
                 System.out.println(mysqlResult.getString(4));
                 System.out.println(txtCCContraseña.getText());
                 System.out.println(mysqlResult.getString(5));
-                if (txtCCContraseña.getText().equalsIgnoreCase(mysqlResult.getString(5)) && (txtCCUsername.getText().equalsIgnoreCase(mysqlResult.getString(4)) || txtCCUsername.getText().equalsIgnoreCase(mysqlResult.getString(6)))) {
+                if (txtCCContraseña.getText().equalsIgnoreCase(mysqlResult.getString(4)) && (txtCCUsername.getText().equalsIgnoreCase(mysqlResult.getString(3)) || txtCCUsername.getText().equalsIgnoreCase(mysqlResult.getString(5)))) {
+                    Liga liga = new Liga(mysqlResult.getString(8), mysqlResult.getString(7));
+                    Usuario us1 = new Usuario(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getString(3), mysqlResult.getString(4), mysqlResult.getString(5), mysqlResult.getString(6), liga);
 
-                    Usuario us1 = new Usuario(mysqlResult.getString(2), mysqlResult.getString(3), mysqlResult.getString(4), mysqlResult.getString(5), mysqlResult.getString(6), mysqlResult.getString(7), mysqlResult.getString(8));
-                    
-                    
-                  
                     this.setVisible(false);
                     pantallaSesionIniciada pantalla = new pantallaSesionIniciada(us1);
                     pantalla.setVisible(true);
@@ -289,10 +288,19 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
         String consulta = null;
         if (txtCCUsername.getText().contains("@")) {
-            consulta = ("SELECT * FROM tbl_usuario WHERE CORREO='" + txtCCUsername.getText() + "';");
+
+            consulta = ("SELECT U.NOMBRE, U.APELLIDOS, U.USUARIO, U.CONTRASENA, U.CORREO, U.EQUIPO, L.NOMBRE,(SELECT USUARIO FROM TBL_USUARIO WHERE ID_USUARIO=L.ADMINISTRADOR)\n"
+                    + " FROM tbl_usuario AS U INNER JOIN TBL_LIGA AS L\n"
+                    + " ON L.ID_LIGA=U.LIGA_INSCRITO\n"
+                    + " WHERE CORREO='" + txtCCUsername.getText() + "';");
 
         } else {
-            consulta = ("SELECT * FROM tbl_usuario WHERE USUARIO='" + txtCCUsername.getText() + "';");
+
+            consulta = ("SELECT U.NOMBRE, U.APELLIDOS, U.USUARIO, U.CONTRASENA, U.CORREO, U.EQUIPO, L.NOMBRE,(SELECT USUARIO FROM TBL_USUARIO WHERE ID_USUARIO=L.ADMINISTRADOR)\n"
+                    + " FROM tbl_usuario AS U INNER JOIN TBL_LIGA AS L\n"
+                    + " ON L.ID_LIGA=U.LIGA_INSCRITO\n"
+                    + " WHERE USUARIO='" + txtCCUsername.getText() + "';");
+
         }
         if (consulta != null) {
             getSql(consulta);

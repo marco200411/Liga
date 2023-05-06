@@ -23,6 +23,31 @@ public class Liga {
 
     }
 
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+
+    public String getAdministrador() {
+        return Administrador;
+    }
+
+    public void setAdministrador(String Administrador) {
+        this.Administrador = Administrador;
+    }
+
+    public ArrayList<Usuario> getIntegrantes() {
+        return integrantes;
+    }
+
+    public void setIntegrantes(ArrayList<Usuario> integrantes) {
+        this.integrantes = integrantes;
+    }
+    
+
     public boolean insertarUsuario(Usuario us) {
 
         boolean resultado = false;

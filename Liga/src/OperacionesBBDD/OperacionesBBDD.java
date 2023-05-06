@@ -23,7 +23,7 @@ public class OperacionesBBDD {
     private static String MYSQLPASS = "root";
 
     public boolean escrituraSql(String insertString) {
-        boolean resultado= false;
+        boolean resultado = false;
         Statement insertFilm = null;
         Connection mysqlCon = null;
         String mysqlUrl = "jdbc:mysql://localhost/bbdd_fantasy";
@@ -34,10 +34,10 @@ public class OperacionesBBDD {
             insertFilm = mysqlCon.createStatement();
 
             int inseridos = insertFilm.executeUpdate(insertString);
-            if(inseridos>0){
-                resultado=true;
-            }else{
-                resultado=false;
+            if (inseridos > 0) {
+                resultado = true;
+            } else {
+                resultado = false;
             }
             System.out.println("Resultado: " + inseridos + " inserido");
         } catch (SQLException e) {
@@ -74,24 +74,24 @@ public class OperacionesBBDD {
 
     public ResultSet getSQL(String consultaSql) {
         ResultSet mysqlResult = null;
-        Connection mysqlCon = null;
         try {
-            String mysqlUrl = "jdbc:mysql://localhost/bbdd_fantasy";
-            System.out.println(consultaSql);
-             mysqlCon = DriverManager.getConnection(mysqlUrl, MYSQLUSER, MYSQLPASS);
+            
+                String mysqlUrl = "jdbc:mysql://localhost/bbdd_fantasy";
+                System.out.println(consultaSql);
+                Connection mysqlCon = DriverManager.getConnection(mysqlUrl, MYSQLUSER, MYSQLPASS);
 
-            Statement mysqlSelect = mysqlCon.createStatement();
-            mysqlResult = mysqlSelect.executeQuery(consultaSql);
-           
+                Statement mysqlSelect = mysqlCon.createStatement();
+                mysqlResult = mysqlSelect.executeQuery(consultaSql);
+            
         } catch (SQLException ex) {
             Logger.getLogger(OperacionesBBDD.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
         return mysqlResult;
-        
+
     }
-    
-     public ResultSet updateSQL(String consultaSql) {
+
+    public ResultSet updateSQL(String consultaSql) {
         ResultSet mysqlResult = null;
         try {
             String mysqlUrl = "jdbc:mysql://localhost/bbdd_fantasy";
