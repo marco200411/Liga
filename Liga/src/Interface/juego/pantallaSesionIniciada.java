@@ -280,7 +280,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
 
     private void btnLigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLigaActionPerformed
         // TODO add your handling code here:
-        if (usuarioActual.getLiga() == null) {
+        if (usuarioActual.getLiga().getNombre()==null || usuarioActual.getLiga().getNombre().isBlank()  ) {
             this.setVisible(false);
             PantallaLiga pantalla = new PantallaLiga(usuarioActual);
             pantalla.setVisible(true);

@@ -88,7 +88,7 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
                 System.out.println(txtCCContraseña.getText());
                 System.out.println(mysqlResult.getString(5));
                 if (txtCCContraseña.getText().equalsIgnoreCase(mysqlResult.getString(4)) && (txtCCUsername.getText().equalsIgnoreCase(mysqlResult.getString(3)) || txtCCUsername.getText().equalsIgnoreCase(mysqlResult.getString(5)))) {
-                    Liga liga = new Liga(mysqlResult.getString(8), mysqlResult.getString(7));
+                    Liga liga = new Liga(mysqlResult.getString(7), mysqlResult.getString(8));
                     Usuario us1 = new Usuario(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getString(3), mysqlResult.getString(4), mysqlResult.getString(5), mysqlResult.getString(6), liga);
 
                     this.setVisible(false);
@@ -267,7 +267,7 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
                 .addGap(31, 31, 31))
         );
 
-        BG.add(panelAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 5, -1, -1));
+        BG.add(panelAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 5, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -289,16 +289,21 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
         String consulta = null;
         if (txtCCUsername.getText().contains("@")) {
 
-            consulta = ("SELECT U.NOMBRE, U.APELLIDOS, U.USUARIO, U.CONTRASENA, U.CORREO, U.EQUIPO, L.NOMBRE,(SELECT USUARIO FROM TBL_USUARIO WHERE ID_USUARIO=L.ADMINISTRADOR)\n"
-                    + " FROM tbl_usuario AS U INNER JOIN TBL_LIGA AS L\n"
-                    + " ON L.ID_LIGA=U.LIGA_INSCRITO\n"
+            consulta = (" SELECT U.NOMBRE, U.APELLIDOS, U.USUARIO, U.CONTRASENA, U.CORREO, U.EQUIPO, \n"
+                    + " (SELECT L.NOMBRE FROM TBL_LIGA AS L WHERE U.LIGA_INSCRITO=L.ID_LIGA),\n"
+                    + " (SELECT U2.USUARIO FROM TBL_USUARIO AS U2 \n"
+                    + " WHERE ID_USUARIO=(SELECT L.ADMINISTRADOR FROM TBL_LIGA AS L WHERE U.ID_USUARIO=L.ADMINISTRADOR))\n"
+                    + " FROM tbl_usuario AS U\n"
+                    + "\n"
                     + " WHERE CORREO='" + txtCCUsername.getText() + "';");
 
         } else {
-
-            consulta = ("SELECT U.NOMBRE, U.APELLIDOS, U.USUARIO, U.CONTRASENA, U.CORREO, U.EQUIPO, L.NOMBRE,(SELECT USUARIO FROM TBL_USUARIO WHERE ID_USUARIO=L.ADMINISTRADOR)\n"
-                    + " FROM tbl_usuario AS U INNER JOIN TBL_LIGA AS L\n"
-                    + " ON L.ID_LIGA=U.LIGA_INSCRITO\n"
+            consulta = (" SELECT U.NOMBRE, U.APELLIDOS, U.USUARIO, U.CONTRASENA, U.CORREO, U.EQUIPO, \n"
+                    + " (SELECT L.NOMBRE FROM TBL_LIGA AS L WHERE U.LIGA_INSCRITO=L.ID_LIGA),\n"
+                    + " (SELECT U2.USUARIO FROM TBL_USUARIO AS U2 \n"
+                    + " WHERE ID_USUARIO=(SELECT L.ADMINISTRADOR FROM TBL_LIGA AS L WHERE U.ID_USUARIO=L.ADMINISTRADOR))\n"
+                    + " FROM tbl_usuario AS U\n"
+                    + "\n"
                     + " WHERE USUARIO='" + txtCCUsername.getText() + "';");
 
         }

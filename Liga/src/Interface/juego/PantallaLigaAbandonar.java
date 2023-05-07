@@ -27,8 +27,19 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
     public PantallaLigaAbandonar(Usuario us1) {
         initComponents();
         Actual = us1;
-        lblAdministrador.setText("Administrador de la liga: " + Actual.getLiga().getNombre());
-        lblNombreLiga.setText("Nombre de la liga: " + Actual.getLiga().getAdministrador());
+        System.out.println("admins " + Actual.getLiga().getAdministrador());
+        System.out.println("nombre" + Actual.getNombreUsuario());
+        if (Actual.getLiga().getAdministrador().equals(Actual.getNombreUsuario())) {
+
+            lblAdministrador.setText("Eres el administrador de la liga");
+            lblNombreLiga.setText("Nombre de la liga: " + Actual.getLiga().getAdministrador());
+            btnInfoUnirse.setText("ELIMINAR LIGA");
+        } else {
+            lblAdministrador.setText("Administrador de la liga: " + Actual.getLiga().getNombre());
+            lblNombreLiga.setText("Nombre de la liga: " + Actual.getLiga().getAdministrador());
+            btnInfoUnirse.setText("ABANDONAR LIGA");
+        }
+
     }
 
     /**
@@ -78,13 +89,12 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
 
         lblAdministrador.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         lblAdministrador.setText("Administrador de la liga:");
-        layerUnirseLiga.add(lblAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 790, 30));
+        layerUnirseLiga.add(lblAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 790, 30));
 
         btnInfoUnirse.setBackground(new java.awt.Color(92, 99, 112));
         btnInfoUnirse.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
         btnInfoUnirse.setForeground(new java.awt.Color(153, 0, 0));
         btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png"))); // NOI18N
-        btnInfoUnirse.setText("ABANDONAR LIGA");
         btnInfoUnirse.setBorder(null);
         btnInfoUnirse.setBorderPainted(false);
         btnInfoUnirse.setContentAreaFilled(false);
@@ -106,7 +116,7 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
 
         lblNombreLiga.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         lblNombreLiga.setText("Nombre de la liga:");
-        layerUnirseLiga.add(lblNombreLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 790, 30));
+        layerUnirseLiga.add(lblNombreLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 790, 30));
         layerUnirseLiga.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 810, 10));
 
         btnInfoUnirse1.setBackground(new java.awt.Color(92, 99, 112));
@@ -269,6 +279,7 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
@@ -290,6 +301,23 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
 
     private void btnInfoUnirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoUnirseActionPerformed
         // TODO add your handling code here:
+        String insertString = "";
+        if (Actual.getLiga().getAdministrador().equals(Actual.getNombreUsuario())) {
+            insertString = " UPDATE bbdd_fantasy.tbl_usuario SET LIGA_INSCRITO=(SELECT  L.ID_LIGA FROM TBL_LIGA AS L WHERE L.NOMBRE='" + "" + "') WHERE USUARIO='" + Actual.getNombreUsuario() + "';";
+
+        } else {
+            insertString = "";
+        }
+
+        System.out.println(insertString);
+        OperacionesBBDD escritura2 = new OperacionesBBDD();
+        escritura2.escrituraSql(insertString);
+
+        btnInfoUnirse1.setForeground(new java.awt.Color(0, 100, 0));
+        btnInfoUnirse1.setVisible(true);
+        btnInfoUnirse1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/INSERT.png")));
+        btnInfoUnirse1.setText("Has abandonado la liga con exito ");
+
         btnInfoUnirse.setVisible(false);
     }//GEN-LAST:event_btnInfoUnirseActionPerformed
 

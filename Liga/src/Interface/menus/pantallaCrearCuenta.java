@@ -49,11 +49,11 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
         lblNombre = new javax.swing.JLabel();
         separatorNombre = new javax.swing.JSeparator();
         txtCCNombre = new javax.swing.JTextField();
+        btnError1 = new javax.swing.JButton();
         panelAcciones = new javax.swing.JLayeredPane();
         btnRetroceder = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
-        btnError1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(650, 650));
@@ -143,6 +143,29 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
         txtCCNombre.setMaximumSize(new java.awt.Dimension(64, 22));
         BG.add(txtCCNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 260, 50));
 
+        btnError1.setBackground(new java.awt.Color(206, 206, 206));
+        btnError1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnError1.setForeground(new java.awt.Color(153, 0, 0));
+        btnError1.setBorder(null);
+        btnError1.setBorderPainted(false);
+        btnError1.setContentAreaFilled(false);
+        btnError1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnError1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnError1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnError1.setMaximumSize(new java.awt.Dimension(390, 80));
+        btnError1.setMinimumSize(new java.awt.Dimension(390, 80));
+        btnError1.setOpaque(true);
+        btnError1.setPreferredSize(new java.awt.Dimension(390, 80));
+        btnError1.setRequestFocusEnabled(false);
+        btnError1.setRolloverEnabled(false);
+        btnError1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnError1ActionPerformed(evt);
+            }
+        });
+        BG.setLayer(btnError1, javax.swing.JLayeredPane.POPUP_LAYER);
+        BG.add(btnError1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, -1, -1));
+
         panelAcciones.setMaximumSize(new java.awt.Dimension(95, 25));
         panelAcciones.setMinimumSize(new java.awt.Dimension(95, 25));
 
@@ -229,30 +252,7 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
                 .addGap(31, 31, 31))
         );
 
-        BG.add(panelAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 5, -1, -1));
-
-        btnError1.setBackground(new java.awt.Color(206, 206, 206));
-        btnError1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnError1.setForeground(new java.awt.Color(153, 0, 0));
-        btnError1.setBorder(null);
-        btnError1.setBorderPainted(false);
-        btnError1.setContentAreaFilled(false);
-        btnError1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnError1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        btnError1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnError1.setMaximumSize(new java.awt.Dimension(390, 80));
-        btnError1.setMinimumSize(new java.awt.Dimension(390, 80));
-        btnError1.setOpaque(true);
-        btnError1.setPreferredSize(new java.awt.Dimension(390, 80));
-        btnError1.setRequestFocusEnabled(false);
-        btnError1.setRolloverEnabled(false);
-        btnError1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnError1ActionPerformed(evt);
-            }
-        });
-        BG.setLayer(btnError1, javax.swing.JLayeredPane.POPUP_LAYER);
-        BG.add(btnError1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, -1, -1));
+        BG.add(panelAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -272,7 +272,7 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
 
     private void btnCCCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCCCreateActionPerformed
         // TODO add your handling code here:
-        
+
         String usuario = txtCCUsername.getText();
         String contraseña = txtCCContraseña.getText();
         String nombre = txtCCNombre.getText();
@@ -283,29 +283,24 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
                     + "SELECT '" + usuario + "', '" + contraseña + "', '" + nombre + "','" + apellidos + "' , '" + correo + "'\n"
                     + "WHERE NOT EXISTS (SELECT * FROM TBL_USUARIO WHERE USUARIO = '" + usuario + "');";
             OperacionesBBDD escritura = new OperacionesBBDD();
-            
-            
-            if(escritura.escrituraSql(insertString)){
-                 Usuario us1 = new Usuario(nombre, apellidos, usuario, contraseña, correo, null, null);
 
-            btnClose.setForeground(new java.awt.Color(0, 100, 0));
-            btnClose.setVisible(true);
-                btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/INSERT.png"))); 
-                btnClose.setText("Usuario creado con exito");
-            
-            }else{
-                btnClose.setForeground(new java.awt.Color(100, 0, 0));
-                btnClose.setVisible(true);
-                btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png"))); 
-                btnClose.setText("Nombre usuario en uso");
-              
+            if (escritura.escrituraSql(insertString)) {
+                Usuario us1 = new Usuario(nombre, apellidos, usuario, contraseña, correo, null, null);
+
+                btnError1.setForeground(new java.awt.Color(0, 100, 0));
+                btnError1.setVisible(true);
+                btnError1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/INSERT.png")));
+                btnError1.setText("Usuario creado con exito, haga click aqui para iniciar sesion");
+
+            } else {
+                btnError1.setForeground(new java.awt.Color(100, 0, 0));
+                btnError1.setVisible(true);
+                btnError1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png")));
+                btnError1.setText("Nombre usuario en uso");
+
             }
-            
-           
 
-        } else {
-
-        }
+        } 
 
 
     }//GEN-LAST:event_btnCCCreateActionPerformed
@@ -313,25 +308,29 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         // TODO add your handling code here:
         System.exit(0);
-   
+
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnError1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnError1ActionPerformed
         // TODO add your handling code here:
-        btnClose.setVisible(false);
+        btnError1.setVisible(false);
+        pantallaIniciarSesion pantalla = new pantallaIniciarSesion();
+        pantalla.setVisible(true);
+        this.setVisible(false);
+
     }//GEN-LAST:event_btnError1ActionPerformed
 
     private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
-this.setState(ICONIFIED);
+        this.setState(ICONIFIED);
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
     private void btnRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrocederActionPerformed
         // TODO add your handling code here:
-         Menu pantalla = new Menu();
+        Menu pantalla = new Menu();
         pantalla.setVisible(true);
         this.setVisible(false);
-        
-        
+
+
     }//GEN-LAST:event_btnRetrocederActionPerformed
 
     /**
