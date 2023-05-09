@@ -264,7 +264,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         pantallaSesionIniciada pantalla = new pantallaSesionIniciada(usuarioActual);
         pantalla.setVisible(true);
         this.setVisible(false);
-        
+
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnHomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnHomeKeyReleased
@@ -282,16 +282,17 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnLigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLigaActionPerformed
-        // TODO add your handling code here:
-        if (usuarioActual.getLiga() == null || usuarioActual.getLiga().getAdministrador() == null || usuarioActual.getLiga().getNombre() == null || usuarioActual.getLiga().getNombre().isBlank()) {
-    this.setVisible(false);
-    PantallaLiga pantalla = new PantallaLiga(usuarioActual);
-    pantalla.setVisible(true);
-} else {
-    this.setVisible(false);
-    PantallaLigaAbandonar pantalla = new PantallaLigaAbandonar(usuarioActual);
-    pantalla.setVisible(true);
-}
+        // TODO add your handling code here:s
+
+        if (usuarioActual.getLiga() == null || usuarioActual.getLiga().getNombre()== null ) {
+            this.setVisible(false);
+            PantallaLiga pantalla = new PantallaLiga(usuarioActual);
+            pantalla.setVisible(true);
+        } else {
+            this.setVisible(false);
+            PantallaLigaAbandonar pantalla = new PantallaLigaAbandonar(usuarioActual);
+            pantalla.setVisible(true);
+        }
 
 
     }//GEN-LAST:event_btnLigaActionPerformed

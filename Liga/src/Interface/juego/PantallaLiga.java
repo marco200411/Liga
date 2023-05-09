@@ -468,7 +468,9 @@ public class PantallaLiga extends javax.swing.JFrame {
                         btnInfoUnirse.setVisible(true);
                         btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/INSERT.png")));
                         btnInfoUnirse.setText("Te has unido con exito a la liga: " + NombreLiga);
-
+                        Actual.setLiga(liga1);
+                        
+                        
                     }
 
                 } else {

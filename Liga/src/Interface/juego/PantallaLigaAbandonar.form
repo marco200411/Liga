@@ -120,7 +120,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="btnInfoUnirse">
+            <Component class="javax.swing.JButton" name="btnEliminarLiga">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="70" green="63" red="5c" type="rgb"/>
@@ -157,7 +157,7 @@
                 <Property name="rolloverEnabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInfoUnirseActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarLigaActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="300"/>

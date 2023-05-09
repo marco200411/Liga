@@ -27,17 +27,18 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
     public PantallaLigaAbandonar(Usuario us1) {
         initComponents();
         Actual = us1;
-        System.out.println("admins " + Actual.getLiga().getAdministrador());
-        System.out.println("nombre" + Actual.getNombreUsuario());
+        
         if (Actual.getLiga().getAdministrador().equals(Actual.getNombreUsuario())) {
-            
-            lblAdministrador.setText("Eres el administrador de la liga");
-            lblNombreLiga.setText("Nombre de la liga: " + Actual.getLiga().getAdministrador());
-            btnInfoUnirse.setText("ELIMINAR LIGA");
-        } else {
             lblAdministrador.setText("Administrador de la liga: " + Actual.getLiga().getNombre());
             lblNombreLiga.setText("Nombre de la liga: " + Actual.getLiga().getAdministrador());
-            btnInfoUnirse.setText("ABANDONAR LIGA");
+            btnEliminarLiga.setText("ABANDONAR LIGA");
+            
+        } else {
+            
+            
+            lblAdministrador.setText("Eres el administrador de la liga");
+            lblNombreLiga.setText("Nombre de la liga: " + Actual.getLiga().getNombre());
+            btnEliminarLiga.setText("ELIMINAR LIGA");
         }
         
     }
@@ -56,7 +57,7 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
         layerUnirseLiga = new javax.swing.JLayeredPane();
         jLabel3 = new javax.swing.JLabel();
         lblAdministrador = new javax.swing.JLabel();
-        btnInfoUnirse = new javax.swing.JButton();
+        btnEliminarLiga = new javax.swing.JButton();
         lblNombreLiga = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         btnInfoUnirse1 = new javax.swing.JButton();
@@ -91,28 +92,28 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
         lblAdministrador.setText("Administrador de la liga:");
         layerUnirseLiga.add(lblAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 790, 30));
 
-        btnInfoUnirse.setBackground(new java.awt.Color(92, 99, 112));
-        btnInfoUnirse.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
-        btnInfoUnirse.setForeground(new java.awt.Color(153, 0, 0));
-        btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png"))); // NOI18N
-        btnInfoUnirse.setBorder(null);
-        btnInfoUnirse.setBorderPainted(false);
-        btnInfoUnirse.setContentAreaFilled(false);
-        btnInfoUnirse.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnInfoUnirse.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnInfoUnirse.setMaximumSize(new java.awt.Dimension(390, 80));
-        btnInfoUnirse.setMinimumSize(new java.awt.Dimension(390, 80));
-        btnInfoUnirse.setOpaque(true);
-        btnInfoUnirse.setPreferredSize(new java.awt.Dimension(390, 80));
-        btnInfoUnirse.setRequestFocusEnabled(false);
-        btnInfoUnirse.setRolloverEnabled(false);
-        btnInfoUnirse.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminarLiga.setBackground(new java.awt.Color(92, 99, 112));
+        btnEliminarLiga.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
+        btnEliminarLiga.setForeground(new java.awt.Color(153, 0, 0));
+        btnEliminarLiga.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png"))); // NOI18N
+        btnEliminarLiga.setBorder(null);
+        btnEliminarLiga.setBorderPainted(false);
+        btnEliminarLiga.setContentAreaFilled(false);
+        btnEliminarLiga.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEliminarLiga.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEliminarLiga.setMaximumSize(new java.awt.Dimension(390, 80));
+        btnEliminarLiga.setMinimumSize(new java.awt.Dimension(390, 80));
+        btnEliminarLiga.setOpaque(true);
+        btnEliminarLiga.setPreferredSize(new java.awt.Dimension(390, 80));
+        btnEliminarLiga.setRequestFocusEnabled(false);
+        btnEliminarLiga.setRolloverEnabled(false);
+        btnEliminarLiga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInfoUnirseActionPerformed(evt);
+                btnEliminarLigaActionPerformed(evt);
             }
         });
-        layerUnirseLiga.setLayer(btnInfoUnirse, javax.swing.JLayeredPane.POPUP_LAYER);
-        layerUnirseLiga.add(btnInfoUnirse, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, 90));
+        layerUnirseLiga.setLayer(btnEliminarLiga, javax.swing.JLayeredPane.POPUP_LAYER);
+        layerUnirseLiga.add(btnEliminarLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, 90));
 
         lblNombreLiga.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         lblNombreLiga.setText("Nombre de la liga:");
@@ -303,7 +304,7 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnExitActionPerformed
 
-    private void btnInfoUnirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoUnirseActionPerformed
+    private void btnEliminarLigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarLigaActionPerformed
         // TODO add your handling code here:
         String insertString = "";
         if (Actual.getLiga().getAdministrador().equals(Actual.getNombreUsuario())) {
@@ -323,8 +324,8 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
         btnInfoUnirse1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/INSERT.png")));
         btnInfoUnirse1.setText("Has abandonado la liga con exito ");
         
-        btnInfoUnirse.setVisible(false);
-    }//GEN-LAST:event_btnInfoUnirseActionPerformed
+        btnEliminarLiga.setVisible(false);
+    }//GEN-LAST:event_btnEliminarLigaActionPerformed
 
     private void btnInfoUnirse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoUnirse1ActionPerformed
         // TODO add your handling code here:
@@ -369,9 +370,9 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarJugador;
     private javax.swing.JButton btnClasificacion;
+    private javax.swing.JButton btnEliminarLiga;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnInfoUnirse;
     private javax.swing.JButton btnInfoUnirse1;
     private javax.swing.JButton btnLiga;
     private javax.swing.JButton btnPerfil;
