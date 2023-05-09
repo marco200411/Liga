@@ -23,14 +23,14 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
      * Creates new form PantallaLiga
      */
     Usuario Actual = null;
-
+    
     public PantallaLigaAbandonar(Usuario us1) {
         initComponents();
         Actual = us1;
         System.out.println("admins " + Actual.getLiga().getAdministrador());
         System.out.println("nombre" + Actual.getNombreUsuario());
         if (Actual.getLiga().getAdministrador().equals(Actual.getNombreUsuario())) {
-
+            
             lblAdministrador.setText("Eres el administrador de la liga");
             lblNombreLiga.setText("Nombre de la liga: " + Actual.getLiga().getAdministrador());
             btnInfoUnirse.setText("ELIMINAR LIGA");
@@ -39,7 +39,7 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
             lblNombreLiga.setText("Nombre de la liga: " + Actual.getLiga().getAdministrador());
             btnInfoUnirse.setText("ABANDONAR LIGA");
         }
-
+        
     }
 
     /**
@@ -284,6 +284,10 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
+         pantallaSesionIniciada pantalla = new pantallaSesionIniciada(Actual);
+        pantalla.setVisible(true);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnHomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnHomeKeyReleased
@@ -303,21 +307,22 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
         // TODO add your handling code here:
         String insertString = "";
         if (Actual.getLiga().getAdministrador().equals(Actual.getNombreUsuario())) {
+            
             insertString = " UPDATE bbdd_fantasy.tbl_usuario SET LIGA_INSCRITO=(SELECT  L.ID_LIGA FROM TBL_LIGA AS L WHERE L.NOMBRE='" + "" + "') WHERE USUARIO='" + Actual.getNombreUsuario() + "';";
-
+            Actual.setLiga(null);
         } else {
             insertString = "";
         }
-
+        
         System.out.println(insertString);
         OperacionesBBDD escritura2 = new OperacionesBBDD();
         escritura2.escrituraSql(insertString);
-
+        
         btnInfoUnirse1.setForeground(new java.awt.Color(0, 100, 0));
         btnInfoUnirse1.setVisible(true);
         btnInfoUnirse1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/INSERT.png")));
         btnInfoUnirse1.setText("Has abandonado la liga con exito ");
-
+        
         btnInfoUnirse.setVisible(false);
     }//GEN-LAST:event_btnInfoUnirseActionPerformed
 
@@ -356,7 +361,7 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-
+                
             }
         });
     }

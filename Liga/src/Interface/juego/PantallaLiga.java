@@ -72,7 +72,6 @@ public class PantallaLiga extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(900, 700));
         setMinimumSize(new java.awt.Dimension(900, 700));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(900, 700));
         setShape(new RoundRectangle2D.Double(0, 0, 900, 700, 50, 50));
 
         layerBG.setBackground(new java.awt.Color(206, 206, 206));
@@ -457,8 +456,8 @@ public class PantallaLiga extends javax.swing.JFrame {
                 if (results.next()) {
                     System.out.println("aa:" + results.getString(1));
 
-                    Liga liga1 = new Liga(results.getString(1), results.getString(1));
-                    if (liga1.getNombre().equalsIgnoreCase(NombreLiga) && results != null ) {
+                    Liga liga1 = new Liga(results.getString(1), results.getString(2));
+                    if (liga1.getNombre().equalsIgnoreCase(NombreLiga) && results != null) {
                         String insertString2 = " UPDATE bbdd_fantasy.tbl_usuario SET LIGA_INSCRITO=(SELECT  L.ID_LIGA FROM TBL_LIGA AS L WHERE L.NOMBRE='" + NombreLiga + "') WHERE USUARIO='" + Actual.getNombreUsuario() + "';";
 
                         System.out.println(insertString2);
@@ -470,15 +469,15 @@ public class PantallaLiga extends javax.swing.JFrame {
                         btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/INSERT.png")));
                         btnInfoUnirse.setText("Te has unido con exito a la liga: " + NombreLiga);
 
-                    } 
-
-                }else {
-                        btnInfoUnirse.setForeground(new java.awt.Color(100, 0, 0));
-                        btnInfoUnirse.setVisible(true);
-                        btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png")));
-                        btnInfoUnirse.setText("La liga no existe");
-
                     }
+
+                } else {
+                    btnInfoUnirse.setForeground(new java.awt.Color(100, 0, 0));
+                    btnInfoUnirse.setVisible(true);
+                    btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png")));
+                    btnInfoUnirse.setText("La liga no existe");
+
+                }
 
             } catch (SQLException ex) {
                 Logger.getLogger(PantallaLiga.class.getName()).log(Level.SEVERE, null, ex);
@@ -506,20 +505,20 @@ public class PantallaLiga extends javax.swing.JFrame {
 
         System.out.println(insertString2);
         OperacionesBBDD escritura2 = new OperacionesBBDD();
-        if(escritura2.escrituraSql(insertString2)){
-            btnInfoUnirse.setForeground(new java.awt.Color(0, 100, 0));
-                        btnInfoUnirse.setVisible(true);
-                        btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/INSERT.png")));
-                        btnInfoUnirse.setText("Has creado con exito la liga: " + NombreLiga);
-            
-        }else{
-            btnInfoUnirse.setForeground(new java.awt.Color(100, 0, 0));
-                        btnInfoUnirse.setVisible(true);
-                        btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png")));
-                        btnInfoUnirse.setText("La liga no existe");
+        if (escritura2.escrituraSql(insertString2)) {
+            btnInfoCrear.setForeground(new java.awt.Color(0, 100, 0));
+            btnInfoCrear.setVisible(true);
+            btnInfoCrear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/INSERT.png")));
+            btnInfoCrear.setText("Has creado con exito la liga: " + NombreLiga);
+
+        } else {
+            btnInfoCrear.setForeground(new java.awt.Color(100, 0, 0));
+            btnInfoCrear.setVisible(true);
+            btnInfoCrear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png")));
+            btnInfoCrear.setText("La liga no existe");
 
         }
-        
+
 
     }//GEN-LAST:event_btnCrearLigaActionPerformed
 
@@ -536,7 +535,7 @@ public class PantallaLiga extends javax.swing.JFrame {
 
     private void btnInfoCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoCrearActionPerformed
         // TODO add your handling code here:
-         btnInfoCrear.setVisible(false);
+        btnInfoCrear.setVisible(false);
     }//GEN-LAST:event_btnInfoCrearActionPerformed
 
     private void btnRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrocederActionPerformed
@@ -568,7 +567,10 @@ public class PantallaLiga extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHomeKeyReleased
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        // TODO add your handling code here:
+        pantallaSesionIniciada pantalla = new pantallaSesionIniciada(Actual);
+        pantalla.setVisible(true);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_btnHomeActionPerformed
 
     /**
