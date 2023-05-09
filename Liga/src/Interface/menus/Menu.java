@@ -20,7 +20,7 @@ public class Menu extends javax.swing.JFrame {
 
     public Menu() {
         initComponents();
-        
+        System.out.println("");
 
     }
 
