@@ -39,15 +39,13 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
                 System.out.println(mysqlResult.getString(4));
                 System.out.println(txtCCContraseña.getText());
                 System.out.println(mysqlResult.getString(5));
-                
-                    Liga liga = new Liga(mysqlResult.getString(7), mysqlResult.getString(8));
-                    Usuario us1 = new Usuario(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getString(3), mysqlResult.getString(4), mysqlResult.getString(5), mysqlResult.getString(6), liga);
 
-                    this.setVisible(false);
-                    pantallaSesionIniciada pantalla = new pantallaSesionIniciada(us1);
-                    pantalla.setVisible(true);
+                Liga liga = new Liga(mysqlResult.getString(6), mysqlResult.getString(7));
+                Usuario us1 = new Usuario(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getString(3), mysqlResult.getString(4), mysqlResult.getString(5), null, liga);
 
-                
+                this.setVisible(false);
+                pantallaSesionIniciada pantalla = new pantallaSesionIniciada(us1);
+                pantalla.setVisible(true);
 
             } else {
                 System.out.println("No encontrado");
@@ -239,25 +237,26 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
         String consulta = null;
         if (txtCCUsername.getText().contains("@")) {
 
-            consulta = (" SELECT U.NOMBRE, U.APELLIDOS, U.USUARIO, U.CONTRASENA, U.CORREO, U.EQUIPO, \n"
-                    + " (SELECT L.NOMBRE FROM TBL_LIGA AS L WHERE U.LIGA_INSCRITO=L.ID_LIGA),\n"
-                    + " (SELECT U2.USUARIO FROM TBL_USUARIO AS U2 \n"
-                    + " WHERE ID_USUARIO=(SELECT L.ADMINISTRADOR FROM TBL_LIGA AS L WHERE U.ID_USUARIO=L.ADMINISTRADOR))\n"
-                    + " FROM tbl_usuario AS U\n"
-                    + "\n"
-                    + " WHERE CORREO='" + txtCCUsername.getText() + "'"
-                    + "AND U.CONTRASENA=MD5('" + txtCCContraseña.getText()+ "');");
+            consulta = ("SELECT U.NOMBRE, U.APELLIDOS, U.USUARIO, U.CONTRASENA, U.CORREO,  \n"
+                    + "                     L.NOMBRE,\n"
+                    + "                     U2.USUARIO\n"
+                    + "                    FROM tbl_usuario AS U LEFT JOIN TBL_EQUIPO AS E \n"
+                    + "                    ON U.ID_USUARIO=E.ID_USUARIO LEFT JOIN TBL_LIGA AS L \n"
+                    + "                    ON E.LIGA=L.ID_LIGA LEFT JOIN TBL_USUARIO AS U2 \n"
+                    + "                    ON L.ADMINISTRADOR=U2.ID_USUARIO\n"
+                    + "                    WHERE U.CORREO='" + txtCCUsername.getText() + "'\n"
+                    + "                    AND U.CONTRASENA=MD5('" + txtCCContraseña.getText() + "');");
 
         } else {
-            consulta = (" SELECT U.NOMBRE, U.APELLIDOS, U.USUARIO, U.CONTRASENA, U.CORREO, U.EQUIPO, \n"
-                    + " (SELECT L.NOMBRE FROM TBL_LIGA AS L WHERE U.LIGA_INSCRITO=L.ID_LIGA),\n"
-                    + " (SELECT U2.USUARIO FROM TBL_USUARIO AS U2 \n"
-                    + " WHERE ID_USUARIO=(SELECT L.ADMINISTRADOR FROM TBL_LIGA AS L WHERE U.ID_USUARIO=L.ADMINISTRADOR))\n"
-                    + " FROM tbl_usuario AS U\n"
-                    + "\n"
-                    + " WHERE USUARIO='" + txtCCUsername.getText()
-                    + "'AND U.CONTRASENA=MD5('" + txtCCContraseña.getText()
-                    + "');");
+            consulta = ("SELECT U.NOMBRE, U.APELLIDOS, U.USUARIO, U.CONTRASENA, U.CORREO,  \n"
+                    + "                     L.NOMBRE,\n"
+                    + "                     U2.USUARIO\n"
+                    + "                    FROM tbl_usuario AS U LEFT JOIN TBL_EQUIPO AS E \n"
+                    + "                    ON U.ID_USUARIO=E.ID_USUARIO LEFT JOIN TBL_LIGA AS L \n"
+                    + "                    ON E.LIGA=L.ID_LIGA LEFT JOIN TBL_USUARIO AS U2 \n"
+                    + "                    ON L.ADMINISTRADOR=U2.ID_USUARIO\n"
+                    + "                    WHERE U.USUARIO='" + txtCCUsername.getText() + "'\n"
+                    + "                    AND U.CONTRASENA=MD5('" + txtCCContraseña.getText() + "');");
 
         }
         if (consulta != null) {

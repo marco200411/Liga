@@ -20,7 +20,7 @@ public class Usuario {
     Liga liga;
     private ArrayList<Futbolista> jugadores = new ArrayList();
     ArrayList<Futbolista> entrenadores = new ArrayList();
-    ArrayList<Futbolista> plantilla = new ArrayList(10);
+    ArrayList<Futbolista> plantilla = new ArrayList();
     Entrenador entrenadorPlantilla;
 
     public Usuario(String nombre, String apellidos, String nombreUsuario, String contraseña, String correo, String equipo, Liga liga) {

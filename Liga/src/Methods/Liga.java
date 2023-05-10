@@ -49,6 +49,24 @@ public class Liga {
         this.integrantes = integrantes;
     }
 
+    public ArrayList<Futbolista> getJugadoresJugando() {
+        return jugadoresJugando;
+    }
+
+    public void setJugadoresJugando(ArrayList<Futbolista> jugadoresJugando) {
+        this.jugadoresJugando = jugadoresJugando;
+    }
+
+    public ArrayList<Futbolista> getJugadoresLibres() {
+        return jugadoresLibres;
+    }
+
+    public void setJugadoresLibres(ArrayList<Futbolista> jugadoresLibres) {
+        this.jugadoresLibres = jugadoresLibres;
+    }
+
+  
+
     public boolean insertarUsuario(Usuario us) {
 
         boolean resultado = false;

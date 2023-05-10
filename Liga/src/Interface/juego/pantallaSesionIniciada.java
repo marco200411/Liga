@@ -358,9 +358,11 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
 
     public void almacenarIntegrantesLiga() {
 
-        String sentenciaSelect = " SELECT U.NOMBRE, U.APELLIDOS, U.USUARIO FROM TBL_LIGA AS L INNER JOIN TBL_USUARIO AS U\n"
-                + "               ON L.ID_LIGA=U.LIGA_INSCRITO\n"
-                + "               WHERE L.NOMBRE='" + usuarioActual.getLiga().getNombre() + "';";
+        String sentenciaSelect = " SELECT U.NOMBRE, U.APELLIDOS, U.USUARIO \n"
+                + "                    FROM TBL_USUARIO AS U INNER JOIN TBL_EQUIPO AS E\n"
+                + "                    ON U.ID_USUARIO=E.ID_USUARIO INNER JOIN TBL_LIGA AS L\n"
+                + "                    ON L.ID_LIGA=E.LIGA\n"
+                + "                    WHERE L.NOMBRE='" + usuarioActual.getLiga().getNombre() + "';";
 
         OperacionesBBDD get = new OperacionesBBDD();
         ResultSet results = get.getSQL(sentenciaSelect);
