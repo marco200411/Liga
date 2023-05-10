@@ -1,51 +1,3 @@
-/*
- * Click nbfs://nbhost/Syste    @Override
-    public double getArcWidth() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public double getArcHeight() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void setRoundRect(double x, double y, double w, double h, double arcWidth, double arcHeight) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public double getX() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public double getY() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public double getWidth() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public double getHeight() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Rectangle2D getBounds2D() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-mFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Interface.menus;
 
 import Interface.juego.pantallaSesionIniciada;
@@ -87,7 +39,7 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
                 System.out.println(mysqlResult.getString(4));
                 System.out.println(txtCCContraseña.getText());
                 System.out.println(mysqlResult.getString(5));
-                if (txtCCContraseña.getText().equalsIgnoreCase(mysqlResult.getString(4)) && (txtCCUsername.getText().equalsIgnoreCase(mysqlResult.getString(3)) || txtCCUsername.getText().equalsIgnoreCase(mysqlResult.getString(5)))) {
+                
                     Liga liga = new Liga(mysqlResult.getString(7), mysqlResult.getString(8));
                     Usuario us1 = new Usuario(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getString(3), mysqlResult.getString(4), mysqlResult.getString(5), mysqlResult.getString(6), liga);
 
@@ -95,9 +47,7 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
                     pantallaSesionIniciada pantalla = new pantallaSesionIniciada(us1);
                     pantalla.setVisible(true);
 
-                } else {
-                    System.out.println("No encontrado");
-                }
+                
 
             } else {
                 System.out.println("No encontrado");
@@ -295,7 +245,8 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
                     + " WHERE ID_USUARIO=(SELECT L.ADMINISTRADOR FROM TBL_LIGA AS L WHERE U.ID_USUARIO=L.ADMINISTRADOR))\n"
                     + " FROM tbl_usuario AS U\n"
                     + "\n"
-                    + " WHERE CORREO='" + txtCCUsername.getText() + "';");
+                    + " WHERE CORREO='" + txtCCUsername.getText() + "'"
+                    + "AND U.CONTRASENA=MD5('" + txtCCContraseña.getText()+ "');");
 
         } else {
             consulta = (" SELECT U.NOMBRE, U.APELLIDOS, U.USUARIO, U.CONTRASENA, U.CORREO, U.EQUIPO, \n"
@@ -304,7 +255,9 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
                     + " WHERE ID_USUARIO=(SELECT L.ADMINISTRADOR FROM TBL_LIGA AS L WHERE U.ID_USUARIO=L.ADMINISTRADOR))\n"
                     + " FROM tbl_usuario AS U\n"
                     + "\n"
-                    + " WHERE USUARIO='" + txtCCUsername.getText() + "';");
+                    + " WHERE USUARIO='" + txtCCUsername.getText()
+                    + "'AND U.CONTRASENA=MD5('" + txtCCContraseña.getText()
+                    + "');");
 
         }
         if (consulta != null) {

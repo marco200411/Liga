@@ -16,6 +16,8 @@ public class Liga {
     String Administrador;
 
     ArrayList<Usuario> integrantes = new ArrayList();
+     ArrayList<Futbolista> jugadoresJugando = new ArrayList();
+    ArrayList<Futbolista> jugadoresLibres = new ArrayList();
 
     public Liga(String Nombre, String Administrador) {
         this.Nombre = Nombre;
@@ -46,7 +48,6 @@ public class Liga {
     public void setIntegrantes(ArrayList<Usuario> integrantes) {
         this.integrantes = integrantes;
     }
-    
 
     public boolean insertarUsuario(Usuario us) {
 
@@ -54,6 +55,31 @@ public class Liga {
         if (!integrantes.contains(us)) {
             resultado = true;
             integrantes.add(us);
+        } else {
+            resultado = false;
+        }
+
+        return resultado;
+    }
+     public boolean insertarJugador(Futbolista f1) {
+
+        boolean resultado = false;
+        if (!jugadoresJugando.contains(f1)) {
+            resultado = true;
+            jugadoresJugando.add(f1);
+        } else {
+            resultado = false;
+        }
+
+        return resultado;
+    }
+     
+     public boolean insertarJugadorLibre(Futbolista f1) {
+
+        boolean resultado = false;
+        if (!jugadoresLibres.contains(f1)) {
+            resultado = true;
+            jugadoresLibres.add(f1);
         } else {
             resultado = false;
         }

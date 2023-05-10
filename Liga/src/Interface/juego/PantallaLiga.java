@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Interface.juego;
 
 import Interface.menus.Menu;
@@ -13,6 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Iterator;
+import Methods.Futbolista;
 
 /**
  *
@@ -24,7 +23,7 @@ public class PantallaLiga extends javax.swing.JFrame {
      * Creates new form PantallaLiga
      */
     Usuario Actual = null;
-
+    
     public PantallaLiga(Usuario us1) {
         initComponents();
         Actual = us1;
@@ -444,47 +443,47 @@ public class PantallaLiga extends javax.swing.JFrame {
 
     private void btnUnirseLigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnirseLigaActionPerformed
         if (!txtNombreUnirseLiga.getText().isEmpty()) {
-
+            
             String NombreLiga = txtNombreUnirseLiga.getText();
-
+            
             String sentenciaSelect = "SELECT NOMBRE, (SELECT USUARIO FROM TBL_USUARIO  WHERE ID_USUARIO=ADMINISTRADOR)FROM TBL_LIGA WHERE NOMBRE='" + NombreLiga + "';";
-
+            
             OperacionesBBDD get = new OperacionesBBDD();
             ResultSet results = get.getSQL(sentenciaSelect);
-
+            
             try {
                 if (results.next()) {
                     System.out.println("aa:" + results.getString(1));
-
+                    
                     Liga liga1 = new Liga(results.getString(1), results.getString(2));
                     if (liga1.getNombre().equalsIgnoreCase(NombreLiga) && results != null) {
                         String insertString2 = " UPDATE bbdd_fantasy.tbl_usuario SET LIGA_INSCRITO=(SELECT  L.ID_LIGA FROM TBL_LIGA AS L WHERE L.NOMBRE='" + NombreLiga + "') WHERE USUARIO='" + Actual.getNombreUsuario() + "';";
-
+                        
                         System.out.println(insertString2);
                         OperacionesBBDD escritura2 = new OperacionesBBDD();
                         escritura2.escrituraSql(insertString2);
-
+                        
                         btnInfoUnirse.setForeground(new java.awt.Color(0, 100, 0));
                         btnInfoUnirse.setVisible(true);
                         btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/INSERT.png")));
                         btnInfoUnirse.setText("Te has unido con exito a la liga: " + NombreLiga);
                         Actual.setLiga(liga1);
-                        
+                        crearEquipo();
                         
                     }
-
+                    
                 } else {
                     btnInfoUnirse.setForeground(new java.awt.Color(100, 0, 0));
                     btnInfoUnirse.setVisible(true);
                     btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png")));
                     btnInfoUnirse.setText("La liga no existe");
-
+                    
                 }
-
+                
             } catch (SQLException ex) {
                 Logger.getLogger(PantallaLiga.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            
         }
     }//GEN-LAST:event_btnUnirseLigaActionPerformed
 
@@ -496,15 +495,15 @@ public class PantallaLiga extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String NombreLiga = txtNombreCrearLiga.getText();
-
+        
         String insertString = "INSERT INTO bbdd_fantasy.tbl_liga (NOMBRE, ADMINISTRADOR) VALUES ('" + NombreLiga + "', (select id_usuario from tbl_usuario where  usuario='" + Actual.getNombreUsuario() + "'));";
-
+        
         System.out.println(insertString);
         OperacionesBBDD escritura = new OperacionesBBDD();
         escritura.escrituraSql(insertString);
-
+        
         String insertString2 = " UPDATE bbdd_fantasy.tbl_usuario SET LIGA_INSCRITO=(SELECT  L.ID_LIGA FROM TBL_LIGA AS L WHERE L.NOMBRE='" + NombreLiga + "') WHERE USUARIO='" + Actual.getNombreUsuario() + "';";
-
+        
         System.out.println(insertString2);
         OperacionesBBDD escritura2 = new OperacionesBBDD();
         if (escritura2.escrituraSql(insertString2)) {
@@ -512,17 +511,83 @@ public class PantallaLiga extends javax.swing.JFrame {
             btnInfoCrear.setVisible(true);
             btnInfoCrear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/INSERT.png")));
             btnInfoCrear.setText("Has creado con exito la liga: " + NombreLiga);
-
+            Liga liga1 = new Liga(NombreLiga, Actual.getNombreUsuario());
+            Actual.setLiga(liga1);
+            
+            crearEquipo();
+            
         } else {
             btnInfoCrear.setForeground(new java.awt.Color(100, 0, 0));
             btnInfoCrear.setVisible(true);
             btnInfoCrear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png")));
             btnInfoCrear.setText("La liga no existe");
-
+            
         }
-
+        
 
     }//GEN-LAST:event_btnCrearLigaActionPerformed
+    
+    public void crearEquipo() {
+        jugadoresJugandoLiga();
+        agenstesLibres();
+        
+    }
+    
+    public void agenstesLibres() {
+        String sentenciaSelect = "SELECT J.NOMBRE, J.POSICION, J.PRECIO, J.ATAQUE, J.DEFENSA \n"
+                + "FROM TBL_JUGADORES AS J RIGHT JOIN tbl_jugador_equipo AS JE \n"
+                + "ON JE.ID_JUGADOR=J.ID_JUGADOR INNER JOIN TBL_EQUIPO AS E\n"
+                + "ON JE.ID_EQUIPO=E.ID_EQUIPO ;";
+        
+        OperacionesBBDD get = new OperacionesBBDD();
+        ResultSet results = get.getSQL(sentenciaSelect);
+        
+        try {
+            while (results.next()) {
+                Futbolista f1 = new Futbolista(results.getString(1), results.getString(2), results.getString(3), results.getInt(4), results.getInt(5), results.getString(6));
+                
+                Iterator<Usuario> it = Actual.getLiga().getIntegrantes().iterator();
+                while (it.hasNext()) {
+                    Usuario us1 = it.next();
+                    if (!us1.getJugadores().contains(f1)) {
+                        System.out.println(f1.getNombre());
+                        Actual.getLiga().insertarJugadorLibre(f1);
+                    }
+                    
+                }
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PantallaLiga.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void jugadoresJugandoLiga() {
+        
+        String sentenciaSelect = "SELECT J.NOMBRE, J.POSICION, J.PRECIO, J.ATAQUE, J.DEFENSA\n" +
+"                FROM TBL_JUGADORES AS J RIGHT JOIN tbl_jugador_equipo AS JE \n" +
+"                ON JE.ID_JUGADOR=J.ID_JUGADOR INNER JOIN TBL_EQUIPO AS E\n" +
+"                ON JE.ID_EQUIPO=E.ID_EQUIPO INNER JOIN TBL_USUARIO AS U\n" +
+"               ON E.PRESIDENTE=U.ID_USUARIO\n" +
+"                WHERE '" + Actual.getLiga().getNombre()+ "'=(SELECT NOMBRE FROM TBL_LIGA WHERE ID_LIGA=U.LIGA_INSCRITO);";
+        
+        OperacionesBBDD get = new OperacionesBBDD();
+        ResultSet results = get.getSQL(sentenciaSelect);
+        
+        try {
+            while (results.next()) {
+                Futbolista f1 = new Futbolista(results.getString(1), results.getString(2), results.getString(3), results.getInt(4), results.getInt(5), results.getString(6));
+                Actual.getLiga().insertarJugador(f1);
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PantallaLiga.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
 
     private void btnCrearLigaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCrearLigaKeyReleased
         // TODO add your handling code here:
@@ -572,7 +637,7 @@ public class PantallaLiga extends javax.swing.JFrame {
         pantallaSesionIniciada pantalla = new pantallaSesionIniciada(Actual);
         pantalla.setVisible(true);
         this.setVisible(false);
-        
+
     }//GEN-LAST:event_btnHomeActionPerformed
 
     /**
@@ -605,7 +670,7 @@ public class PantallaLiga extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-
+                
             }
         });
     }

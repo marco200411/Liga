@@ -280,7 +280,7 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
         String correo = txtCCCorreo.getText();
         if (!usuario.contains("*") && !usuario.contains("@")) {
             String insertString = "INSERT INTO tbl_usuario (`USUARIO`, `CONTRASENA`, `NOMBRE`, `APELLIDOS`, `CORREO`)\n"
-                    + "SELECT '" + usuario + "', '" + contraseña + "', '" + nombre + "','" + apellidos + "' , '" + correo + "'\n"
+                    + "SELECT '" + usuario + "', MD5('" + contraseña + "'), '" + nombre + "','" + apellidos + "' , '" + correo + "'\n"
                     + "WHERE NOT EXISTS (SELECT * FROM TBL_USUARIO WHERE USUARIO = '" + usuario + "');";
             OperacionesBBDD escritura = new OperacionesBBDD();
 

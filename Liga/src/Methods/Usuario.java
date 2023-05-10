@@ -18,7 +18,7 @@ public class Usuario {
     String correo;
     String equipo;
     Liga liga;
-    ArrayList<Futbolista> jugadores = new ArrayList();
+    private ArrayList<Futbolista> jugadores = new ArrayList();
     ArrayList<Futbolista> entrenadores = new ArrayList();
     ArrayList<Futbolista> plantilla = new ArrayList(10);
     Entrenador entrenadorPlantilla;
@@ -89,7 +89,9 @@ public class Usuario {
         this.liga = liga;
     }
 
-  
+
+    
+
 
     public ArrayList<Futbolista> getJugadores() {
         return jugadores;

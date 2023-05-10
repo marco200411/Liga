@@ -29,16 +29,16 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
         Actual = us1;
         
         if (Actual.getLiga().getAdministrador().equals(Actual.getNombreUsuario())) {
-            lblAdministrador.setText("Administrador de la liga: " + Actual.getLiga().getNombre());
-            lblNombreLiga.setText("Nombre de la liga: " + Actual.getLiga().getAdministrador());
-            btnEliminarLiga.setText("ABANDONAR LIGA");
+           lblAdministrador.setText("Eres el administrador de la liga");
+            lblNombreLiga.setText("Nombre de la liga: " + Actual.getLiga().getNombre());
+            btnEliminarLiga.setText("ELIMINAR LIGA");
             
         } else {
             
+             lblAdministrador.setText("Administrador de la liga: " + Actual.getLiga().getNombre());
+            lblNombreLiga.setText("Nombre de la liga: " + Actual.getLiga().getAdministrador());
+            btnEliminarLiga.setText("ABANDONAR LIGA");
             
-            lblAdministrador.setText("Eres el administrador de la liga");
-            lblNombreLiga.setText("Nombre de la liga: " + Actual.getLiga().getNombre());
-            btnEliminarLiga.setText("ELIMINAR LIGA");
         }
         
     }
@@ -53,14 +53,6 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
     private void initComponents() {
 
         layerBG = new javax.swing.JLayeredPane();
-        jSeparator2 = new javax.swing.JSeparator();
-        layerUnirseLiga = new javax.swing.JLayeredPane();
-        jLabel3 = new javax.swing.JLabel();
-        lblAdministrador = new javax.swing.JLabel();
-        btnEliminarLiga = new javax.swing.JButton();
-        lblNombreLiga = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        btnInfoUnirse1 = new javax.swing.JButton();
         layerMenu = new javax.swing.JLayeredPane();
         btnHome = new javax.swing.JButton();
         btnPlantilla = new javax.swing.JButton();
@@ -70,79 +62,24 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
         btnTienda = new javax.swing.JButton();
         btnLiga = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        panelAcciones = new javax.swing.JLayeredPane();
+        btnRetroceder = new javax.swing.JButton();
+        btnMinimizar = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
+        layerUnirseLiga = new javax.swing.JLayeredPane();
+        jLabel3 = new javax.swing.JLabel();
+        lblAdministrador = new javax.swing.JLabel();
+        btnEliminarLiga = new javax.swing.JButton();
+        lblNombreLiga = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        btnInfoUnirse1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         layerBG.setBackground(new java.awt.Color(206, 206, 206));
         layerBG.setOpaque(true);
         layerBG.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        layerBG.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 850, 10));
-
-        layerUnirseLiga.setBackground(new java.awt.Color(92, 99, 112));
-        layerUnirseLiga.setMaximumSize(new java.awt.Dimension(410, 510));
-        layerUnirseLiga.setMinimumSize(new java.awt.Dimension(410, 510));
-        layerUnirseLiga.setOpaque(true);
-        layerUnirseLiga.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
-        jLabel3.setText("ACTUALMENTE YA ESTAS EN UNA LIGA");
-        layerUnirseLiga.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 790, 80));
-
-        lblAdministrador.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        lblAdministrador.setText("Administrador de la liga:");
-        layerUnirseLiga.add(lblAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 790, 30));
-
-        btnEliminarLiga.setBackground(new java.awt.Color(92, 99, 112));
-        btnEliminarLiga.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
-        btnEliminarLiga.setForeground(new java.awt.Color(153, 0, 0));
-        btnEliminarLiga.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png"))); // NOI18N
-        btnEliminarLiga.setBorder(null);
-        btnEliminarLiga.setBorderPainted(false);
-        btnEliminarLiga.setContentAreaFilled(false);
-        btnEliminarLiga.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnEliminarLiga.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnEliminarLiga.setMaximumSize(new java.awt.Dimension(390, 80));
-        btnEliminarLiga.setMinimumSize(new java.awt.Dimension(390, 80));
-        btnEliminarLiga.setOpaque(true);
-        btnEliminarLiga.setPreferredSize(new java.awt.Dimension(390, 80));
-        btnEliminarLiga.setRequestFocusEnabled(false);
-        btnEliminarLiga.setRolloverEnabled(false);
-        btnEliminarLiga.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarLigaActionPerformed(evt);
-            }
-        });
-        layerUnirseLiga.setLayer(btnEliminarLiga, javax.swing.JLayeredPane.POPUP_LAYER);
-        layerUnirseLiga.add(btnEliminarLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, 90));
-
-        lblNombreLiga.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        lblNombreLiga.setText("Nombre de la liga:");
-        layerUnirseLiga.add(lblNombreLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 790, 30));
-        layerUnirseLiga.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 810, 10));
-
-        btnInfoUnirse1.setBackground(new java.awt.Color(92, 99, 112));
-        btnInfoUnirse1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnInfoUnirse1.setForeground(new java.awt.Color(153, 0, 0));
-        btnInfoUnirse1.setBorder(null);
-        btnInfoUnirse1.setBorderPainted(false);
-        btnInfoUnirse1.setContentAreaFilled(false);
-        btnInfoUnirse1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnInfoUnirse1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnInfoUnirse1.setMaximumSize(new java.awt.Dimension(390, 80));
-        btnInfoUnirse1.setMinimumSize(new java.awt.Dimension(390, 80));
-        btnInfoUnirse1.setOpaque(true);
-        btnInfoUnirse1.setPreferredSize(new java.awt.Dimension(390, 80));
-        btnInfoUnirse1.setRequestFocusEnabled(false);
-        btnInfoUnirse1.setRolloverEnabled(false);
-        btnInfoUnirse1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInfoUnirse1ActionPerformed(evt);
-            }
-        });
-        layerUnirseLiga.setLayer(btnInfoUnirse1, javax.swing.JLayeredPane.POPUP_LAYER);
-        layerUnirseLiga.add(btnInfoUnirse1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, -1, 90));
-
-        layerBG.add(layerUnirseLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 840, 520));
 
         layerMenu.setBackground(new java.awt.Color(206, 206, 206));
         layerMenu.setOpaque(true);
@@ -254,29 +191,172 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
         });
         layerMenu.add(btnExit);
 
+        layerBG.add(layerMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 42, 882, 91));
+        layerBG.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 140, 850, 10));
+
+        panelAcciones.setMaximumSize(new java.awt.Dimension(95, 25));
+        panelAcciones.setMinimumSize(new java.awt.Dimension(95, 25));
+
+        btnRetroceder.setBackground(new java.awt.Color(206, 206, 206));
+        btnRetroceder.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnRetroceder.setForeground(new java.awt.Color(153, 0, 0));
+        btnRetroceder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retroceder.png"))); // NOI18N
+        btnRetroceder.setBorder(null);
+        btnRetroceder.setBorderPainted(false);
+        btnRetroceder.setContentAreaFilled(false);
+        btnRetroceder.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnRetroceder.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnRetroceder.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRetroceder.setOpaque(true);
+        btnRetroceder.setRequestFocusEnabled(false);
+        btnRetroceder.setRolloverEnabled(false);
+        btnRetroceder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetrocederActionPerformed(evt);
+            }
+        });
+
+        btnMinimizar.setBackground(new java.awt.Color(206, 206, 206));
+        btnMinimizar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnMinimizar.setForeground(new java.awt.Color(153, 0, 0));
+        btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar (1).png"))); // NOI18N
+        btnMinimizar.setBorder(null);
+        btnMinimizar.setBorderPainted(false);
+        btnMinimizar.setContentAreaFilled(false);
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnMinimizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnMinimizar.setOpaque(true);
+        btnMinimizar.setRequestFocusEnabled(false);
+        btnMinimizar.setRolloverEnabled(false);
+        btnMinimizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinimizarActionPerformed(evt);
+            }
+        });
+
+        btnClose.setBackground(new java.awt.Color(206, 206, 206));
+        btnClose.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnClose.setForeground(new java.awt.Color(153, 0, 0));
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close (1).png"))); // NOI18N
+        btnClose.setBorder(null);
+        btnClose.setBorderPainted(false);
+        btnClose.setContentAreaFilled(false);
+        btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnClose.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnClose.setOpaque(true);
+        btnClose.setRequestFocusEnabled(false);
+        btnClose.setRolloverEnabled(false);
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
+
+        panelAcciones.setLayer(btnRetroceder, javax.swing.JLayeredPane.POPUP_LAYER);
+        panelAcciones.setLayer(btnMinimizar, javax.swing.JLayeredPane.POPUP_LAYER);
+        panelAcciones.setLayer(btnClose, javax.swing.JLayeredPane.POPUP_LAYER);
+
+        javax.swing.GroupLayout panelAccionesLayout = new javax.swing.GroupLayout(panelAcciones);
+        panelAcciones.setLayout(panelAccionesLayout);
+        panelAccionesLayout.setHorizontalGroup(
+            panelAccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAccionesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnRetroceder)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnMinimizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnClose))
+        );
+        panelAccionesLayout.setVerticalGroup(
+            panelAccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAccionesLayout.createSequentialGroup()
+                .addGroup(panelAccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnRetroceder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMinimizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        layerBG.add(panelAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(785, 10, -1, 30));
+
+        layerUnirseLiga.setBackground(new java.awt.Color(92, 99, 112));
+        layerUnirseLiga.setMaximumSize(new java.awt.Dimension(410, 510));
+        layerUnirseLiga.setMinimumSize(new java.awt.Dimension(410, 510));
+        layerUnirseLiga.setOpaque(true);
+        layerUnirseLiga.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
+        jLabel3.setText("ACTUALMENTE YA ESTAS EN UNA LIGA");
+        layerUnirseLiga.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 790, 80));
+
+        lblAdministrador.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        lblAdministrador.setText("Administrador de la liga:");
+        layerUnirseLiga.add(lblAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 790, 30));
+
+        btnEliminarLiga.setBackground(new java.awt.Color(92, 99, 112));
+        btnEliminarLiga.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
+        btnEliminarLiga.setForeground(new java.awt.Color(153, 0, 0));
+        btnEliminarLiga.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png"))); // NOI18N
+        btnEliminarLiga.setBorder(null);
+        btnEliminarLiga.setBorderPainted(false);
+        btnEliminarLiga.setContentAreaFilled(false);
+        btnEliminarLiga.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEliminarLiga.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEliminarLiga.setMaximumSize(new java.awt.Dimension(390, 80));
+        btnEliminarLiga.setMinimumSize(new java.awt.Dimension(390, 80));
+        btnEliminarLiga.setOpaque(true);
+        btnEliminarLiga.setPreferredSize(new java.awt.Dimension(390, 80));
+        btnEliminarLiga.setRequestFocusEnabled(false);
+        btnEliminarLiga.setRolloverEnabled(false);
+        btnEliminarLiga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarLigaActionPerformed(evt);
+            }
+        });
+        layerUnirseLiga.setLayer(btnEliminarLiga, javax.swing.JLayeredPane.POPUP_LAYER);
+        layerUnirseLiga.add(btnEliminarLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 364, -1, 90));
+
+        lblNombreLiga.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        lblNombreLiga.setText("Nombre de la liga:");
+        layerUnirseLiga.add(lblNombreLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 790, 30));
+        layerUnirseLiga.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 810, 10));
+
+        btnInfoUnirse1.setBackground(new java.awt.Color(92, 99, 112));
+        btnInfoUnirse1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnInfoUnirse1.setForeground(new java.awt.Color(153, 0, 0));
+        btnInfoUnirse1.setBorder(null);
+        btnInfoUnirse1.setBorderPainted(false);
+        btnInfoUnirse1.setContentAreaFilled(false);
+        btnInfoUnirse1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnInfoUnirse1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnInfoUnirse1.setMaximumSize(new java.awt.Dimension(390, 80));
+        btnInfoUnirse1.setMinimumSize(new java.awt.Dimension(390, 80));
+        btnInfoUnirse1.setOpaque(true);
+        btnInfoUnirse1.setPreferredSize(new java.awt.Dimension(390, 80));
+        btnInfoUnirse1.setRequestFocusEnabled(false);
+        btnInfoUnirse1.setRolloverEnabled(false);
+        btnInfoUnirse1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInfoUnirse1ActionPerformed(evt);
+            }
+        });
+        layerUnirseLiga.setLayer(btnInfoUnirse1, javax.swing.JLayeredPane.POPUP_LAYER);
+        layerUnirseLiga.add(btnInfoUnirse1, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 364, -1, 90));
+
+        layerBG.add(layerUnirseLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 154, 840, 497));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 870, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(layerMenu)
-                        .addComponent(layerBG))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(layerBG, javax.swing.GroupLayout.DEFAULT_SIZE, 885, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(layerMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(layerBG, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(layerBG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
         );
 
         pack();
@@ -309,10 +389,11 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
         String insertString = "";
         if (Actual.getLiga().getAdministrador().equals(Actual.getNombreUsuario())) {
             
-            insertString = " UPDATE bbdd_fantasy.tbl_usuario SET LIGA_INSCRITO=(SELECT  L.ID_LIGA FROM TBL_LIGA AS L WHERE L.NOMBRE='" + "" + "') WHERE USUARIO='" + Actual.getNombreUsuario() + "';";
+            insertString = " DELETE FROM tbl_liga WHERE ADMINISTRADOR=(SELECT ID_USUARIO FROM TBL_USUARIO WHERE USUARIO='" + Actual.getNombreUsuario() + "');";
             Actual.setLiga(null);
         } else {
-            insertString = "";
+            insertString = " UPDATE bbdd_fantasy.tbl_usuario SET LIGA_INSCRITO=(SELECT  L.ID_LIGA FROM TBL_LIGA AS L WHERE L.NOMBRE='" + "" + "') WHERE USUARIO='" + Actual.getNombreUsuario() + "';";
+            Actual.setLiga(null);
         }
         
         System.out.println(insertString);
@@ -330,6 +411,22 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
     private void btnInfoUnirse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoUnirse1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnInfoUnirse1ActionPerformed
+
+    private void btnRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrocederActionPerformed
+        // TODO add your handling code here:
+        pantallaSesionIniciada pantalla = new pantallaSesionIniciada(Actual);
+        pantalla.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnRetrocederActionPerformed
+
+    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
+        this.setState(ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarActionPerformed
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnCloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -370,13 +467,16 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarJugador;
     private javax.swing.JButton btnClasificacion;
+    private javax.swing.JButton btnClose;
     private javax.swing.JButton btnEliminarLiga;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnInfoUnirse1;
     private javax.swing.JButton btnLiga;
+    private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnPerfil;
     private javax.swing.JButton btnPlantilla;
+    private javax.swing.JButton btnRetroceder;
     private javax.swing.JButton btnTienda;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
@@ -386,5 +486,6 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
     private javax.swing.JLayeredPane layerUnirseLiga;
     private javax.swing.JLabel lblAdministrador;
     private javax.swing.JLabel lblNombreLiga;
+    private javax.swing.JLayeredPane panelAcciones;
     // End of variables declaration//GEN-END:variables
 }
