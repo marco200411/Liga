@@ -16,14 +16,14 @@ public class Usuario {
     String nombreUsuario;
     String contraseña;
     String correo;
-    String equipo;
+    Equipo equipo;
     Liga liga;
     private ArrayList<Futbolista> jugadores = new ArrayList();
     ArrayList<Futbolista> entrenadores = new ArrayList();
     ArrayList<Futbolista> plantilla = new ArrayList();
     Entrenador entrenadorPlantilla;
 
-    public Usuario(String nombre, String apellidos, String nombreUsuario, String contraseña, String correo, String equipo, Liga liga) {
+    public Usuario(String nombre, String apellidos, String nombreUsuario, String contraseña, String correo, Equipo equipo, Liga liga) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.nombreUsuario = nombreUsuario;
@@ -73,13 +73,14 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public String getEquipo() {
+    public Equipo getEquipo() {
         return equipo;
     }
 
-    public void setEquipo(String equipo) {
+    public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
     }
+
 
     public Liga getLiga() {
         return liga;

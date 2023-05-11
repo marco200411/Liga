@@ -4,9 +4,15 @@
  */
 package Interface.menus;
 
+
 import java.awt.geom.RoundRectangle2D;
 import java.sql.*;
-
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.AbstractBorder;
+import javax.swing.border.Border;
 /**
  *
  * @author a22marcorr
@@ -35,7 +41,7 @@ public class Menu extends javax.swing.JFrame {
 
         BG = new javax.swing.JLayeredPane();
         jButton2 = new javax.swing.JButton();
-        btnCrearCuenta = new javax.swing.JButton();
+        btnCrearCuenta = new javax.swing.JButton("Crear cuenta");
         jLabel1 = new javax.swing.JLabel();
         panelAcciones = new javax.swing.JLayeredPane();
         btnMinimizar = new javax.swing.JButton();
@@ -50,40 +56,51 @@ public class Menu extends javax.swing.JFrame {
         setShape(new RoundRectangle2D.Double(0, 0, 650, 650, 20, 20));
         setSize(new java.awt.Dimension(650, 650));
 
-        BG.setBackground(new java.awt.Color(206, 206, 206));
+        BG.setBackground(new java.awt.Color(51, 61, 87));
         BG.setOpaque(true);
         BG.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setBackground(new java.awt.Color(45, 89, 141));
+        jButton2.setBackground(new java.awt.Color(237, 65, 56));
         jButton2.setForeground(new java.awt.Color(206, 206, 206));
         jButton2.setText("Iniciar sesion");
+        jButton2.setBorder(null);
+        jButton2.setMaximumSize(new java.awt.Dimension(300, 100));
+        jButton2.setMinimumSize(new java.awt.Dimension(300, 100));
+        jButton2.setPreferredSize(new java.awt.Dimension(300, 100));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        BG.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, 320, 59));
+        BG.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, -1, -1));
 
-        btnCrearCuenta.setBackground(new java.awt.Color(45, 89, 141));
+        btnCrearCuenta.setBackground(new java.awt.Color(73, 83, 110));
+        btnCrearCuenta.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         btnCrearCuenta.setForeground(new java.awt.Color(206, 206, 206));
         btnCrearCuenta.setText("Crear cuenta");
+        btnCrearCuenta.setBorder(null);
+        btnCrearCuenta.setBorderPainted(false);
+        btnCrearCuenta.setMaximumSize(new java.awt.Dimension(300, 100));
+        btnCrearCuenta.setMinimumSize(new java.awt.Dimension(300, 100));
+        btnCrearCuenta.setOpaque(true);
+        btnCrearCuenta.setPreferredSize(new java.awt.Dimension(300, 100));
         btnCrearCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearCuentaActionPerformed(evt);
             }
         });
-        BG.add(btnCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 320, 50));
+        BG.add(btnCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Roboto", 0, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(92, 99, 112));
+        jLabel1.setFont(new java.awt.Font("Roboto", 1, 60)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 243));
         jLabel1.setText("La Liga Fantasy");
-        BG.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 129, -1, 99));
+        BG.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, 99));
 
+        panelAcciones.setForeground(new java.awt.Color(51, 61, 87));
         panelAcciones.setMaximumSize(new java.awt.Dimension(95, 25));
         panelAcciones.setMinimumSize(new java.awt.Dimension(95, 25));
-        panelAcciones.setOpaque(true);
 
-        btnMinimizar.setBackground(new java.awt.Color(206, 206, 206));
+        btnMinimizar.setBackground(new java.awt.Color(51, 61, 87));
         btnMinimizar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnMinimizar.setForeground(new java.awt.Color(153, 0, 0));
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar (1).png"))); // NOI18N
@@ -102,7 +119,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnClose.setBackground(new java.awt.Color(206, 206, 206));
+        btnClose.setBackground(new java.awt.Color(51, 61, 87));
         btnClose.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnClose.setForeground(new java.awt.Color(153, 0, 0));
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close (1).png"))); // NOI18N
@@ -154,7 +171,9 @@ public class Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BG, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(BG, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -187,6 +206,8 @@ public class Menu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCloseActionPerformed
 
+    
+    
    
 
     /**

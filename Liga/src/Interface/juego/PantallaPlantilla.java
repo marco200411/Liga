@@ -4,43 +4,32 @@
  */
 package Interface.juego;
 
+
 import Interface.menus.Menu;
-import Methods.Liga;
 import Methods.Usuario;
-import OperacionesBBDD.OperacionesBBDD;
+import java.awt.Graphics;
+import java.awt.Image;
+
 import java.awt.geom.RoundRectangle2D;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+
 
 /**
  *
  * @author Marco
  */
-public class PantallaLigaAbandonar extends javax.swing.JFrame {
+public class PantallaPlantilla extends javax.swing.JFrame {
 
     /**
      * Creates new form PantallaLiga
      */
     Usuario Actual = null;
     
-    public PantallaLigaAbandonar(Usuario us1) {
+    public PantallaPlantilla(Usuario us1) {
         initComponents();
         Actual = us1;
         
-        if (Actual.getLiga().getAdministrador().equals(Actual.getNombreUsuario())) {
-           lblAdministrador.setText("Eres el administrador de la liga");
-            lblNombreLiga.setText("Nombre de la liga: " + Actual.getLiga().getNombre());
-            btnEliminarLiga.setText("ELIMINAR LIGA");
-            
-        } else {
-            
-             lblAdministrador.setText("Administrador de la liga: " + Actual.getLiga().getNombre());
-            lblNombreLiga.setText("Nombre de la liga: " + Actual.getLiga().getAdministrador());
-            btnEliminarLiga.setText("ABANDONAR LIGA");
-            
-        }
+        
         
     }
 
@@ -68,13 +57,15 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
         btnRetroceder = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
-        layerUnirseLiga = new javax.swing.JLayeredPane();
-        jLabel3 = new javax.swing.JLabel();
-        lblAdministrador = new javax.swing.JLabel();
-        btnEliminarLiga = new javax.swing.JButton();
-        lblNombreLiga = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        btnInfoUnirse1 = new javax.swing.JButton();
+        layerUnirseLiga = new javax.swing.JLayeredPane(){
+            public void paintComponent(Graphics g) {
+                ImageIcon im = new ImageIcon("src\\imgages\\campo.png");
+                Image i = im.getImage();
+                g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);
+
+            }
+        };
+        layerUnirseLiga1 = new javax.swing.JLayeredPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -177,11 +168,6 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
         btnLiga.setContentAreaFilled(false);
         btnLiga.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_90px.click.png"))); // NOI18N
         btnLiga.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_90px.hover.png"))); // NOI18N
-        btnLiga.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLigaActionPerformed(evt);
-            }
-        });
         layerMenu.add(btnLiga);
 
         btnExit.setBackground(new java.awt.Color(206, 206, 206));
@@ -293,70 +279,18 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
         layerBG.add(panelAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(785, 10, -1, 30));
 
         layerUnirseLiga.setBackground(new java.awt.Color(92, 99, 112));
-        layerUnirseLiga.setMaximumSize(new java.awt.Dimension(410, 510));
-        layerUnirseLiga.setMinimumSize(new java.awt.Dimension(410, 510));
-        layerUnirseLiga.setOpaque(true);
+        layerUnirseLiga.setMaximumSize(new java.awt.Dimension(500, 500));
+        layerUnirseLiga.setMinimumSize(new java.awt.Dimension(500, 500));
+        layerUnirseLiga.setPreferredSize(new java.awt.Dimension(500, 500));
         layerUnirseLiga.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        layerBG.add(layerUnirseLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
-        jLabel3.setText("ACTUALMENTE YA ESTAS EN UNA LIGA");
-        layerUnirseLiga.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 790, 80));
-
-        lblAdministrador.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        lblAdministrador.setText("Administrador de la liga:");
-        layerUnirseLiga.add(lblAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 790, 30));
-
-        btnEliminarLiga.setBackground(new java.awt.Color(92, 99, 112));
-        btnEliminarLiga.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
-        btnEliminarLiga.setForeground(new java.awt.Color(153, 0, 0));
-        btnEliminarLiga.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png"))); // NOI18N
-        btnEliminarLiga.setBorder(null);
-        btnEliminarLiga.setBorderPainted(false);
-        btnEliminarLiga.setContentAreaFilled(false);
-        btnEliminarLiga.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnEliminarLiga.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnEliminarLiga.setMaximumSize(new java.awt.Dimension(390, 80));
-        btnEliminarLiga.setMinimumSize(new java.awt.Dimension(390, 80));
-        btnEliminarLiga.setOpaque(true);
-        btnEliminarLiga.setPreferredSize(new java.awt.Dimension(390, 80));
-        btnEliminarLiga.setRequestFocusEnabled(false);
-        btnEliminarLiga.setRolloverEnabled(false);
-        btnEliminarLiga.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarLigaActionPerformed(evt);
-            }
-        });
-        layerUnirseLiga.setLayer(btnEliminarLiga, javax.swing.JLayeredPane.POPUP_LAYER);
-        layerUnirseLiga.add(btnEliminarLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 364, -1, 90));
-
-        lblNombreLiga.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        lblNombreLiga.setText("Nombre de la liga:");
-        layerUnirseLiga.add(lblNombreLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 790, 30));
-        layerUnirseLiga.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 810, 10));
-
-        btnInfoUnirse1.setBackground(new java.awt.Color(92, 99, 112));
-        btnInfoUnirse1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnInfoUnirse1.setForeground(new java.awt.Color(153, 0, 0));
-        btnInfoUnirse1.setBorder(null);
-        btnInfoUnirse1.setBorderPainted(false);
-        btnInfoUnirse1.setContentAreaFilled(false);
-        btnInfoUnirse1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnInfoUnirse1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnInfoUnirse1.setMaximumSize(new java.awt.Dimension(390, 80));
-        btnInfoUnirse1.setMinimumSize(new java.awt.Dimension(390, 80));
-        btnInfoUnirse1.setOpaque(true);
-        btnInfoUnirse1.setPreferredSize(new java.awt.Dimension(390, 80));
-        btnInfoUnirse1.setRequestFocusEnabled(false);
-        btnInfoUnirse1.setRolloverEnabled(false);
-        btnInfoUnirse1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInfoUnirse1ActionPerformed(evt);
-            }
-        });
-        layerUnirseLiga.setLayer(btnInfoUnirse1, javax.swing.JLayeredPane.POPUP_LAYER);
-        layerUnirseLiga.add(btnInfoUnirse1, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 364, -1, 90));
-
-        layerBG.add(layerUnirseLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 154, 840, 497));
+        layerUnirseLiga1.setBackground(new java.awt.Color(92, 99, 112));
+        layerUnirseLiga1.setMaximumSize(new java.awt.Dimension(410, 510));
+        layerUnirseLiga1.setMinimumSize(new java.awt.Dimension(410, 510));
+        layerUnirseLiga1.setOpaque(true);
+        layerUnirseLiga1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        layerBG.add(layerUnirseLiga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 150, 330, 500));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -382,8 +316,7 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnHomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnHomeKeyReleased
-        // TODO add your handling code here:
-        //        btnHome.setIcon(home_90px.hover);
+       
     }//GEN-LAST:event_btnHomeKeyReleased
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -393,34 +326,6 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
         this.setVisible(false);
 
     }//GEN-LAST:event_btnExitActionPerformed
-
-    private void btnEliminarLigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarLigaActionPerformed
-        // TODO add your handling code here:
-        String insertString = "";
-        if (Actual.getLiga().getAdministrador().equals(Actual.getNombreUsuario())) {
-            
-            insertString = " DELETE FROM tbl_liga WHERE ADMINISTRADOR=(SELECT ID_USUARIO FROM TBL_USUARIO WHERE USUARIO='" + Actual.getNombreUsuario() + "');";
-            Actual.setLiga(null);
-        } else {
-            insertString = " UPDATE bbdd_fantasy.tbl_usuario SET LIGA_INSCRITO=(SELECT  L.ID_LIGA FROM TBL_LIGA AS L WHERE L.NOMBRE='" + "" + "') WHERE USUARIO='" + Actual.getNombreUsuario() + "';";
-            Actual.setLiga(null);
-        }
-        
-        System.out.println(insertString);
-        OperacionesBBDD escritura2 = new OperacionesBBDD();
-        escritura2.escrituraSql(insertString);
-        
-        btnInfoUnirse1.setForeground(new java.awt.Color(0, 100, 0));
-        btnInfoUnirse1.setVisible(true);
-        btnInfoUnirse1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/INSERT.png")));
-        btnInfoUnirse1.setText("Has abandonado la liga con exito ");
-        
-        btnEliminarLiga.setVisible(false);
-    }//GEN-LAST:event_btnEliminarLigaActionPerformed
-
-    private void btnInfoUnirse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoUnirse1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnInfoUnirse1ActionPerformed
 
     private void btnRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrocederActionPerformed
         // TODO add your handling code here:
@@ -438,19 +343,8 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnCloseActionPerformed
 
-    private void btnLigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLigaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLigaActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -459,18 +353,15 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PantallaLigaAbandonar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaPlantilla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PantallaLigaAbandonar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaPlantilla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PantallaLigaAbandonar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaPlantilla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PantallaLigaAbandonar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaPlantilla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 
@@ -482,24 +373,19 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarJugador;
     private javax.swing.JButton btnClasificacion;
     private javax.swing.JButton btnClose;
-    private javax.swing.JButton btnEliminarLiga;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnInfoUnirse1;
     private javax.swing.JButton btnLiga;
     private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnPerfil;
     private javax.swing.JButton btnPlantilla;
     private javax.swing.JButton btnRetroceder;
     private javax.swing.JButton btnTienda;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLayeredPane layerBG;
     private javax.swing.JLayeredPane layerMenu;
     private javax.swing.JLayeredPane layerUnirseLiga;
-    private javax.swing.JLabel lblAdministrador;
-    private javax.swing.JLabel lblNombreLiga;
+    private javax.swing.JLayeredPane layerUnirseLiga1;
     private javax.swing.JLayeredPane panelAcciones;
     // End of variables declaration//GEN-END:variables
 }

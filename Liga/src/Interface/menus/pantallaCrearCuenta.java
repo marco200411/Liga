@@ -63,23 +63,26 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
         setShape(new RoundRectangle2D.Double(0, 0, 650, 650, 20, 20));
         setSize(new java.awt.Dimension(650, 650));
 
-        BG.setBackground(new java.awt.Color(206, 206, 206));
+        BG.setBackground(new java.awt.Color(51, 61, 87));
         BG.setOpaque(true);
         BG.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblCrearCuenta.setFont(new java.awt.Font("Roboto", 0, 48)); // NOI18N
-        lblCrearCuenta.setForeground(new java.awt.Color(92, 99, 112));
+        lblCrearCuenta.setForeground(new java.awt.Color(255, 255, 243));
         lblCrearCuenta.setText("CREAR CUENTA");
         BG.add(lblCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 390, 60));
 
         lblContraseña.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        lblContraseña.setForeground(new java.awt.Color(92, 99, 112));
+        lblContraseña.setForeground(new java.awt.Color(255, 255, 243));
         lblContraseña.setText("Contraseña");
         BG.add(lblContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, -1, -1));
+
+        separatorContraseña.setForeground(new java.awt.Color(255, 255, 243));
         BG.add(separatorContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 490, 260, 10));
 
-        txtCCContraseña.setBackground(new java.awt.Color(206, 206, 206));
+        txtCCContraseña.setBackground(new java.awt.Color(51, 61, 87));
         txtCCContraseña.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtCCContraseña.setForeground(new java.awt.Color(255, 255, 243));
         txtCCContraseña.setBorder(null);
         txtCCContraseña.setMaximumSize(new java.awt.Dimension(64, 22));
         BG.add(txtCCContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, 260, 50));
@@ -96,54 +99,66 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
         BG.add(btnCCCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 550, 180, 80));
 
         lblUsername.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        lblUsername.setForeground(new java.awt.Color(92, 99, 112));
+        lblUsername.setForeground(new java.awt.Color(255, 255, 243));
         lblUsername.setText("Nombre usuario");
         BG.add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, -1, -1));
+
+        separatorUsername.setForeground(new java.awt.Color(255, 255, 243));
         BG.add(separatorUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 260, 10));
 
-        txtCCUsername.setBackground(new java.awt.Color(206, 206, 206));
+        txtCCUsername.setBackground(new java.awt.Color(51, 61, 87));
         txtCCUsername.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtCCUsername.setForeground(new java.awt.Color(255, 255, 243));
         txtCCUsername.setBorder(null);
         txtCCUsername.setMaximumSize(new java.awt.Dimension(64, 22));
         BG.add(txtCCUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 260, 50));
 
         lblCorreo.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        lblCorreo.setForeground(new java.awt.Color(92, 99, 112));
+        lblCorreo.setForeground(new java.awt.Color(255, 255, 243));
         lblCorreo.setText("Correo electronico");
         BG.add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, -1, -1));
+
+        separatorCorreo.setForeground(new java.awt.Color(255, 255, 243));
         BG.add(separatorCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, 260, 10));
 
-        txtCCCorreo.setBackground(new java.awt.Color(206, 206, 206));
+        txtCCCorreo.setBackground(new java.awt.Color(51, 61, 87));
         txtCCCorreo.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtCCCorreo.setForeground(new java.awt.Color(255, 255, 243));
         txtCCCorreo.setBorder(null);
         txtCCCorreo.setMaximumSize(new java.awt.Dimension(64, 22));
         BG.add(txtCCCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 260, 50));
 
         lblApellidos.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        lblApellidos.setForeground(new java.awt.Color(92, 99, 112));
+        lblApellidos.setForeground(new java.awt.Color(255, 255, 243));
         lblApellidos.setText("Apellidos");
         BG.add(lblApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
+
+        separatorApellidos.setForeground(new java.awt.Color(255, 255, 243));
         BG.add(separatorApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 260, 20));
 
-        txtCCApellidos.setBackground(new java.awt.Color(206, 206, 206));
+        txtCCApellidos.setBackground(new java.awt.Color(51, 61, 87));
         txtCCApellidos.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtCCApellidos.setForeground(new java.awt.Color(255, 255, 243));
         txtCCApellidos.setBorder(null);
         txtCCApellidos.setMaximumSize(new java.awt.Dimension(64, 22));
         BG.add(txtCCApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 260, 50));
 
         lblNombre.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        lblNombre.setForeground(new java.awt.Color(92, 99, 112));
+        lblNombre.setForeground(new java.awt.Color(255, 255, 243));
         lblNombre.setText("Nombre");
         BG.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
+
+        separatorNombre.setForeground(new java.awt.Color(255, 255, 243));
         BG.add(separatorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 260, 20));
 
-        txtCCNombre.setBackground(new java.awt.Color(206, 206, 206));
+        txtCCNombre.setBackground(new java.awt.Color(51, 61, 87));
         txtCCNombre.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtCCNombre.setForeground(new java.awt.Color(255, 255, 243));
         txtCCNombre.setBorder(null);
         txtCCNombre.setMaximumSize(new java.awt.Dimension(64, 22));
         BG.add(txtCCNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 260, 50));
 
-        btnError1.setBackground(new java.awt.Color(206, 206, 206));
+        btnError1.setBackground(new java.awt.Color(51, 61, 87));
         btnError1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnError1.setForeground(new java.awt.Color(153, 0, 0));
         btnError1.setBorder(null);
@@ -166,10 +181,11 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
         BG.setLayer(btnError1, javax.swing.JLayeredPane.POPUP_LAYER);
         BG.add(btnError1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, -1, -1));
 
+        panelAcciones.setForeground(new java.awt.Color(51, 61, 87));
         panelAcciones.setMaximumSize(new java.awt.Dimension(95, 25));
         panelAcciones.setMinimumSize(new java.awt.Dimension(95, 25));
 
-        btnRetroceder.setBackground(new java.awt.Color(206, 206, 206));
+        btnRetroceder.setBackground(new java.awt.Color(51, 61, 87));
         btnRetroceder.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnRetroceder.setForeground(new java.awt.Color(153, 0, 0));
         btnRetroceder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retroceder.png"))); // NOI18N
@@ -188,7 +204,7 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
             }
         });
 
-        btnMinimizar.setBackground(new java.awt.Color(206, 206, 206));
+        btnMinimizar.setBackground(new java.awt.Color(51, 61, 87));
         btnMinimizar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnMinimizar.setForeground(new java.awt.Color(153, 0, 0));
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar (1).png"))); // NOI18N
@@ -207,7 +223,7 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
             }
         });
 
-        btnClose.setBackground(new java.awt.Color(206, 206, 206));
+        btnClose.setBackground(new java.awt.Color(51, 61, 87));
         btnClose.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnClose.setForeground(new java.awt.Color(153, 0, 0));
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close (1).png"))); // NOI18N

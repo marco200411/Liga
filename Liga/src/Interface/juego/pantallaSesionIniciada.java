@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class pantallaSesionIniciada extends javax.swing.JFrame {
 
@@ -73,6 +74,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         lblSinLiga = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         layerInfo = new javax.swing.JLayeredPane();
+        btnError = new javax.swing.JButton();
         panelAcciones = new javax.swing.JLayeredPane();
         btnRetroceder = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
@@ -85,11 +87,13 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         setShape(new RoundRectangle2D.Double(0, 0, 900,700, 50, 50));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        layerBG.setBackground(new java.awt.Color(206, 206, 206));
+        layerBG.setBackground(new java.awt.Color(51, 61, 87));
+        layerBG.setForeground(new java.awt.Color(51, 61, 87));
         layerBG.setOpaque(true);
         layerBG.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        layerMenu.setBackground(new java.awt.Color(206, 206, 206));
+        layerMenu.setBackground(new java.awt.Color(51, 61, 87));
+        layerMenu.setForeground(new java.awt.Color(51, 61, 87));
         layerMenu.setOpaque(true);
         layerMenu.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -127,6 +131,11 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         btnPlantilla.setContentAreaFilled(false);
         btnPlantilla.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stadium_90px.click.png"))); // NOI18N
         btnPlantilla.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stadium_90px.hover.png"))); // NOI18N
+        btnPlantilla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlantillaActionPerformed(evt);
+            }
+        });
         layerMenu.add(btnPlantilla);
 
         btnPerfil.setBackground(new java.awt.Color(206, 206, 206));
@@ -260,12 +269,35 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         layerInfo.setBackground(new java.awt.Color(92, 99, 112));
         layerInfo.setOpaque(true);
         layerInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnError.setBackground(new java.awt.Color(92, 99, 112));
+        btnError.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnError.setForeground(new java.awt.Color(153, 0, 0));
+        btnError.setBorder(null);
+        btnError.setBorderPainted(false);
+        btnError.setContentAreaFilled(false);
+        btnError.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnError.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnError.setMaximumSize(new java.awt.Dimension(800, 100));
+        btnError.setMinimumSize(new java.awt.Dimension(800, 100));
+        btnError.setOpaque(true);
+        btnError.setPreferredSize(new java.awt.Dimension(800, 100));
+        btnError.setRequestFocusEnabled(false);
+        btnError.setRolloverEnabled(false);
+        btnError.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnErrorActionPerformed(evt);
+            }
+        });
+        layerInfo.setLayer(btnError, javax.swing.JLayeredPane.POPUP_LAYER);
+        layerInfo.add(btnError, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
+
         layerBG.add(layerInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 280, 850, 400));
 
         panelAcciones.setMaximumSize(new java.awt.Dimension(95, 25));
         panelAcciones.setMinimumSize(new java.awt.Dimension(95, 25));
 
-        btnRetroceder.setBackground(new java.awt.Color(206, 206, 206));
+        btnRetroceder.setBackground(new java.awt.Color(51, 61, 87));
         btnRetroceder.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnRetroceder.setForeground(new java.awt.Color(153, 0, 0));
         btnRetroceder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retroceder.png"))); // NOI18N
@@ -284,7 +316,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
             }
         });
 
-        btnMinimizar.setBackground(new java.awt.Color(206, 206, 206));
+        btnMinimizar.setBackground(new java.awt.Color(51, 61, 87));
         btnMinimizar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnMinimizar.setForeground(new java.awt.Color(153, 0, 0));
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar (1).png"))); // NOI18N
@@ -303,7 +335,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
             }
         });
 
-        btnClose.setBackground(new java.awt.Color(206, 206, 206));
+        btnClose.setBackground(new java.awt.Color(51, 61, 87));
         btnClose.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnClose.setForeground(new java.awt.Color(153, 0, 0));
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close (1).png"))); // NOI18N
@@ -433,6 +465,27 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnCloseActionPerformed
 
+    private void btnPlantillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlantillaActionPerformed
+        // TODO add your handling code here:
+        System.out.println(usuarioActual.getEquipo() );
+         if (usuarioActual.getEquipo() == null || usuarioActual.getLiga().getNombre() == null) {
+             btnError.setForeground(new java.awt.Color(100, 0, 0));
+                    btnError.setVisible(true);
+                    btnError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
+                    btnError.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+        } else {
+            this.setVisible(false);
+            PantallaPlantilla pantalla = new PantallaPlantilla(usuarioActual);
+            pantalla.setVisible(true);
+        }
+    }//GEN-LAST:event_btnPlantillaActionPerformed
+
+    private void btnErrorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnErrorActionPerformed
+        // TODO add your handling code here:
+        
+        btnError.setVisible(false);
+    }//GEN-LAST:event_btnErrorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -472,6 +525,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarJugador;
     private javax.swing.JButton btnClasificacion;
     private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnError;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLiga;

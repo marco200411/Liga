@@ -9,5 +9,20 @@ package Methods;
  * @author a22marcorr
  */
 public class Persona {
-    
+
+    String nombre;
+    String precio;
+    int ataque;
+    int defensa;
+    String imagen;
+
+    public Persona(String nombre, String precio, int ataque, int defensa, String imagen) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.ataque = ataque;
+        this.defensa = defensa;
+        this.imagen = imagen;
+    }
+
+   
 }

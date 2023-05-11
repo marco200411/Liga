@@ -75,14 +75,15 @@ public class PantallaLiga extends javax.swing.JFrame {
         setUndecorated(true);
         setShape(new RoundRectangle2D.Double(0, 0, 900, 700, 50, 50));
 
-        layerBG.setBackground(new java.awt.Color(206, 206, 206));
+        layerBG.setBackground(new java.awt.Color(51, 61, 87));
         layerBG.setOpaque(true);
         layerBG.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        panelAcciones.setForeground(new java.awt.Color(51, 61, 87));
         panelAcciones.setMaximumSize(new java.awt.Dimension(95, 25));
         panelAcciones.setMinimumSize(new java.awt.Dimension(95, 25));
 
-        btnRetroceder.setBackground(new java.awt.Color(206, 206, 206));
+        btnRetroceder.setBackground(new java.awt.Color(51, 61, 87));
         btnRetroceder.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnRetroceder.setForeground(new java.awt.Color(153, 0, 0));
         btnRetroceder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retroceder.png"))); // NOI18N
@@ -101,7 +102,7 @@ public class PantallaLiga extends javax.swing.JFrame {
             }
         });
 
-        btnMinimizar.setBackground(new java.awt.Color(206, 206, 206));
+        btnMinimizar.setBackground(new java.awt.Color(51, 61, 87));
         btnMinimizar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnMinimizar.setForeground(new java.awt.Color(153, 0, 0));
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar (1).png"))); // NOI18N
@@ -120,7 +121,7 @@ public class PantallaLiga extends javax.swing.JFrame {
             }
         });
 
-        btnClose.setBackground(new java.awt.Color(206, 206, 206));
+        btnClose.setBackground(new java.awt.Color(51, 61, 87));
         btnClose.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnClose.setForeground(new java.awt.Color(153, 0, 0));
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close (1).png"))); // NOI18N
@@ -168,7 +169,7 @@ public class PantallaLiga extends javax.swing.JFrame {
         layerBG.add(panelAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, -1, 30));
         layerBG.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 860, 10));
 
-        layerMenu.setBackground(new java.awt.Color(206, 206, 206));
+        layerMenu.setBackground(new java.awt.Color(51, 61, 87));
         layerMenu.setOpaque(true);
         layerMenu.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -260,6 +261,11 @@ public class PantallaLiga extends javax.swing.JFrame {
         btnLiga.setContentAreaFilled(false);
         btnLiga.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_90px.click.png"))); // NOI18N
         btnLiga.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_90px.hover.png"))); // NOI18N
+        btnLiga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLigaActionPerformed(evt);
+            }
+        });
         layerMenu.add(btnLiga);
 
         btnExit.setBackground(new java.awt.Color(206, 206, 206));
@@ -463,6 +469,7 @@ public class PantallaLiga extends javax.swing.JFrame {
                         btnInfoUnirse.setVisible(true);
                         btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/INSERT.png")));
                         btnInfoUnirse.setText("Te has unido con exito a la liga: " + NombreLiga);
+                        Actual.getEquipo().setNombre(Actual.getNombre() + "s team");
                         Actual.setLiga(liga1);
                         crearEquipo(liga1);
 
@@ -538,37 +545,78 @@ public class PantallaLiga extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearLigaActionPerformed
 
     public void crearEquipo(Liga liga1) {
+        if (insertarBBDDEquipo()) {
+            agentesLibres();
+        }
 
-        agentesLibres();
+        while (Actual.getPlantilla().size() != 11) {
+            
+            Futbolista futbolistaRandom = null;
+            if (Actual.getPlantilla().isEmpty()) {
+                System.out.println("portero");
+                futbolistaRandom = liga1.getJugadoresLibresPortero().get((int) (Math.random() * liga1.getJugadoresLibresPortero().size()));
+            } else if (Actual.getPlantilla().size() >= 1 && Actual.getPlantilla().size() < 6) {
+                System.out.println("def");
+                futbolistaRandom = liga1.getJugadoresLibresDefensa().get((int) (Math.random() * liga1.getJugadoresLibresDefensa().size()));
+            } else if (Actual.getPlantilla().size() >= 5 && Actual.getPlantilla().size() < 9) {
+                System.out.println("medio");
+                futbolistaRandom = liga1.getJugadoresLibresMedio().get((int) (Math.random() * liga1.getJugadoresLibresMedio().size()));
+            } else if (Actual.getPlantilla().size() >= 8 && Actual.getPlantilla().size() < 11) {
+                System.out.println("del");
+                futbolistaRandom = liga1.getJugadoresLibresDelantero().get((int) (Math.random() * liga1.getJugadoresLibresDelantero().size()));
+            }
 
-        while (Actual.getPlantilla().size() < 10) {
-            System.out.println("jugadores" + liga1.getJugadoresLibres().size());
-            Futbolista futbolistaRandom = liga1.getJugadoresLibres().get((int) (Math.random() * liga1.getJugadoresLibres().size()));
+            if (futbolistaRandom != null) {
+                Actual.getPlantilla().add(futbolistaRandom);
+                Actual.getJugadores().add(futbolistaRandom);
+                liga1.getJugadoresLibres().remove(futbolistaRandom);
+                String sentenciaInsert = "INSERT  INTO TBL_JUGADOR_EQUIPO\n"
+                        + "SELECT\n"
+                        + " (SELECT ID_JUGADOR\n"
+                        + "FROM TBL_JUGADORES\n"
+                        + "WHERE NOMBRE='" + futbolistaRandom.getNombre() + "'),\n"
+                        + "(SELECT ID_EQUIPO \n"
+                        + "FROM TBL_EQUIPO\n"
+                        + "WHERE ID_USUARIO=\n"
+                        + "(SELECT ID_USUARIO\n"
+                        + "FROM TBL_USUARIO\n"
+                        + "WHERE USUARIO='" + Actual.getNombreUsuario() + "'));";
+                System.out.println(sentenciaInsert);
+                OperacionesBBDD escritura = new OperacionesBBDD();
 
-            Actual.getPlantilla().add(futbolistaRandom);
-            liga1.getJugadoresLibres().remove(futbolistaRandom);
-            String sentenciaInsert = "INSERT  INTO TBL_JUGADOR_EQUIPO\n"
-                    + "SELECT\n"
-                    + " (SELECT ID_JUGADOR\n"
-                    + "FROM TBL_JUGADORES\n"
-                    + "WHERE NOMBRE='" + futbolistaRandom.getNombre() + "'),\n"
-                    + "(SELECT ID_EQUIPO \n"
-                    + "FROM TBL_EQUIPO\n"
-                    + "WHERE ID_USUARIO=\n"
-                    + "(SELECT ID_USUARIO\n"
-                    + "FROM TBL_USUARIO\n"
-                    + "WHERE USUARIO='" + Actual.getNombreUsuario() + "'));";
-            System.out.println(sentenciaInsert);
-            OperacionesBBDD escritura = new OperacionesBBDD();
+                if (escritura.escrituraSql(sentenciaInsert)) {
 
-            if (escritura.escrituraSql(sentenciaInsert)) {
+                    System.out.println(futbolistaRandom.getNombre());
 
-                System.out.println(futbolistaRandom.getNombre());
-
+                }
             }
 
         };
 
+    }
+
+    public boolean insertarBBDDEquipo() {
+        boolean confirm = false;
+        String sentenciaInsert = "INSERT INTO TBL_EQUIPO\n"
+                + "(LIGA,NOMBRE_PLANTILLA,DINERO,PUNTOS,ID_USUARIO)\n"
+                + "SELECT(SELECT ID_LIGA\n"
+                + "FROM TBL_LIGA \n"
+                + "WHERE NOMBRE='" + Actual.getLiga().getNombre() + "'),\n"
+                + "'" + Actual.getNombre() + " team',100000000,0,\n"
+                + "(SELECT ID_USUARIO\n"
+                + "FROM TBL_USUARIO\n"
+                + "WHERE USUARIO='" + Actual.getNombreUsuario() + "');";
+
+        System.out.println(sentenciaInsert);
+        OperacionesBBDD escritura = new OperacionesBBDD();
+
+        if (escritura.escrituraSql(sentenciaInsert)) {
+
+            confirm = true;
+
+        }
+
+        return confirm;
     }
 
     public void agentesLibres() {
@@ -586,19 +634,38 @@ public class PantallaLiga extends javax.swing.JFrame {
 
         OperacionesBBDD get = new OperacionesBBDD();
         ResultSet results = get.getSQL(sentenciaSelect);
-
         try {
             while (results.next()) {
                 Futbolista f1 = new Futbolista(results.getString(1), results.getString(2), results.getString(3), results.getInt(4), results.getInt(5), results.getString(6));
-                System.out.println(f1.getNombre());
+                
 
-                Actual.getLiga().insertarJugadorLibre(f1);
-
+                
+Actual.getLiga().getJugadoresLibres().add(f1);
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(PantallaLiga.class.getName()).log(Level.SEVERE, null, ex);
         }
+        organizarJugadores();
+
+    }
+
+    public void organizarJugadores() {
+        Iterator<Futbolista> it = Actual.getLiga().getJugadoresLibres().iterator();
+        while (it.hasNext()) {
+            Futbolista f1 = it.next();
+            if (f1.getPosicion().equals("PORTERO")) {
+                Actual.getLiga().getJugadoresLibresPortero().add(f1);
+            } else if (f1.getPosicion().equals("DEFENSA")) {
+                Actual.getLiga().getJugadoresLibresDefensa().add(f1);
+            } else if (f1.getPosicion().equals("MEDIO")) {
+                Actual.getLiga().getJugadoresLibresMedio().add(f1);
+            } else if (f1.getPosicion().equals("DELANTERO")) {
+                Actual.getLiga().getJugadoresLibresDelantero().add(f1);
+            }
+
+        }
+
     }
 
     public void jugadoresJugandoLiga() {
@@ -615,7 +682,7 @@ public class PantallaLiga extends javax.swing.JFrame {
 
         try {
             while (results.next()) {
-                Futbolista f1 = new Futbolista(results.getString(1), results.getString(2), results.getString(3), results.getInt(4), results.getInt(5), results.getString(6));
+                Futbolista f1 = new Futbolista(results.getString(2), results.getString(1), results.getString(3), results.getInt(4), results.getInt(5), results.getString(6));
                 Actual.getLiga().insertarJugador(f1);
 
             }
@@ -677,6 +744,10 @@ public class PantallaLiga extends javax.swing.JFrame {
         this.setVisible(false);
 
     }//GEN-LAST:event_btnHomeActionPerformed
+
+    private void btnLigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLigaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLigaActionPerformed
 
     /**
      * @param args the command line arguments

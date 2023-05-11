@@ -1,8 +1,11 @@
 package Interface.menus;
 
 import Interface.juego.pantallaSesionIniciada;
+import Methods.Entrenador;
+import Methods.Equipo;
 import Methods.Liga;
 import Methods.Usuario;
+import OperacionesBBDD.ObtenerDatosBBDD;
 import OperacionesBBDD.OperacionesBBDD;
 import java.awt.event.ComponentEvent;
 import java.awt.geom.RoundRectangle2D;
@@ -25,34 +28,6 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
 
     public pantallaIniciarSesion() {
         initComponents();
-
-    }
-
-    private void getSql(String consulta) {
-
-        try {
-            OperacionesBBDD escritura = new OperacionesBBDD();
-            ResultSet mysqlResult = escritura.getSQL(consulta);
-            // procesa cada fila do resultado
-            if (mysqlResult.next()) {
-                System.out.println(txtCCUsername.getText());
-                System.out.println(mysqlResult.getString(4));
-                System.out.println(txtCCContraseña.getText());
-                System.out.println(mysqlResult.getString(5));
-
-                Liga liga = new Liga(mysqlResult.getString(6), mysqlResult.getString(7));
-                Usuario us1 = new Usuario(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getString(3), mysqlResult.getString(4), mysqlResult.getString(5), null, liga);
-
-                this.setVisible(false);
-                pantallaSesionIniciada pantalla = new pantallaSesionIniciada(us1);
-                pantalla.setVisible(true);
-
-            } else {
-                System.out.println("No encontrado");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(pantallaIniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
     }
 
@@ -85,23 +60,26 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
         setUndecorated(true);
         setShape(new RoundRectangle2D.Double(0, 0, 650, 650, 50, 50));
 
-        BG.setBackground(new java.awt.Color(206, 206, 206));
+        BG.setBackground(new java.awt.Color(51, 61, 87));
         BG.setOpaque(true);
         BG.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblCrearCuenta.setFont(new java.awt.Font("Roboto", 0, 48)); // NOI18N
-        lblCrearCuenta.setForeground(new java.awt.Color(92, 99, 112));
+        lblCrearCuenta.setForeground(new java.awt.Color(255, 255, 243));
         lblCrearCuenta.setText("INICIAR SESION");
         BG.add(lblCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 390, 60));
 
         lblContraseña.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        lblContraseña.setForeground(new java.awt.Color(92, 99, 112));
+        lblContraseña.setForeground(new java.awt.Color(255, 255, 243));
         lblContraseña.setText("Contraseña");
         BG.add(lblContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
+
+        separatorContraseña.setForeground(new java.awt.Color(255, 255, 243));
         BG.add(separatorContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 260, 10));
 
-        txtCCContraseña.setBackground(new java.awt.Color(206, 206, 206));
+        txtCCContraseña.setBackground(new java.awt.Color(51, 61, 87));
         txtCCContraseña.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtCCContraseña.setForeground(new java.awt.Color(255, 255, 243));
         txtCCContraseña.setBorder(null);
         txtCCContraseña.setMaximumSize(new java.awt.Dimension(64, 22));
         BG.add(txtCCContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 260, 50));
@@ -118,21 +96,25 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
         BG.add(btnCCCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 180, 80));
 
         lblUsername.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        lblUsername.setForeground(new java.awt.Color(92, 99, 112));
+        lblUsername.setForeground(new java.awt.Color(255, 255, 243));
         lblUsername.setText("Nombre usuario o correo");
         BG.add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
+
+        separatorUsername.setForeground(new java.awt.Color(255, 255, 243));
         BG.add(separatorUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 260, 10));
 
-        txtCCUsername.setBackground(new java.awt.Color(206, 206, 206));
+        txtCCUsername.setBackground(new java.awt.Color(51, 61, 87));
         txtCCUsername.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtCCUsername.setForeground(new java.awt.Color(255, 255, 243));
         txtCCUsername.setBorder(null);
         txtCCUsername.setMaximumSize(new java.awt.Dimension(64, 22));
         BG.add(txtCCUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 260, 50));
 
+        panelAcciones.setForeground(new java.awt.Color(51, 61, 87));
         panelAcciones.setMaximumSize(new java.awt.Dimension(95, 25));
         panelAcciones.setMinimumSize(new java.awt.Dimension(95, 25));
 
-        btnRetroceder.setBackground(new java.awt.Color(206, 206, 206));
+        btnRetroceder.setBackground(new java.awt.Color(51, 61, 87));
         btnRetroceder.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnRetroceder.setForeground(new java.awt.Color(153, 0, 0));
         btnRetroceder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retroceder.png"))); // NOI18N
@@ -151,7 +133,7 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
             }
         });
 
-        btnMinimizar.setBackground(new java.awt.Color(206, 206, 206));
+        btnMinimizar.setBackground(new java.awt.Color(51, 61, 87));
         btnMinimizar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnMinimizar.setForeground(new java.awt.Color(153, 0, 0));
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar (1).png"))); // NOI18N
@@ -170,7 +152,7 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
             }
         });
 
-        btnClose.setBackground(new java.awt.Color(206, 206, 206));
+        btnClose.setBackground(new java.awt.Color(51, 61, 87));
         btnClose.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnClose.setForeground(new java.awt.Color(153, 0, 0));
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close (1).png"))); // NOI18N
@@ -232,38 +214,45 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void btnCCCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCCCreateActionPerformed
-        // TODO add your handling code here:
-        String consulta = null;
-        if (txtCCUsername.getText().contains("@")) {
 
-            consulta = ("SELECT U.NOMBRE, U.APELLIDOS, U.USUARIO, U.CONTRASENA, U.CORREO,  \n"
-                    + "                     L.NOMBRE,\n"
-                    + "                     U2.USUARIO\n"
-                    + "                    FROM tbl_usuario AS U LEFT JOIN TBL_EQUIPO AS E \n"
-                    + "                    ON U.ID_USUARIO=E.ID_USUARIO LEFT JOIN TBL_LIGA AS L \n"
-                    + "                    ON E.LIGA=L.ID_LIGA LEFT JOIN TBL_USUARIO AS U2 \n"
-                    + "                    ON L.ADMINISTRADOR=U2.ID_USUARIO\n"
-                    + "                    WHERE U.CORREO='" + txtCCUsername.getText() + "'\n"
-                    + "                    AND U.CONTRASENA=MD5('" + txtCCContraseña.getText() + "');");
+        ObtenerDatosBBDD getDatos = new ObtenerDatosBBDD();
 
-        } else {
-            consulta = ("SELECT U.NOMBRE, U.APELLIDOS, U.USUARIO, U.CONTRASENA, U.CORREO,  \n"
-                    + "                     L.NOMBRE,\n"
-                    + "                     U2.USUARIO\n"
-                    + "                    FROM tbl_usuario AS U LEFT JOIN TBL_EQUIPO AS E \n"
-                    + "                    ON U.ID_USUARIO=E.ID_USUARIO LEFT JOIN TBL_LIGA AS L \n"
-                    + "                    ON E.LIGA=L.ID_LIGA LEFT JOIN TBL_USUARIO AS U2 \n"
-                    + "                    ON L.ADMINISTRADOR=U2.ID_USUARIO\n"
-                    + "                    WHERE U.USUARIO='" + txtCCUsername.getText() + "'\n"
-                    + "                    AND U.CONTRASENA=MD5('" + txtCCContraseña.getText() + "');");
+        if (getDatos.ComprobarUsuarioBBDD(txtCCUsername.getText(), txtCCContraseña.getText())) {
+            Entrenador entrenador = getDatos.getEntrenadorBBDD(txtCCUsername.getText());
+            Equipo equipo = getDatos.getEquipoBBDD(txtCCUsername.getText(), entrenador);
 
-        }
-        if (consulta != null) {
-            getSql(consulta);
-
+            Usuario usuario = getDatos.getUsuarioBBDD(txtCCUsername.getText());
+            usuario.setEquipo(equipo);
+            Liga liga = getDatos.getLigaBBDD(usuario.getNombre());
+            usuario.setLiga(liga);
+            this.setVisible(false);
+            pantallaSesionIniciada pantalla = new pantallaSesionIniciada(usuario);
+            pantalla.setVisible(true);
         }
 
+//        if (consulta != null) {
+//            try {
+//
+//                // procesa cada fila do resultado
+//                if (mysqlResult.next()) {
+//                    
+//                    Liga liga = new Liga(mysqlResult.getString(6), mysqlResult.getString(7));
+//                    
+//                    Entrenador entrenador = getDatos.getEntrenadorBBDD(liga, mysqlResult.getString(1));
+//                    
+//                    Equipo equipo = new Equipo(liga, "n", consulta, WIDTH, WIDTH);
+//                    us1.setEquipo(consulta);
+//                    
+//                    
+//                } else {
+//                    System.out.println("No encontrado");
+//                }
+//            } catch (SQLException ex) {
+//                Logger.getLogger(pantallaIniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            getSql(consulta);
 
     }//GEN-LAST:event_btnCCCreateActionPerformed
 

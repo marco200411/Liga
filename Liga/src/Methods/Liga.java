@@ -16,13 +16,49 @@ public class Liga {
     String Administrador;
 
     ArrayList<Usuario> integrantes = new ArrayList();
-     ArrayList<Futbolista> jugadoresJugando = new ArrayList();
-    ArrayList<Futbolista> jugadoresLibres = new ArrayList();
+    ArrayList<Futbolista> jugadoresJugando = new ArrayList();
+    private ArrayList<Futbolista> jugadoresLibres = new ArrayList();
+    private ArrayList<Futbolista> jugadoresLibresPortero = new ArrayList();
+    private ArrayList<Futbolista> jugadoresLibresDefensa = new ArrayList();
+    private ArrayList<Futbolista> jugadoresLibresMedio = new ArrayList();
+    private ArrayList<Futbolista> jugadoresLibresDelantero = new ArrayList();
 
     public Liga(String Nombre, String Administrador) {
         this.Nombre = Nombre;
         this.Administrador = Administrador;
 
+    }
+
+    public ArrayList<Futbolista> getJugadoresLibresPortero() {
+        return jugadoresLibresPortero;
+    }
+
+    public void setJugadoresLibresPortero(ArrayList<Futbolista> jugadoresLibresPortero) {
+        this.jugadoresLibresPortero = jugadoresLibresPortero;
+    }
+
+    public ArrayList<Futbolista> getJugadoresLibresDefensa() {
+        return jugadoresLibresDefensa;
+    }
+
+    public void setJugadoresLibresDefensa(ArrayList<Futbolista> jugadoresLibresDefensa) {
+        this.jugadoresLibresDefensa = jugadoresLibresDefensa;
+    }
+
+    public ArrayList<Futbolista> getJugadoresLibresMedio() {
+        return jugadoresLibresMedio;
+    }
+
+    public void setJugadoresLibresMedio(ArrayList<Futbolista> jugadoresLibresMedio) {
+        this.jugadoresLibresMedio = jugadoresLibresMedio;
+    }
+
+    public ArrayList<Futbolista> getJugadoresLibresDelantero() {
+        return jugadoresLibresDelantero;
+    }
+
+    public void setJugadoresLibresDelantero(ArrayList<Futbolista> jugadoresLibresDelantero) {
+        this.jugadoresLibresDelantero = jugadoresLibresDelantero;
     }
 
     public String getNombre() {
@@ -65,8 +101,6 @@ public class Liga {
         this.jugadoresLibres = jugadoresLibres;
     }
 
-  
-
     public boolean insertarUsuario(Usuario us) {
 
         boolean resultado = false;
@@ -79,7 +113,8 @@ public class Liga {
 
         return resultado;
     }
-     public boolean insertarJugador(Futbolista f1) {
+
+    public boolean insertarJugador(Futbolista f1) {
 
         boolean resultado = false;
         if (!jugadoresJugando.contains(f1)) {
@@ -91,18 +126,7 @@ public class Liga {
 
         return resultado;
     }
-     
-     public boolean insertarJugadorLibre(Futbolista f1) {
 
-        boolean resultado = false;
-        if (!jugadoresLibres.contains(f1)) {
-            resultado = true;
-            jugadoresLibres.add(f1);
-        } else {
-            resultado = false;
-        }
-
-        return resultado;
-    }
+    
 
 }
