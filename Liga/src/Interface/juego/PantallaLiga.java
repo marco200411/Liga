@@ -550,7 +550,7 @@ public class PantallaLiga extends javax.swing.JFrame {
         }
 
         while (Actual.getPlantilla().size() != 11) {
-            
+
             Futbolista futbolistaRandom = null;
             if (Actual.getPlantilla().isEmpty()) {
                 System.out.println("portero");
@@ -637,10 +637,8 @@ public class PantallaLiga extends javax.swing.JFrame {
         try {
             while (results.next()) {
                 Futbolista f1 = new Futbolista(results.getString(1), results.getString(2), results.getString(3), results.getInt(4), results.getInt(5), results.getString(6));
-                
 
-                
-Actual.getLiga().getJugadoresLibres().add(f1);
+                Actual.getLiga().getJugadoresLibres().add(f1);
             }
 
         } catch (SQLException ex) {
