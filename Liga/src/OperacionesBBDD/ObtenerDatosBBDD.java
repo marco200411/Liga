@@ -2,6 +2,7 @@ package OperacionesBBDD;
 
 import Methods.Entrenador;
 import Methods.Equipo;
+import Methods.Futbolista;
 import Methods.Liga;
 import Methods.Usuario;
 import OperacionesBBDD.OperacionesBBDD;
@@ -69,7 +70,41 @@ public class ObtenerDatosBBDD {
 
     }
 
-    public Liga getLigaBBDD( String usuario) {
+    public void getJugadoresPlantilla(Usuario usuario) {
+        String consulta = ("SELECT J.NOMBRE, J.POSICION, J.PRECIO, J.ATAQUE, J.DEFENSA, J.IMAGEN, JE.ALINEADO\n"
+                + "FROM TBL_JUGADOR_EQUIPO AS JE \n"
+                + "INNER JOIN TBL_JUGADORES AS J\n"
+                + "ON JE.ID_JUGADOR=J.ID_JUGADOR\n"
+                + "WHERE JE.ID_EQUIPO=\n"
+                + "(SELECT ID_EQUIPO \n"
+                + "FROM TBL_EQUIPO\n"
+                + "WHERE ID_USUARIO=(\n"
+                + "SELECT ID_USUARIO\n"
+                + "FROM TBL_USUARIO\n"
+                + "WHERE USUARIO='" + usuario.getNombre() + "'\n"
+                + "));");
+        System.out.println(consulta);
+        OperacionesBBDD escritura = new OperacionesBBDD();
+        ResultSet mysqlResult = escritura.getSQL(consulta);
+        Futbolista futbolista = null;
+        try {
+
+            while (mysqlResult.next()) {
+
+                futbolista = new Futbolista(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getString(3), mysqlResult.getInt(4), mysqlResult.getInt(5), mysqlResult.getString(6));
+                if (mysqlResult.getString(7) == "SI") {
+                    usuario.getPlantilla().add(futbolista);
+                   
+                }
+                usuario.getJugadores().add(futbolista);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ObtenerDatosBBDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public Liga getLigaBBDD(String usuario) {
         String consulta = ("SELECT L.NOMBRE, U.USUARIO\n"
                 + "FROM TBL_EQUIPO AS E INNER JOIN \n"
                 + "TBL_LIGA AS L ON E.LIGA=L.ID_LIGA\n"
@@ -148,7 +183,7 @@ public class ObtenerDatosBBDD {
         Usuario us1 = null;
         try {
             if (mysqlResult.next()) {
-                us1 = new Usuario(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getString(3), null, mysqlResult.getString(4), null, null);
+                us1 = new Usuario(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getString(3), "", mysqlResult.getString(4), null, null);
 
             }
 

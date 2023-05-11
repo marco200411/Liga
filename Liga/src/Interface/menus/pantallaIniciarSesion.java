@@ -227,6 +227,8 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
             usuario.setEquipo(equipo);
             Liga liga = getDatos.getLigaBBDD(usuario.getNombre());
             usuario.setLiga(liga);
+            getDatos.getJugadoresPlantilla(usuario);
+            
             this.setVisible(false);
             pantallaSesionIniciada pantalla = new pantallaSesionIniciada(usuario);
             pantalla.setVisible(true);
