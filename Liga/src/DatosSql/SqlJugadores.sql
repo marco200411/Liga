@@ -36,7 +36,6 @@ VALUES
 ('Romelu Lukaku', 'DELANTERO', '13M', 90, 34),
 ('Erling Haaland', 'DELANTERO', '15M', 93, 24),
 ('Harry Kane', 'DELANTERO', '16M', 95, 30),
-('Son Heung-min', 'DELANTERO', '14M', 88, 32),
 ('Kai Havertz', 'MEDIO', '10M', 78, 52),
 ('Frenkie de Jong', 'MEDIO', '9M', 75, 75),
 ('Thomas Müller', 'MEDIO', '8M', 76, 50),
@@ -64,7 +63,7 @@ VALUES
 ('Giorgio Chiellini', 'DEFENSA', '7M', 25, 90),
 ('Miralem Pjanić', 'MEDIO', '7M', 72, 30),
 ('Erling Braut Haaland', 'DELANTERO', '17M', 94, 28),
-('Robertson Firmino', 'DELANTERO', '10M', 82, 24),
+('Roberto Firmino', 'DELANTERO', '10M', 82, 24),
 ('Jude Bellingham', 'MEDIO', '7M', 75, 68),
 ('Marcel Sabitzer', 'MEDIO', '9M', 81, 67),
 ('Raphael Varane', 'DEFENSA', '9M', 25, 90),
@@ -90,8 +89,13 @@ VALUES
 ('Keylor Navas', 'PORTERO', '4M', 20, 85),
 ('Jadon Sancho', 'DELANTERO', '10M', 80, 24),
 ('Pierre-Emerick Aubameyang', 'DELANTERO', '11M', 88, 26),
-('Raphaël Guerreiro', 'DEFENSA', '7M', 25, 80),
+('Raphael Guerreiro', 'DEFENSA', '7M', 25, 80),
 ('Federico Chiesa', 'DELANTERO', '9M', 82, 27),
 ('Gianluca Mancini', 'DEFENSA', '7M', 25, 85),
 ('Matteo Pessina', 'MEDIO', '6M', 75, 60),
 ('Dusan Vlahovic', 'DELANTERO', '9M', 85, 10);
+
+
+
+
+

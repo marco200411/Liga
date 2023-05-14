@@ -90,9 +90,11 @@ public class ObtenerDatosBBDD {
         try {
 
             while (mysqlResult.next()) {
-
+                
                 futbolista = new Futbolista(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getString(3), mysqlResult.getInt(4), mysqlResult.getInt(5), mysqlResult.getString(6));
-                if (mysqlResult.getString(7) == "SI") {
+               
+                    if ("SI".equals(mysqlResult.getString(7))) {
+                    
                     usuario.getPlantilla().add(futbolista);
                    
                 }
