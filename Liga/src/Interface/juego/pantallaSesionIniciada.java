@@ -224,12 +224,10 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
 
         lblNombreLiga.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         lblNombreLiga.setForeground(new java.awt.Color(206, 206, 206));
-        lblNombreLiga.setText("asda");
         layerCabecera.add(lblNombreLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 560, 30));
 
         lblPuntos.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         lblPuntos.setForeground(new java.awt.Color(206, 206, 206));
-        lblPuntos.setText("dasd");
         layerCabecera.add(lblPuntos, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, 240, 30));
 
         lblProximoPartido.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
@@ -403,7 +401,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
 
         try {
             while (results.next()) {
-                String nombreUsuario=results.getString(1);
+                String nombreUsuario = results.getString(1);
                 Entrenador entrenador = getDatos.getEntrenadorBBDD(nombreUsuario);
                 Equipo equipo = getDatos.getEquipoBBDD(nombreUsuario, entrenador);
 
@@ -478,7 +476,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
     private void btnPlantillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlantillaActionPerformed
         // TODO add your handling code here:
         System.out.println(Actual.getEquipo());
-        if (Actual.getEquipo() == null || Actual.getLiga().getNombre() == null) {
+        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
             btnError.setForeground(new java.awt.Color(100, 0, 0));
             btnError.setVisible(true);
             btnError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
@@ -490,20 +488,20 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPlantillaActionPerformed
 
-    public void actualizarCabezera(){
-      lblPuntos.setText("Puntos: "+ Actual.getEquipo().getPuntos());
-        lblNombreLiga.setText("Liga: " + Actual.getLiga().getNombre());
-        
-        
+    public void actualizarCabezera() {
+        if (Actual.getEquipo() != null) {
+            lblPuntos.setText("Puntos: " + Actual.getEquipo().getPuntos());
+            lblNombreLiga.setText("Liga: " + Actual.getLiga().getNombre());
+        }
+
     }
-    
+
     private void btnErrorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnErrorActionPerformed
         // TODO add your handling code here:
 
         btnError.setVisible(false);
     }//GEN-LAST:event_btnErrorActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */

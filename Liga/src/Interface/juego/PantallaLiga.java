@@ -32,7 +32,6 @@ public class PantallaLiga extends javax.swing.JFrame {
         Actual = us1;
     }
 
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -523,6 +522,7 @@ public class PantallaLiga extends javax.swing.JFrame {
                     btnCrearLiga.setEnabled(false);
                     Liga liga1 = new Liga(NombreLiga, Actual.getNombreUsuario());
                     Actual.setLiga(liga1);
+
                     crearEquipo(liga1);
                 } else {
                     btnInfoCrear.setForeground(new java.awt.Color(100, 0, 0));
@@ -547,54 +547,54 @@ public class PantallaLiga extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearLigaActionPerformed
 
     public void crearEquipo(Liga liga1) {
+
         if (insertarBBDDEquipo()) {
-            agentesLibres();
-        }
 
-        while (Actual.getPlantilla().size() != 11) {
-
-            Futbolista futbolistaRandom = null;
-            if (Actual.getPlantilla().isEmpty()) {
-                System.out.println("portero");
-                futbolistaRandom = liga1.getJugadoresLibresPortero().get((int) (Math.random() * liga1.getJugadoresLibresPortero().size()));
-            } else if (Actual.getPlantilla().size() >= 1 && Actual.getPlantilla().size() < 6) {
-                System.out.println("def");
-                futbolistaRandom = liga1.getJugadoresLibresDefensa().get((int) (Math.random() * liga1.getJugadoresLibresDefensa().size()));
-            } else if (Actual.getPlantilla().size() >= 5 && Actual.getPlantilla().size() < 9) {
-                System.out.println("medio");
-                futbolistaRandom = liga1.getJugadoresLibresMedio().get((int) (Math.random() * liga1.getJugadoresLibresMedio().size()));
-            } else if (Actual.getPlantilla().size() >= 8 && Actual.getPlantilla().size() < 11) {
-                System.out.println("del");
-                futbolistaRandom = liga1.getJugadoresLibresDelantero().get((int) (Math.random() * liga1.getJugadoresLibresDelantero().size()));
-            }
-
-            if (futbolistaRandom != null) {
-                Actual.getPlantilla().add(futbolistaRandom);
-                Actual.getJugadores().add(futbolistaRandom);
-                liga1.getJugadoresLibres().remove(futbolistaRandom);
-                String sentenciaInsert = "INSERT  INTO TBL_JUGADOR_EQUIPO\n"
-                        + "SELECT\n"
-                        + " (SELECT ID_JUGADOR\n"
-                        + "FROM TBL_JUGADORES\n"
-                        + "WHERE NOMBRE='" + futbolistaRandom.getNombre() + "'),\n"
-                        + "(SELECT ID_EQUIPO \n"
-                        + "FROM TBL_EQUIPO\n"
-                        + "WHERE ID_USUARIO=\n"
-                        + "(SELECT ID_USUARIO\n"
-                        + "FROM TBL_USUARIO\n"
-                        + "WHERE USUARIO='" + Actual.getNombreUsuario() + "')"
-                        + "),'SI';";
-                System.out.println(sentenciaInsert);
-                OperacionesBBDD escritura = new OperacionesBBDD();
-
-                if (escritura.escrituraSql(sentenciaInsert)) {
-
-                    System.out.println(futbolistaRandom.getNombre());
-
+            while (Actual.getPlantilla().size() != 11) {
+                agentesLibres();
+                Futbolista futbolistaRandom = null;
+                if (Actual.getPlantilla().isEmpty()) {
+                    System.out.println("portero");
+                    futbolistaRandom = liga1.getJugadoresLibresPortero().get((int) (Math.random() * liga1.getJugadoresLibresPortero().size()));
+                } else if (Actual.getPlantilla().size() >= 1 && Actual.getPlantilla().size() < 6) {
+                    System.out.println("def");
+                    futbolistaRandom = liga1.getJugadoresLibresDefensa().get((int) (Math.random() * liga1.getJugadoresLibresDefensa().size()));
+                } else if (Actual.getPlantilla().size() >= 5 && Actual.getPlantilla().size() < 9) {
+                    System.out.println("medio");
+                    futbolistaRandom = liga1.getJugadoresLibresMedio().get((int) (Math.random() * liga1.getJugadoresLibresMedio().size()));
+                } else if (Actual.getPlantilla().size() >= 8 && Actual.getPlantilla().size() < 11) {
+                    System.out.println("del");
+                    futbolistaRandom = liga1.getJugadoresLibresDelantero().get((int) (Math.random() * liga1.getJugadoresLibresDelantero().size()));
                 }
-            }
 
-        };
+                if (futbolistaRandom != null) {
+                    Actual.getPlantilla().add(futbolistaRandom);
+                    Actual.getJugadores().add(futbolistaRandom);
+                    liga1.getJugadoresLibres().remove(futbolistaRandom);
+                    String sentenciaInsert = "INSERT  INTO TBL_JUGADOR_EQUIPO\n"
+                            + "SELECT\n"
+                            + " (SELECT ID_JUGADOR\n"
+                            + "FROM TBL_JUGADORES\n"
+                            + "WHERE NOMBRE='" + futbolistaRandom.getNombre() + "'),\n"
+                            + "(SELECT ID_EQUIPO \n"
+                            + "FROM TBL_EQUIPO\n"
+                            + "WHERE ID_USUARIO=\n"
+                            + "(SELECT ID_USUARIO\n"
+                            + "FROM TBL_USUARIO\n"
+                            + "WHERE USUARIO='" + Actual.getNombreUsuario() + "')"
+                            + "),'SI';";
+                    System.out.println(sentenciaInsert);
+                    OperacionesBBDD escritura = new OperacionesBBDD();
+
+                    if (escritura.escrituraSql(sentenciaInsert)) {
+
+                        System.out.println(futbolistaRandom.getNombre());
+
+                    }
+                }
+
+            };
+        }
 
     }
 
@@ -616,7 +616,8 @@ public class PantallaLiga extends javax.swing.JFrame {
         if (escritura.escrituraSql(sentenciaInsert)) {
 
             confirm = true;
-
+            Equipo e = new Equipo(Actual.getLiga(), null, Actual.getNombre() + " team", 100000000, 0);
+            Actual.setEquipo(e);
         }
 
         return confirm;
@@ -624,24 +625,26 @@ public class PantallaLiga extends javax.swing.JFrame {
 
     public void agentesLibres() {
         String sentenciaSelect = "SELECT J.NOMBRE, J.POSICION, J.PRECIO, J.ATAQUE, J.DEFENSA, J.IMAGEN\n"
-                + "                           FROM TBL_JUGADORES AS J WHERE \n"
-                + "                           J.ID_JUGADOR NOT IN\n"
-                + "                           (SELECT ID_JUGADOR \n"
-                + "                           FROM TBL_JUGADOR_EQUIPO\n"
-                + "                           WHERE J.ID_JUGADOR=ID_JUGADOR AND \n"
-                + "                           ID_EQUIPO IN (SELECT E.ID_EQUIPO\n"
-                + "                           FROM TBL_EQUIPO AS E INNER JOIN TBL_LIGA AS L \n"
-                + "                           ON E.LIGA=L.ID_LIGA\n"
-                + "                           WHERE L.NOMBRE='" + Actual.getLiga().getNombre() + "')) \n"
-                + "                           ;";
+                + "FROM TBL_JUGADORES AS J WHERE \n"
+                + "J.ID_JUGADOR NOT IN\n"
+                + "(SELECT ID_JUGADOR \n"
+                + "FROM TBL_JUGADOR_EQUIPO\n"
+                + "WHERE J.ID_JUGADOR=ID_JUGADOR AND \n"
+                + "ID_EQUIPO IN (SELECT E.ID_EQUIPO\n"
+                + "FROM TBL_EQUIPO AS E INNER JOIN TBL_LIGA AS L \n"
+                + "ON E.LIGA=L.ID_LIGA\n"
+                + "WHERE L.NOMBRE='" + Actual.getLiga().getNombre() + "')) \n"
+                + ";";
 
         OperacionesBBDD get = new OperacionesBBDD();
         ResultSet results = get.getSQL(sentenciaSelect);
         try {
             while (results.next()) {
-                Futbolista f1 = new Futbolista(results.getString(1), results.getString(2), results.getString(3), results.getInt(4), results.getInt(5), results.getString(6));
 
-                Actual.getLiga().getJugadoresLibres().add(f1);
+                Futbolista f1 = new Futbolista(results.getString(1), results.getString(2), results.getString(3), results.getInt(4), results.getInt(5), results.getString(6));
+                if (!Actual.getJugadores().contains(f1)) {
+                    Actual.getLiga().getJugadoresLibres().add(f1);
+                }
             }
 
         } catch (SQLException ex) {
