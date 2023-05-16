@@ -20,7 +20,11 @@ public class Usuario {
     Liga liga;
     private ArrayList<Futbolista> jugadores = new ArrayList();
     ArrayList<Futbolista> entrenadores = new ArrayList();
-    ArrayList<Futbolista> plantilla = new ArrayList();
+    ArrayList<Futbolista> plantilla = new ArrayList(11);
+    Futbolista plantillaPortero;
+    ArrayList<Futbolista> plantillaDefensas = new ArrayList(4);
+    ArrayList<Futbolista> plantillaMedios = new ArrayList(3);
+    ArrayList<Futbolista> plantillaDelanteros = new ArrayList(3);
     Entrenador entrenadorPlantilla;
 
     public Usuario(String nombre, String apellidos, String nombreUsuario, String contraseña, String correo, Equipo equipo, Liga liga) {
@@ -124,6 +128,38 @@ public class Usuario {
 
     public void setEntrenadorPlantilla(Entrenador entrenadorPlantilla) {
         this.entrenadorPlantilla = entrenadorPlantilla;
+    }
+
+    public Futbolista getPlantillaPortero() {
+        return plantillaPortero;
+    }
+
+    public void setPlantillaPortero(Futbolista plantillaPortero) {
+        this.plantillaPortero = plantillaPortero;
+    }
+
+    public ArrayList<Futbolista> getPlantillaDefensas() {
+        return plantillaDefensas;
+    }
+
+    public void setPlantillaDefensas(ArrayList<Futbolista> plantillaDefensas) {
+        this.plantillaDefensas = plantillaDefensas;
+    }
+
+    public ArrayList<Futbolista> getPlantillaMedios() {
+        return plantillaMedios;
+    }
+
+    public void setPlantillaMedios(ArrayList<Futbolista> plantillaMedios) {
+        this.plantillaMedios = plantillaMedios;
+    }
+
+    public ArrayList<Futbolista> getPlantillaDelanteros() {
+        return plantillaDelanteros;
+    }
+
+    public void setPlantillaDelanteros(ArrayList<Futbolista> plantillaDelanteros) {
+        this.plantillaDelanteros = plantillaDelanteros;
     }
 
    

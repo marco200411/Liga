@@ -556,15 +556,22 @@ public class PantallaLiga extends javax.swing.JFrame {
                 if (Actual.getPlantilla().isEmpty()) {
                     System.out.println("portero");
                     futbolistaRandom = liga1.getJugadoresLibresPortero().get((int) (Math.random() * liga1.getJugadoresLibresPortero().size()));
-                } else if (Actual.getPlantilla().size() >= 1 && Actual.getPlantilla().size() < 6) {
+                    Actual.setPlantillaPortero(futbolistaRandom);
+                } else if (Actual.getPlantilla().size() >= 1 && Actual.getPlantilla().size() < 5) {
                     System.out.println("def");
+
                     futbolistaRandom = liga1.getJugadoresLibresDefensa().get((int) (Math.random() * liga1.getJugadoresLibresDefensa().size()));
-                } else if (Actual.getPlantilla().size() >= 5 && Actual.getPlantilla().size() < 9) {
+                    Actual.getPlantillaDefensas().add(futbolistaRandom);
+                } else if (Actual.getPlantilla().size() >= 5 && Actual.getPlantilla().size() < 8) {
                     System.out.println("medio");
                     futbolistaRandom = liga1.getJugadoresLibresMedio().get((int) (Math.random() * liga1.getJugadoresLibresMedio().size()));
+                    Actual.getPlantillaMedios().add(futbolistaRandom);
+
                 } else if (Actual.getPlantilla().size() >= 8 && Actual.getPlantilla().size() < 11) {
                     System.out.println("del");
                     futbolistaRandom = liga1.getJugadoresLibresDelantero().get((int) (Math.random() * liga1.getJugadoresLibresDelantero().size()));
+                    Actual.getPlantillaDelanteros().add(futbolistaRandom);
+
                 }
 
                 if (futbolistaRandom != null) {
