@@ -12,6 +12,7 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 
 import java.awt.geom.RoundRectangle2D;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.ImageIcon;
@@ -27,15 +28,18 @@ public class PantallaPlantilla extends javax.swing.JFrame {
      * Creates new form PantallaLiga
      */
     Usuario Actual = null;
+    DecimalFormat df = new DecimalFormat("0.##M");
 
     public PantallaPlantilla(Usuario us1) {
         Actual = us1;
+        
         initComponents();
 
         actualizarPlantillaFirstTime();
 
         actualizarComboBox();
-
+lbldinero.setText( df.format(Actual.getEquipo().getDinero()/ 1000000.0));
+lblNombreUsu.setText(Actual.getNombreUsuario());
     }
 
     private void actualizarComboBox() {
@@ -375,6 +379,10 @@ public class PantallaPlantilla extends javax.swing.JFrame {
             }
         };
         lblIMG = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        lbldinero = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lblNombreUsu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -1000,7 +1008,7 @@ public class PantallaPlantilla extends javax.swing.JFrame {
                 comboJugadoresActionPerformed(evt);
             }
         });
-        layerUnirseLiga1.add(comboJugadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 280, 30));
+        layerUnirseLiga1.add(comboJugadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 280, 30));
         comboJugadores.addItem("Seleccione uno");
 
         lblNombre.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
@@ -1131,9 +1139,23 @@ public class PantallaPlantilla extends javax.swing.JFrame {
 
         pnlInfoJugadorLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblNombre, lblPosicion});
 
-        layerUnirseLiga1.add(pnlInfoJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 280, 380));
+        layerUnirseLiga1.add(pnlInfoJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 280, 380));
 
         layerBG.add(layerUnirseLiga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, 330, 480));
+
+        jLabel1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel1.setText("Dinero:");
+        layerBG.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 50, 30));
+
+        lbldinero.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
+        layerBG.add(lbldinero, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, 70, 30));
+
+        jLabel2.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel2.setText("Usuario:");
+        layerBG.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 60, 30));
+
+        lblNombreUsu.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
+        layerBG.add(lblNombreUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, 130, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1200,7 +1222,7 @@ public class PantallaPlantilla extends javax.swing.JFrame {
                 lblAtaque.setText("" + jugador.getAtaque());
                 lblDefensa.setText("" + jugador.getDefensa());
                 btnAddPlantilla.setText("Retirar");
-                btnVender1.setText("Vender por: " + jugador.getPrecio());
+                btnVender1.setText("Vender por: " + df.format(jugador.getPrecio()/ 1000000.0));
             }
         }
 
@@ -1233,7 +1255,8 @@ public class PantallaPlantilla extends javax.swing.JFrame {
                     lblAtaque.setText("" + jugador.getAtaque());
                     lblDefensa.setText("" + jugador.getDefensa());
                     btnAddPlantilla.setText("Alinear");
-                    btnVender1.setText("Vender por: " + jugador.getPrecio());
+
+                    btnVender1.setText("Vender por: " + df.format(jugador.getPrecio() / 1000000.0 ));
                 }
             }
         }
@@ -1451,9 +1474,10 @@ public class PantallaPlantilla extends javax.swing.JFrame {
         int saldo = Actual.getEquipo().getDinero() + futbolistaEliminar.getPrecio();
         Actual.getEquipo().setDinero(saldo);
         send.actualizarSaldo(Actual);
+       
+        lbldinero.setText( df.format(Actual.getEquipo().getDinero()/ 1000000.0));
     }//GEN-LAST:event_btnVender1ActionPerformed
 
-    
     public static void main(String args[]) {
 
         try {
@@ -1495,6 +1519,8 @@ public class PantallaPlantilla extends javax.swing.JFrame {
     private javax.swing.JButton btnTienda;
     private javax.swing.JButton btnVender1;
     private javax.swing.JComboBox<String> comboJugadores;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLayeredPane layerBG;
     private javax.swing.JLayeredPane layerMenu;
@@ -1516,7 +1542,9 @@ public class PantallaPlantilla extends javax.swing.JFrame {
     private javax.swing.JLabel lblMCI;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNombre1;
+    private javax.swing.JLabel lblNombreUsu;
     private javax.swing.JLabel lblPosicion;
+    private javax.swing.JLabel lbldinero;
     private javax.swing.JLabel lblprecio;
     private javax.swing.JLayeredPane panelAcciones;
     private javax.swing.JPanel pnlImg;
