@@ -8,6 +8,7 @@ import Methods.Usuario;
 import OperacionesBBDD.OperacionesBBDD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -90,13 +91,13 @@ public class ObtenerDatosBBDD {
         try {
 
             while (mysqlResult.next()) {
-                
+
                 futbolista = new Futbolista(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getInt(3), mysqlResult.getInt(4), mysqlResult.getInt(5), mysqlResult.getString(6));
-               
-                    if ("SI".equals(mysqlResult.getString(7))) {
-                    
+
+                if ("SI".equals(mysqlResult.getString(7))) {
+
                     usuario.getPlantilla().add(futbolista);
-                   
+
                 }
                 usuario.getJugadores().add(futbolista);
             }
@@ -196,5 +197,8 @@ public class ObtenerDatosBBDD {
         return us1;
 
     }
+
+    
+    
 
 }
