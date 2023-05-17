@@ -56,7 +56,6 @@ public class pantallaClasificacion extends javax.swing.JFrame {
         btnError = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUsuarios = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
         panelAcciones = new javax.swing.JLayeredPane();
         btnRetroceder = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
@@ -223,7 +222,7 @@ public class pantallaClasificacion extends javax.swing.JFrame {
             }
         });
         layerInfo.setLayer(btnError, javax.swing.JLayeredPane.POPUP_LAYER);
-        layerInfo.add(btnError, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 580, -1));
+        layerInfo.add(btnError, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 810, -1));
 
         tblUsuarios.setBackground(new java.awt.Color(92, 99, 112));
         tblUsuarios.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -266,14 +265,6 @@ public class pantallaClasificacion extends javax.swing.JFrame {
         tblUsuarios.getAccessibleContext().setAccessibleName("");
 
         layerInfo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 820, 370));
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        layerInfo.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 410, -1, -1));
 
         layerBG.add(layerInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 160, 850, 520));
 
@@ -473,12 +464,6 @@ public class pantallaClasificacion extends javax.swing.JFrame {
         btnError.setVisible(false);
     }//GEN-LAST:event_btnErrorActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        String s =(String) tblUsuarios.getModel().getValueAt(tblUsuarios.getSelectedRow(), 1);
-        System.out.println(s);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void tblUsuariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuariosMousePressed
         String s =(String) tblUsuarios.getModel().getValueAt(tblUsuarios.getSelectedRow(), 1);
         System.out.println(s);
@@ -537,7 +522,6 @@ public class pantallaClasificacion extends javax.swing.JFrame {
     private javax.swing.JButton btnPlantilla;
     private javax.swing.JButton btnRetroceder;
     private javax.swing.JButton btnTienda;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLayeredPane layerBG;
