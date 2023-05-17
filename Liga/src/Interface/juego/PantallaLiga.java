@@ -547,7 +547,7 @@ public class PantallaLiga extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearLigaActionPerformed
 
     public void crearEquipo(Liga liga1) {
-
+        
         if (insertarBBDDEquipo()) {
 
             while (Actual.getPlantilla().size() != 11) {
@@ -631,6 +631,7 @@ public class PantallaLiga extends javax.swing.JFrame {
     }
 
     public void agentesLibres() {
+        Actual.getLiga().getJugadoresLibres().clear();
         String sentenciaSelect = "SELECT J.NOMBRE, J.POSICION, J.PRECIO, J.ATAQUE, J.DEFENSA, J.IMAGEN\n"
                 + "FROM TBL_JUGADORES AS J WHERE \n"
                 + "J.ID_JUGADOR NOT IN\n"
@@ -648,7 +649,7 @@ public class PantallaLiga extends javax.swing.JFrame {
         try {
             while (results.next()) {
 
-                Futbolista f1 = new Futbolista(results.getString(1), results.getString(2), results.getString(3), results.getInt(4), results.getInt(5), results.getString(6));
+                Futbolista f1 = new Futbolista(results.getString(1), results.getString(2), results.getInt(3), results.getInt(4), results.getInt(5), results.getString(6));
                 if (!Actual.getJugadores().contains(f1)) {
                     Actual.getLiga().getJugadoresLibres().add(f1);
                 }
@@ -662,6 +663,10 @@ public class PantallaLiga extends javax.swing.JFrame {
     }
 
     public void organizarJugadores() {
+        Actual.getLiga().getJugadoresLibresPortero().clear();
+        Actual.getLiga().getJugadoresLibresDefensa().clear();
+        Actual.getLiga().getJugadoresLibresMedio().clear(); 
+        Actual.getLiga().getJugadoresLibresDelantero().clear();
         Iterator<Futbolista> it = Actual.getLiga().getJugadoresLibres().iterator();
         while (it.hasNext()) {
             Futbolista f1 = it.next();
@@ -693,7 +698,7 @@ public class PantallaLiga extends javax.swing.JFrame {
 
         try {
             while (results.next()) {
-                Futbolista f1 = new Futbolista(results.getString(2), results.getString(1), results.getString(3), results.getInt(4), results.getInt(5), results.getString(6));
+                Futbolista f1 = new Futbolista(results.getString(2), results.getString(1), results.getInt(3), results.getInt(4), results.getInt(5), results.getString(6));
                 Actual.getLiga().insertarJugador(f1);
 
             }

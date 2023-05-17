@@ -12,7 +12,7 @@ public class Futbolista extends Persona{
     
     String posicion;
 
-    public Futbolista(String nombre, String posicion, String precio, int ataque, int defensa, String imagen) {
+    public Futbolista(String nombre, String posicion, int precio, int ataque, int defensa, String imagen) {
         super(nombre, precio, ataque, defensa, imagen);
         this.posicion = posicion;
     }
@@ -33,14 +33,15 @@ public class Futbolista extends Persona{
         this.nombre = nombre;
     }
 
-    public String getPrecio() {
+    public int getPrecio() {
         return precio;
     }
 
-    public void setPrecio(String precio) {
+    public void setPrecio(int precio) {
         this.precio = precio;
     }
 
+  
     public int getAtaque() {
         return ataque;
     }

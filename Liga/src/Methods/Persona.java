@@ -11,12 +11,12 @@ package Methods;
 public class Persona {
 
     String nombre;
-    String precio;
+    int precio;
     int ataque;
     int defensa;
     String imagen;
 
-    public Persona(String nombre, String precio, int ataque, int defensa, String imagen) {
+    public Persona(String nombre, int precio, int ataque, int defensa, String imagen) {
         this.nombre = nombre;
         this.precio = precio;
         this.ataque = ataque;

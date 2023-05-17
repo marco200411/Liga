@@ -10,7 +10,7 @@ package Methods;
  */
 public class Entrenador extends Persona{
 
-    public Entrenador(String nombre, String precio, int ataque, int defensa, String imagen) {
+    public Entrenador(String nombre, int precio, int ataque, int defensa, String imagen) {
         super(nombre, precio, ataque, defensa, imagen);
     }
 
@@ -22,13 +22,15 @@ public class Entrenador extends Persona{
         this.nombre = nombre;
     }
 
-    public String getPrecio() {
+    public int getPrecio() {
         return precio;
     }
 
-    public void setPrecio(String precio) {
+    public void setPrecio(int precio) {
         this.precio = precio;
     }
+
+ 
 
     public int getAtaque() {
         return ataque;

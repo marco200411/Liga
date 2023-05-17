@@ -36,7 +36,7 @@ public class ObtenerDatosBBDD {
         try {
 
             if (mysqlResult.next()) {
-                entrenador = new Entrenador(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getInt(3), mysqlResult.getInt(4), mysqlResult.getString(5));
+                entrenador = new Entrenador(mysqlResult.getString(1), mysqlResult.getInt(2), mysqlResult.getInt(3), mysqlResult.getInt(4), mysqlResult.getString(5));
 
             }
         } catch (SQLException ex) {
@@ -91,7 +91,7 @@ public class ObtenerDatosBBDD {
 
             while (mysqlResult.next()) {
                 
-                futbolista = new Futbolista(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getString(3), mysqlResult.getInt(4), mysqlResult.getInt(5), mysqlResult.getString(6));
+                futbolista = new Futbolista(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getInt(3), mysqlResult.getInt(4), mysqlResult.getInt(5), mysqlResult.getString(6));
                
                     if ("SI".equals(mysqlResult.getString(7))) {
                     
