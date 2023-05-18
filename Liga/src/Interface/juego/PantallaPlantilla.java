@@ -266,7 +266,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
         btnClose = new javax.swing.JButton();
         layerUnirseLiga = new javax.swing.JLayeredPane(){
             public void paintComponent(Graphics g) {
-                ImageIcon im = new ImageIcon("C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\campo.png");
+                ImageIcon im = new ImageIcon("src/images/campo.png");
                 Image i = im.getImage();
                 g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);
 
@@ -274,7 +274,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
         };
         pnlImg1 = new javax.swing.JPanel(){
             public void paintComponent(Graphics g) {
-                ImageIcon im = new ImageIcon("C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png");
+                ImageIcon im = new ImageIcon("src\\images\\bordeJugadores.png");
                 Image i = im.getImage();
                 g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);
             }
@@ -282,7 +282,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
         lblGK = new javax.swing.JLabel();
         pnlImg2 = new javax.swing.JPanel(){
             public void paintComponent(Graphics g) {
-                ImageIcon im = new ImageIcon("C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png");
+                ImageIcon im = new ImageIcon("src\\images\\bordeJugadores.png");
                 Image i = im.getImage();
                 g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);
             }
@@ -290,7 +290,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
         lblLD = new javax.swing.JLabel();
         pnlImg3 = new javax.swing.JPanel(){
             public void paintComponent(Graphics g) {
-                ImageIcon im = new ImageIcon("C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png");
+                ImageIcon im = new ImageIcon("src\\images\\bordeJugadores.png");
                 Image i = im.getImage();
                 g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);
             }
@@ -298,7 +298,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
         lblDFCD = new javax.swing.JLabel();
         pnlImg4 = new javax.swing.JPanel(){
             public void paintComponent(Graphics g) {
-                ImageIcon im = new ImageIcon("C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png");
+                ImageIcon im = new ImageIcon("src\\images\\bordeJugadores.png");
                 Image i = im.getImage();
                 g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);
             }
@@ -306,7 +306,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
         lblDFCI = new javax.swing.JLabel();
         pnlImg5 = new javax.swing.JPanel(){
             public void paintComponent(Graphics g) {
-                ImageIcon im = new ImageIcon("C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png");
+                ImageIcon im = new ImageIcon("src\\images\\bordeJugadores.png");
                 Image i = im.getImage();
                 g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);
             }
@@ -314,7 +314,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
         lblLI = new javax.swing.JLabel();
         pnlImg6 = new javax.swing.JPanel(){
             public void paintComponent(Graphics g) {
-                ImageIcon im = new ImageIcon("C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png");
+                ImageIcon im = new ImageIcon("src\\images\\bordeJugadores.png");
                 Image i = im.getImage();
                 g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);
             }
@@ -322,7 +322,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
         lblMCD = new javax.swing.JLabel();
         pnlImg7 = new javax.swing.JPanel(){
             public void paintComponent(Graphics g) {
-                ImageIcon im = new ImageIcon("C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png");
+                ImageIcon im = new ImageIcon("src\\images\\bordeJugadores.png");
                 Image i = im.getImage();
                 g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);
             }
@@ -330,7 +330,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
         lblMC = new javax.swing.JLabel();
         pnlImg8 = new javax.swing.JPanel(){
             public void paintComponent(Graphics g) {
-                ImageIcon im = new ImageIcon("C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png");
+                ImageIcon im = new ImageIcon("src\\images\\bordeJugadores.png");
                 Image i = im.getImage();
                 g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);
             }
@@ -338,7 +338,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
         lblMCI = new javax.swing.JLabel();
         pnlImg9 = new javax.swing.JPanel(){
             public void paintComponent(Graphics g) {
-                ImageIcon im = new ImageIcon("C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png");
+                ImageIcon im = new ImageIcon("src\\images\\bordeJugadores.png");
                 Image i = im.getImage();
                 g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);
             }
@@ -346,7 +346,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
         lblED = new javax.swing.JLabel();
         pnlImg10 = new javax.swing.JPanel(){
             public void paintComponent(Graphics g) {
-                ImageIcon im = new ImageIcon("C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png");
+                ImageIcon im = new ImageIcon("src\\images\\bordeJugadores.png");
                 Image i = im.getImage();
                 g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);
             }
@@ -354,7 +354,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
         lblDC = new javax.swing.JLabel();
         pnlImg11 = new javax.swing.JPanel(){
             public void paintComponent(Graphics g) {
-                ImageIcon im = new ImageIcon("C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png");
+                ImageIcon im = new ImageIcon("src\\images\\bordeJugadores.png");
                 Image i = im.getImage();
                 g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);
             }
@@ -373,7 +373,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
         btnVender1 = new javax.swing.JButton();
         pnlImg = new javax.swing.JPanel(){
             public void paintComponent(Graphics g) {
-                ImageIcon im = new ImageIcon("C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png");
+                ImageIcon im = new ImageIcon("src\\images\\bordeJugadores.png");
                 Image i = im.getImage();
                 g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);
             }
@@ -603,6 +603,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
 
         pnlImg1.setMaximumSize(new java.awt.Dimension(90, 90));
         pnlImg1.setMinimumSize(new java.awt.Dimension(90, 90));
+        pnlImg1.setOpaque(false);
 
         lblGK.setFont(new java.awt.Font("Roboto", 0, 1)); // NOI18N
         lblGK.setForeground(new java.awt.Color(60, 63, 65));
@@ -636,6 +637,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
 
         pnlImg2.setMaximumSize(new java.awt.Dimension(90, 90));
         pnlImg2.setMinimumSize(new java.awt.Dimension(90, 90));
+        pnlImg2.setOpaque(false);
 
         lblLD.setFont(new java.awt.Font("Roboto", 0, 1)); // NOI18N
         lblLD.setForeground(new java.awt.Color(60, 63, 65));
@@ -669,6 +671,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
 
         pnlImg3.setMaximumSize(new java.awt.Dimension(90, 90));
         pnlImg3.setMinimumSize(new java.awt.Dimension(90, 90));
+        pnlImg3.setOpaque(false);
 
         lblDFCD.setFont(new java.awt.Font("Roboto", 0, 1)); // NOI18N
         lblDFCD.setForeground(new java.awt.Color(60, 63, 65));
@@ -702,6 +705,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
 
         pnlImg4.setMaximumSize(new java.awt.Dimension(90, 90));
         pnlImg4.setMinimumSize(new java.awt.Dimension(90, 90));
+        pnlImg4.setOpaque(false);
 
         lblDFCI.setFont(new java.awt.Font("Roboto", 0, 1)); // NOI18N
         lblDFCI.setForeground(new java.awt.Color(60, 63, 65));
@@ -735,6 +739,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
 
         pnlImg5.setMaximumSize(new java.awt.Dimension(90, 90));
         pnlImg5.setMinimumSize(new java.awt.Dimension(90, 90));
+        pnlImg5.setOpaque(false);
 
         lblLI.setFont(new java.awt.Font("Roboto", 0, 1)); // NOI18N
         lblLI.setForeground(new java.awt.Color(60, 63, 65));
@@ -768,6 +773,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
 
         pnlImg6.setMaximumSize(new java.awt.Dimension(90, 90));
         pnlImg6.setMinimumSize(new java.awt.Dimension(90, 90));
+        pnlImg6.setOpaque(false);
 
         lblMCD.setFont(new java.awt.Font("Roboto", 0, 1)); // NOI18N
         lblMCD.setForeground(new java.awt.Color(60, 63, 65));
@@ -801,6 +807,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
 
         pnlImg7.setMaximumSize(new java.awt.Dimension(90, 90));
         pnlImg7.setMinimumSize(new java.awt.Dimension(90, 90));
+        pnlImg7.setOpaque(false);
 
         lblMC.setFont(new java.awt.Font("Roboto", 0, 1)); // NOI18N
         lblMC.setForeground(new java.awt.Color(60, 63, 65));
@@ -834,6 +841,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
 
         pnlImg8.setMaximumSize(new java.awt.Dimension(90, 90));
         pnlImg8.setMinimumSize(new java.awt.Dimension(90, 90));
+        pnlImg8.setOpaque(false);
 
         lblMCI.setFont(new java.awt.Font("Roboto", 0, 1)); // NOI18N
         lblMCI.setForeground(new java.awt.Color(60, 63, 65));
@@ -867,6 +875,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
 
         pnlImg9.setMaximumSize(new java.awt.Dimension(90, 90));
         pnlImg9.setMinimumSize(new java.awt.Dimension(90, 90));
+        pnlImg9.setOpaque(false);
 
         lblED.setFont(new java.awt.Font("Roboto", 0, 1)); // NOI18N
         lblED.setForeground(new java.awt.Color(60, 63, 65));
@@ -909,6 +918,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
 
         pnlImg10.setMaximumSize(new java.awt.Dimension(90, 90));
         pnlImg10.setMinimumSize(new java.awt.Dimension(90, 90));
+        pnlImg10.setOpaque(false);
 
         lblDC.setFont(new java.awt.Font("Roboto", 0, 1)); // NOI18N
         lblDC.setForeground(new java.awt.Color(60, 63, 65));
@@ -945,6 +955,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
 
         pnlImg11.setMaximumSize(new java.awt.Dimension(90, 90));
         pnlImg11.setMinimumSize(new java.awt.Dimension(90, 90));
+        pnlImg11.setOpaque(false);
 
         lblEI.setFont(new java.awt.Font("Roboto", 0, 1)); // NOI18N
         lblEI.setForeground(new java.awt.Color(60, 63, 65));
@@ -1049,6 +1060,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
 
         pnlImg.setMaximumSize(new java.awt.Dimension(90, 90));
         pnlImg.setMinimumSize(new java.awt.Dimension(90, 90));
+        pnlImg.setOpaque(false);
         pnlImg.setPreferredSize(new java.awt.Dimension(90, 90));
 
         lblIMG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

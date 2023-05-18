@@ -471,7 +471,7 @@
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JLayeredPane(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\campo.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;        &#xa;    }&#xa;}"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JLayeredPane(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;src/images/campo.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;&#xa;    }&#xa;}"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -491,9 +491,10 @@
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[90, 90]"/>
                 </Property>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -556,9 +557,10 @@
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[90, 90]"/>
                 </Property>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -621,9 +623,10 @@
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[90, 90]"/>
                 </Property>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -686,9 +689,10 @@
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[90, 90]"/>
                 </Property>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -751,9 +755,10 @@
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[90, 90]"/>
                 </Property>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -816,9 +821,10 @@
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[90, 90]"/>
                 </Property>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -881,9 +887,10 @@
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[90, 90]"/>
                 </Property>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -946,9 +953,10 @@
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[90, 90]"/>
                 </Property>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1011,9 +1019,10 @@
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[90, 90]"/>
                 </Property>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1077,9 +1086,10 @@
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[90, 90]"/>
                 </Property>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1143,9 +1153,10 @@
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[90, 90]"/>
                 </Property>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1419,12 +1430,13 @@
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[90, 90]"/>
                     </Property>
+                    <Property name="opaque" type="boolean" value="false"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[90, 90]"/>
                     </Property>
                   </Properties>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;C:\\Users\\Marco\\Documents\\GitHub\\Liga\\Liga\\src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g) {&#xa;        ImageIcon im = new ImageIcon(&quot;src\\images\\bordeJugadores.png&quot;);&#xa;        Image i = im.getImage();&#xa;        g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);&#xa;    }&#xa;}"/>
                   </AuxValues>
 
                   <Layout>
