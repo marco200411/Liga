@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Interface.juego;
 
 import Interface.menus.Menu;
@@ -20,10 +17,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class pantallaSesionIniciada extends javax.swing.JFrame {
-
-    /**
-     * Creates new form pantallaSesionIniciada
-     */
     Usuario Actual = null;
 
     public pantallaSesionIniciada(Usuario usuario) {
@@ -497,6 +490,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         if (Actual.getEquipo() != null) {
             lblPuntos.setText("Puntos: " + Actual.getEquipo().getPuntos());
             lblNombreLiga.setText("Liga: " + Actual.getLiga().getNombre());
+            
         }
 
     }
