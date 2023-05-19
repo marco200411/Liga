@@ -4,6 +4,8 @@
  */
 package Methods;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Marco
@@ -17,7 +19,7 @@ public class Equipo {
     String nombre;
     int dinero;
     int puntos;
-
+ArrayList<Partido> partidosEquipo = new ArrayList();
     public Equipo(Liga liga, Entrenador entrenador, String nombre, int dinero, int puntos) {
         this.liga = liga;
         this.entrenador = entrenador;
@@ -26,6 +28,15 @@ public class Equipo {
         this.puntos = puntos;
     }
 
+    public ArrayList<Partido> getPartidosEquipo() {
+        return partidosEquipo;
+    }
+
+    public void setPartidosEquipo(ArrayList<Partido> partidosEquipo) {
+        this.partidosEquipo = partidosEquipo;
+    }
+
+    
     public Liga getLiga() {
         return liga;
     }

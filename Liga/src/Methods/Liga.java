@@ -22,6 +22,7 @@ public class Liga {
     private ArrayList<Futbolista> jugadoresLibresDefensa = new ArrayList();
     private ArrayList<Futbolista> jugadoresLibresMedio = new ArrayList();
     private ArrayList<Futbolista> jugadoresLibresDelantero = new ArrayList();
+    private ArrayList<Partido> partidos = new ArrayList();
 
     public Liga(String Nombre, String Administrador) {
         this.Nombre = Nombre;
@@ -101,32 +102,16 @@ public class Liga {
         this.jugadoresLibres = jugadoresLibres;
     }
 
-    public boolean insertarUsuario(Usuario us) {
-
-        boolean resultado = false;
-        if (!integrantes.contains(us)) {
-            resultado = true;
-            integrantes.add(us);
-        } else {
-            resultado = false;
-        }
-
-        return resultado;
+    public ArrayList<Partido> getPartidos() {
+        return partidos;
     }
 
-    public boolean insertarJugador(Futbolista f1) {
-
-        boolean resultado = false;
-        if (!jugadoresJugando.contains(f1)) {
-            resultado = true;
-            jugadoresJugando.add(f1);
-        } else {
-            resultado = false;
-        }
-
-        return resultado;
+    public void setPartidos(ArrayList<Partido> partidos) {
+        this.partidos = partidos;
     }
 
     
+    
+   
 
 }

@@ -1,10 +1,10 @@
-
 package Interface.juego;
 
 import Interface.menus.Menu;
 import Methods.Entrenador;
 import Methods.Equipo;
 import Methods.Liga;
+import Methods.Partido;
 import java.util.ArrayList;
 import Methods.Usuario;
 import OperacionesBBDD.ObtenerDatosBBDD;
@@ -12,11 +12,16 @@ import OperacionesBBDD.OperacionesBBDD;
 import java.awt.geom.RoundRectangle2D;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class pantallaSesionIniciada extends javax.swing.JFrame {
+
     Usuario Actual = null;
 
     public pantallaSesionIniciada(Usuario usuario) {
@@ -27,9 +32,11 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
             layerCabeceraSinLiga.setVisible(true);
 
         } else {
-            actualizarCabezera();
-            almacenarIntegrantesLiga();
 
+            almacenarIntegrantesLiga();
+            almacenarPartidosLiga();
+            almacenarPartidosEquipo();
+            actualizarCabezera();
             layerCabecera.setVisible(true);
             layerCabeceraSinLiga.setVisible(false);
         }
@@ -61,8 +68,8 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         lblPuntos = new javax.swing.JLabel();
         lblProximoPartido = new javax.swing.JLabel();
         lblPPEquipoVisitante = new javax.swing.JLabel();
+        lblPPVS = new javax.swing.JLabel();
         lblPPEquipoLocal = new javax.swing.JLabel();
-        lblPPEquipoVisitante1 = new javax.swing.JLabel();
         layerCabeceraSinLiga = new javax.swing.JLayeredPane();
         lblSinLiga = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -235,17 +242,17 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
 
         lblPPEquipoVisitante.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         lblPPEquipoVisitante.setForeground(new java.awt.Color(206, 206, 206));
-        layerCabecera.add(lblPPEquipoVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 230, 40));
+        layerCabecera.add(lblPPEquipoVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 280, 40));
+
+        lblPPVS.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        lblPPVS.setForeground(new java.awt.Color(206, 206, 206));
+        lblPPVS.setText("VS");
+        lblPPVS.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        layerCabecera.add(lblPPVS, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 30, 40));
 
         lblPPEquipoLocal.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         lblPPEquipoLocal.setForeground(new java.awt.Color(206, 206, 206));
-        lblPPEquipoLocal.setText("VS");
-        lblPPEquipoLocal.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        layerCabecera.add(lblPPEquipoLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 30, 40));
-
-        lblPPEquipoVisitante1.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
-        lblPPEquipoVisitante1.setForeground(new java.awt.Color(206, 206, 206));
-        layerCabecera.add(lblPPEquipoVisitante1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 180, 40));
+        layerCabecera.add(lblPPEquipoLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 260, 40));
 
         layerBG.add(layerCabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 161, 850, 100));
 
@@ -386,6 +393,27 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    public void almacenarPartidosEquipo(){
+        
+        
+        Iterator it = Actual.getLiga().getPartidos().iterator();
+            while (it.hasNext()) {
+                Partido partido = (Partido) it.next();
+                if (partido.getUsuarioLocal().getNombreUsuario().equals(Actual.getNombreUsuario()) || partido.getUsuarioVisitante().equals(Actual.getNombreUsuario())) {
+                    Actual.getEquipo().getPartidosEquipo().add(partido);
+                    
+                }
+
+            }
+        
+    }
+    public void almacenarPartidosLiga() {
+        ObtenerDatosBBDD getDatos = new ObtenerDatosBBDD();
+        getDatos.getPartidosBBDD(Actual.getLiga());
+
+    }
+
     public void almacenarIntegrantesLiga() {
         ObtenerDatosBBDD getDatos = new ObtenerDatosBBDD();
         String sentenciaSelect = " SELECT U.USUARIO \n"
@@ -408,7 +436,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
                 Liga liga = getDatos.getLigaBBDD(usuario.getNombre());
                 usuario.setLiga(liga);
 
-                Actual.getLiga().insertarUsuario(usuario);
+                Actual.getLiga().getIntegrantes().add(usuario);
 
             }
 
@@ -473,7 +501,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
 
     private void btnPlantillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlantillaActionPerformed
         // TODO add your handling code here:
-        
+
         if (Actual.getEquipo() == null || Actual.getLiga() == null) {
             btnError.setForeground(new java.awt.Color(100, 0, 0));
             btnError.setVisible(true);
@@ -490,7 +518,17 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         if (Actual.getEquipo() != null) {
             lblPuntos.setText("Puntos: " + Actual.getEquipo().getPuntos());
             lblNombreLiga.setText("Liga: " + Actual.getLiga().getNombre());
-            
+            lblPPEquipoLocal.setText(Actual.getEquipo().getPartidosEquipo().get(1).getUsuarioLocal().getEquipo().getNombre());
+            lblPPEquipoVisitante.setText(Actual.getEquipo().getPartidosEquipo().get(1).getUsuarioVisitante().getEquipo().getNombre());
+
+           
+
+//            Iterator it2 = partidosEquipo.iterator();
+//            while (it2.hasNext()) {
+//                Partido partido = (Partido) it2.next();
+//                
+//                
+//            }
         }
 
     }
@@ -512,10 +550,8 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
             pantallaClasificacion pantalla = new pantallaClasificacion(Actual);
             pantalla.setVisible(true);
         }
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_btnClasificacionActionPerformed
 
     /**
@@ -576,7 +612,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombreLiga;
     private javax.swing.JLabel lblPPEquipoLocal;
     private javax.swing.JLabel lblPPEquipoVisitante;
-    private javax.swing.JLabel lblPPEquipoVisitante1;
+    private javax.swing.JLabel lblPPVS;
     private javax.swing.JLabel lblProximoPartido;
     private javax.swing.JLabel lblPuntos;
     private javax.swing.JLabel lblSinLiga;

@@ -699,7 +699,7 @@ public class PantallaLiga extends javax.swing.JFrame {
         try {
             while (results.next()) {
                 Futbolista f1 = new Futbolista(results.getString(2), results.getString(1), results.getInt(3), results.getInt(4), results.getInt(5), results.getString(6));
-                Actual.getLiga().insertarJugador(f1);
+                Actual.getLiga().getJugadoresJugando().add(f1);
 
             }
 

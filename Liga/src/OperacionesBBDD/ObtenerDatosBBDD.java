@@ -4,11 +4,13 @@ import Methods.Entrenador;
 import Methods.Equipo;
 import Methods.Futbolista;
 import Methods.Liga;
+import Methods.Partido;
 import Methods.Usuario;
 import OperacionesBBDD.OperacionesBBDD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -198,7 +200,49 @@ public class ObtenerDatosBBDD {
 
     }
 
-    
-    
+    public void getPartidosBBDD(Liga liga) {
+
+        String consulta = null;
+
+        consulta = ("SELECT E.NOMBRE_PLANTILLA, E2.NOMBRE_PLANTILLA,P.FECHA_INICIO, \n"
+                + "P.HORA_INICIO, P.RESULTADO, P.PUNTOS_VISITANTE, P.PUNTOS_LOCAL\n"
+                + "FROM TBL_PARTIDO AS P \n"
+                + "INNER JOIN TBL_EQUIPO AS E\n"
+                + "ON P.EQUIPO_LOCAL=E.ID_EQUIPO\n"
+                + "INNER JOIN TBL_EQUIPO AS E2\n"
+                + "ON P.EQUIPO_VISITANTE=E2.ID_EQUIPO\n"
+                + "WHERE P.LIGA=(SELECT ID_LIGA \n"
+                + "FROM TBL_LIGA\n"
+                + "WHERE NOMBRE='" + liga.getNombre() + "')\n"
+                + "order by Resultado asc, fecha_inicio asc , hora_inicio asc;");
+
+        OperacionesBBDD escritura = new OperacionesBBDD();
+        ResultSet mysqlResult = escritura.getSQL(consulta);
+
+        try {
+            while (mysqlResult.next()) {
+                Usuario usLocal = null;
+                Usuario usVisitante = null;
+                Iterator it = liga.getIntegrantes().iterator();
+                while (it.hasNext()) {
+                    Usuario us = (Usuario) it.next();
+                    if (us.getEquipo().getNombre().equals(mysqlResult.getString(1))) {
+                        usLocal = us;
+                    }
+                    if (us.getEquipo().getNombre().equals(mysqlResult.getString(2))) {
+                        usVisitante = us;
+                    }
+
+                }
+                Partido p1 = new Partido(usLocal, usVisitante, mysqlResult.getDate(3), mysqlResult.getDate(4), mysqlResult.getString(5), mysqlResult.getInt(6), mysqlResult.getInt(7));
+                liga.getPartidos().add(p1);
+                System.out.println(liga.getPartidos().size());
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ObtenerDatosBBDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
 }
