@@ -4,6 +4,7 @@ import Interface.menus.Menu;
 import Methods.Futbolista;
 import Methods.Partido;
 import Methods.Usuario;
+import OperacionesBBDD.ObtenerDatosBBDD;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.geom.RoundRectangle2D;
@@ -20,29 +21,35 @@ public class pantallaPerfil extends javax.swing.JFrame {
         initComponents();
         Actual = Actual2;
         UsuarioPerfil = usuarioBusqueda;
-
+       
         lblNombreUsuario.setText(UsuarioPerfil.getNombreUsuario());
         if (UsuarioPerfil.getLiga() != null) {
+//            ObtenerDatosBBDD get = new ObtenerDatosBBDD();
+//            UsuarioPerfil.getEquipo().setEntrenador(get.getEntrenadorBBDD(UsuarioPerfil.getNombreUsuario()));
+//            usuarioBusqueda.setEquipo(get.getEquipoBBDD(UsuarioPerfil.getNombreUsuario(), UsuarioPerfil.getEquipo().getEntrenador()));
+
             lblNombre.setVisible(true);
             lblbEquipo.setVisible(true);
             lblLiga.setVisible(true);
-             lblPuntost.setVisible(true);
+            lblPuntost.setVisible(true);
             lblLigat.setVisible(true);
             lblLiga.setText(UsuarioPerfil.getLiga().getNombre());
-             lblPuntos.setText(""+ UsuarioPerfil.getEquipo().getPuntos());
+            lblPuntos.setText("" + UsuarioPerfil.getEquipo().getPuntos());
             lblNombre.setText(UsuarioPerfil.getNombre());
-             lblApellidos.setText(""+ UsuarioPerfil.getApellidos());
-            lblVicorias.setText(""+ UsuarioPerfil.getEquipo().getVictorias());
-             lblDerrotas1.setText(""+ UsuarioPerfil.getEquipo().getDerrotas());
+            lblApellidos.setText("" + UsuarioPerfil.getApellidos());
+            lblVicorias.setText("" + UsuarioPerfil.getEquipo().getVictorias());
+            lblDerrotas1.setText("" + UsuarioPerfil.getEquipo().getDerrotas());
             lblNombreEquipo.setText(UsuarioPerfil.getEquipo().getNombre());
+
             actualizarPlantillaFirstTime();
             rellenarTablaPartidos();
+            
 
         } else {
             lblbEquipo.setVisible(false);
             lblPuntos.setVisible(false);
             lblLiga.setVisible(false);
-             lblPuntost.setVisible(false);
+            lblPuntost.setVisible(false);
             lblLigat.setVisible(false);
         }
 
@@ -1057,6 +1064,7 @@ public class pantallaPerfil extends javax.swing.JFrame {
 
         while (it.hasNext()) {
             Partido partido = (Partido) it.next();
+            System.out.println(partido.getUsuarioLocal());
             DefaultTableModel model = (DefaultTableModel) tblPartidos.getModel();
             if (partido.getPuntosLocal() == 0 && partido.getPuntosVisitante() == 0) {
                 model.addRow(new Object[]{partido.getUsuarioLocal().getEquipo().getNombre(), partido.getUsuarioVisitante().getEquipo().getNombre(), partido.getFechaPartido()});

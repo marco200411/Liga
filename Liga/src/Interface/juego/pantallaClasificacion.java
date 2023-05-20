@@ -466,8 +466,16 @@ public class pantallaClasificacion extends javax.swing.JFrame {
 
     private void tblUsuariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuariosMousePressed
         String s =(String) tblUsuarios.getModel().getValueAt(tblUsuarios.getSelectedRow(), 1);
-        System.out.println(s);
-        
+       
+        Iterator it = Actual.getLiga().getIntegrantes().iterator();
+        while(it.hasNext()){
+             Usuario us = (Usuario) it.next() ;
+             if(us.getNombreUsuario().equals(s)){
+                 this.setVisible(false);
+            pantallaPerfil pantalla = new pantallaPerfil(Actual, us);
+            pantalla.setVisible(true);
+             }
+        }
         
         
         

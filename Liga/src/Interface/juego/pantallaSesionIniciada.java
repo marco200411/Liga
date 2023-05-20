@@ -34,9 +34,14 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         } else {
 
             almacenarIntegrantesLiga();
+            System.out.println("1");
             almacenarPartidosLiga();
+            System.out.println("2");
             almacenarPartidosEquipo();
+            almacenarPartidosEquipoActual();
+            System.out.println("3");
             actualizarCabezera();
+            System.out.println("4");
             jugarPartido();
             layerCabecera.setVisible(true);
             layerCabeceraSinLiga.setVisible(false);
@@ -404,13 +409,24 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         Iterator it = Actual.getLiga().getPartidos().iterator();
         while (it.hasNext()) {
             Partido partido = (Partido) it.next();
-            if (partido.getUsuarioLocal().getNombreUsuario().equals(Actual.getNombreUsuario()) || partido.getUsuarioVisitante().equals(Actual.getNombreUsuario())) {
-                Actual.getEquipo().getPartidosEquipo().add(partido);
 
+            for (Usuario integrante : Actual.getLiga().getIntegrantes()) {
+                if (partido.getUsuarioLocal().getNombreUsuario().equals(integrante.getNombreUsuario()) || partido.getUsuarioVisitante().equals(integrante.getNombreUsuario())) {
+                    integrante.getEquipo().getPartidosEquipo().add(partido);
+                }
             }
-
         }
 
+    }
+
+    private void almacenarPartidosEquipoActual() {
+        Iterator it = Actual.getLiga().getPartidos().iterator();
+        while (it.hasNext()) {
+            Partido partido = (Partido) it.next();
+            if (partido.getUsuarioLocal().getNombreUsuario().equals(Actual.getNombreUsuario()) || partido.getUsuarioVisitante().equals(Actual.getNombreUsuario())) {
+                Actual.getEquipo().getPartidosEquipo().add(partido);
+            }
+        }
     }
 
     public void jugarPartido() {
