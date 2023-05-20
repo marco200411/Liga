@@ -169,6 +169,9 @@
                   <Image iconType="3" name="/images/user.hover.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPerfilActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnClasificacion">
               <Properties>

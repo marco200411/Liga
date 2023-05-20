@@ -32,14 +32,14 @@ public class PantallaPlantilla extends javax.swing.JFrame {
 
     public PantallaPlantilla(Usuario us1) {
         Actual = us1;
-        
+
         initComponents();
 
         actualizarPlantillaFirstTime();
 
         actualizarComboBox();
-lbldinero.setText( df.format(Actual.getEquipo().getDinero()/ 1000000.0));
-lblNombreUsu.setText(Actual.getNombreUsuario());
+        lbldinero.setText(df.format(Actual.getEquipo().getDinero() / 1000000.0));
+        lblNombreUsu.setText(Actual.getNombreUsuario());
     }
 
     private void actualizarComboBox() {
@@ -1234,7 +1234,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
                 lblAtaque.setText("" + jugador.getAtaque());
                 lblDefensa.setText("" + jugador.getDefensa());
                 btnAddPlantilla.setText("Retirar");
-                btnVender1.setText("Vender por: " + df.format(jugador.getPrecio()/ 1000000.0));
+                btnVender1.setText("Vender por: " + df.format(jugador.getPrecio() / 1000000.0));
             }
         }
 
@@ -1268,7 +1268,7 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
                     lblDefensa.setText("" + jugador.getDefensa());
                     btnAddPlantilla.setText("Alinear");
 
-                    btnVender1.setText("Vender por: " + df.format(jugador.getPrecio() / 1000000.0 ));
+                    btnVender1.setText("Vender por: " + df.format(jugador.getPrecio() / 1000000.0));
                 }
             }
         }
@@ -1486,8 +1486,8 @@ lblNombreUsu.setText(Actual.getNombreUsuario());
         int saldo = Actual.getEquipo().getDinero() + futbolistaEliminar.getPrecio();
         Actual.getEquipo().setDinero(saldo);
         send.actualizarSaldo(Actual);
-       
-        lbldinero.setText( df.format(Actual.getEquipo().getDinero()/ 1000000.0));
+
+        lbldinero.setText(df.format(Actual.getEquipo().getDinero() / 1000000.0));
     }//GEN-LAST:event_btnVender1ActionPerformed
 
     public static void main(String args[]) {

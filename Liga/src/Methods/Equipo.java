@@ -11,22 +11,43 @@ import java.util.ArrayList;
  * @author Marco
  */
 public class Equipo {
-    
-    
-    
+
     Liga liga;
     Entrenador entrenador;
     String nombre;
     int dinero;
     int puntos;
-ArrayList<Partido> partidosEquipo = new ArrayList();
-    public Equipo(Liga liga, Entrenador entrenador, String nombre, int dinero, int puntos) {
+    int victorias;
+    int derrotas;
+    ArrayList<Partido> partidosEquipo = new ArrayList();
+
+    public Equipo(Liga liga, Entrenador entrenador, String nombre, int dinero, int puntos, int victorias, int derrotas) {
         this.liga = liga;
         this.entrenador = entrenador;
         this.nombre = nombre;
         this.dinero = dinero;
         this.puntos = puntos;
+        this.victorias = victorias;
+        this.derrotas = derrotas;
     }
+
+    public int getVictorias() {
+        return victorias;
+    }
+
+    public void setVictorias(int victorias) {
+        this.victorias = victorias;
+    }
+
+    public int getDerrotas() {
+        return derrotas;
+    }
+
+    public void setDerrotas(int derrotas) {
+        this.derrotas = derrotas;
+    }
+
+   
 
     public ArrayList<Partido> getPartidosEquipo() {
         return partidosEquipo;
@@ -36,7 +57,6 @@ ArrayList<Partido> partidosEquipo = new ArrayList();
         this.partidosEquipo = partidosEquipo;
     }
 
-    
     public Liga getLiga() {
         return liga;
     }
@@ -76,8 +96,5 @@ ArrayList<Partido> partidosEquipo = new ArrayList();
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
-    
-    
-    
-    
+
 }

@@ -50,8 +50,21 @@ public class ObtenerDatosBBDD {
     }
 
     public Equipo getEquipoBBDD(String usuario, Entrenador entrenador) {
-        String consulta = ("SELECT NOMBRE_PLANTILLA,DINERO,PUNTOS\n"
-                + "FROM TBL_EQUIPO\n"
+        String consulta = ("SELECT e.NOMBRE_PLANTILLA,e.DINERO,e.PUNTOS, (\n"
+                + "SELECT COUNT(*) \n"
+                + "FROM TBL_PARTIDO AS P INNER JOIN TBL_EQUIPO AS E1\n"
+                + "ON P.EQUIPO_LOCAL=E1.ID_EQUIPO INNER JOIN TBL_EQUIPO AS E2\n"
+                + "ON P.EQUIPO_VISITANTE=E2.ID_EQUIPO \n"
+                + "WHERE E1.NOMBRE_PLANTILLA = e.NOMBRE_PLANTILLA AND puntos_local < puntos_visitante\n"
+                + "OR E2.NOMBRE_PLANTILLA = e.NOMBRE_PLANTILLA  AND puntos_local > puntos_visitante) AS GANADOS,\n"
+                + "(\n"
+                + "SELECT COUNT(*) \n"
+                + "FROM TBL_PARTIDO AS P INNER JOIN TBL_EQUIPO AS E1\n"
+                + "ON P.EQUIPO_LOCAL=E1.ID_EQUIPO INNER JOIN TBL_EQUIPO AS E2\n"
+                + "ON P.EQUIPO_VISITANTE=E2.ID_EQUIPO \n"
+                + "WHERE E1.NOMBRE_PLANTILLA = e.NOMBRE_PLANTILLA AND puntos_local > puntos_visitante\n"
+                + "OR E2.NOMBRE_PLANTILLA = e.NOMBRE_PLANTILLA AND puntos_local < puntos_visitante) AS PERDIDOS\n"
+                + "FROM TBL_EQUIPO as e\n"
                 + "WHERE ID_USUARIO=\n"
                 + "(SELECT ID_USUARIO\n"
                 + "FROM TBL_USUARIO\n"
@@ -63,7 +76,7 @@ public class ObtenerDatosBBDD {
         try {
 
             if (mysqlResult.next()) {
-                equipo = new Equipo(null, entrenador, mysqlResult.getString(1), mysqlResult.getInt(2), mysqlResult.getInt(3));
+                equipo = new Equipo(null, entrenador, mysqlResult.getString(1), mysqlResult.getInt(2), mysqlResult.getInt(3), mysqlResult.getInt(4), mysqlResult.getInt(5));
 
             }
         } catch (SQLException ex) {

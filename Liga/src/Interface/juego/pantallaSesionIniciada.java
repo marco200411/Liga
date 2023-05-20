@@ -37,6 +37,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
             almacenarPartidosLiga();
             almacenarPartidosEquipo();
             actualizarCabezera();
+            jugarPartido();
             layerCabecera.setVisible(true);
             layerCabeceraSinLiga.setVisible(false);
         }
@@ -147,6 +148,11 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         btnPerfil.setContentAreaFilled(false);
         btnPerfil.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.click.png"))); // NOI18N
         btnPerfil.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.hover.png"))); // NOI18N
+        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerfilActionPerformed(evt);
+            }
+        });
         layerMenu.add(btnPerfil);
 
         btnClasificacion.setBackground(new java.awt.Color(206, 206, 206));
@@ -393,21 +399,24 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    public void almacenarPartidosEquipo(){
-        
-        
+    public void almacenarPartidosEquipo() {
+
         Iterator it = Actual.getLiga().getPartidos().iterator();
-            while (it.hasNext()) {
-                Partido partido = (Partido) it.next();
-                if (partido.getUsuarioLocal().getNombreUsuario().equals(Actual.getNombreUsuario()) || partido.getUsuarioVisitante().equals(Actual.getNombreUsuario())) {
-                    Actual.getEquipo().getPartidosEquipo().add(partido);
-                    
-                }
+        while (it.hasNext()) {
+            Partido partido = (Partido) it.next();
+            if (partido.getUsuarioLocal().getNombreUsuario().equals(Actual.getNombreUsuario()) || partido.getUsuarioVisitante().equals(Actual.getNombreUsuario())) {
+                Actual.getEquipo().getPartidosEquipo().add(partido);
 
             }
-        
+
+        }
+
     }
+
+    public void jugarPartido() {
+
+    }
+
     public void almacenarPartidosLiga() {
         ObtenerDatosBBDD getDatos = new ObtenerDatosBBDD();
         getDatos.getPartidosBBDD(Actual.getLiga());
@@ -521,8 +530,6 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
             lblPPEquipoLocal.setText(Actual.getEquipo().getPartidosEquipo().get(1).getUsuarioLocal().getEquipo().getNombre());
             lblPPEquipoVisitante.setText(Actual.getEquipo().getPartidosEquipo().get(1).getUsuarioVisitante().getEquipo().getNombre());
 
-           
-
 //            Iterator it2 = partidosEquipo.iterator();
 //            while (it2.hasNext()) {
 //                Partido partido = (Partido) it2.next();
@@ -553,6 +560,12 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnClasificacionActionPerformed
+
+    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
+        this.setVisible(false);
+        pantallaPerfil pantalla = new pantallaPerfil(Actual, Actual);
+        pantalla.setVisible(true);
+    }//GEN-LAST:event_btnPerfilActionPerformed
 
     /**
      * @param args the command line arguments

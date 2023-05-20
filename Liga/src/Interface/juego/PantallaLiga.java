@@ -469,7 +469,7 @@ public class PantallaLiga extends javax.swing.JFrame {
                         btnInfoUnirse.setVisible(true);
                         btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/INSERT.png")));
                         btnInfoUnirse.setText("Te has unido con exito a la liga: " + NombreLiga);
-                        Equipo e1 = new Equipo(liga1, null, Actual.getNombre() + "s team", 1000000, 0);
+                        Equipo e1 = new Equipo(liga1, null, Actual.getNombre() + "s team", 1000000, 0,0,0);
                         Actual.setEquipo(e1);
                         Actual.setLiga(liga1);
                         crearEquipo(liga1);
@@ -623,7 +623,7 @@ public class PantallaLiga extends javax.swing.JFrame {
         if (escritura.escrituraSql(sentenciaInsert)) {
 
             confirm = true;
-            Equipo e = new Equipo(Actual.getLiga(), null, Actual.getNombre() + " team", 100000000, 0);
+            Equipo e = new Equipo(Actual.getLiga(), null, Actual.getNombre() + " team", 100000000, 0,0,0);
             Actual.setEquipo(e);
         }
 
