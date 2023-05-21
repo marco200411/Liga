@@ -23,9 +23,10 @@ import javax.swing.JOptionPane;
 public class pantallaSesionIniciada extends javax.swing.JFrame {
 
     Usuario Actual = null;
-
+    
     public pantallaSesionIniciada(Usuario usuario) {
         initComponents();
+        
         Actual = usuario;
         if (Actual.getLiga() == null) {
             layerCabecera.setVisible(false);
@@ -409,9 +410,10 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         Iterator it = Actual.getLiga().getPartidos().iterator();
         while (it.hasNext()) {
             Partido partido = (Partido) it.next();
-
+            
             for (Usuario integrante : Actual.getLiga().getIntegrantes()) {
-                if (partido.getUsuarioLocal().getNombreUsuario().equals(integrante.getNombreUsuario()) || partido.getUsuarioVisitante().equals(integrante.getNombreUsuario())) {
+               
+                if (!integrante.equals(Actual) && partido.getUsuarioLocal().getNombreUsuario().equalsIgnoreCase(integrante.getNombreUsuario()) || partido.getUsuarioVisitante().getNombreUsuario().equalsIgnoreCase(integrante.getNombreUsuario())) {
                     integrante.getEquipo().getPartidosEquipo().add(partido);
                 }
             }
@@ -423,7 +425,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         Iterator it = Actual.getLiga().getPartidos().iterator();
         while (it.hasNext()) {
             Partido partido = (Partido) it.next();
-            if (partido.getUsuarioLocal().getNombreUsuario().equals(Actual.getNombreUsuario()) || partido.getUsuarioVisitante().equals(Actual.getNombreUsuario())) {
+            if (partido.getUsuarioLocal().getNombreUsuario().equalsIgnoreCase(Actual.getNombreUsuario()) || partido.getUsuarioVisitante().getNombreUsuario().equalsIgnoreCase(Actual.getNombreUsuario())) {
                 Actual.getEquipo().getPartidosEquipo().add(partido);
             }
         }

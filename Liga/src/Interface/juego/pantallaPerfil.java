@@ -14,16 +14,22 @@ import javax.swing.table.DefaultTableModel;
 
 public class pantallaPerfil extends javax.swing.JFrame {
 
+    Futbolista futbolistaSeleccionado = null;
     Usuario Actual = null;
     Usuario UsuarioPerfil = null;
 
     public pantallaPerfil(Usuario Actual2, Usuario usuarioBusqueda) {
         initComponents();
+
         Actual = Actual2;
         UsuarioPerfil = usuarioBusqueda;
-       
+        ObtenerDatosBBDD get = new ObtenerDatosBBDD();
+        get.getJugadoresPlantilla(UsuarioPerfil);
         lblNombreUsuario.setText(UsuarioPerfil.getNombreUsuario());
+
         if (UsuarioPerfil.getLiga() != null) {
+
+            rellenarTablaPartidos();
 //            ObtenerDatosBBDD get = new ObtenerDatosBBDD();
 //            UsuarioPerfil.getEquipo().setEntrenador(get.getEntrenadorBBDD(UsuarioPerfil.getNombreUsuario()));
 //            usuarioBusqueda.setEquipo(get.getEquipoBBDD(UsuarioPerfil.getNombreUsuario(), UsuarioPerfil.getEquipo().getEntrenador()));
@@ -42,8 +48,6 @@ public class pantallaPerfil extends javax.swing.JFrame {
             lblNombreEquipo.setText(UsuarioPerfil.getEquipo().getNombre());
 
             actualizarPlantillaFirstTime();
-            rellenarTablaPartidos();
-            
 
         } else {
             lblbEquipo.setVisible(false);
@@ -59,6 +63,27 @@ public class pantallaPerfil extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        panelAcciones1 = new javax.swing.JLayeredPane();
+        btnRetroceder1 = new javax.swing.JButton();
+        btnMinimizar1 = new javax.swing.JButton();
+        btnClose1 = new javax.swing.JButton();
+        pnlImg12 = new javax.swing.JPanel(){
+            public void paintComponent(Graphics g) {
+                ImageIcon im = new ImageIcon("src\\images\\bordeJugadores.png");
+                Image i = im.getImage();
+                g.drawImage(i, 0,0, this.getSize().width, this.getSize().height,this);
+            }
+        };
+        lblEI1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        btnNo = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lblValorJugador = new javax.swing.JLabel();
+        lblSaldoDisponible = new javax.swing.JLabel();
+        btnCompar1 = new javax.swing.JButton();
         BG = new javax.swing.JLayeredPane();
         panelAcciones = new javax.swing.JLayeredPane();
         btnRetroceder = new javax.swing.JButton();
@@ -191,11 +216,184 @@ public class pantallaPerfil extends javax.swing.JFrame {
         btnExit = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
+        jDialog1.setUndecorated(true);
+        jDialog1.setShape(new RoundRectangle2D.Double(0, 0, 900,700, 50, 50));
+
+        jLayeredPane1.setBackground(new java.awt.Color(51, 61, 87));
+        jLayeredPane1.setOpaque(true);
+        jLayeredPane1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jLayeredPane1ComponentShown(evt);
+            }
+        });
+        jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelAcciones1.setMaximumSize(new java.awt.Dimension(95, 25));
+        panelAcciones1.setMinimumSize(new java.awt.Dimension(95, 25));
+
+        btnRetroceder1.setBackground(new java.awt.Color(51, 61, 87));
+        btnRetroceder1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnRetroceder1.setForeground(new java.awt.Color(153, 0, 0));
+        btnRetroceder1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retroceder.png"))); // NOI18N
+        btnRetroceder1.setBorder(null);
+        btnRetroceder1.setBorderPainted(false);
+        btnRetroceder1.setContentAreaFilled(false);
+        btnRetroceder1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnRetroceder1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnRetroceder1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRetroceder1.setOpaque(true);
+        btnRetroceder1.setRequestFocusEnabled(false);
+        btnRetroceder1.setRolloverEnabled(false);
+        btnRetroceder1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetroceder1ActionPerformed(evt);
+            }
+        });
+
+        btnMinimizar1.setBackground(new java.awt.Color(51, 61, 87));
+        btnMinimizar1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnMinimizar1.setForeground(new java.awt.Color(153, 0, 0));
+        btnMinimizar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimizar (1).png"))); // NOI18N
+        btnMinimizar1.setBorder(null);
+        btnMinimizar1.setBorderPainted(false);
+        btnMinimizar1.setContentAreaFilled(false);
+        btnMinimizar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMinimizar1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnMinimizar1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnMinimizar1.setOpaque(true);
+        btnMinimizar1.setRequestFocusEnabled(false);
+        btnMinimizar1.setRolloverEnabled(false);
+        btnMinimizar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinimizar1ActionPerformed(evt);
+            }
+        });
+
+        btnClose1.setBackground(new java.awt.Color(51, 61, 87));
+        btnClose1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnClose1.setForeground(new java.awt.Color(153, 0, 0));
+        btnClose1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close (1).png"))); // NOI18N
+        btnClose1.setBorder(null);
+        btnClose1.setBorderPainted(false);
+        btnClose1.setContentAreaFilled(false);
+        btnClose1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnClose1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnClose1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnClose1.setOpaque(true);
+        btnClose1.setRequestFocusEnabled(false);
+        btnClose1.setRolloverEnabled(false);
+        btnClose1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClose1ActionPerformed(evt);
+            }
+        });
+
+        panelAcciones1.setLayer(btnRetroceder1, javax.swing.JLayeredPane.POPUP_LAYER);
+        panelAcciones1.setLayer(btnMinimizar1, javax.swing.JLayeredPane.POPUP_LAYER);
+        panelAcciones1.setLayer(btnClose1, javax.swing.JLayeredPane.POPUP_LAYER);
+
+        javax.swing.GroupLayout panelAcciones1Layout = new javax.swing.GroupLayout(panelAcciones1);
+        panelAcciones1.setLayout(panelAcciones1Layout);
+        panelAcciones1Layout.setHorizontalGroup(
+            panelAcciones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAcciones1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnRetroceder1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnMinimizar1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnClose1))
+        );
+        panelAcciones1Layout.setVerticalGroup(
+            panelAcciones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAcciones1Layout.createSequentialGroup()
+                .addGroup(panelAcciones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnRetroceder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMinimizar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnClose1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jLayeredPane1.add(panelAcciones1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, 30));
+
+        pnlImg12.setMaximumSize(new java.awt.Dimension(90, 90));
+        pnlImg12.setMinimumSize(new java.awt.Dimension(90, 90));
+        pnlImg12.setOpaque(false);
+
+        javax.swing.GroupLayout pnlImg12Layout = new javax.swing.GroupLayout(pnlImg12);
+        pnlImg12.setLayout(pnlImg12Layout);
+        pnlImg12Layout.setHorizontalGroup(
+            pnlImg12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 90, Short.MAX_VALUE)
+        );
+        pnlImg12Layout.setVerticalGroup(
+            pnlImg12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 90, Short.MAX_VALUE)
+        );
+
+        jLayeredPane1.add(pnlImg12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
+
+        lblEI1.setFont(new java.awt.Font("Roboto", 0, 1)); // NOI18N
+        lblEI1.setForeground(new java.awt.Color(60, 63, 65));
+        lblEI1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEI1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/player.png"))); // NOI18N
+        lblEI1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblEI1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblEI1.setMaximumSize(new java.awt.Dimension(75, 75));
+        lblEI1.setMinimumSize(new java.awt.Dimension(75, 75));
+        lblEI1.setName(""); // NOI18N
+        lblEI1.setPreferredSize(new java.awt.Dimension(75, 75));
+        lblEI1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        lblEI1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblEI1MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblEI1MousePressed(evt);
+            }
+        });
+        lblEI1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                lblEI1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                lblEI1KeyReleased(evt);
+            }
+        });
+        jLayeredPane1.add(lblEI1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 90, 90));
+
+        jLabel2.setText("Estas seguro que quieres comprar a este jugador?");
+        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 86, 280, 70));
+
+        btnNo.setText("No");
+        jLayeredPane1.add(btnNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 120, 90));
+
+        jLabel3.setText("Saldo disponible:");
+        jLayeredPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 100, 40));
+
+        jLabel4.setText("Valor del jugador:");
+        jLayeredPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 100, 40));
+        jLayeredPane1.add(lblValorJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 120, 40));
+        jLayeredPane1.add(lblSaldoDisponible, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 110, 40));
+
+        btnCompar1.setText("Comprar");
+        jLayeredPane1.add(btnCompar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 120, 90));
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(900, 800));
         setMinimumSize(new java.awt.Dimension(900, 800));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(900, 800));
         setResizable(false);
         setShape(new RoundRectangle2D.Double(0, 0, 900,800, 50, 50));
 
@@ -806,6 +1004,15 @@ public class pantallaPerfil extends javax.swing.JFrame {
         lblEI.setName(""); // NOI18N
         lblEI.setPreferredSize(new java.awt.Dimension(75, 75));
         lblEI.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        lblEI.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblEIAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         lblEI.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblEIMouseClicked(evt);
@@ -902,7 +1109,7 @@ public class pantallaPerfil extends javax.swing.JFrame {
         layerMenu.setBackground(new java.awt.Color(51, 61, 87));
         layerMenu.setForeground(new java.awt.Color(51, 61, 87));
         layerMenu.setOpaque(true);
-        layerMenu.setLayout(new java.awt.GridLayout());
+        layerMenu.setLayout(new java.awt.GridLayout(1, 0));
 
         btnHome.setBackground(new java.awt.Color(206, 206, 206));
         btnHome.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -1061,11 +1268,10 @@ public class pantallaPerfil extends javax.swing.JFrame {
 
     private void rellenarTablaPartidos() {
         Iterator it = UsuarioPerfil.getEquipo().getPartidosEquipo().iterator();
-
+        DefaultTableModel model = (DefaultTableModel) tblPartidos.getModel();
         while (it.hasNext()) {
             Partido partido = (Partido) it.next();
-            System.out.println(partido.getUsuarioLocal());
-            DefaultTableModel model = (DefaultTableModel) tblPartidos.getModel();
+
             if (partido.getPuntosLocal() == 0 && partido.getPuntosVisitante() == 0) {
                 model.addRow(new Object[]{partido.getUsuarioLocal().getEquipo().getNombre(), partido.getUsuarioVisitante().getEquipo().getNombre(), partido.getFechaPartido()});
 
@@ -1079,10 +1285,8 @@ public class pantallaPerfil extends javax.swing.JFrame {
     }
 
     private void actualizarPlantillaFirstTime() {
-        Actual.getPlantillaDefensas().clear();
-        Actual.getPlantillaMedios().clear();
-        Actual.getPlantillaDelanteros().clear();
-        Iterator<Futbolista> it1 = Actual.getPlantilla().iterator();
+
+        Iterator<Futbolista> it1 = UsuarioPerfil.getPlantilla().iterator();
         while (it1.hasNext()) {
             Futbolista futbol = it1.next();
             if (futbol != null) {
@@ -1157,58 +1361,76 @@ public class pantallaPerfil extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnCloseActionPerformed
 
+    private Futbolista buscarJugador(Usuario us, String nombre) {
+        Futbolista futRet = null;
+        Iterator it = us.getJugadores().iterator();
+        while (it.hasNext()) {
+            Futbolista futbolista = (Futbolista) it.next();
+            if (futbolista.getNombre() == nombre) {
+                futRet = futbolista;
+            }
+
+        }
+        return futRet;
+
+    }
+
+
     private void lblGKMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGKMousePressed
         String jugador = lblGK.getText();
         if (jugador != "") {
-
+            futbolistaSeleccionado = buscarJugador(UsuarioPerfil, jugador);
         }
     }//GEN-LAST:event_lblGKMousePressed
 
     private void lblLDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLDMousePressed
         String jugador = lblLD.getText();
         if (jugador != "") {
-
+            futbolistaSeleccionado = buscarJugador(UsuarioPerfil, jugador);
         }
     }//GEN-LAST:event_lblLDMousePressed
 
     private void lblDFCDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDFCDMousePressed
         String jugador = lblDFCD.getText();
         if (jugador != "") {
-
+            futbolistaSeleccionado = buscarJugador(UsuarioPerfil, jugador);
         }
     }//GEN-LAST:event_lblDFCDMousePressed
 
     private void lblDFCIMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDFCIMousePressed
         String jugador = lblDFCI.getText();
         if (jugador != "") {
-
+            futbolistaSeleccionado = buscarJugador(UsuarioPerfil, jugador);
         }
     }//GEN-LAST:event_lblDFCIMousePressed
 
     private void lblLIMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLIMousePressed
         String jugador = lblLI.getText();
         if (jugador != "") {
+            futbolistaSeleccionado = buscarJugador(UsuarioPerfil, jugador);
         }
     }//GEN-LAST:event_lblLIMousePressed
 
     private void lblMCDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMCDMousePressed
         String jugador = lblMCD.getText();
         if (jugador != "") {
-
+            futbolistaSeleccionado = buscarJugador(UsuarioPerfil, jugador);
         }
     }//GEN-LAST:event_lblMCDMousePressed
 
     private void lblMCMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMCMousePressed
         String jugador = lblMC.getText();
         if (jugador != "") {
-
+            futbolistaSeleccionado = buscarJugador(UsuarioPerfil, jugador);
+            jDialog1.setVisible(true);
         }
     }//GEN-LAST:event_lblMCMousePressed
 
     private void lblMCIMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMCIMousePressed
         String jugador = lblMCI.getText();
         if (jugador != "") {
-
+            futbolistaSeleccionado = buscarJugador(UsuarioPerfil, jugador);
+            jDialog1.setVisible(true);
         }
     }//GEN-LAST:event_lblMCIMousePressed
 
@@ -1219,7 +1441,8 @@ public class pantallaPerfil extends javax.swing.JFrame {
     private void lblEDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEDMousePressed
         String jugador = lblED.getText();
         if (jugador != "") {
-
+            futbolistaSeleccionado = buscarJugador(UsuarioPerfil, jugador);
+            jDialog1.setVisible(true);
         }
     }//GEN-LAST:event_lblEDMousePressed
 
@@ -1230,7 +1453,8 @@ public class pantallaPerfil extends javax.swing.JFrame {
     private void lblDCMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDCMousePressed
         String jugador = lblDC.getText();
         if (jugador != "") {
-
+            futbolistaSeleccionado = buscarJugador(UsuarioPerfil, jugador);
+            jDialog1.setVisible(true);
         }
     }//GEN-LAST:event_lblDCMousePressed
 
@@ -1333,6 +1557,48 @@ public class pantallaPerfil extends javax.swing.JFrame {
         btnError.setVisible(false);
     }//GEN-LAST:event_btnErrorActionPerformed
 
+    private void btnRetroceder1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetroceder1ActionPerformed
+        // TODO add your handling code here:
+        pantallaClasificacion pantalla = new pantallaClasificacion(Actual);
+        pantalla.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnRetroceder1ActionPerformed
+
+    private void btnMinimizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizar1ActionPerformed
+        this.setState(ICONIFIED);
+    }//GEN-LAST:event_btnMinimizar1ActionPerformed
+
+    private void btnClose1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClose1ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnClose1ActionPerformed
+
+    private void jLayeredPane1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLayeredPane1ComponentShown
+//        UsuarioPerfil
+
+
+    }//GEN-LAST:event_jLayeredPane1ComponentShown
+
+    private void lblEI1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEI1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblEI1MouseClicked
+
+    private void lblEI1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEI1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblEI1MousePressed
+
+    private void lblEI1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblEI1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblEI1KeyPressed
+
+    private void lblEI1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblEI1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblEI1KeyReleased
+
+    private void lblEIAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblEIAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblEIAncestorAdded
+
     /**
      * @param args the command line arguments
      */
@@ -1373,16 +1639,26 @@ public class pantallaPerfil extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarJugador;
     private javax.swing.JButton btnClasificacion;
     private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnClose1;
+    private javax.swing.JButton btnCompar1;
     private javax.swing.JButton btnError;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLiga;
     private javax.swing.JButton btnMinimizar;
+    private javax.swing.JButton btnMinimizar1;
+    private javax.swing.JButton btnNo;
     private javax.swing.JButton btnPerfil;
     private javax.swing.JButton btnPlantilla;
     private javax.swing.JButton btnRetroceder;
+    private javax.swing.JButton btnRetroceder1;
     private javax.swing.JButton btnTienda;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLayeredPane layerMenu;
     private javax.swing.JLayeredPane layerUnirseLiga;
@@ -1395,6 +1671,7 @@ public class pantallaPerfil extends javax.swing.JFrame {
     private javax.swing.JLabel lblDerrotas1;
     private javax.swing.JLabel lblED;
     private javax.swing.JLabel lblEI;
+    private javax.swing.JLabel lblEI1;
     private javax.swing.JLabel lblFotoEquipo;
     private javax.swing.JLabel lblGK;
     private javax.swing.JLabel lblLD;
@@ -1410,14 +1687,18 @@ public class pantallaPerfil extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombret;
     private javax.swing.JLabel lblPuntos;
     private javax.swing.JLabel lblPuntost;
+    private javax.swing.JLabel lblSaldoDisponible;
+    private javax.swing.JLabel lblValorJugador;
     private javax.swing.JLabel lblVicorias;
     private javax.swing.JLabel lblVicoriast;
     private javax.swing.JLabel lblbEquipo;
     private javax.swing.JLayeredPane panelAcciones;
+    private javax.swing.JLayeredPane panelAcciones1;
     private javax.swing.JLayeredPane panelCabecera;
     private javax.swing.JPanel pnlImg1;
     private javax.swing.JPanel pnlImg10;
     private javax.swing.JPanel pnlImg11;
+    private javax.swing.JPanel pnlImg12;
     private javax.swing.JPanel pnlImg2;
     private javax.swing.JPanel pnlImg3;
     private javax.swing.JPanel pnlImg4;

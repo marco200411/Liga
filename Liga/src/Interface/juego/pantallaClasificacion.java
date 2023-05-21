@@ -28,8 +28,10 @@ public class pantallaClasificacion extends javax.swing.JFrame {
     public pantallaClasificacion(Usuario usuario) {
         initComponents();
         Actual = usuario;
-        rellenarTable();
 
+      
+        
+        rellenarTable();
     }
 
     public Usuario getUsuarioActual() {
@@ -370,10 +372,8 @@ public class pantallaClasificacion extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnHomeActionPerformed
     private void rellenarTable() {
-        ArrayList<Equipo> jugadoresLiga = new ArrayList();
-        String consulta = null;
-
-        consulta = ("SELECT U.USUARIO, E.NOMBRE_PLANTILLA, E.PUNTOS\n"
+        
+        String consulta = ("SELECT U.USUARIO, E.NOMBRE_PLANTILLA, E.PUNTOS\n"
                 + "FROM TBL_EQUIPO AS E INNER JOIN TBL_USUARIO AS U\n"
                 + "ON E.ID_USUARIO=U.ID_USUARIO\n"
                 + "WHERE LIGA = ( SELECT  ID_LIGA FROM TBL_LIGA WHERE NOMBRE='" + Actual.getLiga().getNombre() + "')"
@@ -386,7 +386,7 @@ public class pantallaClasificacion extends javax.swing.JFrame {
             while (mysqlResult.next()) {
 
                 DefaultTableModel model = (DefaultTableModel) tblUsuarios.getModel();
-                model.addRow(new Object[]{1, mysqlResult.getString(1),  mysqlResult.getString(2),  mysqlResult.getInt(3)});
+                model.addRow(new Object[]{1, mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getInt(3)});
 
             }
 
@@ -465,20 +465,19 @@ public class pantallaClasificacion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnErrorActionPerformed
 
     private void tblUsuariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuariosMousePressed
-        String s =(String) tblUsuarios.getModel().getValueAt(tblUsuarios.getSelectedRow(), 1);
-       
+        String s = (String) tblUsuarios.getModel().getValueAt(tblUsuarios.getSelectedRow(), 1);
+
         Iterator it = Actual.getLiga().getIntegrantes().iterator();
-        while(it.hasNext()){
-             Usuario us = (Usuario) it.next() ;
-             if(us.getNombreUsuario().equals(s)){
-                 this.setVisible(false);
-            pantallaPerfil pantalla = new pantallaPerfil(Actual, us);
-            pantalla.setVisible(true);
-             }
+        while (it.hasNext()) {
+            Usuario us = (Usuario) it.next();
+            if (us.getNombreUsuario().equals(s)) {
+                this.setVisible(false);
+                pantallaPerfil pantalla = new pantallaPerfil(Actual, us);
+                pantalla.setVisible(true);
+            }
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_tblUsuariosMousePressed
 
     /**
