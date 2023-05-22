@@ -3,6 +3,7 @@ package Interface.juego;
 import Interface.menus.Menu;
 import Methods.Entrenador;
 import Methods.Equipo;
+import Methods.Futbolista;
 import Methods.Liga;
 import Methods.Partido;
 import java.util.ArrayList;
@@ -23,10 +24,10 @@ import javax.swing.JOptionPane;
 public class pantallaSesionIniciada extends javax.swing.JFrame {
 
     Usuario Actual = null;
-    
+
     public pantallaSesionIniciada(Usuario usuario) {
         initComponents();
-        
+
         Actual = usuario;
         if (Actual.getLiga() == null) {
             layerCabecera.setVisible(false);
@@ -35,15 +36,14 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         } else {
 
             almacenarIntegrantesLiga();
-            System.out.println("1");
+
             almacenarPartidosLiga();
-            System.out.println("2");
+
             almacenarPartidosEquipo();
             almacenarPartidosEquipoActual();
-            System.out.println("3");
+
             actualizarCabezera();
-            System.out.println("4");
-            jugarPartido();
+
             layerCabecera.setVisible(true);
             layerCabeceraSinLiga.setVisible(false);
         }
@@ -186,6 +186,11 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         btnBuscarJugador.setContentAreaFilled(false);
         btnBuscarJugador.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.click.png"))); // NOI18N
         btnBuscarJugador.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.hover.png"))); // NOI18N
+        btnBuscarJugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarJugadorActionPerformed(evt);
+            }
+        });
         layerMenu.add(btnBuscarJugador);
 
         btnTienda.setBackground(new java.awt.Color(206, 206, 206));
@@ -410,9 +415,9 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         Iterator it = Actual.getLiga().getPartidos().iterator();
         while (it.hasNext()) {
             Partido partido = (Partido) it.next();
-            
+
             for (Usuario integrante : Actual.getLiga().getIntegrantes()) {
-               
+
                 if (!integrante.equals(Actual) && partido.getUsuarioLocal().getNombreUsuario().equalsIgnoreCase(integrante.getNombreUsuario()) || partido.getUsuarioVisitante().getNombreUsuario().equalsIgnoreCase(integrante.getNombreUsuario())) {
                     integrante.getEquipo().getPartidosEquipo().add(partido);
                 }
@@ -431,10 +436,17 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         }
     }
 
-    public void jugarPartido() {
-
-    }
-
+//    public void almacenarJugadoresJugando() {
+//
+//        Iterator it = Actual.getLiga().getIntegrantes().iterator();
+//        ObtenerDatosBBDD getDatos = new ObtenerDatosBBDD();
+//        while (it.hasNext()) {
+//            Usuario us = (Usuario) it.next();
+//           
+//
+//        }
+//
+//    }
     public void almacenarPartidosLiga() {
         ObtenerDatosBBDD getDatos = new ObtenerDatosBBDD();
         getDatos.getPartidosBBDD(Actual.getLiga());
@@ -442,6 +454,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
     }
 
     public void almacenarIntegrantesLiga() {
+      
         ObtenerDatosBBDD getDatos = new ObtenerDatosBBDD();
         String sentenciaSelect = " SELECT U.USUARIO \n"
                 + "                    FROM TBL_USUARIO AS U INNER JOIN TBL_EQUIPO AS E\n"
@@ -451,20 +464,22 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
 
         OperacionesBBDD get = new OperacionesBBDD();
         ResultSet results = get.getSQL(sentenciaSelect);
-
+        System.out.println("aasasa" + sentenciaSelect);
         try {
             while (results.next()) {
                 String nombreUsuario = results.getString(1);
+                System.out.println(nombreUsuario);
                 Entrenador entrenador = getDatos.getEntrenadorBBDD(nombreUsuario);
                 Equipo equipo = getDatos.getEquipoBBDD(nombreUsuario, entrenador);
 
                 Usuario usuario = getDatos.getUsuarioBBDD(nombreUsuario);
-                usuario.setEquipo(equipo);
+
                 Liga liga = getDatos.getLigaBBDD(usuario.getNombre());
                 usuario.setLiga(liga);
-
+                usuario.setEquipo(equipo);
+                getDatos.getJugadoresPlantilla(usuario);
                 Actual.getLiga().getIntegrantes().add(usuario);
-
+                
             }
 
         } catch (SQLException ex) {
@@ -584,6 +599,12 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         pantallaPerfil pantalla = new pantallaPerfil(Actual, Actual);
         pantalla.setVisible(true);
     }//GEN-LAST:event_btnPerfilActionPerformed
+
+    private void btnBuscarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarJugadorActionPerformed
+        this.setVisible(false);
+        pantallaJugadores pantalla = new pantallaJugadores(Actual);
+        pantalla.setVisible(true);
+    }//GEN-LAST:event_btnBuscarJugadorActionPerformed
 
     /**
      * @param args the command line arguments

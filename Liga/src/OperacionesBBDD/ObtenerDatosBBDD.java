@@ -73,6 +73,7 @@ public class ObtenerDatosBBDD {
         OperacionesBBDD escritura = new OperacionesBBDD();
         ResultSet mysqlResult = escritura.getSQL(consulta);
         Equipo equipo = null;
+        
         try {
 
             if (mysqlResult.next()) {
@@ -103,18 +104,21 @@ public class ObtenerDatosBBDD {
         OperacionesBBDD escritura = new OperacionesBBDD();
         ResultSet mysqlResult = escritura.getSQL(consulta);
         Futbolista futbolista = null;
+        usuario.getPlantilla().clear(); 
+         usuario.getJugadores().clear();
         try {
 
             while (mysqlResult.next()) {
 
                 futbolista = new Futbolista(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getInt(3), mysqlResult.getInt(4), mysqlResult.getInt(5), mysqlResult.getString(6));
-
+                
                 if ("SI".equals(mysqlResult.getString(7))) {
 
                     usuario.getPlantilla().add(futbolista);
 
                 }
                 usuario.getJugadores().add(futbolista);
+                usuario.getLiga().getJugadoresJugando().add(futbolista);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ObtenerDatosBBDD.class.getName()).log(Level.SEVERE, null, ex);
