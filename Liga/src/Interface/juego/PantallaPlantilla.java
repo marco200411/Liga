@@ -1441,7 +1441,7 @@ public class PantallaPlantilla extends javax.swing.JFrame {
         //Modificar Interfaz
         actualizarInterfazPlantilla();
         EnviarDatosBBDD send = new EnviarDatosBBDD();
-        send.actualizarJugadores(Actual.getPlantilla(), Actual);
+        send.actualizarJugadoresPlantilla(Actual.getPlantilla(), Actual);
         actualizarComboBox();
 
     }//GEN-LAST:event_btnAddPlantillaActionPerformed
@@ -1475,7 +1475,7 @@ public class PantallaPlantilla extends javax.swing.JFrame {
         }
         EnviarDatosBBDD send = new EnviarDatosBBDD();
         Actual.getJugadores().remove(futbolistaEliminar);
-        send.actualizarJugadores(Actual.getJugadores(), Actual);
+        send.actualizarJugadoresPlantilla(Actual.getJugadores(), Actual);
         eliminanrTodosJugadoresInterfaz();
         //Modificar Array plantilla
         ActualizarArrayPlantillaConArrayPosiciones();

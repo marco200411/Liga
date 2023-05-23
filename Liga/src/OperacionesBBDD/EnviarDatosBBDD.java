@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 
 public class EnviarDatosBBDD {
 
-    public void actualizarJugadores(ArrayList<Futbolista> plantilla, Usuario Actual) {
+    public void actualizarJugadoresPlantilla(ArrayList<Futbolista> plantilla, Usuario Actual) {
         eliminarTODOSJugadoresEquipo(Actual.getEquipo().getNombre());
 
         Iterator<Futbolista> it = Actual.getJugadores().iterator();
@@ -31,12 +31,13 @@ public class EnviarDatosBBDD {
             } else {
                 Alineado = "NO";
             }
-            
+
             String consulta = "INSERT INTO tbl_jugador_equipo\n"
                     + "SELECT \n"
                     + "(SELECT ID_JUGADOR FROM TBL_JUGADORES WHERE NOMBRE='" + jugador.getNombre() + "'),\n"
                     + "(SELECT ID_EQUIPO FROM TBL_EQUIPO WHERE NOMBRE_PLANTILLA='" + Actual.getEquipo().getNombre() + "'),\n"
-                    + "('" + Alineado + "');";System.out.println(consulta);
+                    + "('" + Alineado + "');";
+            System.out.println(consulta);
             OperacionesBBDD escritura = new OperacionesBBDD();
             escritura.escrituraSql(consulta);
         }
@@ -63,12 +64,29 @@ public class EnviarDatosBBDD {
         OperacionesBBDD escritura = new OperacionesBBDD();
         escritura.escrituraSql(consulta);
     }
-    
-    public void actualizarSaldo(Usuario Actual){
-        String consulta = "UPDATE `bbdd_fantasy`.`tbl_equipo` SET `DINERO` = '"+Actual.getEquipo().getDinero()+"'"
+
+    public void actualizarSaldo(Usuario Actual) {
+        String consulta = "UPDATE `bbdd_fantasy`.`tbl_equipo` SET `DINERO` = '" + Actual.getEquipo().getDinero() + "'"
                 + " WHERE  (`ID_USUARIO` = "
-                + "(SELECT ID_USUARIO FROM TBL_USUARIO WHERE USUARIO='"+Actual.getNombreUsuario()+"'));";
+                + "(SELECT ID_USUARIO FROM TBL_USUARIO WHERE USUARIO='" + Actual.getNombreUsuario() + "'));";
         OperacionesBBDD escritura = new OperacionesBBDD();
+        escritura.escrituraSql(consulta);
+    }
+
+    public void añadirJugador(Usuario Actual, String jugador) {
+        String consulta = "INSERT INTO TBL_JUGADOR_EQUIPO\n"
+                + "SELECT \n"
+                + "(SELECT ID_JUGADOR\n"
+                + "FROM TBL_JUGADORES \n"
+                + "WHERE NOMBRE='" + jugador + "'),\n"
+                + "(SELECT ID_EQUIPO\n"
+                + "FROM TBL_EQUIPO \n"
+                + "WHERE NOMBRE_PLANTILLA='" + Actual.getEquipo().getNombre() + "'),\n"
+                + "('NO'); ";
+
+        System.out.println(consulta);
+        OperacionesBBDD escritura = new OperacionesBBDD();
+
         escritura.escrituraSql(consulta);
     }
 }
