@@ -23,43 +23,18 @@ public class pantallaJugadores extends javax.swing.JFrame {
     }
 
     public void rellenarTbl() {
-        Iterator<Futbolista> it = Actual.getJugadores().iterator();
+       Iterator it = Actual.getLiga().getJugadoresLibres().iterator();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         while (it.hasNext()) {
-            Futbolista jugador = it.next();
-            int x = 1;
-            int agenteLibre= Actual.getLiga().getIntegrantes().size();
-            while (x < Actual.getLiga().getIntegrantes().size()) {
-                if (Actual.getLiga().getIntegrantes().get(x).getJugadores().contains(jugador)) {
-                    model.addRow(new Object[]{new ImageIcon(getClass().getResource("/images/jugadores/" + jugador.getNombre() + ".png")), jugador.getNombre(), jugador.getPosicion(), df.format(jugador.getPrecio() / 1000000.0), jugador.getAtaque(), jugador.getDefensa(), Actual.getLiga().getIntegrantes().get(x).getEquipo().getNombre()});
-
-                } else {
-                    agenteLibre --;
-                }
-                x++;
-
-            }
-            if(agenteLibre == 0){
-                                    model.addRow(new Object[]{new ImageIcon(getClass().getResource("/images/jugadores/" + jugador.getNombre() + ".png")), jugador.getNombre(), jugador.getPosicion(), df.format(jugador.getPrecio() / 1000000.0), jugador.getAtaque(), jugador.getDefensa(), "Libre"});
-
-            }
+            
+            Futbolista jugador = (Futbolista) it.next();
+            System.out.println(jugador.getNombre());
+            model.addRow(new Object[]{new ImageIcon(getClass().getResource("/images/jugadores/" + jugador.getNombre() + ".png")), jugador.getNombre(), jugador.getPosicion(), df.format(jugador.getPrecio() / 1000000.0), jugador.getAtaque(), jugador.getDefensa(), "Libre"});
 
         }
 
-        // Establece el renderizador de celdas personalizado para la columna de imágenes
         ImageTableCellRenderer renderer = new ImageTableCellRenderer();
         jTable1.getColumnModel().getColumn(0).setCellRenderer(renderer);
-    }
-
-    public void vaciarTabla() {
-
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        int rowCount = model.getRowCount();
-        for (int i = rowCount - 1; i >= 0; i--) {
-            model.removeRow(i);
-
-        }
-
     }
 
     @SuppressWarnings("unchecked")
@@ -78,7 +53,6 @@ public class pantallaJugadores extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(900, 700));
         setMinimumSize(new java.awt.Dimension(900, 700));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(900, 700));
         setShape(new RoundRectangle2D.Double(0, 0, 900, 700, 50, 50));
 
         jPanel1.setBackground(new java.awt.Color(51, 61, 87));
