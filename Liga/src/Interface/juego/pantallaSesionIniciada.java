@@ -621,7 +621,12 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPlantillaActionPerformed
     private void comprobarPartidos() {
-
+        
+        
+        
+        
+        
+        
     }
 
     public void actualizarCabezera() {

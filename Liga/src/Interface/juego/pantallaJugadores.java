@@ -21,6 +21,7 @@ public class pantallaJugadores extends javax.swing.JFrame {
 
         rellenarTbl();
     }
+    
 
     public void rellenarTbl() {
        Iterator it = Actual.getLiga().getJugadoresLibres().iterator();
@@ -30,7 +31,6 @@ public class pantallaJugadores extends javax.swing.JFrame {
             Futbolista jugador = (Futbolista) it.next();
             System.out.println(jugador.getNombre());
             model.addRow(new Object[]{new ImageIcon(getClass().getResource("/images/jugadores/" + jugador.getNombre() + ".png")), jugador.getNombre(), jugador.getPosicion(), df.format(jugador.getPrecio() / 1000000.0), jugador.getAtaque(), jugador.getDefensa(), "Libre"});
-
         }
 
         ImageTableCellRenderer renderer = new ImageTableCellRenderer();
