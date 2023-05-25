@@ -8,6 +8,7 @@ import Methods.Entrenador;
 import Methods.Equipo;
 import Methods.Futbolista;
 import Methods.Liga;
+import Methods.Sobre;
 import Methods.Usuario;
 import OperacionesBBDD.OperacionesBBDD;
 import java.sql.ResultSet;
@@ -83,6 +84,19 @@ public class EnviarDatosBBDD {
                 + "FROM TBL_EQUIPO \n"
                 + "WHERE NOMBRE_PLANTILLA='" + Actual.getEquipo().getNombre() + "'),\n"
                 + "('NO'); ";
+
+        System.out.println(consulta);
+        OperacionesBBDD escritura = new OperacionesBBDD();
+
+        escritura.escrituraSql(consulta);
+    }
+
+    public void añadirSobre(Usuario Actual, Sobre sobre) {
+        String consulta = "INSERT INTO TBL_SOBRE_EQUIPO \n"
+                + "SELECT (SELECT ID_EQUIPO FROM TBL_EQUIPO \n"
+                + "WHERE NOMBRE_PLANTILLA='"+Actual.getEquipo().getNombre()+"'),\n"
+                + "(SELECT ID_SOBRE FROM TBL_SOBRE_TIENDA\n"
+                + "WHERE NOMBRE_SOBRE='"+sobre.getNombre()+"');";
 
         System.out.println(consulta);
         OperacionesBBDD escritura = new OperacionesBBDD();

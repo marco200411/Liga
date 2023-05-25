@@ -20,6 +20,7 @@ public class Equipo {
     int victorias;
     int derrotas;
     ArrayList<Partido> partidosEquipo = new ArrayList();
+    ArrayList<Sobre> sobresAbiertos = new ArrayList();
 
     public Equipo(Liga liga, Entrenador entrenador, String nombre, int dinero, int puntos, int victorias, int derrotas) {
         this.liga = liga;
@@ -29,6 +30,14 @@ public class Equipo {
         this.puntos = puntos;
         this.victorias = victorias;
         this.derrotas = derrotas;
+    }
+
+    public ArrayList<Sobre> getSobresAbiertos() {
+        return sobresAbiertos;
+    }
+
+    public void setSobresAbiertos(ArrayList<Sobre> sobresAbiertos) {
+        this.sobresAbiertos = sobresAbiertos;
     }
 
     public int getVictorias() {
@@ -46,8 +55,6 @@ public class Equipo {
     public void setDerrotas(int derrotas) {
         this.derrotas = derrotas;
     }
-
-   
 
     public ArrayList<Partido> getPartidosEquipo() {
         return partidosEquipo;

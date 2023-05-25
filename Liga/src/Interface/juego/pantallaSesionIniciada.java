@@ -205,6 +205,11 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         btnTienda.setContentAreaFilled(false);
         btnTienda.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tienda.click.png"))); // NOI18N
         btnTienda.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tienda.hover.png"))); // NOI18N
+        btnTienda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTiendaActionPerformed(evt);
+            }
+        });
         layerMenu.add(btnTienda);
 
         btnLiga.setBackground(new java.awt.Color(206, 206, 206));
@@ -678,6 +683,12 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         pantallaJugadores pantalla = new pantallaJugadores(Actual);
         pantalla.setVisible(true);
     }//GEN-LAST:event_btnBuscarJugadorActionPerformed
+
+    private void btnTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiendaActionPerformed
+       this.setVisible(false);
+        pantallaTienda pantalla = new pantallaTienda(Actual);
+        pantalla.setVisible(true);
+    }//GEN-LAST:event_btnTiendaActionPerformed
 
     /**
      * @param args the command line arguments

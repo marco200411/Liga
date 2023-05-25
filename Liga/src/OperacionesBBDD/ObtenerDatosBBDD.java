@@ -5,6 +5,7 @@ import Methods.Equipo;
 import Methods.Futbolista;
 import Methods.Liga;
 import Methods.Partido;
+import Methods.Sobre;
 import Methods.Usuario;
 import OperacionesBBDD.OperacionesBBDD;
 import java.sql.ResultSet;
@@ -19,6 +20,51 @@ public class ObtenerDatosBBDD {
     public boolean comprobarUsuario(String usuario, String contraseña) {
 
         return false;
+
+    }
+
+    public void getSobres(Usuario us) {
+        String consulta = ("SELECT NOMBRE_SOBRE, CANTIDAD_JUGADORES, PRECIO\n"
+                + "FROM TBL_SOBRE_TIENDA;");
+
+        OperacionesBBDD escritura = new OperacionesBBDD();
+        ResultSet mysqlResult = escritura.getSQL(consulta);
+        Sobre sobre = null;
+        us.getLiga().getSobreDisponible().clear();
+        try {
+
+            while (mysqlResult.next()) {
+                sobre = new Sobre(mysqlResult.getString(1), mysqlResult.getInt(2), mysqlResult.getInt(3));
+                us.getLiga().getSobreDisponible().add(sobre);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ObtenerDatosBBDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void gethistorialSobre(Usuario us) {
+        String consulta = ("SELECT ST.NOMBRE_SOBRE, ST.CANTIDAD_JUGADORES, ST.PRECIO\n"
+                + "FROM TBL_SOBRE_EQUIPO AS SE\n"
+                + "INNER JOIN TBL_SOBRE_TIENDA AS ST\n"
+                + "ON SE.ID_SOBRE=ST.ID_SOBRE\n"
+                + "WHERE SE.ID_EQUIPO=(SELECT ID_EQUIPO FROM TBL_EQUIPO WHERE NOMBRE_PLANTILLA = '" + us.getEquipo().getNombre() + "');");
+        us.getEquipo().getSobresAbiertos().clear();
+        OperacionesBBDD escritura = new OperacionesBBDD();
+        ResultSet mysqlResult = escritura.getSQL(consulta);
+        Sobre sobre = null;
+        try {
+
+            while (mysqlResult.next()) {
+              
+                sobre = new Sobre(mysqlResult.getString(1), mysqlResult.getInt(2), mysqlResult.getInt(3));
+                us.getEquipo().getSobresAbiertos().add(sobre);
+                  System.out.println(sobre.getNombre());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ObtenerDatosBBDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 

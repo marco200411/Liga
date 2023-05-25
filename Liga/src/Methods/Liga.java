@@ -14,7 +14,7 @@ public class Liga {
 
     String Nombre;
     String Administrador;
-
+    ArrayList<Sobre> sobreDisponible = new ArrayList();
     ArrayList<Usuario> integrantes = new ArrayList();
     ArrayList<Futbolista> jugadoresJugando = new ArrayList();
     private ArrayList<Futbolista> jugadoresLibres = new ArrayList();
@@ -28,6 +28,14 @@ public class Liga {
         this.Nombre = Nombre;
         this.Administrador = Administrador;
 
+    }
+
+    public ArrayList<Sobre> getSobreDisponible() {
+        return sobreDisponible;
+    }
+
+    public void setSobreDisponible(ArrayList<Sobre> sobreDisponible) {
+        this.sobreDisponible = sobreDisponible;
     }
 
     public ArrayList<Futbolista> getJugadoresLibresPortero() {
@@ -109,9 +117,5 @@ public class Liga {
     public void setPartidos(ArrayList<Partido> partidos) {
         this.partidos = partidos;
     }
-
-    
-    
-   
 
 }

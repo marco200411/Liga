@@ -95,6 +95,10 @@ VALUES
 ('Matteo Pessina', 'MEDIO', '6000000', 75, 60),
 ('Dusan Vlahovic', 'DELANTERO', '9000000', 85, 10);
 
+INSERT INTO `bbdd_fantasy`.`tbl_sobre_tienda` (`id_sobre`, `nombre_sobre`, `cantidad_jugadores`, `precio`) VALUES ('1', 'Sobre oro normal', '3', '20000000');
+INSERT INTO `bbdd_fantasy`.`tbl_sobre_tienda` (`id_sobre`, `nombre_sobre`, `cantidad_jugadores`, `precio`) VALUES ('2', 'Sobre especial', '5', '40000000');
+INSERT INTO `bbdd_fantasy`.`tbl_sobre_tienda` (`id_sobre`, `nombre_sobre`, `cantidad_jugadores`, `precio`) VALUES ('3', 'Mega sobre', '7', '75000000');
+INSERT INTO `bbdd_fantasy`.`tbl_sobre_tienda` (`id_sobre`, `nombre_sobre`, `cantidad_jugadores`, `precio`) VALUES ('4', 'Sobre incial', '1', '0');
 
 
 

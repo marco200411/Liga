@@ -16,15 +16,17 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
-public class pantallaJugadores extends javax.swing.JFrame {
+public class pantallaSobreAbierto extends javax.swing.JFrame {
 
     ImageTableModel model = new ImageTableModel();
     Usuario Actual = null;
+    Sobre sobre = null;
     DecimalFormat df = new DecimalFormat("0.##M");
     private TableRowSorter trsfiltro;
     String filtro;
 
-    public pantallaJugadores(Usuario usuarioActual) {
+    public pantallaSobreAbierto(Usuario usuarioActual, Sobre sobre1) {
+        sobre = sobre1;
         Actual = usuarioActual;
         initComponents();
         rellenarTbl();
@@ -33,7 +35,7 @@ public class pantallaJugadores extends javax.swing.JFrame {
 
     public void rellenarTbl() {
         lblSaldo.setText(df.format(Actual.getEquipo().getDinero() / 1000000.0));
-        Iterator it = Actual.getLiga().getJugadoresLibres().iterator();
+        Iterator it = sobre.getContenidoSobre().iterator();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         while (it.hasNext()) {
 
@@ -50,7 +52,7 @@ public class pantallaJugadores extends javax.swing.JFrame {
 
         ArrayList<Futbolista> jugadoresBusqueda = new ArrayList();
 
-        Iterator it1 = Actual.getLiga().getJugadoresLibres().iterator();
+        Iterator it1 = sobre.getContenidoSobre().iterator();
 
         while (it1.hasNext()) {
             Futbolista jugador = (Futbolista) it1.next();
@@ -106,9 +108,9 @@ public class pantallaJugadores extends javax.swing.JFrame {
         lblPrecio = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(900, 700));
         setMinimumSize(new java.awt.Dimension(900, 700));
         setUndecorated(true);
         setShape(new RoundRectangle2D.Double(0, 0, 900, 700, 50, 50));
@@ -376,7 +378,7 @@ public class pantallaJugadores extends javax.swing.JFrame {
 
         jPanel1.add(layerMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 35, 889, 105));
 
-        btnComprar.setText("Comprar");
+        btnComprar.setText("Vender");
         btnComprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnComprarActionPerformed(evt);
@@ -436,6 +438,14 @@ public class pantallaJugadores extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 150, -1, 50));
+
+        jButton2.setText("Guardar todo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 460, 170, 70));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -516,7 +526,7 @@ public class pantallaJugadores extends javax.swing.JFrame {
 
     private void btnBuscarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarJugadorActionPerformed
         this.setVisible(false);
-        pantallaJugadores pantalla = new pantallaJugadores(Actual);
+        pantallaSobreAbierto pantalla = new pantallaSobreAbierto(Actual, sobre);
         pantalla.setVisible(true);
     }//GEN-LAST:event_btnBuscarJugadorActionPerformed
 
@@ -567,36 +577,36 @@ public class pantallaJugadores extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MousePressed
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
+        Futbolista futbolistaEliminar = null;
         String nombre = (String) jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 1);
-        EnviarDatosBBDD set = new EnviarDatosBBDD();
-        set.añadirJugador(Actual, nombre);
-        Iterator it = Actual.getLiga().getJugadoresLibres().iterator();
-        System.out.println(nombre);
-        Futbolista futbolistaFichado = null;
-        while (it.hasNext()) {
-
-            Futbolista futbolista = (Futbolista) it.next();
-            if (futbolista.getNombre().equals(nombre)) {
-                futbolistaFichado = futbolista;
+        EnviarDatosBBDD send = new EnviarDatosBBDD();
+       
+        if (nombre != null) {
+            Iterator it = Actual.getJugadores().iterator();
+            while (it.hasNext()) {
+                futbolistaEliminar = (Futbolista) it.next();
+                     
+                if (futbolistaEliminar.getNombre().equalsIgnoreCase(nombre)) {
+                    System.out.println("asda: " + nombre);
+                     System.out.println("asda: " + futbolistaEliminar.getNombre());
+                    Actual.getJugadores().remove(futbolistaEliminar);
+                    send.eliminarJugador(Actual, nombre);
+                    System.out.println(Actual.getEquipo().getDinero());
+                    int saldo = Actual.getEquipo().getDinero() + futbolistaEliminar.getPrecio();
+                    Actual.getEquipo().setDinero(saldo);
+                    send.actualizarSaldo(Actual);
+                    System.out.println("Eliminado con exito");
+                    lblSaldo.setText(df.format(Actual.getEquipo().getDinero() / 1000000.0));
+                }
 
             }
 
         }
-        if (futbolistaFichado != null) {
-            Actual.getLiga().getJugadoresLibres().remove(futbolistaFichado);
-            Actual.getJugadores().add(futbolistaFichado);
-            Actual.getEquipo().setDinero(Actual.getEquipo().getDinero() - futbolistaFichado.getPrecio());
-            set.actualizarSaldo(Actual);
-        }
 
-        this.setVisible(false);
-        pantallaJugadores pantalla = new pantallaJugadores(Actual);
-        pantalla.setVisible(true);
 
     }//GEN-LAST:event_btnComprarActionPerformed
 
     private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
-        
 
 //       if (txtNombre.getText() == "") {
 //            System.out.println("empty");
@@ -643,6 +653,14 @@ public class pantallaJugadores extends javax.swing.JFrame {
 
         });
     }//GEN-LAST:event_txtNombreKeyPressed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        this.setVisible(false);
+        pantallaTienda pantalla = new pantallaTienda(Actual);
+        pantalla.setVisible(true);
+
+    }//GEN-LAST:event_jButton2ActionPerformed
     public void filtro() {
         filtro = txtNombre.getText();
         trsfiltro.setRowFilter(RowFilter.regexFilter(txtNombre.getText(), 1));
@@ -663,21 +681,22 @@ public class pantallaJugadores extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(pantallaJugadores.class
+            java.util.logging.Logger.getLogger(pantallaSobreAbierto.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(pantallaJugadores.class
+            java.util.logging.Logger.getLogger(pantallaSobreAbierto.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(pantallaJugadores.class
+            java.util.logging.Logger.getLogger(pantallaSobreAbierto.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(pantallaJugadores.class
+            java.util.logging.Logger.getLogger(pantallaSobreAbierto.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -703,6 +722,7 @@ public class pantallaJugadores extends javax.swing.JFrame {
     private javax.swing.JButton btnRetroceder;
     private javax.swing.JButton btnTienda;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
