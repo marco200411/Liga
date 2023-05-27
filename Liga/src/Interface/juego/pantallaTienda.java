@@ -45,7 +45,7 @@ public class pantallaTienda extends javax.swing.JFrame {
         btnMinimizar = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jPanel4 = new javax.swing.JPanel();
+        panelSobre2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         btnOpen2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -61,7 +61,7 @@ public class pantallaTienda extends javax.swing.JFrame {
         lblContenidoSobre4 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         lblNombreSobre4 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        panelSobre1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnOpen1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -69,7 +69,7 @@ public class pantallaTienda extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         lblContenidoSobre1 = new javax.swing.JLabel();
         lblNombreSobre1 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        panelSobre3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         btnOpen3 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
@@ -91,7 +91,7 @@ public class pantallaTienda extends javax.swing.JFrame {
         layerMenu.setBackground(new java.awt.Color(51, 61, 87));
         layerMenu.setForeground(new java.awt.Color(51, 61, 87));
         layerMenu.setOpaque(true);
-        layerMenu.setLayout(new java.awt.GridLayout());
+        layerMenu.setLayout(new java.awt.GridLayout(1, 0));
 
         btnHome.setBackground(new java.awt.Color(206, 206, 206));
         btnHome.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -309,11 +309,11 @@ public class pantallaTienda extends javax.swing.JFrame {
         jLayeredPane1.setOpaque(true);
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel4.setBackground(new java.awt.Color(68, 68, 68));
-        jPanel4.setForeground(new java.awt.Color(60, 63, 65));
-        jPanel4.setMaximumSize(new java.awt.Dimension(200, 250));
-        jPanel4.setMinimumSize(new java.awt.Dimension(200, 250));
-        jPanel4.setPreferredSize(new java.awt.Dimension(200, 250));
+        panelSobre2.setBackground(new java.awt.Color(68, 68, 68));
+        panelSobre2.setForeground(new java.awt.Color(60, 63, 65));
+        panelSobre2.setMaximumSize(new java.awt.Dimension(200, 250));
+        panelSobre2.setMinimumSize(new java.awt.Dimension(200, 250));
+        panelSobre2.setPreferredSize(new java.awt.Dimension(200, 250));
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -327,6 +327,11 @@ public class pantallaTienda extends javax.swing.JFrame {
 
         btnOpen2.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         btnOpen2.setText("Open");
+        btnOpen2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpen2ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel7.setText("Precio:");
@@ -340,41 +345,41 @@ public class pantallaTienda extends javax.swing.JFrame {
 
         lblNombreSobre2.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelSobre2Layout = new javax.swing.GroupLayout(panelSobre2);
+        panelSobre2.setLayout(panelSobre2Layout);
+        panelSobre2Layout.setHorizontalGroup(
+            panelSobre2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSobre2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(panelSobre2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelSobre2Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(btnOpen2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGroup(panelSobre2Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblPrecioSobre2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGroup(panelSobre2Layout.createSequentialGroup()
                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblContenidoSobre2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(lblNombreSobre2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        panelSobre2Layout.setVerticalGroup(
+            panelSobre2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSobre2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblNombreSobre2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelSobre2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                     .addComponent(lblContenidoSobre2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelSobre2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblPrecioSobre2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -382,7 +387,7 @@ public class pantallaTienda extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLayeredPane1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, -1, 390));
+        jLayeredPane1.add(panelSobre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, -1, 390));
 
         pnlSobreInicio.setBackground(new java.awt.Color(68, 68, 68));
         pnlSobreInicio.setForeground(new java.awt.Color(60, 63, 65));
@@ -402,6 +407,11 @@ public class pantallaTienda extends javax.swing.JFrame {
 
         btnOpen4.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         btnOpen4.setText("Open");
+        btnOpen4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpen4ActionPerformed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel11.setText("Precio:");
@@ -459,11 +469,11 @@ public class pantallaTienda extends javax.swing.JFrame {
 
         jLayeredPane1.add(pnlSobreInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, -1, 390));
 
-        jPanel2.setBackground(new java.awt.Color(68, 68, 68));
-        jPanel2.setForeground(new java.awt.Color(60, 63, 65));
-        jPanel2.setMaximumSize(new java.awt.Dimension(200, 250));
-        jPanel2.setMinimumSize(new java.awt.Dimension(200, 250));
-        jPanel2.setPreferredSize(new java.awt.Dimension(200, 250));
+        panelSobre1.setBackground(new java.awt.Color(68, 68, 68));
+        panelSobre1.setForeground(new java.awt.Color(60, 63, 65));
+        panelSobre1.setMaximumSize(new java.awt.Dimension(200, 250));
+        panelSobre1.setMinimumSize(new java.awt.Dimension(200, 250));
+        panelSobre1.setPreferredSize(new java.awt.Dimension(200, 250));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -495,41 +505,41 @@ public class pantallaTienda extends javax.swing.JFrame {
 
         lblNombreSobre1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelSobre1Layout = new javax.swing.GroupLayout(panelSobre1);
+        panelSobre1.setLayout(panelSobre1Layout);
+        panelSobre1Layout.setHorizontalGroup(
+            panelSobre1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSobre1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelSobre1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnOpen1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(panelSobre1Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblPrecioSobre1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(panelSobre1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(panelSobre1Layout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblContenidoSobre1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(lblNombreSobre1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        panelSobre1Layout.setVerticalGroup(
+            panelSobre1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSobre1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblNombreSobre1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelSobre1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                     .addComponent(lblContenidoSobre1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelSobre1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(lblPrecioSobre1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -537,13 +547,13 @@ public class pantallaTienda extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLayeredPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, 390));
+        jLayeredPane1.add(panelSobre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, 390));
 
-        jPanel5.setBackground(new java.awt.Color(68, 68, 68));
-        jPanel5.setForeground(new java.awt.Color(60, 63, 65));
-        jPanel5.setMaximumSize(new java.awt.Dimension(200, 250));
-        jPanel5.setMinimumSize(new java.awt.Dimension(200, 250));
-        jPanel5.setPreferredSize(new java.awt.Dimension(200, 250));
+        panelSobre3.setBackground(new java.awt.Color(68, 68, 68));
+        panelSobre3.setForeground(new java.awt.Color(60, 63, 65));
+        panelSobre3.setMaximumSize(new java.awt.Dimension(200, 250));
+        panelSobre3.setMinimumSize(new java.awt.Dimension(200, 250));
+        panelSobre3.setPreferredSize(new java.awt.Dimension(200, 250));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -557,6 +567,11 @@ public class pantallaTienda extends javax.swing.JFrame {
 
         btnOpen3.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         btnOpen3.setText("Open");
+        btnOpen3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpen3ActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel9.setText("Precio:");
@@ -570,39 +585,39 @@ public class pantallaTienda extends javax.swing.JFrame {
 
         lblNombreSobre3.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelSobre3Layout = new javax.swing.GroupLayout(panelSobre3);
+        panelSobre3.setLayout(panelSobre3Layout);
+        panelSobre3Layout.setHorizontalGroup(
+            panelSobre3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSobre3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelSobre3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnOpen3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGroup(panelSobre3Layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblPrecioSobre3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGroup(panelSobre3Layout.createSequentialGroup()
                         .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblContenidoSobre3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(lblNombreSobre3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        panelSobre3Layout.setVerticalGroup(
+            panelSobre3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSobre3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblNombreSobre3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelSobre3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                     .addComponent(lblContenidoSobre3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelSobre3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblPrecioSobre3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -610,7 +625,7 @@ public class pantallaTienda extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLayeredPane1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, -1, 390));
+        jLayeredPane1.add(panelSobre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, -1, 390));
 
         btnError.setBackground(new java.awt.Color(92, 99, 112));
         btnError.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -770,6 +785,8 @@ public class pantallaTienda extends javax.swing.JFrame {
         
     }
 
+    
+    
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
         Menu pantalla = new Menu();
@@ -799,14 +816,15 @@ public class pantallaTienda extends javax.swing.JFrame {
         btnError.setVisible(false);
     }//GEN-LAST:event_btnErrorActionPerformed
     
-    public void abrirSobre(Sobre sobre) {
+    
+    public void abrirSobre( Sobre sobre) {
         int capacidad = sobre.getCantidad_jugadores();
         EnviarDatosBBDD send = new EnviarDatosBBDD();
         while (capacidad > 0) {
-            System.out.println(capacidad);
             Futbolista furtbolistaRandom = Actual.getLiga().getJugadoresLibres().get((int) (Math.random() * Actual.getLiga().getJugadoresLibres().size()));
             sobre.getContenidoSobre().add(furtbolistaRandom);
             Actual.getLiga().getJugadoresLibres().remove(furtbolistaRandom);
+            Actual.getJugadores().add(furtbolistaRandom);
             send.añadirJugador(Actual, furtbolistaRandom.getNombre());
             capacidad--;
         }
@@ -817,17 +835,36 @@ public class pantallaTienda extends javax.swing.JFrame {
         
         pantallaSobreAbierto pantalla = new pantallaSobreAbierto(Actual, sobre);
         pantalla.setVisible(true);
-        this.setVisible(false);
         
+        this.setVisible(false);  
     }
-    
 
     private void btnOpen1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpen1ActionPerformed
         
         Sobre sobre = new Sobre(lblNombreSobre1.getText(), Integer.parseInt(lblContenidoSobre1.getText()), Integer.parseInt(lblPrecioSobre1.getText()));
-        abrirSobre(sobre);
+     
+      abrirSobre(sobre);
 
     }//GEN-LAST:event_btnOpen1ActionPerformed
+
+    private void btnOpen2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpen2ActionPerformed
+          Sobre sobre = new Sobre(lblNombreSobre2.getText(), Integer.parseInt(lblContenidoSobre2.getText()), Integer.parseInt(lblPrecioSobre2.getText()));
+     
+        abrirSobre(sobre);
+        
+    }//GEN-LAST:event_btnOpen2ActionPerformed
+
+    private void btnOpen3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpen3ActionPerformed
+        Sobre sobre = new Sobre(lblNombreSobre3.getText(), Integer.parseInt(lblContenidoSobre3.getText()), Integer.parseInt(lblPrecioSobre3.getText()));
+       
+        abrirSobre( sobre);
+    }//GEN-LAST:event_btnOpen3ActionPerformed
+
+    private void btnOpen4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpen4ActionPerformed
+      Sobre sobre = new Sobre(lblNombreSobre4.getText(), Integer.parseInt(lblContenidoSobre4.getText()), Integer.parseInt(lblPrecioSobre4.getText()));
+      
+      abrirSobre(sobre);
+    }//GEN-LAST:event_btnOpen4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -895,9 +932,6 @@ public class pantallaTienda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JLayeredPane layerMenu;
     private javax.swing.JLabel lblContenidoSobre1;
     private javax.swing.JLabel lblContenidoSobre2;
@@ -913,6 +947,9 @@ public class pantallaTienda extends javax.swing.JFrame {
     private javax.swing.JLabel lblPrecioSobre4;
     private javax.swing.JLabel lblSaldo;
     private javax.swing.JLayeredPane panelAcciones;
+    private javax.swing.JPanel panelSobre1;
+    private javax.swing.JPanel panelSobre2;
+    private javax.swing.JPanel panelSobre3;
     private javax.swing.JPanel pnlSobreInicio;
     // End of variables declaration//GEN-END:variables
 

@@ -1,5 +1,7 @@
 package Methods;
 
+import Interface.juego.pantallaSobreAbierto;
+import OperacionesBBDD.EnviarDatosBBDD;
 import java.util.ArrayList;
 
 public class Sobre {
@@ -12,6 +14,8 @@ public class Sobre {
         this.cantidad_jugadores = cantidad_jugadores;
         this.precio = precio;
     }
+    
+    
 
     public String getNombre() {
         return nombre;

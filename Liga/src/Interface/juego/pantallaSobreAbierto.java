@@ -10,8 +10,11 @@ import java.awt.geom.RoundRectangle2D;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -30,7 +33,7 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
         Actual = usuarioActual;
         initComponents();
         rellenarTbl();
-
+        
     }
 
     public void rellenarTbl() {
@@ -40,42 +43,12 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
         while (it.hasNext()) {
 
             Futbolista jugador = (Futbolista) it.next();
-            System.out.println(jugador.getNombre());
+
             model.addRow(new Object[]{new ImageIcon(getClass().getResource("/images/jugadores/" + jugador.getNombre() + ".png")), jugador.getNombre(), jugador.getPosicion(), df.format(jugador.getPrecio() / 1000000.0), jugador.getAtaque(), jugador.getDefensa(), "Libre"});
         }
 
         ImageTableCellRenderer renderer = new ImageTableCellRenderer();
         jTable1.getColumnModel().getColumn(0).setCellRenderer(renderer);
-    }
-
-    public void rellenarTblBusqueda() {
-
-        ArrayList<Futbolista> jugadoresBusqueda = new ArrayList();
-
-        Iterator it1 = sobre.getContenidoSobre().iterator();
-
-        while (it1.hasNext()) {
-            Futbolista jugador = (Futbolista) it1.next();
-            if (jugador.getNombre().contains(txtNombre.getName())) {
-                System.out.println(jugador.getNombre());
-                jugadoresBusqueda.add(jugador);
-            }
-
-        }
-        if (jugadoresBusqueda.size() > 1) {
-            Iterator it2 = jugadoresBusqueda.iterator();
-
-            while (it2.hasNext()) {
-                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-                Futbolista jugador = (Futbolista) it2.next();
-                System.out.println(jugador.getNombre());
-                model.addRow(new Object[]{new ImageIcon(getClass().getResource("/images/jugadores/" + jugador.getNombre() + ".png")), jugador.getNombre(), jugador.getPosicion(), df.format(jugador.getPrecio() / 1000000.0), jugador.getAtaque(), jugador.getDefensa(), "Libre"});
-            }
-
-            ImageTableCellRenderer renderer = new ImageTableCellRenderer();
-            jTable1.getColumnModel().getColumn(0).setCellRenderer(renderer);
-        }
-
     }
 
     @SuppressWarnings("unchecked")
@@ -98,8 +71,7 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
         btnTienda = new javax.swing.JButton();
         btnLiga = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
-        btnComprar = new javax.swing.JButton();
-        btnError = new javax.swing.JButton();
+        btnVender = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblSaldo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -150,7 +122,7 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 680, 430));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 680, 390));
 
         panelAcciones.setMaximumSize(new java.awt.Dimension(95, 25));
         panelAcciones.setMinimumSize(new java.awt.Dimension(95, 25));
@@ -378,33 +350,13 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
 
         jPanel1.add(layerMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 35, 889, 105));
 
-        btnComprar.setText("Vender");
-        btnComprar.addActionListener(new java.awt.event.ActionListener() {
+        btnVender.setText("Vender");
+        btnVender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnComprarActionPerformed(evt);
+                btnVenderActionPerformed(evt);
             }
         });
-        jPanel1.add(btnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 380, 173, 52));
-
-        btnError.setBackground(new java.awt.Color(92, 99, 112));
-        btnError.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnError.setForeground(new java.awt.Color(153, 0, 0));
-        btnError.setBorder(null);
-        btnError.setBorderPainted(false);
-        btnError.setContentAreaFilled(false);
-        btnError.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnError.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnError.setMaximumSize(new java.awt.Dimension(800, 100));
-        btnError.setMinimumSize(new java.awt.Dimension(800, 100));
-        btnError.setPreferredSize(new java.awt.Dimension(800, 100));
-        btnError.setRequestFocusEnabled(false);
-        btnError.setRolloverEnabled(false);
-        btnError.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnErrorActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnError, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 550, -1, -1));
+        jPanel1.add(btnVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 380, 173, 52));
 
         jLabel1.setText("Saldo:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 150, 50, 30));
@@ -489,14 +441,13 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
         //        btnHome.setIcon(home_90px.hover);
     }//GEN-LAST:event_btnHomeKeyReleased
 
+    
+    
     private void btnPlantillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlantillaActionPerformed
         // TODO add your handling code here:
 
         if (Actual.getEquipo() == null || Actual.getLiga() == null) {
-            btnError.setForeground(new java.awt.Color(100, 0, 0));
-            btnError.setVisible(true);
-            btnError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
-            btnError.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+          
         } else {
             this.setVisible(false);
             PantallaPlantilla pantalla = new PantallaPlantilla(Actual);
@@ -512,10 +463,7 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
 
     private void btnClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClasificacionActionPerformed
         if (Actual.getEquipo() == null || Actual.getLiga() == null) {
-            btnError.setForeground(new java.awt.Color(100, 0, 0));
-            btnError.setVisible(true);
-            btnError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
-            btnError.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+           
         } else {
             this.setVisible(false);
             pantallaClasificacion pantalla = new pantallaClasificacion(Actual);
@@ -553,20 +501,14 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnExitActionPerformed
 
-    private void btnErrorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnErrorActionPerformed
-        // TODO add your handling code here:
-
-        btnError.setVisible(false);
-    }//GEN-LAST:event_btnErrorActionPerformed
-
     private void jTable1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MousePressed
         String nombre = (String) jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 1);
-        Iterator it = Actual.getLiga().getJugadoresLibres().iterator();
-        System.out.println(nombre);
+        Iterator it = Actual.getJugadores().iterator();
+
         while (it.hasNext()) {
 
             Futbolista futbolista = (Futbolista) it.next();
-            if (futbolista.getNombre().equals(nombre)) {
+            if (futbolista.getNombre().equalsIgnoreCase(nombre)) {
                 lblNombre.setText(futbolista.getNombre());
                 lblPrecio.setText("" + df.format(futbolista.getPrecio() / 1000000.0));
             }
@@ -576,61 +518,76 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTable1MousePressed
 
-    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
+    private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
         Futbolista futbolistaEliminar = null;
         String nombre = (String) jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 1);
-        EnviarDatosBBDD send = new EnviarDatosBBDD();
-       
+
         if (nombre != null) {
             Iterator it = Actual.getJugadores().iterator();
+            Futbolista seleccionado = null;
             while (it.hasNext()) {
+
                 futbolistaEliminar = (Futbolista) it.next();
-                     
-                if (futbolistaEliminar.getNombre().equalsIgnoreCase(nombre)) {
-                    System.out.println("asda: " + nombre);
-                     System.out.println("asda: " + futbolistaEliminar.getNombre());
-                    Actual.getJugadores().remove(futbolistaEliminar);
-                    send.eliminarJugador(Actual, nombre);
-                    System.out.println(Actual.getEquipo().getDinero());
-                    int saldo = Actual.getEquipo().getDinero() + futbolistaEliminar.getPrecio();
-                    Actual.getEquipo().setDinero(saldo);
-                    send.actualizarSaldo(Actual);
-                    System.out.println("Eliminado con exito");
-                    lblSaldo.setText(df.format(Actual.getEquipo().getDinero() / 1000000.0));
+                System.out.println(futbolistaEliminar.getNombre());
+
+                if (futbolistaEliminar.getNombre().equals(nombre)) {
+                    seleccionado = futbolistaEliminar;
                 }
 
             }
 
+            eliminarJugador(seleccionado);
+
         }
 
 
-    }//GEN-LAST:event_btnComprarActionPerformed
+    }//GEN-LAST:event_btnVenderActionPerformed
 
-    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+    private void eliminarJugador(Futbolista jugador) {
+        EnviarDatosBBDD send = new EnviarDatosBBDD();
+        Actual.getJugadores().remove(jugador);
+        send.eliminarJugador(Actual, jugador.getNombre());
+        sobre.getContenidoSobre().remove(jugador);
+        Actual.getEquipo().setDinero(Actual.getEquipo().getDinero() + jugador.getPrecio());
 
-//       if (txtNombre.getText() == "") {
-//            System.out.println("empty");
-//            rellenarTbl();
-//        } else {
-//            System.out.println("lleno");
-//            rellenarTblBusqueda();
-//
-//        }
+        send.actualizarSaldo(Actual);
 
-    }//GEN-LAST:event_txtNombreKeyReleased
+        lblSaldo.setText(df.format(Actual.getEquipo().getDinero() / 1000000.0));
+        sobre.getContenidoSobre().remove(jugador);
+        
+        
+        if (sobre.getContenidoSobre().size() == 0) {
+            this.setVisible(false);
+            pantallaTienda pantalla = new pantallaTienda(Actual);
+            pantalla.setVisible(true);
+        } else {
+            this.setVisible(false);
+            pantallaSobreAbierto pantalla = new pantallaSobreAbierto(Actual, sobre);
+            pantalla.setVisible(true);
+        }
 
+    }
+
+
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        this.setVisible(false);
+        pantallaTienda pantalla = new pantallaTienda(Actual);
+        pantalla.setVisible(true);
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-//        if (txtNombre.getText().isBlank()) {
-//            System.out.println("empty");
-//            rellenarTbl();
-//        } else {
-//            System.out.println("lleno");
-//            rellenarTblBusqueda();
-//
-//        }
-
+        //        if (txtNombre.getText().isBlank()) {
+            //            System.out.println("empty");
+            //            rellenarTbl();
+            //        } else {
+            //            System.out.println("lleno");
+            //            rellenarTblBusqueda();
+            //
+            //        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
@@ -638,8 +595,19 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
         trsfiltro = new TableRowSorter(jTable1.getModel());
         jTable1.setRowSorter(trsfiltro);
 
-
     }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+
+        //       if (txtNombre.getText() == "") {
+            //            System.out.println("empty");
+            //            rellenarTbl();
+            //        } else {
+            //            System.out.println("lleno");
+            //            rellenarTblBusqueda();
+            //
+            //        }
+    }//GEN-LAST:event_txtNombreKeyReleased
 
     private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
         txtNombre.addKeyListener(new KeyAdapter() {
@@ -653,14 +621,6 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
 
         });
     }//GEN-LAST:event_txtNombreKeyPressed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-        this.setVisible(false);
-        pantallaTienda pantalla = new pantallaTienda(Actual);
-        pantalla.setVisible(true);
-
-    }//GEN-LAST:event_jButton2ActionPerformed
     public void filtro() {
         filtro = txtNombre.getText();
         trsfiltro.setRowFilter(RowFilter.regexFilter(txtNombre.getText(), 1));
@@ -711,8 +671,6 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarJugador;
     private javax.swing.JButton btnClasificacion;
     private javax.swing.JButton btnClose;
-    private javax.swing.JButton btnComprar;
-    private javax.swing.JButton btnError;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLiga;
@@ -721,6 +679,7 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
     private javax.swing.JButton btnPlantilla;
     private javax.swing.JButton btnRetroceder;
     private javax.swing.JButton btnTienda;
+    private javax.swing.JButton btnVender;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
