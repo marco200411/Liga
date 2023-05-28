@@ -19,7 +19,7 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
     public PantallaLigaAbandonar(Usuario us1) {
         initComponents();
         Actual = us1;
-        
+        lblNombreUsu.setText(Actual.getNombreUsuario());
         if (Actual.getLiga().getAdministrador().equals(Actual.getNombreUsuario())) {
            lblAdministrador.setText("Eres el administrador de la liga");
             lblNombreLiga.setText("Nombre de la liga: " + Actual.getLiga().getNombre());

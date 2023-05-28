@@ -30,13 +30,15 @@ public class pantallaJugadores extends javax.swing.JFrame {
         Actual = usuarioActual;
         initComponents();
         lbldinero.setText(df.format(Actual.getEquipo().getDinero() / 1000000.0));
+        lblSaldo.setText(df.format(Actual.getEquipo().getDinero() / 1000000.0));
         lblNombreUsu.setText(Actual.getNombreUsuario());
+        Actual.getLiga().agentesLibres(Actual);
         rellenarTbl();
-
+        
     }
 
     public void rellenarTbl() {
-        lblSaldo.setText(df.format(Actual.getEquipo().getDinero() / 1000000.0));
+        
         Iterator it = Actual.getLiga().getJugadoresLibres().iterator();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         while (it.hasNext()) {

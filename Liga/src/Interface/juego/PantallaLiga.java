@@ -335,7 +335,7 @@ public class PantallaLiga extends javax.swing.JFrame {
         layerMenu1.setBackground(new java.awt.Color(51, 61, 87));
         layerMenu1.setForeground(new java.awt.Color(51, 61, 87));
         layerMenu1.setOpaque(true);
-        layerMenu1.setLayout(new java.awt.GridLayout());
+        layerMenu1.setLayout(new java.awt.GridLayout(1, 0));
 
         btnHome1.setBackground(new java.awt.Color(206, 206, 206));
         btnHome1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -1053,27 +1053,19 @@ public class PantallaLiga extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscarJugador;
     private javax.swing.JButton btnBuscarJugador1;
-    private javax.swing.JButton btnClasificacion;
     private javax.swing.JButton btnClasificacion1;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnCrearLiga;
-    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnExit1;
-    private javax.swing.JButton btnHome;
     private javax.swing.JButton btnHome1;
     private javax.swing.JButton btnInfoCrear;
     private javax.swing.JButton btnInfoUnirse;
-    private javax.swing.JButton btnLiga;
     private javax.swing.JButton btnLiga1;
     private javax.swing.JButton btnMinimizar;
-    private javax.swing.JButton btnPerfil;
     private javax.swing.JButton btnPerfil1;
-    private javax.swing.JButton btnPlantilla;
     private javax.swing.JButton btnPlantilla1;
     private javax.swing.JButton btnRetroceder;
-    private javax.swing.JButton btnTienda;
     private javax.swing.JButton btnTienda1;
     private javax.swing.JButton btnUnirseLiga;
     private javax.swing.JLabel jLabel1;
@@ -1088,7 +1080,6 @@ public class PantallaLiga extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLayeredPane layerBG;
     private javax.swing.JLayeredPane layerInfoCrearLiga;
-    private javax.swing.JLayeredPane layerMenu;
     private javax.swing.JLayeredPane layerMenu1;
     private javax.swing.JLayeredPane layerUnirseLiga;
     private javax.swing.JLabel lblNombreUsu;
