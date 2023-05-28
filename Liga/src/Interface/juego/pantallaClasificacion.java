@@ -14,23 +14,32 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * La clase pantallaClasificacion representa la pantalla de clasificación de la
+ * aplicación. Muestra la clasificación de los usuarios en función de su
+ * puntuación.
+ *
+ * author Marco
+ */
 public class pantallaClasificacion extends javax.swing.JFrame {
 
     Usuario Actual = null;
     int xMouse, yMouse;
     DecimalFormat df = new DecimalFormat("0.##M");
 
+    /**
+     * Crea una instancia de la clase pantallaClasificacion con el usuario
+     * especificado.
+     *
+     * @param usuario El objeto Usuario que representa al usuario actualmente
+     * conectado.
+     */
     public pantallaClasificacion(Usuario usuario) {
         initComponents();
         Actual = usuario;
         lblNombreUsu.setText(Actual.getNombreUsuario());
         lbldinero.setText(df.format(Actual.getEquipo().getDinero() / 1000000.0));
         rellenarTable();
-    }
-
-    public Usuario getUsuarioActual() {
-        return Actual;
-
     }
 
     @SuppressWarnings("unchecked")

@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Methods;
 
 /**
+ * La clase Persona representa a una persona en el sistema.
  *
- * @author a22marcorr
+ * author Marco
  */
 public class Persona {
 
@@ -14,15 +11,20 @@ public class Persona {
     int precio;
     int ataque;
     int defensa;
-    String imagen;
 
-    public Persona(String nombre, int precio, int ataque, int defensa, String imagen) {
+    /**
+     * Crea una instancia de la clase Persona con los atributos especificados.
+     *
+     * @param nombre  El nombre de la persona.
+     * @param precio  El precio de la persona.
+     * @param ataque  El nivel de ataque de la persona.
+     * @param defensa El nivel de defensa de la persona.
+     */
+    public Persona(String nombre, int precio, int ataque, int defensa) {
         this.nombre = nombre;
         this.precio = precio;
         this.ataque = ataque;
         this.defensa = defensa;
-        this.imagen = imagen;
     }
-
-   
 }
+

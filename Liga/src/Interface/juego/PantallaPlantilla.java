@@ -4,26 +4,32 @@ import Interface.menus.Menu;
 import Methods.Futbolista;
 import Methods.Usuario;
 import OperacionesBBDD.EnviarDatosBBDD;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Label;
-import java.awt.MouseInfo;
-import java.awt.Point;
+
 
 import java.awt.geom.RoundRectangle2D;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
+/**
+ * La clase PantallaPlantilla representa la pantalla principal de la aplicación relacionada con la plantilla del equipo.
+ * Permite al usuario visualizar y actualizar la plantilla de jugadores.
+ *
+ * @author Marco
+ */
 public class PantallaPlantilla extends javax.swing.JFrame {
 
     int xMouse, yMouse;
     Usuario Actual = null;
     DecimalFormat df = new DecimalFormat("0.##M");
 
+    /**
+     * Crea una instancia de la clase PantallaPlantilla con el usuario especificado.
+     *
+     * @param us1 El objeto Usuario que representa al usuario actualmente conectado.
+     */
     public PantallaPlantilla(Usuario us1) {
         Actual = us1;
 
@@ -1582,6 +1588,10 @@ public class PantallaPlantilla extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnExitActionPerformed
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String args[]) {
 
         try {

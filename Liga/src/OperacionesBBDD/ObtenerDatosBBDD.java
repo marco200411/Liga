@@ -15,14 +15,35 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Esta clase contiene métodos para obtener datos de una base de datos relacionados con un juego de fútbol.
+ * Proporciona métodos para realizar consultas y obtener información sobre usuarios, entrenadores, equipos, jugadores, ligas y partidos.
+ * Los métodos de esta clase interactúan con la base de datos utilizando la clase `OperacionesBBDD`.
+ *
+ * @author Marco
+ * @version 1.0
+ * @since 2023-05-28
+ */
 public class ObtenerDatosBBDD {
 
+    /**
+     * Comprueba si un usuario y contraseña son válidos.
+     *
+     * @param usuario     El nombre de usuario o correo electrónico del usuario.
+     * @param contraseña  La contraseña del usuario.
+     * @return true si el usuario y la contraseña son válidos, false de lo contrario.
+     */
     public boolean comprobarUsuario(String usuario, String contraseña) {
 
         return false;
 
     }
 
+    /**
+     * Obtiene los sobres disponibles para un usuario y los agrega a su liga.
+     *
+     * @param us El objeto Usuario al que se agregarán los sobres disponibles.
+     */
     public void getSobres(Usuario us) {
         String consulta = ("SELECT NOMBRE_SOBRE, CANTIDAD_JUGADORES, PRECIO\n"
                 + "FROM TBL_SOBRE_TIENDA;");
@@ -44,6 +65,11 @@ public class ObtenerDatosBBDD {
 
     }
 
+     /**
+     * Obtiene el historial de sobres abiertos por un usuario y los agrega a su equipo.
+     *
+     * @param us El objeto Usuario al que se agregarán los sobres abiertos.
+     */
     public void gethistorialSobre(Usuario us) {
         String consulta = ("SELECT ST.NOMBRE_SOBRE, ST.CANTIDAD_JUGADORES, ST.PRECIO\n"
                 + "FROM TBL_SOBRE_EQUIPO AS SE\n"
@@ -67,8 +93,14 @@ public class ObtenerDatosBBDD {
 
     }
 
+    /**
+     * Obtiene un entrenador de la base de datos basado en el nombre de usuario.
+     *
+     * @param nombreUsuario El nombre de usuario del entrenador.
+     * @return El objeto Entrenador obtenido de la base de datos, o null si no se encontró ningún entrenador.
+     */
     public Entrenador getEntrenadorBBDD(String nombreUsuario) {
-        String consulta = ("SELECT E.NOMBRE,E.VALOR,E.ATAQUE,E.DEFENSA,E.IMAGEN\n"
+        String consulta = ("SELECT E.NOMBRE,E.VALOR,E.ATAQUE,E.DEFENSA\n"
                 + "FROM TBL_ENTRENADOR AS E \n"
                 + "INNER JOIN TBL_EQUIPO AS EQ \n"
                 + "ON E.ID_ENTRENADOR=EQ.ENTRENADOR\n"
@@ -84,7 +116,7 @@ public class ObtenerDatosBBDD {
         try {
 
             if (mysqlResult.next()) {
-                entrenador = new Entrenador(mysqlResult.getString(1), mysqlResult.getInt(2), mysqlResult.getInt(3), mysqlResult.getInt(4), mysqlResult.getString(5));
+                entrenador = new Entrenador(mysqlResult.getString(1), mysqlResult.getInt(2), mysqlResult.getInt(3), mysqlResult.getInt(4));
 
             }
         } catch (SQLException ex) {
@@ -94,6 +126,13 @@ public class ObtenerDatosBBDD {
 
     }
 
+     /**
+     * Obtiene un equipo de la base de datos basado en el nombre de usuario y el entrenador asociado.
+     *
+     * @param usuario    El nombre de usuario del equipo.
+     * @param entrenador El objeto Entrenador asociado al equipo.
+     * @return El objeto Equipo obtenido de la base de datos, o null si no se encontró ningún equipo.
+     */
     public Equipo getEquipoBBDD(String usuario, Entrenador entrenador) {
         String consulta = ("SELECT e.NOMBRE_PLANTILLA,e.DINERO,e.PUNTOS, (\n"
                 + "SELECT COUNT(*) \n"
@@ -132,6 +171,11 @@ public class ObtenerDatosBBDD {
 
     }
 
+     /**
+     * Obtiene todos los jugadores de la base de datos.
+     *
+     * @return Una lista de objetos Futbolista que representa a todos los jugadores.
+     */
     public ArrayList<Futbolista> getAllJugadores() {
         String consulta = ("SELECT NOMBRE, POSICION, PRECIO, ATAQUE, DEFENSA FROM bbdd_fantasy.tbl_jugadores;");
         OperacionesBBDD escritura = new OperacionesBBDD();
@@ -141,7 +185,7 @@ public class ObtenerDatosBBDD {
         try {
             while (mysqlResult.next()) {
 
-                futbolista = new Futbolista(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getInt(3), mysqlResult.getInt(4), mysqlResult.getInt(5), null);
+                futbolista = new Futbolista(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getInt(3), mysqlResult.getInt(4), mysqlResult.getInt(5));
                 allJugadores.add(futbolista);
             }
         } catch (SQLException ex) {
@@ -151,8 +195,13 @@ public class ObtenerDatosBBDD {
 
     }
 
+   /**
+     * Obtiene los jugadores de la plantilla de un usuario y los agrega a su lista de jugadores y plantilla.
+     *
+     * @param usuario El objeto Usuario al que se agregarán los jugadores de la plantilla.
+     */
     public void getJugadoresPlantilla(Usuario usuario) {
-        String consulta = ("SELECT J.NOMBRE, J.POSICION, J.PRECIO, J.ATAQUE, J.DEFENSA, J.IMAGEN, JE.ALINEADO\n"
+        String consulta = ("SELECT J.NOMBRE, J.POSICION, J.PRECIO, J.ATAQUE, J.DEFENSA,  JE.ALINEADO\n"
                 + "FROM TBL_JUGADOR_EQUIPO AS JE \n"
                 + "INNER JOIN TBL_JUGADORES AS J\n"
                 + "ON JE.ID_JUGADOR=J.ID_JUGADOR\n"
@@ -173,9 +222,9 @@ public class ObtenerDatosBBDD {
 
             while (mysqlResult.next()) {
 
-                futbolista = new Futbolista(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getInt(3), mysqlResult.getInt(4), mysqlResult.getInt(5), mysqlResult.getString(6));
+                futbolista = new Futbolista(mysqlResult.getString(1), mysqlResult.getString(2), mysqlResult.getInt(3), mysqlResult.getInt(4), mysqlResult.getInt(5));
 
-                if ("SI".equals(mysqlResult.getString(7))) {
+                if ("SI".equals(mysqlResult.getString(6))) {
 
                     usuario.getPlantilla().add(futbolista);
 
@@ -189,6 +238,12 @@ public class ObtenerDatosBBDD {
 
     }
 
+    /**
+     * Obtiene una liga de la base de datos basada en el nombre de usuario.
+     *
+     * @param usuario El nombre de usuario.
+     * @return 
+     */
     public Liga getLigaBBDD(String usuario) {
         String consulta = ("SELECT L.NOMBRE, U.USUARIO\n"
                 + "FROM TBL_EQUIPO AS E INNER JOIN \n"
@@ -215,6 +270,12 @@ public class ObtenerDatosBBDD {
 
     }
 
+    /**
+     * Comprueba si el usuario esxiste en la base de datos
+     * @param usuario
+     * @param contraseña
+     * @return
+     */
     public boolean ComprobarUsuarioBBDD(String usuario, String contraseña) {
         boolean correcto = false;
         String consulta = null;
@@ -248,6 +309,11 @@ public class ObtenerDatosBBDD {
 
     }
 
+    /**
+     *  Obtiene el usuario que se esta buscando
+     * @param usuario
+     * @return
+     */
     public Usuario getUsuarioBBDD(String usuario) {
 
         String consulta = null;
@@ -280,6 +346,10 @@ public class ObtenerDatosBBDD {
 
     }
 
+    /**
+     *  Obtiene los partidos de una determinada liga
+     * @param liga
+     */
     public void getPartidosBBDD(Liga liga) {
        
         String consulta = null;

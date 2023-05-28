@@ -15,13 +15,22 @@ import java.util.Iterator;
 import Methods.Futbolista;
 
 /**
+ * La clase PantallaLiga representa la pantalla principal de la aplicación relacionada con las ligas.
+ * Permite al usuario unirse a una liga existente o crear una nueva.
  *
  * @author Marco
  */
 public class PantallaLiga extends javax.swing.JFrame {
- int xMouse, yMouse;
+
+    int xMouse, yMouse;
     Usuario Actual = null;
 
+    /**
+     * Crea una instancia de la clase PantallaLiga con el usuario especificado.
+     *
+     * @param us1 El objeto Usuario que representa al usuario actualmente
+     * conectado.
+     */
     public PantallaLiga(Usuario us1) {
         initComponents();
         btnUnirseLiga.setEnabled(true);
@@ -552,7 +561,7 @@ public class PantallaLiga extends javax.swing.JFrame {
                         btnInfoUnirse.setVisible(true);
                         btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/INSERT.png")));
                         btnInfoUnirse.setText("Te has unido con exito a la liga: " + NombreLiga);
-                        Equipo e1 = new Equipo(liga1, null, Actual.getNombre() + "s team", 1000000, 0,0,0);
+                        Equipo e1 = new Equipo(liga1, null, Actual.getNombre() + "s team", 1000000, 0, 0, 0);
                         Actual.setEquipo(e1);
                         Actual.setLiga(liga1);
                         crearEquipo(liga1);
@@ -629,8 +638,8 @@ public class PantallaLiga extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCrearLigaActionPerformed
 
-    public void crearEquipo(Liga liga1) {
-        
+    private void crearEquipo(Liga liga1) {
+
         if (insertarBBDDEquipo()) {
 
             while (Actual.getPlantilla().size() != 11) {
@@ -683,7 +692,7 @@ public class PantallaLiga extends javax.swing.JFrame {
 
     }
 
-    public boolean insertarBBDDEquipo() {
+    private boolean insertarBBDDEquipo() {
         boolean confirm = false;
         String sentenciaInsert = "INSERT INTO TBL_EQUIPO\n"
                 + "(LIGA,NOMBRE_PLANTILLA,DINERO,PUNTOS,ID_USUARIO)\n"
@@ -701,16 +710,16 @@ public class PantallaLiga extends javax.swing.JFrame {
         if (escritura.escrituraSql(sentenciaInsert)) {
 
             confirm = true;
-            Equipo e = new Equipo(Actual.getLiga(), null, Actual.getNombre() + " team", 100000000, 0,0,0);
+            Equipo e = new Equipo(Actual.getLiga(), null, Actual.getNombre() + " team", 100000000, 0, 0, 0);
             Actual.setEquipo(e);
         }
 
         return confirm;
     }
 
-    public void agentesLibres() {
+    private void agentesLibres() {
         Actual.getLiga().getJugadoresLibres().clear();
-        String sentenciaSelect = "SELECT J.NOMBRE, J.POSICION, J.PRECIO, J.ATAQUE, J.DEFENSA, J.IMAGEN\n"
+        String sentenciaSelect = "SELECT J.NOMBRE, J.POSICION, J.PRECIO, J.ATAQUE, J.DEFENSA\n"
                 + "FROM TBL_JUGADORES AS J WHERE \n"
                 + "J.ID_JUGADOR NOT IN\n"
                 + "(SELECT ID_JUGADOR \n"
@@ -727,7 +736,7 @@ public class PantallaLiga extends javax.swing.JFrame {
         try {
             while (results.next()) {
 
-                Futbolista f1 = new Futbolista(results.getString(1), results.getString(2), results.getInt(3), results.getInt(4), results.getInt(5), results.getString(6));
+                Futbolista f1 = new Futbolista(results.getString(1), results.getString(2), results.getInt(3), results.getInt(4), results.getInt(5));
                 if (!Actual.getJugadores().contains(f1)) {
                     Actual.getLiga().getJugadoresLibres().add(f1);
                 }
@@ -740,10 +749,10 @@ public class PantallaLiga extends javax.swing.JFrame {
 
     }
 
-    public void organizarJugadores() {
+    private void organizarJugadores() {
         Actual.getLiga().getJugadoresLibresPortero().clear();
         Actual.getLiga().getJugadoresLibresDefensa().clear();
-        Actual.getLiga().getJugadoresLibresMedio().clear(); 
+        Actual.getLiga().getJugadoresLibresMedio().clear();
         Actual.getLiga().getJugadoresLibresDelantero().clear();
         Iterator<Futbolista> it = Actual.getLiga().getJugadoresLibres().iterator();
         while (it.hasNext()) {
@@ -762,30 +771,30 @@ public class PantallaLiga extends javax.swing.JFrame {
 
     }
 
-    public void jugadoresJugandoLiga() {
-
-        String sentenciaSelect = "SELECT J.NOMBRE, J.POSICION, J.PRECIO, J.ATAQUE, J.DEFENSA\n"
-                + "                FROM TBL_JUGADORES AS J RIGHT JOIN tbl_jugador_equipo AS JE \n"
-                + "                ON JE.ID_JUGADOR=J.ID_JUGADOR INNER JOIN TBL_EQUIPO AS E\n"
-                + "                ON JE.ID_EQUIPO=E.ID_EQUIPO INNER JOIN TBL_USUARIO AS U\n"
-                + "               ON E.PRESIDENTE=U.ID_USUARIO\n"
-                + "                WHERE '" + Actual.getLiga().getNombre() + "'=(SELECT NOMBRE FROM TBL_LIGA WHERE ID_LIGA=U.LIGA_INSCRITO);";
-
-        OperacionesBBDD get = new OperacionesBBDD();
-        ResultSet results = get.getSQL(sentenciaSelect);
-
-        try {
-            while (results.next()) {
-                Futbolista f1 = new Futbolista(results.getString(2), results.getString(1), results.getInt(3), results.getInt(4), results.getInt(5), results.getString(6));
-                Actual.getLiga().getJugadoresJugando().add(f1);
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(PantallaLiga.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
+//    private void jugadoresJugandoLiga() {
+//
+//        String sentenciaSelect = "SELECT J.NOMBRE, J.POSICION, J.PRECIO, J.ATAQUE, J.DEFENSA\n"
+//                + "                FROM TBL_JUGADORES AS J RIGHT JOIN tbl_jugador_equipo AS JE \n"
+//                + "                ON JE.ID_JUGADOR=J.ID_JUGADOR INNER JOIN TBL_EQUIPO AS E\n"
+//                + "                ON JE.ID_EQUIPO=E.ID_EQUIPO INNER JOIN TBL_USUARIO AS U\n"
+//                + "               ON E.PRESIDENTE=U.ID_USUARIO\n"
+//                + "                WHERE '" + Actual.getLiga().getNombre() + "'=(SELECT NOMBRE FROM TBL_LIGA WHERE ID_LIGA=U.LIGA_INSCRITO);";
+//
+//        OperacionesBBDD get = new OperacionesBBDD();
+//        ResultSet results = get.getSQL(sentenciaSelect);
+//
+//        try {
+//            while (results.next()) {
+//                Futbolista f1 = new Futbolista(results.getString(2), results.getString(1), results.getInt(3), results.getInt(4), results.getInt(5));
+//                Actual.getLiga().getJugadoresJugando().add(f1);
+//
+//            }
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(PantallaLiga.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//    }
 
 
     private void btnCrearLigaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCrearLigaKeyReleased

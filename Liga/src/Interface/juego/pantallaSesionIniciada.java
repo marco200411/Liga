@@ -5,12 +5,25 @@ import Methods.Usuario;
 import java.awt.geom.RoundRectangle2D;
 import java.text.DecimalFormat;
 
+/**
+ * La clase pantallaSesionIniciada representa la pantalla principal de sesión iniciada en la aplicación.
+ * Muestra la información del usuario y su liga, así como otros detalles relacionados.
+ *
+ * author Marco
+ */
 public class pantallaSesionIniciada extends javax.swing.JFrame {
 
     Usuario Actual = null;
     int xMouse, yMouse;
     DecimalFormat df = new DecimalFormat("0.##M");
 
+    /**
+     * Crea una instancia de la clase pantallaSesionIniciada con el usuario
+     * especificado.
+     *
+     * @param usuario El objeto Usuario que representa al usuario actualmente
+     * conectado.
+     */
     public pantallaSesionIniciada(Usuario usuario) {
         initComponents();
         Actual = usuario;
@@ -28,7 +41,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
             lbldinero.setText(df.format(Actual.getEquipo().getDinero() / 1000000.0));
             Actual.getLiga().almacenarIntegrantesLiga();
             if (Actual.getLiga().getIntegrantes().size() > 1) {
-                
+
                 Actual.getLiga().almacenarPartidosLiga(Actual);
 
                 Actual.getLiga().almacenarPartidosEquipo(Actual);
@@ -46,11 +59,6 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
             }
 
         }
-
-    }
-
-    public Usuario getUsuarioActual() {
-        return Actual;
 
     }
 
@@ -488,7 +496,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void almacenarTodosJugadores() {
+    private void almacenarTodosJugadores() {
         Actual.getLiga().agentesLibres(Actual);
         Actual.getLiga().jugadoresJugandoLiga();
     }
@@ -559,6 +567,12 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPlantillaActionPerformed
 
+    /**
+     * Actualiza la cabecera de la pantalla con la información actual del equipo
+     * y la liga del usuario. Si el usuario tiene un equipo asociado o pertenece
+     * a una liga con más de un integrante, se actualizan los elementos de la
+     * cabecera con la información correspondiente.
+     */
     public void actualizarCabezera() {
         if (Actual.getEquipo() != null || Actual.getLiga().getIntegrantes().size() > 1) {
             lblPuntos.setText("Puntos: " + Actual.getEquipo().getPuntos());

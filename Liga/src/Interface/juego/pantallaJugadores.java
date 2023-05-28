@@ -1,22 +1,26 @@
 package Interface.juego;
 
+import claseExterna.ImageTableModel;
 import claseExterna.ImageTableCellRenderer;
 import Interface.menus.Menu;
 import Methods.*;
 import OperacionesBBDD.EnviarDatosBBDD;
-import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.ImageIcon;
-import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
+/**
+ * La clase pantallaJugadores representa la pantalla de jugadores de la
+ * aplicación. Permite al usuario visualizar y comprar los jugadores sin equipo.
+ *
+ * author Marco
+ */
 public class pantallaJugadores extends javax.swing.JFrame {
 
     ImageTableModel model = new ImageTableModel();
@@ -24,8 +28,15 @@ public class pantallaJugadores extends javax.swing.JFrame {
     DecimalFormat df = new DecimalFormat("0.##M");
     private TableRowSorter trsfiltro;
     String filtro;
-      int xMouse, yMouse;
+    int xMouse, yMouse;
 
+    /**
+     * Crea una instancia de la clase pantallaJugadores con el usuario actual
+     * especificado.
+     *
+     * @param usuarioActual El objeto Usuario que representa al usuario
+     * actualmente conectado.
+     */
     public pantallaJugadores(Usuario usuarioActual) {
         Actual = usuarioActual;
         initComponents();
@@ -34,15 +45,15 @@ public class pantallaJugadores extends javax.swing.JFrame {
         lblNombreUsu.setText(Actual.getNombreUsuario());
         Actual.getLiga().agentesLibres(Actual);
         rellenarTbl();
-        
+
     }
 
-    public void rellenarTbl() {
-        
+    private void rellenarTbl() {
+
         Iterator it = Actual.getLiga().getJugadoresLibres().iterator();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         while (it.hasNext()) {
-            
+
             Futbolista jugador = (Futbolista) it.next();
             model.addRow(new Object[]{new ImageIcon(getClass().getResource("/images/jugadores/" + jugador.getNombre() + ".png")), jugador.getNombre(), jugador.getPosicion(), df.format(jugador.getPrecio() / 1000000.0), jugador.getAtaque(), jugador.getDefensa(), "Libre"});
         }
@@ -50,8 +61,6 @@ public class pantallaJugadores extends javax.swing.JFrame {
         ImageTableCellRenderer renderer = new ImageTableCellRenderer();
         jTable1.getColumnModel().getColumn(0).setCellRenderer(renderer);
     }
-
-   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -594,7 +603,7 @@ public class pantallaJugadores extends javax.swing.JFrame {
     }//GEN-LAST:event_btnComprarActionPerformed
 
     private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
-        
+
 
     }//GEN-LAST:event_txtNombreKeyReleased
 
@@ -730,11 +739,20 @@ public class pantallaJugadores extends javax.swing.JFrame {
 
         btnError.setVisible(false);
     }//GEN-LAST:event_btnErrorActionPerformed
+
+    /**
+     * Aplica un filtro a la tabla de jugadores utilizando el nombre
+     * especificado en el campo de texto txtNombre. 
+     */
     public void filtro() {
         filtro = txtNombre.getText();
         trsfiltro.setRowFilter(RowFilter.regexFilter(txtNombre.getText(), 1));
     }
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

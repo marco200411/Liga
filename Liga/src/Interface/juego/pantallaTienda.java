@@ -11,11 +11,23 @@ import java.awt.geom.RoundRectangle2D;
 import java.text.DecimalFormat;
 import java.util.Iterator;
 
+/**
+ * La clase pantallaTienda representa la pantalla de la tienda en la aplicación.
+ * Muestra la información del usuario, incluyendo su nombre de usuario, saldo y sobres disponibles en la tienda.
+ *
+ * author Marco
+ */
 public class pantallaTienda extends javax.swing.JFrame {
     
     Usuario Actual = null;
     int xMouse, yMouse;
     DecimalFormat df = new DecimalFormat("0.##M");
+
+    /**
+     * Crea una instancia de la clase pantallaTienda con el usuario especificado.
+     *
+     * @param us El objeto Usuario que representa al usuario actualmente conectado.
+     */
     public pantallaTienda(Usuario us) {
         initComponents();
         Actual = us;
@@ -882,7 +894,7 @@ public class pantallaTienda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnErrorActionPerformed
     
     
-    public void abrirSobre( Sobre sobre) {
+    private void abrirSobre( Sobre sobre) {
         int capacidad = sobre.getCantidad_jugadores();
         EnviarDatosBBDD send = new EnviarDatosBBDD();
         while (capacidad > 0) {

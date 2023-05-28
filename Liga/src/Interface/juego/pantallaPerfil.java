@@ -13,6 +13,12 @@ import java.util.Iterator;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * La clase pantallaPerfil representa la pantalla de perfil de usuario en la aplicación.
+ * Muestra la información del usuario y su equipo, así como otros detalles relacionados.
+ *
+ * author Marco
+ */
 public class pantallaPerfil extends javax.swing.JFrame {
 
     int xMouse, yMouse;
@@ -22,6 +28,12 @@ public class pantallaPerfil extends javax.swing.JFrame {
     Usuario Actual = null;
     Usuario UsuarioPerfil = null;
 
+    /**
+     * Crea una instancia de la clase pantallaPerfil con los usuarios actual y de búsqueda especificados.
+     *
+     * @param Actual2          El objeto Usuario que representa al usuario actualmente conectado.
+     * @param usuarioBusqueda  El objeto Usuario que representa al usuario cuyo perfil se está visualizando.
+     */
     public pantallaPerfil(Usuario Actual2, Usuario usuarioBusqueda) {
         initComponents();
 
@@ -29,7 +41,13 @@ public class pantallaPerfil extends javax.swing.JFrame {
         UsuarioPerfil = usuarioBusqueda;
 
         lblNombreUsu.setText(Actual.getNombreUsuario());
-        lbldinero.setText(df.format(Actual.getEquipo().getDinero() / 1000000.0));
+        if(Actual.getLiga() == null){
+            lbldinero.setVisible(false);
+            lblDin.setVisible(false);
+        }else{
+            lbldinero.setText(df.format(Actual.getEquipo().getDinero() / 1000000.0));
+        }
+        
         lblNombreUsuario.setText(UsuarioPerfil.getNombreUsuario());
         if (UsuarioPerfil.getLiga() != null) {
             ObtenerDatosBBDD get = new ObtenerDatosBBDD();
@@ -1141,7 +1159,7 @@ public class pantallaPerfil extends javax.swing.JFrame {
         layerMenu1.setBackground(new java.awt.Color(51, 61, 87));
         layerMenu1.setForeground(new java.awt.Color(51, 61, 87));
         layerMenu1.setOpaque(true);
-        layerMenu1.setLayout(new java.awt.GridLayout());
+        layerMenu1.setLayout(new java.awt.GridLayout(1, 0));
 
         btnHome1.setBackground(new java.awt.Color(206, 206, 206));
         btnHome1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -1802,30 +1820,22 @@ public class pantallaPerfil extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane BG;
-    private javax.swing.JButton btnBuscarJugador;
     private javax.swing.JButton btnBuscarJugador1;
-    private javax.swing.JButton btnClasificacion;
     private javax.swing.JButton btnClasificacion1;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnClose1;
     private javax.swing.JButton btnCompar1;
     private javax.swing.JButton btnError;
-    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnExit1;
-    private javax.swing.JButton btnHome;
     private javax.swing.JButton btnHome1;
-    private javax.swing.JButton btnLiga;
     private javax.swing.JButton btnLiga1;
     private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnMinimizar1;
     private javax.swing.JButton btnNo;
-    private javax.swing.JButton btnPerfil;
     private javax.swing.JButton btnPerfil1;
-    private javax.swing.JButton btnPlantilla;
     private javax.swing.JButton btnPlantilla1;
     private javax.swing.JButton btnRetroceder;
     private javax.swing.JButton btnRetroceder1;
-    private javax.swing.JButton btnTienda;
     private javax.swing.JButton btnTienda1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
@@ -1844,7 +1854,6 @@ public class pantallaPerfil extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JLayeredPane layerMenu;
     private javax.swing.JLayeredPane layerMenu1;
     private javax.swing.JLayeredPane layerUnirseLiga;
     private javax.swing.JLabel lblApe;

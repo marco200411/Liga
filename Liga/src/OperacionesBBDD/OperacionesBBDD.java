@@ -19,6 +19,11 @@ public class OperacionesBBDD {
 
     private static String MYSQLPASS = "root";
 
+    /**
+     *
+     * @param insertString
+     * @return
+     */
     public boolean escrituraSql(String insertString) {
         boolean resultado = false;
         Statement insertFilm = null;
@@ -69,6 +74,11 @@ public class OperacionesBBDD {
         return resultado;
     }
 
+    /**
+     *
+     * @param consultaSql
+     * @return
+     */
     public ResultSet getSQL(String consultaSql) {
         ResultSet mysqlResult = null;
         try {
@@ -88,6 +98,11 @@ public class OperacionesBBDD {
 
     }
 
+    /**
+     *  
+     * @param consultaSql
+     * @return
+     */
     public ResultSet updateSQL(String consultaSql) {
         ResultSet mysqlResult = null;
         try {

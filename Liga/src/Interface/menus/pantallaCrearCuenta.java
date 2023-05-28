@@ -4,6 +4,11 @@ import Methods.Usuario;
 import OperacionesBBDD.OperacionesBBDD;
 import java.awt.geom.RoundRectangle2D;
 
+/**
+ * La clase pantallaCrearCuenta representa la pantalla de creación de cuenta en la aplicación.
+ *
+ * author Marco
+ */
 public class pantallaCrearCuenta extends javax.swing.JFrame {
     
      
@@ -12,6 +17,9 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
 
     private static String MYSQLPASS = "root";
 
+    /**
+     * Crea una instancia de la clase pantallaCrearCuenta.
+     */
     public pantallaCrearCuenta() {
         initComponents();
     }
@@ -413,6 +421,10 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
         yMouse = evt.getY();
     }//GEN-LAST:event_jPanel1MousePressed
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String args[]) {
 
         try {

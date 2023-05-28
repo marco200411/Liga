@@ -2,11 +2,21 @@ package Interface.menus;
 
 import java.awt.geom.RoundRectangle2D;
 
+/**
+ * La clase Menu representa el menú principal de la aplicación.
+ *
+ * author Marco
+ */
 public class Menu extends javax.swing.JFrame {
+
     int xMouse, yMouse;
+
+    /**
+     * Crea una instancia de la clase Menu.
+     */
     public Menu() {
         initComponents();
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -219,6 +229,10 @@ public class Menu extends javax.swing.JFrame {
         yMouse = evt.getY();
     }//GEN-LAST:event_jPanel1MousePressed
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String args[]) {
 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

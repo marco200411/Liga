@@ -1,50 +1,68 @@
+
 package OperacionesBBDD;
 
-
 import Methods.Futbolista;
-
 import Methods.Sobre;
 import Methods.Usuario;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public  class EnviarDatosBBDD {
+/**
+ * La clase EnviarDatosBBDD se utiliza para enviar y actualizar datos en una base de datos.
+ */
+public class EnviarDatosBBDD {
 
-    public void actualizarJugadoresPlantilla(ArrayList<Futbolista> plantilla, Usuario Actual) {
-        eliminarTODOSJugadoresEquipo(Actual.getEquipo().getNombre());
+    /**
+     * Actualiza los jugadores de la plantilla en la base de datos para un usuario específico.
+     *
+     * @param plantilla la lista de jugadores de la plantilla
+     * @param actual el usuario actual
+     */
+    public void actualizarJugadoresPlantilla(ArrayList<Futbolista> plantilla, Usuario actual) {
+        eliminarTODOSJugadoresEquipo(actual.getEquipo().getNombre());
 
-        Iterator<Futbolista> it = Actual.getJugadores().iterator();
-        String Alineado = "NO";
+        Iterator<Futbolista> it = actual.getJugadores().iterator();
+        String alineado = "NO";
         while (it.hasNext()) {
             Futbolista jugador = it.next();
-            if (Actual.getPlantilla().contains(jugador)) {
-                Alineado = "SI";
+            if (actual.getPlantilla().contains(jugador)) {
+                alineado = "SI";
             } else {
-                Alineado = "NO";
+                alineado = "NO";
             }
 
             String consulta = "INSERT INTO tbl_jugador_equipo\n"
                     + "SELECT \n"
                     + "(SELECT ID_JUGADOR FROM TBL_JUGADORES WHERE NOMBRE='" + jugador.getNombre() + "'),\n"
-                    + "(SELECT ID_EQUIPO FROM TBL_EQUIPO WHERE NOMBRE_PLANTILLA='" + Actual.getEquipo().getNombre() + "'),\n"
-                    + "('" + Alineado + "');";
+                    + "(SELECT ID_EQUIPO FROM TBL_EQUIPO WHERE NOMBRE_PLANTILLA='" + actual.getEquipo().getNombre() + "'),\n"
+                    + "('" + alineado + "');";
             OperacionesBBDD escritura = new OperacionesBBDD();
             escritura.escrituraSql(consulta);
         }
-
     }
 
-    public void eliminarJugador(Usuario Actual, String jugador) {
+    /**
+     * Elimina un jugador de la plantilla del usuario actual en la base de datos.
+     *
+     * @param actual el usuario actual
+     * @param jugador el nombre del jugador a eliminar
+     */
+    public void eliminarJugador(Usuario actual, String jugador) {
         String consulta = "DELETE FROM TBL_JUGADOR_EQUIPO\n"
                 + "WHERE ID_EQUIPO=(SELECT ID_EQUIPO\n"
                 + "FROM TBL_EQUIPO \n"
-                + "WHERE NOMBRE_PLANTILLA='" + Actual.getEquipo().getNombre() + "') and \n"
+                + "WHERE NOMBRE_PLANTILLA='" + actual.getEquipo().getNombre() + "') and \n"
                 + "id_jugador=(SELECT ID_JUGADOR FROM TBL_JUGADORES WHERE NOMBRE='" + jugador + "');";
         OperacionesBBDD escritura = new OperacionesBBDD();
         escritura.escrituraSql(consulta);
     }
 
+    /**
+     * Elimina todos los jugadores de la plantilla de un equipo en la base de datos.
+     *
+     * @param nombreEquipo el nombre del equipo
+     */
     public void eliminarTODOSJugadoresEquipo(String nombreEquipo) {
         String consulta = "DELETE FROM TBL_JUGADOR_EQUIPO\n"
                 + "WHERE ID_EQUIPO=(SELECT ID_EQUIPO\n"
@@ -55,15 +73,26 @@ public  class EnviarDatosBBDD {
         escritura.escrituraSql(consulta);
     }
 
-    public void actualizarSaldo(Usuario Actual) {
-        String consulta = "UPDATE `bbdd_fantasy`.`tbl_equipo` SET `DINERO` = '" + Actual.getEquipo().getDinero() + "'"
+    /**
+     * Actualiza el saldo del equipo del usuario actual en la base de datos.
+     *
+     * @param actual el usuario actual
+     */
+    public void actualizarSaldo(Usuario actual) {
+        String consulta = "UPDATE `bbdd_fantasy`.`tbl_equipo` SET `DINERO` = '" + actual.getEquipo().getDinero() + "'"
                 + " WHERE  (`ID_USUARIO` = "
-                + "(SELECT ID_USUARIO FROM TBL_USUARIO WHERE USUARIO='" + Actual.getNombreUsuario() + "'));";
+                + "(SELECT ID_USUARIO FROM TBL_USUARIO WHERE USUARIO='" + actual.getNombreUsuario() + "'));";
         OperacionesBBDD escritura = new OperacionesBBDD();
         escritura.escrituraSql(consulta);
     }
 
-    public void añadirJugador(Usuario Actual, String jugador) {
+    /**
+     * Añade un jugador a la plantilla del usuario actual en la base de datos.
+     *
+     * @param actual el usuario actual
+     * @param jugador el nombre del jugador a añadir
+     */
+    public void añadirJugador(Usuario actual, String jugador) {
         String consulta = "INSERT INTO TBL_JUGADOR_EQUIPO\n"
                 + "SELECT \n"
                 + "(SELECT ID_JUGADOR\n"
@@ -71,7 +100,7 @@ public  class EnviarDatosBBDD {
                 + "WHERE NOMBRE='" + jugador + "'),\n"
                 + "(SELECT ID_EQUIPO\n"
                 + "FROM TBL_EQUIPO \n"
-                + "WHERE NOMBRE_PLANTILLA='" + Actual.getEquipo().getNombre() + "'),\n"
+                + "WHERE NOMBRE_PLANTILLA='" + actual.getEquipo().getNombre() + "'),\n"
                 + "('NO'); ";
 
         OperacionesBBDD escritura = new OperacionesBBDD();
@@ -79,10 +108,16 @@ public  class EnviarDatosBBDD {
         escritura.escrituraSql(consulta);
     }
 
-    public void añadirSobre(Usuario Actual, Sobre sobre) {
+    /**
+     * Añade un sobre al equipo del usuario actual en la base de datos.
+     *
+     * @param actual el usuario actual
+     * @param sobre el sobre a añadir
+     */
+    public void añadirSobre(Usuario actual, Sobre sobre) {
         String consulta = "INSERT INTO TBL_SOBRE_EQUIPO \n"
                 + "SELECT (SELECT ID_EQUIPO FROM TBL_EQUIPO \n"
-                + "WHERE NOMBRE_PLANTILLA='"+Actual.getEquipo().getNombre()+"'),\n"
+                + "WHERE NOMBRE_PLANTILLA='"+actual.getEquipo().getNombre()+"'),\n"
                 + "(SELECT ID_SOBRE FROM TBL_SOBRE_TIENDA\n"
                 + "WHERE NOMBRE_SOBRE='"+sobre.getNombre()+"');";
 

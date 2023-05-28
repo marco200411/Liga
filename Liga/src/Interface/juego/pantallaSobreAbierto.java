@@ -1,5 +1,6 @@
 package Interface.juego;
 
+import claseExterna.ImageTableModel;
 import claseExterna.ImageTableCellRenderer;
 import Interface.menus.Menu;
 import Methods.*;
@@ -14,6 +15,12 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
+/**
+ * La clase pantallaSobreAbierto representa la pantalla de visualización de un sobre abierto en la aplicación.
+ * Muestra la información del usuario, el sobre y los elementos contenidos en él.
+ *
+ * author Marco
+ */
 public class pantallaSobreAbierto extends javax.swing.JFrame {
 
     ImageTableModel model = new ImageTableModel();
@@ -24,7 +31,12 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
     private TableRowSorter trsfiltro;
     String filtro;
 
-    public pantallaSobreAbierto(Usuario usuarioActual, Sobre sobre1) {
+     /**
+     * Crea una instancia de la clase pantallaSobreAbierto con el usuario y el sobre especificados.
+     *
+     * @param sobre1        El objeto Sobre que se está visualizando en la pantalla.
+     */
+    pantallaSobreAbierto(Usuario usuarioActual, Sobre sobre1) {
         initComponents();
         sobre = sobre1;
         Actual = usuarioActual;
@@ -35,7 +47,7 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
         
     }
 
-    public void rellenarTbl() {
+    private void rellenarTbl() {
         lblSaldo.setText(df.format(Actual.getEquipo().getDinero() / 1000000.0));
         Iterator it = sobre.getContenidoSobre().iterator();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -679,11 +691,19 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
         this.setVisible(false);
 
     }//GEN-LAST:event_btnExitActionPerformed
+
+    /**
+     *Filtra por el nombre del jugador
+     */
     public void filtro() {
         filtro = txtNombre.getText();
         trsfiltro.setRowFilter(RowFilter.regexFilter(txtNombre.getText(), 1));
     }
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
