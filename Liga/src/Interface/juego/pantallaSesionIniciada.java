@@ -1,53 +1,49 @@
 package Interface.juego;
 
 import Interface.menus.Menu;
-import Methods.Entrenador;
-import Methods.Equipo;
-import Methods.Futbolista;
-import Methods.Liga;
-import Methods.Partido;
-import java.util.ArrayList;
 import Methods.Usuario;
-import OperacionesBBDD.ObtenerDatosBBDD;
-import OperacionesBBDD.OperacionesBBDD;
 import java.awt.geom.RoundRectangle2D;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import java.text.DecimalFormat;
 
 public class pantallaSesionIniciada extends javax.swing.JFrame {
 
     Usuario Actual = null;
+    int xMouse, yMouse;
+    DecimalFormat df = new DecimalFormat("0.##M");
 
     public pantallaSesionIniciada(Usuario usuario) {
         initComponents();
-
         Actual = usuario;
+        lblNombreUsu.setText(Actual.getNombreUsuario());
         if (Actual.getLiga() == null) {
+            lblDin.setVisible(false);
+            lbldinero.setVisible(false);
             layerCabecera.setVisible(false);
             layerCabeceraSinLiga.setVisible(true);
+            layerCabeceraSinIntegrantes.setVisible(false);
 
         } else {
-            comprobarPartidos();
+            lblDin.setVisible(true);
+            lbldinero.setVisible(true);
+            lbldinero.setText(df.format(Actual.getEquipo().getDinero() / 1000000.0));
+            Actual.getLiga().almacenarIntegrantesLiga();
+            if (Actual.getLiga().getIntegrantes().size() > 1) {
+                
+                Actual.getLiga().almacenarPartidosLiga(Actual);
 
-            almacenarIntegrantesLiga();
+                Actual.getLiga().almacenarPartidosEquipo(Actual);
+                Actual.getLiga().almacenarPartidosEquipoActual(Actual);
 
-            System.out.println("aa");
-            almacenarPartidosLiga();
-
-            almacenarPartidosEquipo();
-            almacenarPartidosEquipoActual();
-
-            actualizarCabezera();
-            almacenarTodosJugadores();
-            layerCabecera.setVisible(true);
-            layerCabeceraSinLiga.setVisible(false);
+                actualizarCabezera();
+                almacenarTodosJugadores();
+                layerCabecera.setVisible(true);
+                layerCabeceraSinLiga.setVisible(false);
+                layerCabeceraSinIntegrantes.setVisible(false);
+            } else {
+                layerCabecera.setVisible(false);
+                layerCabeceraSinLiga.setVisible(false);
+                layerCabeceraSinIntegrantes.setVisible(true);
+            }
 
         }
 
@@ -73,6 +69,8 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         btnLiga = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        layerCabeceraSinIntegrantes = new javax.swing.JLayeredPane();
+        lblSinLiga1 = new javax.swing.JLabel();
         layerCabecera = new javax.swing.JLayeredPane();
         lblNombreLiga = new javax.swing.JLabel();
         lblPuntos = new javax.swing.JLabel();
@@ -89,6 +87,11 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
         btnRetroceder = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        lblNombreUsu = new javax.swing.JLabel();
+        lblDin = new javax.swing.JLabel();
+        lbldinero = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -246,6 +249,20 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
 
         layerBG.add(layerMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 35, 889, 105));
         layerBG.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 273, 850, 10));
+
+        layerCabeceraSinIntegrantes.setBackground(new java.awt.Color(92, 99, 112));
+        layerCabeceraSinIntegrantes.setForeground(new java.awt.Color(124, 124, 124));
+        layerCabeceraSinIntegrantes.setOpaque(true);
+        layerCabeceraSinIntegrantes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblSinLiga1.setFont(new java.awt.Font("Roboto", 1, 30)); // NOI18N
+        lblSinLiga1.setForeground(new java.awt.Color(206, 206, 206));
+        lblSinLiga1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSinLiga1.setText("Espera a que se unan mas integrantes para jugar");
+        lblSinLiga1.setToolTipText("");
+        layerCabeceraSinIntegrantes.add(lblSinLiga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 830, 80));
+
+        layerBG.add(layerCabeceraSinIntegrantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 161, 850, 100));
 
         layerCabecera.setBackground(new java.awt.Color(92, 99, 112));
         layerCabecera.setForeground(new java.awt.Color(124, 124, 124));
@@ -412,151 +429,70 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
 
         layerBG.add(panelAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(791, 7, -1, 30));
 
+        jPanel1.setBackground(new java.awt.Color(51, 61, 87));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(129, 129, 129));
+        jLabel2.setText("Usuario:");
+
+        lblNombreUsu.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblNombreUsu.setForeground(new java.awt.Color(129, 129, 129));
+
+        lblDin.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblDin.setForeground(new java.awt.Color(129, 129, 129));
+        lblDin.setText("Dinero:");
+
+        lbldinero.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lbldinero.setForeground(new java.awt.Color(129, 129, 129));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(464, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNombreUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(lblDin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbldinero, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombreUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbldinero, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        layerBG.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 30));
+
         getContentPane().add(layerBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 700));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void agentesLibres() {
-        Actual.getLiga().getJugadoresLibres().clear();
-        String sentenciaSelect = "SELECT J.NOMBRE, J.POSICION, J.PRECIO, J.ATAQUE, J.DEFENSA, J.IMAGEN\n"
-                + "FROM TBL_JUGADORES AS J WHERE \n"
-                + "J.ID_JUGADOR NOT IN\n"
-                + "(SELECT ID_JUGADOR \n"
-                + "FROM TBL_JUGADOR_EQUIPO\n"
-                + "WHERE J.ID_JUGADOR=ID_JUGADOR AND \n"
-                + "ID_EQUIPO IN (SELECT E.ID_EQUIPO\n"
-                + "FROM TBL_EQUIPO AS E INNER JOIN TBL_LIGA AS L \n"
-                + "ON E.LIGA=L.ID_LIGA\n"
-                + "WHERE L.NOMBRE='" + Actual.getLiga().getNombre() + "')) \n"
-                + ";";
-
-        OperacionesBBDD get = new OperacionesBBDD();
-        ResultSet results = get.getSQL(sentenciaSelect);
-        try {
-            while (results.next()) {
-
-                Futbolista f1 = new Futbolista(results.getString(1), results.getString(2), results.getInt(3), results.getInt(4), results.getInt(5), results.getString(6));
-                if (!Actual.getJugadores().contains(f1)) {
-                    Actual.getLiga().getJugadoresLibres().add(f1);
-                }
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(PantallaLiga.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    public void jugadoresJugandoLiga() {
-
-        String sentenciaSelect = "SELECT J.NOMBRE, J.POSICION, J.PRECIO, J.ATAQUE, J.DEFENSA\n"
-                + "                FROM TBL_JUGADORES AS J RIGHT JOIN tbl_jugador_equipo AS JE \n"
-                + "                ON JE.ID_JUGADOR=J.ID_JUGADOR INNER JOIN TBL_EQUIPO AS E\n"
-                + "                ON JE.ID_EQUIPO=E.ID_EQUIPO INNER JOIN TBL_USUARIO AS U\n"
-                + "               ON E.ID_USUARIO=U.ID_USUARIO\n"
-                + "               where E.LIGA=(SELECT ID_LIGA FROM TBL_LIGA WHERE NOMBRE = '" + Actual.getLiga().getNombre() + "');";
-
-        OperacionesBBDD get = new OperacionesBBDD();
-        ResultSet results = get.getSQL(sentenciaSelect);
-
-        try {
-            while (results.next()) {
-                Futbolista f1 = new Futbolista(results.getString(2), results.getString(1), results.getInt(3), results.getInt(4), results.getInt(5), null);
-                Actual.getLiga().getJugadoresJugando().add(f1);
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(PantallaLiga.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
     public void almacenarTodosJugadores() {
-        agentesLibres();
-        jugadoresJugandoLiga();
-
+        Actual.getLiga().agentesLibres(Actual);
+        Actual.getLiga().jugadoresJugandoLiga();
     }
 
-    public void almacenarPartidosEquipo() {
-
-        Iterator it = Actual.getLiga().getPartidos().iterator();
-        while (it.hasNext()) {
-            Partido partido = (Partido) it.next();
-
-            for (Usuario integrante : Actual.getLiga().getIntegrantes()) {
-
-                if (!integrante.equals(Actual) && partido.getUsuarioLocal().getNombreUsuario().equalsIgnoreCase(integrante.getNombreUsuario()) || partido.getUsuarioVisitante().getNombreUsuario().equalsIgnoreCase(integrante.getNombreUsuario())) {
-                    integrante.getEquipo().getPartidosEquipo().add(partido);
-                }
-            }
-        }
-
-    }
-
-    private void almacenarPartidosEquipoActual() {
-        Iterator it = Actual.getLiga().getPartidos().iterator();
-        while (it.hasNext()) {
-            Partido partido = (Partido) it.next();
-            if (partido.getUsuarioLocal().getNombreUsuario().equalsIgnoreCase(Actual.getNombreUsuario()) || partido.getUsuarioVisitante().getNombreUsuario().equalsIgnoreCase(Actual.getNombreUsuario())) {
-                Actual.getEquipo().getPartidosEquipo().add(partido);
-            }
-        }
-    }
-
-//    public void almacenarJugadoresJugando() {
-//
-//        Iterator it = Actual.getLiga().getIntegrantes().iterator();
-//        ObtenerDatosBBDD getDatos = new ObtenerDatosBBDD();
-//        while (it.hasNext()) {
-//            Usuario us = (Usuario) it.next();
-//           
-//
-//        }
-//
-//    }
-    public void almacenarPartidosLiga() {
-        ObtenerDatosBBDD getDatos = new ObtenerDatosBBDD();
-        getDatos.getPartidosBBDD(Actual.getLiga());
-
-    }
-
-    public void almacenarIntegrantesLiga() {
-
-        ObtenerDatosBBDD getDatos = new ObtenerDatosBBDD();
-        String sentenciaSelect = " SELECT U.USUARIO \n"
-                + "                    FROM TBL_USUARIO AS U INNER JOIN TBL_EQUIPO AS E\n"
-                + "                    ON U.ID_USUARIO=E.ID_USUARIO INNER JOIN TBL_LIGA AS L\n"
-                + "                    ON L.ID_LIGA=E.LIGA\n"
-                + "                    WHERE L.NOMBRE='" + Actual.getLiga().getNombre() + "';";
-
-        OperacionesBBDD get = new OperacionesBBDD();
-        ResultSet results = get.getSQL(sentenciaSelect);
-        System.out.println("aasasa" + sentenciaSelect);
-        try {
-            while (results.next()) {
-                String nombreUsuario = results.getString(1);
-
-                Entrenador entrenador = getDatos.getEntrenadorBBDD(nombreUsuario);
-                Equipo equipo = getDatos.getEquipoBBDD(nombreUsuario, entrenador);
-
-                Usuario usuario = getDatos.getUsuarioBBDD(nombreUsuario);
-
-                Liga liga = getDatos.getLigaBBDD(usuario.getNombre());
-                usuario.setLiga(liga);
-                usuario.setEquipo(equipo);
-                System.out.println("sdawdasd" + usuario.getNombreUsuario());
-                Actual.getLiga().getIntegrantes().add(usuario);
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(PantallaLiga.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         pantallaSesionIniciada pantalla = new pantallaSesionIniciada(Actual);
@@ -566,8 +502,7 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnHomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnHomeKeyReleased
-        // TODO add your handling code here:
-//        btnHome.setIcon(home_90px.hover);
+
     }//GEN-LAST:event_btnHomeKeyReleased
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -580,7 +515,6 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnLigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLigaActionPerformed
-        // TODO add your handling code here:s
 
         if (Actual.getLiga() == null || Actual.getLiga().getNombre() == null) {
             this.setVisible(false);
@@ -612,7 +546,6 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnPlantillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlantillaActionPerformed
-        // TODO add your handling code here:
 
         if (Actual.getEquipo() == null || Actual.getLiga() == null) {
             btnError.setForeground(new java.awt.Color(100, 0, 0));
@@ -625,14 +558,6 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
             pantalla.setVisible(true);
         }
     }//GEN-LAST:event_btnPlantillaActionPerformed
-    private void comprobarPartidos() {
-        
-        
-        
-        
-        
-        
-    }
 
     public void actualizarCabezera() {
         if (Actual.getEquipo() != null || Actual.getLiga().getIntegrantes().size() > 1) {
@@ -640,13 +565,6 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
             lblNombreLiga.setText("Liga: " + Actual.getLiga().getNombre());
             lblPPEquipoLocal.setText(Actual.getEquipo().getPartidosEquipo().get(1).getUsuarioLocal().getEquipo().getNombre());
             lblPPEquipoVisitante.setText(Actual.getEquipo().getPartidosEquipo().get(1).getUsuarioVisitante().getEquipo().getNombre());
-
-//            Iterator it2 = partidosEquipo.iterator();
-//            while (it2.hasNext()) {
-//                Partido partido = (Partido) it2.next();
-//                
-//                
-//            }
         }
 
     }
@@ -679,16 +597,45 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnBuscarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarJugadorActionPerformed
-        this.setVisible(false);
-        pantallaJugadores pantalla = new pantallaJugadores(Actual);
-        pantalla.setVisible(true);
+        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
+            btnError.setForeground(new java.awt.Color(100, 0, 0));
+            btnError.setVisible(true);
+            btnError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
+            btnError.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+        } else {
+            this.setVisible(false);
+            pantallaJugadores pantalla = new pantallaJugadores(Actual);
+            pantalla.setVisible(true);
+        }
     }//GEN-LAST:event_btnBuscarJugadorActionPerformed
 
     private void btnTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiendaActionPerformed
-       this.setVisible(false);
-        pantallaTienda pantalla = new pantallaTienda(Actual);
-        pantalla.setVisible(true);
+        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
+            btnError.setForeground(new java.awt.Color(100, 0, 0));
+            btnError.setVisible(true);
+            btnError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
+            btnError.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+        } else {
+            this.setVisible(false);
+            pantallaTienda pantalla = new pantallaTienda(Actual);
+            pantalla.setVisible(true);
+        }
     }//GEN-LAST:event_btnTiendaActionPerformed
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+
+
+    }//GEN-LAST:event_jPanel1MousePressed
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        int y = evt.getYOnScreen();
+        int x = evt.getXOnScreen();
+        setLocation(x - xMouse, y - yMouse);
+
+
+    }//GEN-LAST:event_jPanel1MouseDragged
 
     /**
      * @param args the command line arguments
@@ -738,20 +685,27 @@ public class pantallaSesionIniciada extends javax.swing.JFrame {
     private javax.swing.JButton btnPlantilla;
     private javax.swing.JButton btnRetroceder;
     private javax.swing.JButton btnTienda;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLayeredPane layerBG;
     private javax.swing.JLayeredPane layerCabecera;
+    private javax.swing.JLayeredPane layerCabeceraSinIntegrantes;
     private javax.swing.JLayeredPane layerCabeceraSinLiga;
     private javax.swing.JLayeredPane layerInfo;
     private javax.swing.JLayeredPane layerMenu;
+    private javax.swing.JLabel lblDin;
     private javax.swing.JLabel lblNombreLiga;
+    private javax.swing.JLabel lblNombreUsu;
     private javax.swing.JLabel lblPPEquipoLocal;
     private javax.swing.JLabel lblPPEquipoVisitante;
     private javax.swing.JLabel lblPPVS;
     private javax.swing.JLabel lblProximoPartido;
     private javax.swing.JLabel lblPuntos;
     private javax.swing.JLabel lblSinLiga;
+    private javax.swing.JLabel lblSinLiga1;
+    private javax.swing.JLabel lbldinero;
     private javax.swing.JLayeredPane panelAcciones;
     // End of variables declaration//GEN-END:variables
 

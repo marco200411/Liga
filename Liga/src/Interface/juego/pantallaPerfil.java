@@ -8,11 +8,15 @@ import OperacionesBBDD.ObtenerDatosBBDD;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.geom.RoundRectangle2D;
+import java.text.DecimalFormat;
 import java.util.Iterator;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
 public class pantallaPerfil extends javax.swing.JFrame {
+
+    int xMouse, yMouse;
+    DecimalFormat df = new DecimalFormat("0.##M");
 
     Futbolista futbolistaSeleccionado = null;
     Usuario Actual = null;
@@ -23,16 +27,15 @@ public class pantallaPerfil extends javax.swing.JFrame {
 
         Actual = Actual2;
         UsuarioPerfil = usuarioBusqueda;
-        ObtenerDatosBBDD get = new ObtenerDatosBBDD();
-        get.getJugadoresPlantilla(UsuarioPerfil);
-        lblNombreUsuario.setText(UsuarioPerfil.getNombreUsuario());
 
+        lblNombreUsu.setText(Actual.getNombreUsuario());
+        lbldinero.setText(df.format(Actual.getEquipo().getDinero() / 1000000.0));
+        lblNombreUsuario.setText(UsuarioPerfil.getNombreUsuario());
         if (UsuarioPerfil.getLiga() != null) {
+            ObtenerDatosBBDD get = new ObtenerDatosBBDD();
+            get.getJugadoresPlantilla(UsuarioPerfil);
 
             rellenarTablaPartidos();
-//            ObtenerDatosBBDD get = new ObtenerDatosBBDD();
-//            UsuarioPerfil.getEquipo().setEntrenador(get.getEntrenadorBBDD(UsuarioPerfil.getNombreUsuario()));
-//            usuarioBusqueda.setEquipo(get.getEquipoBBDD(UsuarioPerfil.getNombreUsuario(), UsuarioPerfil.getEquipo().getEntrenador()));
 
             lblNombre.setVisible(true);
             lblbEquipo.setVisible(true);
@@ -90,7 +93,8 @@ public class pantallaPerfil extends javax.swing.JFrame {
         btnMinimizar = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
         panelCabecera = new javax.swing.JLayeredPane();
-        lblFotoEquipo = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
         lblNombreEquipo = new javax.swing.JLabel();
         lblbEquipo = new javax.swing.JLabel();
         lblNombreUsuario = new javax.swing.JLabel();
@@ -106,6 +110,12 @@ public class pantallaPerfil extends javax.swing.JFrame {
         lblVicorias = new javax.swing.JLabel();
         lblDerrotas1 = new javax.swing.JLabel();
         lblDerrotas = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
+        jSeparator8 = new javax.swing.JSeparator();
         layerUnirseLiga = new javax.swing.JLayeredPane(){
             public void paintComponent(Graphics g) {
                 ImageIcon im = new ImageIcon("src/images/campo.png");
@@ -205,16 +215,21 @@ public class pantallaPerfil extends javax.swing.JFrame {
         btnError = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPartidos = new javax.swing.JTable();
-        layerMenu = new javax.swing.JLayeredPane();
-        btnHome = new javax.swing.JButton();
-        btnPlantilla = new javax.swing.JButton();
-        btnPerfil = new javax.swing.JButton();
-        btnClasificacion = new javax.swing.JButton();
-        btnBuscarJugador = new javax.swing.JButton();
-        btnTienda = new javax.swing.JButton();
-        btnLiga = new javax.swing.JButton();
-        btnExit = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        lblNombreUsu = new javax.swing.JLabel();
+        lblDin = new javax.swing.JLabel();
+        lbldinero = new javax.swing.JLabel();
+        layerMenu1 = new javax.swing.JLayeredPane();
+        btnHome1 = new javax.swing.JButton();
+        btnPlantilla1 = new javax.swing.JButton();
+        btnPerfil1 = new javax.swing.JButton();
+        btnClasificacion1 = new javax.swing.JButton();
+        btnBuscarJugador1 = new javax.swing.JButton();
+        btnTienda1 = new javax.swing.JButton();
+        btnLiga1 = new javax.swing.JButton();
+        btnExit1 = new javax.swing.JButton();
 
         jDialog1.setUndecorated(true);
         jDialog1.setShape(new RoundRectangle2D.Double(0, 0, 900,700, 50, 50));
@@ -489,145 +504,101 @@ public class pantallaPerfil extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        BG.add(panelAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(791, 7, -1, 30));
+        BG.add(panelAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 10, -1, 30));
 
         panelCabecera.setBackground(new java.awt.Color(92, 99, 112));
         panelCabecera.setOpaque(true);
+        panelCabecera.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jSeparator1.setForeground(new java.awt.Color(129, 129, 129));
+        panelCabecera.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 490, 20));
+
+        jSeparator2.setForeground(new java.awt.Color(129, 129, 129));
+        panelCabecera.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 490, 10));
 
         lblNombreEquipo.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        lblNombreEquipo.setForeground(new java.awt.Color(51, 51, 51));
+        panelCabecera.add(lblNombreEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 90, 427, 40));
 
+        lblbEquipo.setForeground(new java.awt.Color(51, 51, 51));
         lblbEquipo.setText("Equipo:");
+        panelCabecera.add(lblbEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 90, 50, 40));
 
         lblNombreUsuario.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
+        lblNombreUsuario.setForeground(new java.awt.Color(51, 51, 51));
+        panelCabecera.add(lblNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 492, 72));
 
         lblNombret.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        lblNombret.setForeground(new java.awt.Color(51, 51, 51));
         lblNombret.setText("Nombre:");
+        panelCabecera.add(lblNombret, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, 50, 20));
 
         lblApe.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        lblApe.setForeground(new java.awt.Color(51, 51, 51));
         lblApe.setText("Apellidos:");
+        panelCabecera.add(lblApe, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 3, 60, 30));
 
         lblPuntost.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        lblPuntost.setForeground(new java.awt.Color(51, 51, 51));
         lblPuntost.setText("Puntos: ");
+        panelCabecera.add(lblPuntost, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, 50, 27));
 
         lblLigat.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        lblLigat.setForeground(new java.awt.Color(51, 51, 51));
         lblLigat.setText("Liga: ");
+        panelCabecera.add(lblLigat, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, -1, 40));
 
         lblPuntos.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        lblPuntos.setForeground(new java.awt.Color(51, 51, 51));
+        panelCabecera.add(lblPuntos, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 50, 110, 20));
 
         lblNombre.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(51, 51, 51));
+        panelCabecera.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(566, 6, 110, 30));
 
         lblApellidos.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        lblApellidos.setForeground(new java.awt.Color(51, 51, 51));
+        panelCabecera.add(lblApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 6, 110, 30));
 
         lblLiga.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        lblLiga.setForeground(new java.awt.Color(51, 51, 51));
+        panelCabecera.add(lblLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 45, 120, 30));
 
         lblVicoriast.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        lblVicoriast.setForeground(new java.awt.Color(51, 51, 51));
         lblVicoriast.setText("Victorias:");
+        panelCabecera.add(lblVicoriast, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 68, 20));
 
         lblVicorias.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        lblVicorias.setForeground(new java.awt.Color(51, 51, 51));
+        panelCabecera.add(lblVicorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(576, 102, 100, 20));
 
         lblDerrotas1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        lblDerrotas1.setForeground(new java.awt.Color(51, 51, 51));
+        panelCabecera.add(lblDerrotas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(756, 102, 110, 20));
 
         lblDerrotas.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        lblDerrotas.setForeground(new java.awt.Color(51, 51, 51));
         lblDerrotas.setText("Derrotas:");
+        panelCabecera.add(lblDerrotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(694, 102, 56, 20));
 
-        panelCabecera.setLayer(lblFotoEquipo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        panelCabecera.setLayer(lblNombreEquipo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        panelCabecera.setLayer(lblbEquipo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        panelCabecera.setLayer(lblNombreUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        panelCabecera.setLayer(lblNombret, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        panelCabecera.setLayer(lblApe, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        panelCabecera.setLayer(lblPuntost, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        panelCabecera.setLayer(lblLigat, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        panelCabecera.setLayer(lblPuntos, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        panelCabecera.setLayer(lblNombre, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        panelCabecera.setLayer(lblApellidos, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        panelCabecera.setLayer(lblLiga, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        panelCabecera.setLayer(lblVicoriast, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        panelCabecera.setLayer(lblVicorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        panelCabecera.setLayer(lblDerrotas1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        panelCabecera.setLayer(lblDerrotas, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jSeparator3.setForeground(new java.awt.Color(129, 129, 129));
+        panelCabecera.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, 160, 10));
 
-        javax.swing.GroupLayout panelCabeceraLayout = new javax.swing.GroupLayout(panelCabecera);
-        panelCabecera.setLayout(panelCabeceraLayout);
-        panelCabeceraLayout.setHorizontalGroup(
-            panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCabeceraLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelCabeceraLayout.createSequentialGroup()
-                        .addComponent(lblFotoEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE))
-                    .addGroup(panelCabeceraLayout.createSequentialGroup()
-                        .addComponent(lblbEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNombreEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCabeceraLayout.createSequentialGroup()
-                        .addComponent(lblVicoriast, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblVicorias, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCabeceraLayout.createSequentialGroup()
-                        .addComponent(lblLigat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblLiga, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCabeceraLayout.createSequentialGroup()
-                        .addComponent(lblNombret, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelCabeceraLayout.createSequentialGroup()
-                        .addComponent(lblApe, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelCabeceraLayout.createSequentialGroup()
-                        .addComponent(lblPuntost, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelCabeceraLayout.createSequentialGroup()
-                        .addComponent(lblDerrotas, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblDerrotas1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
-        panelCabeceraLayout.setVerticalGroup(
-            panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCabeceraLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblFotoEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelCabeceraLayout.createSequentialGroup()
-                        .addGroup(panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNombret, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblApe, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblLigat, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblLiga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(panelCabeceraLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(lblPuntost, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelCabeceraLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(lblPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNombreEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelCabeceraLayout.createSequentialGroup()
-                        .addGroup(panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblbEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDerrotas1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDerrotas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblVicoriast, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblVicorias, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
+        jSeparator4.setForeground(new java.awt.Color(129, 129, 129));
+        panelCabecera.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, 170, 10));
+
+        jSeparator5.setForeground(new java.awt.Color(129, 129, 129));
+        panelCabecera.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 160, 10));
+
+        jSeparator6.setForeground(new java.awt.Color(129, 129, 129));
+        panelCabecera.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 70, 170, 10));
+
+        jSeparator7.setForeground(new java.awt.Color(129, 129, 129));
+        panelCabecera.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, 160, 10));
+
+        jSeparator8.setForeground(new java.awt.Color(129, 129, 129));
+        panelCabecera.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 120, 180, 20));
 
         BG.add(panelCabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 880, 130));
 
@@ -1106,143 +1077,209 @@ public class pantallaPerfil extends javax.swing.JFrame {
 
         BG.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 340, 360, 420));
 
-        layerMenu.setBackground(new java.awt.Color(51, 61, 87));
-        layerMenu.setForeground(new java.awt.Color(51, 61, 87));
-        layerMenu.setOpaque(true);
-        layerMenu.setLayout(new java.awt.GridLayout(1, 0));
-
-        btnHome.setBackground(new java.awt.Color(206, 206, 206));
-        btnHome.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnHome.setForeground(new java.awt.Color(0, 0, 0));
-        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_90px.png"))); // NOI18N
-        btnHome.setBorder(null);
-        btnHome.setBorderPainted(false);
-        btnHome.setContentAreaFilled(false);
-        btnHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnHome.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
-        btnHome.setName(""); // NOI18N
-        btnHome.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_90px.click.png"))); // NOI18N
-        btnHome.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_90px.hover.png"))); // NOI18N
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
-            }
-        });
-        btnHome.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                btnHomeKeyReleased(evt);
-            }
-        });
-        layerMenu.add(btnHome);
-
-        btnPlantilla.setBackground(new java.awt.Color(206, 206, 206));
-        btnPlantilla.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnPlantilla.setForeground(new java.awt.Color(0, 0, 0));
-        btnPlantilla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stadium_90px.png"))); // NOI18N
-        btnPlantilla.setBorder(null);
-        btnPlantilla.setBorderPainted(false);
-        btnPlantilla.setContentAreaFilled(false);
-        btnPlantilla.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stadium_90px.click.png"))); // NOI18N
-        btnPlantilla.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stadium_90px.hover.png"))); // NOI18N
-        btnPlantilla.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPlantillaActionPerformed(evt);
-            }
-        });
-        layerMenu.add(btnPlantilla);
-
-        btnPerfil.setBackground(new java.awt.Color(206, 206, 206));
-        btnPerfil.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnPerfil.setForeground(new java.awt.Color(0, 0, 0));
-        btnPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
-        btnPerfil.setBorder(null);
-        btnPerfil.setBorderPainted(false);
-        btnPerfil.setContentAreaFilled(false);
-        btnPerfil.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.click.png"))); // NOI18N
-        btnPerfil.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.hover.png"))); // NOI18N
-        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPerfilActionPerformed(evt);
-            }
-        });
-        layerMenu.add(btnPerfil);
-
-        btnClasificacion.setBackground(new java.awt.Color(206, 206, 206));
-        btnClasificacion.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnClasificacion.setForeground(new java.awt.Color(0, 0, 0));
-        btnClasificacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clasificacion.png"))); // NOI18N
-        btnClasificacion.setBorder(null);
-        btnClasificacion.setBorderPainted(false);
-        btnClasificacion.setContentAreaFilled(false);
-        btnClasificacion.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clasificacion.click.png"))); // NOI18N
-        btnClasificacion.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clasificacion.hover.png"))); // NOI18N
-        btnClasificacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClasificacionActionPerformed(evt);
-            }
-        });
-        layerMenu.add(btnClasificacion);
-
-        btnBuscarJugador.setBackground(new java.awt.Color(206, 206, 206));
-        btnBuscarJugador.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnBuscarJugador.setForeground(new java.awt.Color(0, 0, 0));
-        btnBuscarJugador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
-        btnBuscarJugador.setBorder(null);
-        btnBuscarJugador.setBorderPainted(false);
-        btnBuscarJugador.setContentAreaFilled(false);
-        btnBuscarJugador.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.click.png"))); // NOI18N
-        btnBuscarJugador.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.hover.png"))); // NOI18N
-        layerMenu.add(btnBuscarJugador);
-
-        btnTienda.setBackground(new java.awt.Color(206, 206, 206));
-        btnTienda.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnTienda.setForeground(new java.awt.Color(0, 0, 0));
-        btnTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tienda.png"))); // NOI18N
-        btnTienda.setBorder(null);
-        btnTienda.setBorderPainted(false);
-        btnTienda.setContentAreaFilled(false);
-        btnTienda.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tienda.click.png"))); // NOI18N
-        btnTienda.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tienda.hover.png"))); // NOI18N
-        layerMenu.add(btnTienda);
-
-        btnLiga.setBackground(new java.awt.Color(206, 206, 206));
-        btnLiga.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnLiga.setForeground(new java.awt.Color(0, 0, 0));
-        btnLiga.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_90px.png"))); // NOI18N
-        btnLiga.setBorder(null);
-        btnLiga.setBorderPainted(false);
-        btnLiga.setContentAreaFilled(false);
-        btnLiga.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_90px.click.png"))); // NOI18N
-        btnLiga.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_90px.hover.png"))); // NOI18N
-        btnLiga.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLigaActionPerformed(evt);
-            }
-        });
-        layerMenu.add(btnLiga);
-
-        btnExit.setBackground(new java.awt.Color(206, 206, 206));
-        btnExit.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnExit.setForeground(new java.awt.Color(0, 0, 0));
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
-        btnExit.setBorder(null);
-        btnExit.setBorderPainted(false);
-        btnExit.setContentAreaFilled(false);
-        btnExit.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.press.png"))); // NOI18N
-        btnExit.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.hover.png"))); // NOI18N
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
-            }
-        });
-        layerMenu.add(btnExit);
-
-        BG.add(layerMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 35, 889, 105));
-
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(129, 129, 129));
         jLabel1.setText("Partidos de liga:");
         BG.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, 350, 30));
+
+        jPanel1.setBackground(new java.awt.Color(51, 61, 87));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(129, 129, 129));
+        jLabel5.setText("Usuario:");
+
+        lblNombreUsu.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblNombreUsu.setForeground(new java.awt.Color(129, 129, 129));
+
+        lblDin.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblDin.setForeground(new java.awt.Color(129, 129, 129));
+        lblDin.setText("Dinero:");
+
+        lbldinero.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lbldinero.setForeground(new java.awt.Color(129, 129, 129));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(464, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(lblNombreUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(lblDin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(lbldinero, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombreUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbldinero, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        BG.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 30));
+
+        layerMenu1.setBackground(new java.awt.Color(51, 61, 87));
+        layerMenu1.setForeground(new java.awt.Color(51, 61, 87));
+        layerMenu1.setOpaque(true);
+        layerMenu1.setLayout(new java.awt.GridLayout());
+
+        btnHome1.setBackground(new java.awt.Color(206, 206, 206));
+        btnHome1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnHome1.setForeground(new java.awt.Color(0, 0, 0));
+        btnHome1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_90px.png"))); // NOI18N
+        btnHome1.setBorder(null);
+        btnHome1.setBorderPainted(false);
+        btnHome1.setContentAreaFilled(false);
+        btnHome1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHome1.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
+        btnHome1.setName(""); // NOI18N
+        btnHome1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_90px.click.png"))); // NOI18N
+        btnHome1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_90px.hover.png"))); // NOI18N
+        btnHome1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHome1ActionPerformed(evt);
+            }
+        });
+        btnHome1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                btnHome1KeyReleased(evt);
+            }
+        });
+        layerMenu1.add(btnHome1);
+
+        btnPlantilla1.setBackground(new java.awt.Color(206, 206, 206));
+        btnPlantilla1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnPlantilla1.setForeground(new java.awt.Color(0, 0, 0));
+        btnPlantilla1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stadium_90px.png"))); // NOI18N
+        btnPlantilla1.setBorder(null);
+        btnPlantilla1.setBorderPainted(false);
+        btnPlantilla1.setContentAreaFilled(false);
+        btnPlantilla1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stadium_90px.click.png"))); // NOI18N
+        btnPlantilla1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stadium_90px.hover.png"))); // NOI18N
+        btnPlantilla1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlantilla1ActionPerformed(evt);
+            }
+        });
+        layerMenu1.add(btnPlantilla1);
+
+        btnPerfil1.setBackground(new java.awt.Color(206, 206, 206));
+        btnPerfil1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnPerfil1.setForeground(new java.awt.Color(0, 0, 0));
+        btnPerfil1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
+        btnPerfil1.setBorder(null);
+        btnPerfil1.setBorderPainted(false);
+        btnPerfil1.setContentAreaFilled(false);
+        btnPerfil1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.click.png"))); // NOI18N
+        btnPerfil1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.hover.png"))); // NOI18N
+        btnPerfil1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerfil1ActionPerformed(evt);
+            }
+        });
+        layerMenu1.add(btnPerfil1);
+
+        btnClasificacion1.setBackground(new java.awt.Color(206, 206, 206));
+        btnClasificacion1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnClasificacion1.setForeground(new java.awt.Color(0, 0, 0));
+        btnClasificacion1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clasificacion.png"))); // NOI18N
+        btnClasificacion1.setBorder(null);
+        btnClasificacion1.setBorderPainted(false);
+        btnClasificacion1.setContentAreaFilled(false);
+        btnClasificacion1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clasificacion.click.png"))); // NOI18N
+        btnClasificacion1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clasificacion.hover.png"))); // NOI18N
+        btnClasificacion1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClasificacion1ActionPerformed(evt);
+            }
+        });
+        layerMenu1.add(btnClasificacion1);
+
+        btnBuscarJugador1.setBackground(new java.awt.Color(206, 206, 206));
+        btnBuscarJugador1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnBuscarJugador1.setForeground(new java.awt.Color(0, 0, 0));
+        btnBuscarJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
+        btnBuscarJugador1.setBorder(null);
+        btnBuscarJugador1.setBorderPainted(false);
+        btnBuscarJugador1.setContentAreaFilled(false);
+        btnBuscarJugador1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.click.png"))); // NOI18N
+        btnBuscarJugador1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.hover.png"))); // NOI18N
+        btnBuscarJugador1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarJugador1ActionPerformed(evt);
+            }
+        });
+        layerMenu1.add(btnBuscarJugador1);
+
+        btnTienda1.setBackground(new java.awt.Color(206, 206, 206));
+        btnTienda1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnTienda1.setForeground(new java.awt.Color(0, 0, 0));
+        btnTienda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tienda.png"))); // NOI18N
+        btnTienda1.setBorder(null);
+        btnTienda1.setBorderPainted(false);
+        btnTienda1.setContentAreaFilled(false);
+        btnTienda1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tienda.click.png"))); // NOI18N
+        btnTienda1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tienda.hover.png"))); // NOI18N
+        btnTienda1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTienda1ActionPerformed(evt);
+            }
+        });
+        layerMenu1.add(btnTienda1);
+
+        btnLiga1.setBackground(new java.awt.Color(206, 206, 206));
+        btnLiga1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnLiga1.setForeground(new java.awt.Color(0, 0, 0));
+        btnLiga1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_90px.png"))); // NOI18N
+        btnLiga1.setBorder(null);
+        btnLiga1.setBorderPainted(false);
+        btnLiga1.setContentAreaFilled(false);
+        btnLiga1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_90px.click.png"))); // NOI18N
+        btnLiga1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_90px.hover.png"))); // NOI18N
+        btnLiga1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLiga1ActionPerformed(evt);
+            }
+        });
+        layerMenu1.add(btnLiga1);
+
+        btnExit1.setBackground(new java.awt.Color(206, 206, 206));
+        btnExit1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnExit1.setForeground(new java.awt.Color(0, 0, 0));
+        btnExit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
+        btnExit1.setBorder(null);
+        btnExit1.setBorderPainted(false);
+        btnExit1.setContentAreaFilled(false);
+        btnExit1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.press.png"))); // NOI18N
+        btnExit1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.hover.png"))); // NOI18N
+        btnExit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExit1ActionPerformed(evt);
+            }
+        });
+        layerMenu1.add(btnExit1);
+
+        BG.add(layerMenu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 35, 900, 105));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1267,17 +1304,19 @@ public class pantallaPerfil extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRetrocederActionPerformed
 
     private void rellenarTablaPartidos() {
+
         Iterator it = UsuarioPerfil.getEquipo().getPartidosEquipo().iterator();
         DefaultTableModel model = (DefaultTableModel) tblPartidos.getModel();
         while (it.hasNext()) {
             Partido partido = (Partido) it.next();
+            if (partido.getUsuarioLocal().getNombreUsuario().equalsIgnoreCase(UsuarioPerfil.getNombreUsuario()) || partido.getUsuarioVisitante().getNombreUsuario().equalsIgnoreCase(UsuarioPerfil.getNombreUsuario())) {
+                if (partido.getPuntosLocal() == 0 && partido.getPuntosVisitante() == 0) {
+                    model.addRow(new Object[]{partido.getUsuarioLocal().getEquipo().getNombre(), partido.getUsuarioVisitante().getEquipo().getNombre(), partido.getFechaPartido()});
 
-            if (partido.getPuntosLocal() == 0 && partido.getPuntosVisitante() == 0) {
-                model.addRow(new Object[]{partido.getUsuarioLocal().getEquipo().getNombre(), partido.getUsuarioVisitante().getEquipo().getNombre(), partido.getFechaPartido()});
+                } else {
+                    model.addRow(new Object[]{partido.getUsuarioLocal().getEquipo().getNombre(), partido.getUsuarioVisitante().getEquipo().getNombre(), partido.getPuntosLocal() + "-" + partido.getPuntosVisitante()});
 
-            } else {
-                model.addRow(new Object[]{partido.getUsuarioLocal().getEquipo().getNombre(), partido.getUsuarioVisitante().getEquipo().getNombre(), partido.getPuntosLocal() + "-" + partido.getPuntosVisitante()});
-
+                }
             }
 
         }
@@ -1478,78 +1517,8 @@ public class pantallaPerfil extends javax.swing.JFrame {
 
     private void tblPartidosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPartidosMousePressed
         String s = (String) tblPartidos.getModel().getValueAt(tblPartidos.getSelectedRow(), 1);
-        System.out.println(s);
 
     }//GEN-LAST:event_tblPartidosMousePressed
-
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        pantallaSesionIniciada pantalla = new pantallaSesionIniciada(Actual);
-        pantalla.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnHomeActionPerformed
-
-    private void btnHomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnHomeKeyReleased
-        // TODO add your handling code here:
-        //        btnHome.setIcon(home_90px.hover);
-    }//GEN-LAST:event_btnHomeKeyReleased
-
-    private void btnPlantillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlantillaActionPerformed
-        // TODO add your handling code here:
-
-        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
-            btnError.setForeground(new java.awt.Color(100, 0, 0));
-            btnError.setVisible(true);
-            btnError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
-            btnError.setText("Para acceder a este apartado antes debes estar participando en una liga.");
-        } else {
-            this.setVisible(false);
-            PantallaPlantilla pantalla = new PantallaPlantilla(Actual);
-            pantalla.setVisible(true);
-        }
-    }//GEN-LAST:event_btnPlantillaActionPerformed
-
-    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
-        this.setVisible(false);
-        pantallaPerfil pantalla = new pantallaPerfil(Actual, Actual);
-        pantalla.setVisible(true);
-    }//GEN-LAST:event_btnPerfilActionPerformed
-
-    private void btnClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClasificacionActionPerformed
-        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
-            btnError.setForeground(new java.awt.Color(100, 0, 0));
-            btnError.setVisible(true);
-            btnError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
-            btnError.setText("Para acceder a este apartado antes debes estar participando en una liga.");
-        } else {
-            this.setVisible(false);
-            pantallaClasificacion pantalla = new pantallaClasificacion(Actual);
-            pantalla.setVisible(true);
-        }
-
-    }//GEN-LAST:event_btnClasificacionActionPerformed
-
-    private void btnLigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLigaActionPerformed
-        // TODO add your handling code here:s
-
-        if (Actual.getLiga() == null || Actual.getLiga().getNombre() == null) {
-            this.setVisible(false);
-            PantallaLiga pantalla = new PantallaLiga(Actual);
-            pantalla.setVisible(true);
-        } else {
-            this.setVisible(false);
-            PantallaLigaAbandonar pantalla = new PantallaLigaAbandonar(Actual);
-            pantalla.setVisible(true);
-        }
-
-    }//GEN-LAST:event_btnLigaActionPerformed
-
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        // TODO add your handling code here:
-        Menu pantalla = new Menu();
-        pantalla.setVisible(true);
-        this.setVisible(false);
-
-    }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnErrorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnErrorActionPerformed
         // TODO add your handling code here:
@@ -1599,6 +1568,203 @@ public class pantallaPerfil extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lblEIAncestorAdded
 
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        int y = evt.getYOnScreen();
+        int x = evt.getXOnScreen();
+        setLocation(x - xMouse, y - yMouse);
+
+    }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+
+    }//GEN-LAST:event_jPanel1MousePressed
+
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        pantallaSesionIniciada pantalla = new pantallaSesionIniciada(Actual);
+        pantalla.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnHomeActionPerformed
+
+    private void btnHomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnHomeKeyReleased
+
+    }//GEN-LAST:event_btnHomeKeyReleased
+
+    private void btnPlantillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlantillaActionPerformed
+
+        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
+            btnError.setForeground(new java.awt.Color(100, 0, 0));
+            btnError.setVisible(true);
+            btnError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
+            btnError.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+        } else {
+            this.setVisible(false);
+            PantallaPlantilla pantalla = new PantallaPlantilla(Actual);
+            pantalla.setVisible(true);
+        }
+    }//GEN-LAST:event_btnPlantillaActionPerformed
+
+    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
+        this.setVisible(false);
+        pantallaPerfil pantalla = new pantallaPerfil(Actual, Actual);
+        pantalla.setVisible(true);
+    }//GEN-LAST:event_btnPerfilActionPerformed
+
+    private void btnClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClasificacionActionPerformed
+        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
+            btnError.setForeground(new java.awt.Color(100, 0, 0));
+            btnError.setVisible(true);
+            btnError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
+            btnError.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+        } else {
+            this.setVisible(false);
+            pantallaClasificacion pantalla = new pantallaClasificacion(Actual);
+            pantalla.setVisible(true);
+        }
+
+    }//GEN-LAST:event_btnClasificacionActionPerformed
+
+    private void btnBuscarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarJugadorActionPerformed
+        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
+            btnError.setForeground(new java.awt.Color(100, 0, 0));
+            btnError.setVisible(true);
+            btnError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
+            btnError.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+        } else {
+            this.setVisible(false);
+            pantallaJugadores pantalla = new pantallaJugadores(Actual);
+            pantalla.setVisible(true);
+        }
+    }//GEN-LAST:event_btnBuscarJugadorActionPerformed
+
+    private void btnTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiendaActionPerformed
+        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
+            btnError.setForeground(new java.awt.Color(100, 0, 0));
+            btnError.setVisible(true);
+            btnError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
+            btnError.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+        } else {
+            this.setVisible(false);
+            pantallaTienda pantalla = new pantallaTienda(Actual);
+            pantalla.setVisible(true);
+        }
+    }//GEN-LAST:event_btnTiendaActionPerformed
+
+    private void btnLigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLigaActionPerformed
+
+        if (Actual.getLiga() == null || Actual.getLiga().getNombre() == null) {
+            this.setVisible(false);
+            PantallaLiga pantalla = new PantallaLiga(Actual);
+            pantalla.setVisible(true);
+        } else {
+            this.setVisible(false);
+            PantallaLigaAbandonar pantalla = new PantallaLigaAbandonar(Actual);
+            pantalla.setVisible(true);
+        }
+
+    }//GEN-LAST:event_btnLigaActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        // TODO add your handling code here:
+        Menu pantalla = new Menu();
+        pantalla.setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnHome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome1ActionPerformed
+        pantallaSesionIniciada pantalla = new pantallaSesionIniciada(Actual);
+        pantalla.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnHome1ActionPerformed
+
+    private void btnHome1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnHome1KeyReleased
+
+    }//GEN-LAST:event_btnHome1KeyReleased
+
+    private void btnPlantilla1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlantilla1ActionPerformed
+
+        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
+            btnError.setForeground(new java.awt.Color(100, 0, 0));
+            btnError.setVisible(true);
+            btnError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
+            btnError.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+        } else {
+            this.setVisible(false);
+            PantallaPlantilla pantalla = new PantallaPlantilla(Actual);
+            pantalla.setVisible(true);
+        }
+    }//GEN-LAST:event_btnPlantilla1ActionPerformed
+
+    private void btnPerfil1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfil1ActionPerformed
+        this.setVisible(false);
+        pantallaPerfil pantalla = new pantallaPerfil(Actual, Actual);
+        pantalla.setVisible(true);
+    }//GEN-LAST:event_btnPerfil1ActionPerformed
+
+    private void btnClasificacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClasificacion1ActionPerformed
+        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
+            btnError.setForeground(new java.awt.Color(100, 0, 0));
+            btnError.setVisible(true);
+            btnError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
+            btnError.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+        } else {
+            this.setVisible(false);
+            pantallaClasificacion pantalla = new pantallaClasificacion(Actual);
+            pantalla.setVisible(true);
+        }
+
+    }//GEN-LAST:event_btnClasificacion1ActionPerformed
+
+    private void btnBuscarJugador1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarJugador1ActionPerformed
+        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
+            btnError.setForeground(new java.awt.Color(100, 0, 0));
+            btnError.setVisible(true);
+            btnError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
+            btnError.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+        } else {
+            this.setVisible(false);
+            pantallaJugadores pantalla = new pantallaJugadores(Actual);
+            pantalla.setVisible(true);
+        }
+    }//GEN-LAST:event_btnBuscarJugador1ActionPerformed
+
+    private void btnTienda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTienda1ActionPerformed
+        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
+            btnError.setForeground(new java.awt.Color(100, 0, 0));
+            btnError.setVisible(true);
+            btnError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
+            btnError.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+        } else {
+            this.setVisible(false);
+            pantallaTienda pantalla = new pantallaTienda(Actual);
+            pantalla.setVisible(true);
+        }
+    }//GEN-LAST:event_btnTienda1ActionPerformed
+
+    private void btnLiga1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiga1ActionPerformed
+
+        if (Actual.getLiga() == null || Actual.getLiga().getNombre() == null) {
+            this.setVisible(false);
+            PantallaLiga pantalla = new PantallaLiga(Actual);
+            pantalla.setVisible(true);
+        } else {
+            this.setVisible(false);
+            PantallaLigaAbandonar pantalla = new PantallaLigaAbandonar(Actual);
+            pantalla.setVisible(true);
+        }
+
+    }//GEN-LAST:event_btnLiga1ActionPerformed
+
+    private void btnExit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExit1ActionPerformed
+        // TODO add your handling code here:
+        Menu pantalla = new Menu();
+        pantalla.setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_btnExit1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1637,30 +1803,49 @@ public class pantallaPerfil extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane BG;
     private javax.swing.JButton btnBuscarJugador;
+    private javax.swing.JButton btnBuscarJugador1;
     private javax.swing.JButton btnClasificacion;
+    private javax.swing.JButton btnClasificacion1;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnClose1;
     private javax.swing.JButton btnCompar1;
     private javax.swing.JButton btnError;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnExit1;
     private javax.swing.JButton btnHome;
+    private javax.swing.JButton btnHome1;
     private javax.swing.JButton btnLiga;
+    private javax.swing.JButton btnLiga1;
     private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnMinimizar1;
     private javax.swing.JButton btnNo;
     private javax.swing.JButton btnPerfil;
+    private javax.swing.JButton btnPerfil1;
     private javax.swing.JButton btnPlantilla;
+    private javax.swing.JButton btnPlantilla1;
     private javax.swing.JButton btnRetroceder;
     private javax.swing.JButton btnRetroceder1;
     private javax.swing.JButton btnTienda;
+    private javax.swing.JButton btnTienda1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JLayeredPane layerMenu;
+    private javax.swing.JLayeredPane layerMenu1;
     private javax.swing.JLayeredPane layerUnirseLiga;
     private javax.swing.JLabel lblApe;
     private javax.swing.JLabel lblApellidos;
@@ -1669,10 +1854,10 @@ public class pantallaPerfil extends javax.swing.JFrame {
     private javax.swing.JLabel lblDFCI;
     private javax.swing.JLabel lblDerrotas;
     private javax.swing.JLabel lblDerrotas1;
+    private javax.swing.JLabel lblDin;
     private javax.swing.JLabel lblED;
     private javax.swing.JLabel lblEI;
     private javax.swing.JLabel lblEI1;
-    private javax.swing.JLabel lblFotoEquipo;
     private javax.swing.JLabel lblGK;
     private javax.swing.JLabel lblLD;
     private javax.swing.JLabel lblLI;
@@ -1683,6 +1868,7 @@ public class pantallaPerfil extends javax.swing.JFrame {
     private javax.swing.JLabel lblMCI;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNombreEquipo;
+    private javax.swing.JLabel lblNombreUsu;
     private javax.swing.JLabel lblNombreUsuario;
     private javax.swing.JLabel lblNombret;
     private javax.swing.JLabel lblPuntos;
@@ -1692,6 +1878,7 @@ public class pantallaPerfil extends javax.swing.JFrame {
     private javax.swing.JLabel lblVicorias;
     private javax.swing.JLabel lblVicoriast;
     private javax.swing.JLabel lblbEquipo;
+    private javax.swing.JLabel lbldinero;
     private javax.swing.JLayeredPane panelAcciones;
     private javax.swing.JLayeredPane panelAcciones1;
     private javax.swing.JLayeredPane panelCabecera;

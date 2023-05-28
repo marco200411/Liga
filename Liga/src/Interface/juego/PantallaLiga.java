@@ -19,10 +19,7 @@ import Methods.Futbolista;
  * @author Marco
  */
 public class PantallaLiga extends javax.swing.JFrame {
-
-    /**
-     * Creates new form PantallaLiga
-     */
+ int xMouse, yMouse;
     Usuario Actual = null;
 
     public PantallaLiga(Usuario us1) {
@@ -30,6 +27,7 @@ public class PantallaLiga extends javax.swing.JFrame {
         btnUnirseLiga.setEnabled(true);
         btnCrearLiga.setEnabled(true);
         Actual = us1;
+        lblNombreUsu.setText(Actual.getNombreUsuario());
     }
 
     @SuppressWarnings("unchecked")
@@ -42,28 +40,33 @@ public class PantallaLiga extends javax.swing.JFrame {
         btnMinimizar = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
-        layerMenu = new javax.swing.JLayeredPane();
-        btnHome = new javax.swing.JButton();
-        btnPlantilla = new javax.swing.JButton();
-        btnPerfil = new javax.swing.JButton();
-        btnClasificacion = new javax.swing.JButton();
-        btnBuscarJugador = new javax.swing.JButton();
-        btnTienda = new javax.swing.JButton();
-        btnLiga = new javax.swing.JButton();
-        btnExit = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         layerUnirseLiga = new javax.swing.JLayeredPane();
+        jSeparator1 = new javax.swing.JSeparator();
         btnUnirseLiga = new javax.swing.JButton();
         txtNombreUnirseLiga = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnInfoUnirse = new javax.swing.JButton();
         layerInfoCrearLiga = new javax.swing.JLayeredPane();
+        jSeparator3 = new javax.swing.JSeparator();
         btnCrearLiga = new javax.swing.JButton();
         txtNombreCrearLiga = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnInfoCrear = new javax.swing.JButton();
+        layerMenu1 = new javax.swing.JLayeredPane();
+        btnHome1 = new javax.swing.JButton();
+        btnPlantilla1 = new javax.swing.JButton();
+        btnPerfil1 = new javax.swing.JButton();
+        btnClasificacion1 = new javax.swing.JButton();
+        btnBuscarJugador1 = new javax.swing.JButton();
+        btnTienda1 = new javax.swing.JButton();
+        btnLiga1 = new javax.swing.JButton();
+        btnExit1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        lblNombreUsu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(900, 700));
@@ -165,128 +168,12 @@ public class PantallaLiga extends javax.swing.JFrame {
         layerBG.add(panelAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, -1, 30));
         layerBG.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 860, 10));
 
-        layerMenu.setBackground(new java.awt.Color(51, 61, 87));
-        layerMenu.setOpaque(true);
-        layerMenu.setLayout(new java.awt.GridLayout(1, 0));
-
-        btnHome.setBackground(new java.awt.Color(206, 206, 206));
-        btnHome.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnHome.setForeground(new java.awt.Color(0, 0, 0));
-        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_90px.png"))); // NOI18N
-        btnHome.setBorder(null);
-        btnHome.setBorderPainted(false);
-        btnHome.setContentAreaFilled(false);
-        btnHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnHome.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
-        btnHome.setName(""); // NOI18N
-        btnHome.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_90px.click.png"))); // NOI18N
-        btnHome.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_90px.hover.png"))); // NOI18N
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
-            }
-        });
-        btnHome.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                btnHomeKeyReleased(evt);
-            }
-        });
-        layerMenu.add(btnHome);
-
-        btnPlantilla.setBackground(new java.awt.Color(206, 206, 206));
-        btnPlantilla.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnPlantilla.setForeground(new java.awt.Color(0, 0, 0));
-        btnPlantilla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stadium_90px.png"))); // NOI18N
-        btnPlantilla.setBorder(null);
-        btnPlantilla.setBorderPainted(false);
-        btnPlantilla.setContentAreaFilled(false);
-        btnPlantilla.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stadium_90px.click.png"))); // NOI18N
-        btnPlantilla.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stadium_90px.hover.png"))); // NOI18N
-        layerMenu.add(btnPlantilla);
-
-        btnPerfil.setBackground(new java.awt.Color(206, 206, 206));
-        btnPerfil.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnPerfil.setForeground(new java.awt.Color(0, 0, 0));
-        btnPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
-        btnPerfil.setBorder(null);
-        btnPerfil.setBorderPainted(false);
-        btnPerfil.setContentAreaFilled(false);
-        btnPerfil.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.click.png"))); // NOI18N
-        btnPerfil.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.hover.png"))); // NOI18N
-        layerMenu.add(btnPerfil);
-
-        btnClasificacion.setBackground(new java.awt.Color(206, 206, 206));
-        btnClasificacion.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnClasificacion.setForeground(new java.awt.Color(0, 0, 0));
-        btnClasificacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clasificacion.png"))); // NOI18N
-        btnClasificacion.setBorder(null);
-        btnClasificacion.setBorderPainted(false);
-        btnClasificacion.setContentAreaFilled(false);
-        btnClasificacion.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clasificacion.click.png"))); // NOI18N
-        btnClasificacion.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clasificacion.hover.png"))); // NOI18N
-        layerMenu.add(btnClasificacion);
-
-        btnBuscarJugador.setBackground(new java.awt.Color(206, 206, 206));
-        btnBuscarJugador.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnBuscarJugador.setForeground(new java.awt.Color(0, 0, 0));
-        btnBuscarJugador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
-        btnBuscarJugador.setBorder(null);
-        btnBuscarJugador.setBorderPainted(false);
-        btnBuscarJugador.setContentAreaFilled(false);
-        btnBuscarJugador.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.click.png"))); // NOI18N
-        btnBuscarJugador.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.hover.png"))); // NOI18N
-        layerMenu.add(btnBuscarJugador);
-
-        btnTienda.setBackground(new java.awt.Color(206, 206, 206));
-        btnTienda.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnTienda.setForeground(new java.awt.Color(0, 0, 0));
-        btnTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tienda.png"))); // NOI18N
-        btnTienda.setBorder(null);
-        btnTienda.setBorderPainted(false);
-        btnTienda.setContentAreaFilled(false);
-        btnTienda.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tienda.click.png"))); // NOI18N
-        btnTienda.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tienda.hover.png"))); // NOI18N
-        layerMenu.add(btnTienda);
-
-        btnLiga.setBackground(new java.awt.Color(206, 206, 206));
-        btnLiga.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnLiga.setForeground(new java.awt.Color(0, 0, 0));
-        btnLiga.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_90px.png"))); // NOI18N
-        btnLiga.setBorder(null);
-        btnLiga.setBorderPainted(false);
-        btnLiga.setContentAreaFilled(false);
-        btnLiga.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_90px.click.png"))); // NOI18N
-        btnLiga.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_90px.hover.png"))); // NOI18N
-        btnLiga.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLigaActionPerformed(evt);
-            }
-        });
-        layerMenu.add(btnLiga);
-
-        btnExit.setBackground(new java.awt.Color(206, 206, 206));
-        btnExit.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnExit.setForeground(new java.awt.Color(0, 0, 0));
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
-        btnExit.setBorder(null);
-        btnExit.setBorderPainted(false);
-        btnExit.setContentAreaFilled(false);
-        btnExit.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.press.png"))); // NOI18N
-        btnExit.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.hover.png"))); // NOI18N
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
-            }
-        });
-        layerMenu.add(btnExit);
-
-        layerBG.add(layerMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 880, 100));
-
         layerUnirseLiga.setBackground(new java.awt.Color(92, 99, 112));
         layerUnirseLiga.setMaximumSize(new java.awt.Dimension(410, 510));
         layerUnirseLiga.setMinimumSize(new java.awt.Dimension(410, 510));
         layerUnirseLiga.setOpaque(true);
         layerUnirseLiga.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        layerUnirseLiga.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 330, 20));
 
         btnUnirseLiga.setBackground(new java.awt.Color(206, 206, 206));
         btnUnirseLiga.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -310,17 +197,22 @@ public class PantallaLiga extends javax.swing.JFrame {
                 btnUnirseLigaKeyReleased(evt);
             }
         });
-        layerUnirseLiga.add(btnUnirseLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, -1));
+        layerUnirseLiga.add(btnUnirseLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, -1, -1));
 
-        txtNombreUnirseLiga.setBackground(new java.awt.Color(51, 61, 87));
+        txtNombreUnirseLiga.setBackground(new java.awt.Color(92, 99, 112));
+        txtNombreUnirseLiga.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtNombreUnirseLiga.setForeground(new java.awt.Color(206, 206, 206));
+        txtNombreUnirseLiga.setBorder(null);
         layerUnirseLiga.add(txtNombreUnirseLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 330, 60));
 
         jLabel3.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(206, 206, 206));
         jLabel3.setText("UNIRSE A UNA LIGA");
         layerUnirseLiga.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 360, 80));
 
         jLabel4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel4.setText("Nombre de la liga");
+        jLabel4.setForeground(new java.awt.Color(206, 206, 206));
+        jLabel4.setText("Nombre de la liga:");
         layerUnirseLiga.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 160, 30));
 
         btnInfoUnirse.setBackground(new java.awt.Color(92, 99, 112));
@@ -351,6 +243,7 @@ public class PantallaLiga extends javax.swing.JFrame {
         layerInfoCrearLiga.setMinimumSize(new java.awt.Dimension(410, 510));
         layerInfoCrearLiga.setOpaque(true);
         layerInfoCrearLiga.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        layerInfoCrearLiga.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 330, 20));
 
         btnCrearLiga.setBackground(new java.awt.Color(206, 206, 206));
         btnCrearLiga.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -376,15 +269,20 @@ public class PantallaLiga extends javax.swing.JFrame {
         });
         layerInfoCrearLiga.add(btnCrearLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, -1, -1));
 
-        txtNombreCrearLiga.setBackground(new java.awt.Color(51, 61, 87));
+        txtNombreCrearLiga.setBackground(new java.awt.Color(92, 99, 112));
+        txtNombreCrearLiga.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtNombreCrearLiga.setForeground(new java.awt.Color(206, 206, 206));
+        txtNombreCrearLiga.setBorder(null);
         layerInfoCrearLiga.add(txtNombreCrearLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 320, 60));
 
         jLabel2.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(206, 206, 206));
         jLabel2.setText("CREAR A UNA LIGA");
         layerInfoCrearLiga.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 360, 80));
 
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel1.setText("Nombre de la liga");
+        jLabel1.setForeground(new java.awt.Color(206, 206, 206));
+        jLabel1.setText("Nombre de la liga:");
         layerInfoCrearLiga.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 160, 30));
 
         btnInfoCrear.setBackground(new java.awt.Color(92, 99, 112));
@@ -429,10 +327,195 @@ public class PantallaLiga extends javax.swing.JFrame {
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(layerInfoCrearLiga, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(layerUnirseLiga, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         layerBG.add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 870, 530));
+
+        layerMenu1.setBackground(new java.awt.Color(51, 61, 87));
+        layerMenu1.setForeground(new java.awt.Color(51, 61, 87));
+        layerMenu1.setOpaque(true);
+        layerMenu1.setLayout(new java.awt.GridLayout());
+
+        btnHome1.setBackground(new java.awt.Color(206, 206, 206));
+        btnHome1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnHome1.setForeground(new java.awt.Color(0, 0, 0));
+        btnHome1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_90px.png"))); // NOI18N
+        btnHome1.setBorder(null);
+        btnHome1.setBorderPainted(false);
+        btnHome1.setContentAreaFilled(false);
+        btnHome1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHome1.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
+        btnHome1.setName(""); // NOI18N
+        btnHome1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_90px.click.png"))); // NOI18N
+        btnHome1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_90px.hover.png"))); // NOI18N
+        btnHome1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHome1ActionPerformed(evt);
+            }
+        });
+        btnHome1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                btnHome1KeyReleased(evt);
+            }
+        });
+        layerMenu1.add(btnHome1);
+
+        btnPlantilla1.setBackground(new java.awt.Color(206, 206, 206));
+        btnPlantilla1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnPlantilla1.setForeground(new java.awt.Color(0, 0, 0));
+        btnPlantilla1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stadium_90px.png"))); // NOI18N
+        btnPlantilla1.setBorder(null);
+        btnPlantilla1.setBorderPainted(false);
+        btnPlantilla1.setContentAreaFilled(false);
+        btnPlantilla1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stadium_90px.click.png"))); // NOI18N
+        btnPlantilla1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stadium_90px.hover.png"))); // NOI18N
+        btnPlantilla1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlantilla1ActionPerformed(evt);
+            }
+        });
+        layerMenu1.add(btnPlantilla1);
+
+        btnPerfil1.setBackground(new java.awt.Color(206, 206, 206));
+        btnPerfil1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnPerfil1.setForeground(new java.awt.Color(0, 0, 0));
+        btnPerfil1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
+        btnPerfil1.setBorder(null);
+        btnPerfil1.setBorderPainted(false);
+        btnPerfil1.setContentAreaFilled(false);
+        btnPerfil1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.click.png"))); // NOI18N
+        btnPerfil1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.hover.png"))); // NOI18N
+        btnPerfil1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerfil1ActionPerformed(evt);
+            }
+        });
+        layerMenu1.add(btnPerfil1);
+
+        btnClasificacion1.setBackground(new java.awt.Color(206, 206, 206));
+        btnClasificacion1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnClasificacion1.setForeground(new java.awt.Color(0, 0, 0));
+        btnClasificacion1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clasificacion.png"))); // NOI18N
+        btnClasificacion1.setBorder(null);
+        btnClasificacion1.setBorderPainted(false);
+        btnClasificacion1.setContentAreaFilled(false);
+        btnClasificacion1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clasificacion.click.png"))); // NOI18N
+        btnClasificacion1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clasificacion.hover.png"))); // NOI18N
+        btnClasificacion1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClasificacion1ActionPerformed(evt);
+            }
+        });
+        layerMenu1.add(btnClasificacion1);
+
+        btnBuscarJugador1.setBackground(new java.awt.Color(206, 206, 206));
+        btnBuscarJugador1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnBuscarJugador1.setForeground(new java.awt.Color(0, 0, 0));
+        btnBuscarJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
+        btnBuscarJugador1.setBorder(null);
+        btnBuscarJugador1.setBorderPainted(false);
+        btnBuscarJugador1.setContentAreaFilled(false);
+        btnBuscarJugador1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.click.png"))); // NOI18N
+        btnBuscarJugador1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.hover.png"))); // NOI18N
+        btnBuscarJugador1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarJugador1ActionPerformed(evt);
+            }
+        });
+        layerMenu1.add(btnBuscarJugador1);
+
+        btnTienda1.setBackground(new java.awt.Color(206, 206, 206));
+        btnTienda1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnTienda1.setForeground(new java.awt.Color(0, 0, 0));
+        btnTienda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tienda.png"))); // NOI18N
+        btnTienda1.setBorder(null);
+        btnTienda1.setBorderPainted(false);
+        btnTienda1.setContentAreaFilled(false);
+        btnTienda1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tienda.click.png"))); // NOI18N
+        btnTienda1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tienda.hover.png"))); // NOI18N
+        btnTienda1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTienda1ActionPerformed(evt);
+            }
+        });
+        layerMenu1.add(btnTienda1);
+
+        btnLiga1.setBackground(new java.awt.Color(206, 206, 206));
+        btnLiga1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnLiga1.setForeground(new java.awt.Color(0, 0, 0));
+        btnLiga1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_90px.png"))); // NOI18N
+        btnLiga1.setBorder(null);
+        btnLiga1.setBorderPainted(false);
+        btnLiga1.setContentAreaFilled(false);
+        btnLiga1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_90px.click.png"))); // NOI18N
+        btnLiga1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_90px.hover.png"))); // NOI18N
+        btnLiga1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLiga1ActionPerformed(evt);
+            }
+        });
+        layerMenu1.add(btnLiga1);
+
+        btnExit1.setBackground(new java.awt.Color(206, 206, 206));
+        btnExit1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnExit1.setForeground(new java.awt.Color(0, 0, 0));
+        btnExit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
+        btnExit1.setBorder(null);
+        btnExit1.setBorderPainted(false);
+        btnExit1.setContentAreaFilled(false);
+        btnExit1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.press.png"))); // NOI18N
+        btnExit1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.hover.png"))); // NOI18N
+        btnExit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExit1ActionPerformed(evt);
+            }
+        });
+        layerMenu1.add(btnExit1);
+
+        layerBG.add(layerMenu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 35, 889, 105));
+
+        jPanel1.setBackground(new java.awt.Color(51, 61, 87));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(129, 129, 129));
+        jLabel5.setText("Usuario:");
+
+        lblNombreUsu.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblNombreUsu.setForeground(new java.awt.Color(129, 129, 129));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(594, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(lblNombreUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombreUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        layerBG.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -554,21 +637,17 @@ public class PantallaLiga extends javax.swing.JFrame {
                 agentesLibres();
                 Futbolista futbolistaRandom = null;
                 if (Actual.getPlantilla().isEmpty()) {
-                    System.out.println("portero");
                     futbolistaRandom = liga1.getJugadoresLibresPortero().get((int) (Math.random() * liga1.getJugadoresLibresPortero().size()));
                     Actual.setPlantillaPortero(futbolistaRandom);
                 } else if (Actual.getPlantilla().size() >= 1 && Actual.getPlantilla().size() < 5) {
-                    System.out.println("def");
 
                     futbolistaRandom = liga1.getJugadoresLibresDefensa().get((int) (Math.random() * liga1.getJugadoresLibresDefensa().size()));
                     Actual.getPlantillaDefensas().add(futbolistaRandom);
                 } else if (Actual.getPlantilla().size() >= 5 && Actual.getPlantilla().size() < 8) {
-                    System.out.println("medio");
                     futbolistaRandom = liga1.getJugadoresLibresMedio().get((int) (Math.random() * liga1.getJugadoresLibresMedio().size()));
                     Actual.getPlantillaMedios().add(futbolistaRandom);
 
                 } else if (Actual.getPlantilla().size() >= 8 && Actual.getPlantilla().size() < 11) {
-                    System.out.println("del");
                     futbolistaRandom = liga1.getJugadoresLibresDelantero().get((int) (Math.random() * liga1.getJugadoresLibresDelantero().size()));
                     Actual.getPlantillaDelanteros().add(futbolistaRandom);
 
@@ -590,7 +669,6 @@ public class PantallaLiga extends javax.swing.JFrame {
                             + "FROM TBL_USUARIO\n"
                             + "WHERE USUARIO='" + Actual.getNombreUsuario() + "')"
                             + "),'SI';";
-                    System.out.println(sentenciaInsert);
                     OperacionesBBDD escritura = new OperacionesBBDD();
 
                     if (escritura.escrituraSql(sentenciaInsert)) {
@@ -742,28 +820,202 @@ public class PantallaLiga extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnCloseActionPerformed
 
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        pantallaSesionIniciada pantalla = new pantallaSesionIniciada(Actual);
+        pantalla.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnHomeActionPerformed
+
+    private void btnHomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnHomeKeyReleased
+
+    }//GEN-LAST:event_btnHomeKeyReleased
+
+    private void btnPlantillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlantillaActionPerformed
+
+        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
+            btnInfoUnirse.setForeground(new java.awt.Color(100, 0, 0));
+            btnInfoUnirse.setVisible(true);
+            btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
+            btnInfoUnirse.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+        } else {
+            this.setVisible(false);
+            PantallaPlantilla pantalla = new PantallaPlantilla(Actual);
+            pantalla.setVisible(true);
+        }
+    }//GEN-LAST:event_btnPlantillaActionPerformed
+
+    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
+        this.setVisible(false);
+        pantallaPerfil pantalla = new pantallaPerfil(Actual, Actual);
+        pantalla.setVisible(true);
+    }//GEN-LAST:event_btnPerfilActionPerformed
+
+    private void btnClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClasificacionActionPerformed
+        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
+            btnInfoUnirse.setForeground(new java.awt.Color(100, 0, 0));
+            btnInfoUnirse.setVisible(true);
+            btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
+            btnInfoUnirse.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+        } else {
+            this.setVisible(false);
+            pantallaClasificacion pantalla = new pantallaClasificacion(Actual);
+            pantalla.setVisible(true);
+        }
+
+    }//GEN-LAST:event_btnClasificacionActionPerformed
+
+    private void btnBuscarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarJugadorActionPerformed
+        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
+            btnInfoUnirse.setForeground(new java.awt.Color(100, 0, 0));
+            btnInfoUnirse.setVisible(true);
+            btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
+            btnInfoUnirse.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+        } else {
+            this.setVisible(false);
+            pantallaJugadores pantalla = new pantallaJugadores(Actual);
+            pantalla.setVisible(true);
+        }
+    }//GEN-LAST:event_btnBuscarJugadorActionPerformed
+
+    private void btnTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiendaActionPerformed
+        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
+            btnInfoUnirse.setForeground(new java.awt.Color(100, 0, 0));
+            btnInfoUnirse.setVisible(true);
+            btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
+            btnInfoUnirse.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+        } else {
+            this.setVisible(false);
+            pantallaTienda pantalla = new pantallaTienda(Actual);
+            pantalla.setVisible(true);
+        }
+    }//GEN-LAST:event_btnTiendaActionPerformed
+
+    private void btnLigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLigaActionPerformed
+
+        if (Actual.getLiga() == null || Actual.getLiga().getNombre() == null) {
+            this.setVisible(false);
+            PantallaLiga pantalla = new PantallaLiga(Actual);
+            pantalla.setVisible(true);
+        } else {
+            this.setVisible(false);
+            PantallaLigaAbandonar pantalla = new PantallaLigaAbandonar(Actual);
+            pantalla.setVisible(true);
+        }
+
+    }//GEN-LAST:event_btnLigaActionPerformed
+
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
         Menu pantalla = new Menu();
         pantalla.setVisible(true);
         this.setVisible(false);
+
     }//GEN-LAST:event_btnExitActionPerformed
 
-    private void btnHomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnHomeKeyReleased
-        // TODO add your handling code here:
-        //        btnHome.setIcon(home_90px.hover);
-    }//GEN-LAST:event_btnHomeKeyReleased
-
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+    private void btnHome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome1ActionPerformed
         pantallaSesionIniciada pantalla = new pantallaSesionIniciada(Actual);
         pantalla.setVisible(true);
         this.setVisible(false);
+    }//GEN-LAST:event_btnHome1ActionPerformed
 
-    }//GEN-LAST:event_btnHomeActionPerformed
+    private void btnHome1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnHome1KeyReleased
 
-    private void btnLigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLigaActionPerformed
+    }//GEN-LAST:event_btnHome1KeyReleased
+
+    private void btnPlantilla1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlantilla1ActionPerformed
+
+        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
+            btnInfoUnirse.setForeground(new java.awt.Color(100, 0, 0));
+            btnInfoUnirse.setVisible(true);
+            btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
+            btnInfoUnirse.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+        } else {
+            this.setVisible(false);
+            PantallaPlantilla pantalla = new PantallaPlantilla(Actual);
+            pantalla.setVisible(true);
+        }
+    }//GEN-LAST:event_btnPlantilla1ActionPerformed
+
+    private void btnPerfil1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfil1ActionPerformed
+        this.setVisible(false);
+        pantallaPerfil pantalla = new pantallaPerfil(Actual, Actual);
+        pantalla.setVisible(true);
+    }//GEN-LAST:event_btnPerfil1ActionPerformed
+
+    private void btnClasificacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClasificacion1ActionPerformed
+        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
+            btnInfoUnirse.setForeground(new java.awt.Color(100, 0, 0));
+            btnInfoUnirse.setVisible(true);
+            btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
+            btnInfoUnirse.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+        } else {
+            this.setVisible(false);
+            pantallaClasificacion pantalla = new pantallaClasificacion(Actual);
+            pantalla.setVisible(true);
+        }
+
+    }//GEN-LAST:event_btnClasificacion1ActionPerformed
+
+    private void btnBuscarJugador1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarJugador1ActionPerformed
+        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
+            btnInfoUnirse.setForeground(new java.awt.Color(100, 0, 0));
+            btnInfoUnirse.setVisible(true);
+            btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
+            btnInfoUnirse.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+        } else {
+            this.setVisible(false);
+            pantallaJugadores pantalla = new pantallaJugadores(Actual);
+            pantalla.setVisible(true);
+        }
+    }//GEN-LAST:event_btnBuscarJugador1ActionPerformed
+
+    private void btnTienda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTienda1ActionPerformed
+        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
+            btnInfoUnirse.setForeground(new java.awt.Color(100, 0, 0));
+            btnInfoUnirse.setVisible(true);
+            btnInfoUnirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/errorLong.png")));
+            btnInfoUnirse.setText("Para acceder a este apartado antes debes estar participando en una liga.");
+        } else {
+            this.setVisible(false);
+            pantallaTienda pantalla = new pantallaTienda(Actual);
+            pantalla.setVisible(true);
+        }
+    }//GEN-LAST:event_btnTienda1ActionPerformed
+
+    private void btnLiga1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiga1ActionPerformed
+
+        if (Actual.getLiga() == null || Actual.getLiga().getNombre() == null) {
+            this.setVisible(false);
+            PantallaLiga pantalla = new PantallaLiga(Actual);
+            pantalla.setVisible(true);
+        } else {
+            this.setVisible(false);
+            PantallaLigaAbandonar pantalla = new PantallaLigaAbandonar(Actual);
+            pantalla.setVisible(true);
+        }
+
+    }//GEN-LAST:event_btnLiga1ActionPerformed
+
+    private void btnExit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExit1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnLigaActionPerformed
+        Menu pantalla = new Menu();
+        pantalla.setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_btnExit1ActionPerformed
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        int y = evt.getYOnScreen();
+        int x = evt.getXOnScreen();
+        setLocation(x - xMouse, y - yMouse);
+
+    }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+
+    }//GEN-LAST:event_jPanel1MousePressed
 
     /**
      * @param args the command line arguments
@@ -802,30 +1054,44 @@ public class PantallaLiga extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarJugador;
+    private javax.swing.JButton btnBuscarJugador1;
     private javax.swing.JButton btnClasificacion;
+    private javax.swing.JButton btnClasificacion1;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnCrearLiga;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnExit1;
     private javax.swing.JButton btnHome;
+    private javax.swing.JButton btnHome1;
     private javax.swing.JButton btnInfoCrear;
     private javax.swing.JButton btnInfoUnirse;
     private javax.swing.JButton btnLiga;
+    private javax.swing.JButton btnLiga1;
     private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnPerfil;
+    private javax.swing.JButton btnPerfil1;
     private javax.swing.JButton btnPlantilla;
+    private javax.swing.JButton btnPlantilla1;
     private javax.swing.JButton btnRetroceder;
     private javax.swing.JButton btnTienda;
+    private javax.swing.JButton btnTienda1;
     private javax.swing.JButton btnUnirseLiga;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLayeredPane layerBG;
     private javax.swing.JLayeredPane layerInfoCrearLiga;
     private javax.swing.JLayeredPane layerMenu;
+    private javax.swing.JLayeredPane layerMenu1;
     private javax.swing.JLayeredPane layerUnirseLiga;
+    private javax.swing.JLabel lblNombreUsu;
     private javax.swing.JLayeredPane panelAcciones;
     private javax.swing.JTextField txtNombreCrearLiga;
     private javax.swing.JTextField txtNombreUnirseLiga;

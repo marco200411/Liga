@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package OperacionesBBDD;
 
 import java.sql.Connection;
@@ -39,7 +36,7 @@ public class OperacionesBBDD {
             } else {
                 resultado = false;
             }
-            System.out.println("Resultado: " + inseridos + " inserido");
+            
         } catch (SQLException e) {
 
             while (e != null) { //bucle que trata a cadea de excepcións
@@ -77,7 +74,7 @@ public class OperacionesBBDD {
         try {
 
             String mysqlUrl = "jdbc:mysql://localhost/bbdd_fantasy";
-            System.out.println(consultaSql);
+           
             Connection mysqlCon = DriverManager.getConnection(mysqlUrl, MYSQLUSER, MYSQLPASS);
 
             Statement mysqlSelect = mysqlCon.createStatement();
@@ -99,7 +96,6 @@ public class OperacionesBBDD {
             Connection mysqlCon = DriverManager.getConnection(mysqlUrl, MYSQLUSER, MYSQLPASS);
 
             Statement mysqlSelect = mysqlCon.createStatement();
-            System.out.println(consultaSql);
             mysqlResult = mysqlSelect.executeQuery(consultaSql);
 
         } catch (SQLException ex) {

@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Methods;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Marco
- */
 public class Equipo {
 
     Liga liga;
@@ -32,6 +25,9 @@ public class Equipo {
         this.derrotas = derrotas;
     }
 
+    
+    
+    
     public ArrayList<Sobre> getSobresAbiertos() {
         return sobresAbiertos;
     }

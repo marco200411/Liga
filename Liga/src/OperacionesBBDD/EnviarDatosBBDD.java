@@ -1,24 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package OperacionesBBDD;
 
-import Methods.Entrenador;
-import Methods.Equipo;
+
 import Methods.Futbolista;
-import Methods.Liga;
+
 import Methods.Sobre;
 import Methods.Usuario;
-import OperacionesBBDD.OperacionesBBDD;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class EnviarDatosBBDD {
+public  class EnviarDatosBBDD {
 
     public void actualizarJugadoresPlantilla(ArrayList<Futbolista> plantilla, Usuario Actual) {
         eliminarTODOSJugadoresEquipo(Actual.getEquipo().getNombre());
@@ -38,7 +29,6 @@ public class EnviarDatosBBDD {
                     + "(SELECT ID_JUGADOR FROM TBL_JUGADORES WHERE NOMBRE='" + jugador.getNombre() + "'),\n"
                     + "(SELECT ID_EQUIPO FROM TBL_EQUIPO WHERE NOMBRE_PLANTILLA='" + Actual.getEquipo().getNombre() + "'),\n"
                     + "('" + Alineado + "');";
-            System.out.println(consulta);
             OperacionesBBDD escritura = new OperacionesBBDD();
             escritura.escrituraSql(consulta);
         }
@@ -51,7 +41,6 @@ public class EnviarDatosBBDD {
                 + "FROM TBL_EQUIPO \n"
                 + "WHERE NOMBRE_PLANTILLA='" + Actual.getEquipo().getNombre() + "') and \n"
                 + "id_jugador=(SELECT ID_JUGADOR FROM TBL_JUGADORES WHERE NOMBRE='" + jugador + "');";
-        System.out.println(consulta);
         OperacionesBBDD escritura = new OperacionesBBDD();
         escritura.escrituraSql(consulta);
     }
@@ -85,7 +74,6 @@ public class EnviarDatosBBDD {
                 + "WHERE NOMBRE_PLANTILLA='" + Actual.getEquipo().getNombre() + "'),\n"
                 + "('NO'); ";
 
-        System.out.println(consulta);
         OperacionesBBDD escritura = new OperacionesBBDD();
 
         escritura.escrituraSql(consulta);
@@ -98,7 +86,6 @@ public class EnviarDatosBBDD {
                 + "(SELECT ID_SOBRE FROM TBL_SOBRE_TIENDA\n"
                 + "WHERE NOMBRE_SOBRE='"+sobre.getNombre()+"');";
 
-        System.out.println(consulta);
         OperacionesBBDD escritura = new OperacionesBBDD();
 
         escritura.escrituraSql(consulta);

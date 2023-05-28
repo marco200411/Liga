@@ -19,9 +19,7 @@ import java.util.logging.Logger;
  */
 public class pantallaIniciarSesion extends javax.swing.JFrame {
 
-    /**
-     * Creates new form pantallaIniciarSesion
-     */
+    int xMouse, yMouse;
     private static String MYSQLUSER = "root";
 
     private static String MYSQLPASS = "root";
@@ -53,6 +51,9 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
         btnRetroceder = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        btnError1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(650, 650));
@@ -67,7 +68,7 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
         lblCrearCuenta.setFont(new java.awt.Font("Roboto", 0, 48)); // NOI18N
         lblCrearCuenta.setForeground(new java.awt.Color(255, 255, 243));
         lblCrearCuenta.setText("INICIAR SESION");
-        BG.add(lblCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 390, 60));
+        BG.add(lblCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 390, 60));
 
         lblContraseña.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         lblContraseña.setForeground(new java.awt.Color(255, 255, 243));
@@ -93,7 +94,7 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
                 btnCCCreateActionPerformed(evt);
             }
         });
-        BG.add(btnCCCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 180, 80));
+        BG.add(btnCCCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 550, 180, 80));
 
         lblUsername.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         lblUsername.setForeground(new java.awt.Color(255, 255, 243));
@@ -199,6 +200,57 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
 
         BG.add(panelAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 5, -1, 30));
 
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 243));
+        BG.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 350, 30));
+
+        btnError1.setBackground(new java.awt.Color(51, 61, 87));
+        btnError1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnError1.setForeground(new java.awt.Color(153, 0, 0));
+        btnError1.setBorder(null);
+        btnError1.setBorderPainted(false);
+        btnError1.setContentAreaFilled(false);
+        btnError1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnError1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnError1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnError1.setMaximumSize(new java.awt.Dimension(390, 80));
+        btnError1.setMinimumSize(new java.awt.Dimension(390, 80));
+        btnError1.setOpaque(true);
+        btnError1.setPreferredSize(new java.awt.Dimension(390, 80));
+        btnError1.setRequestFocusEnabled(false);
+        btnError1.setRolloverEnabled(false);
+        btnError1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnError1ActionPerformed(evt);
+            }
+        });
+        BG.setLayer(btnError1, javax.swing.JLayeredPane.POPUP_LAYER);
+        BG.add(btnError1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 400, -1));
+
+        jPanel1.setBackground(new java.awt.Color(51, 61, 87));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 540, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+
+        BG.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -232,8 +284,25 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
             this.setVisible(false);
             pantallaSesionIniciada pantalla = new pantallaSesionIniciada(usuario);
             pantalla.setVisible(true);
+        }else{
+            btnError1.setForeground(new java.awt.Color(100, 0, 0));
+                    btnError1.setVisible(true);
+                    btnError1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png")));
+                    btnError1.setText("Nombre usuario o contraseña incorrectos");
         }
-
+//if (escritura.escrituraSql(insertString)) {
+//                    btnError1.setForeground(new java.awt.Color(0, 100, 0));
+//                    btnError1.setVisible(true);
+//                    btnError1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/INSERT.png")));
+//                    btnError1.setText("Usuario creado con exito, haga click aqui para iniciar sesion");
+//
+//                } else {
+//                    btnError1.setForeground(new java.awt.Color(100, 0, 0));
+//                    btnError1.setVisible(true);
+//                    btnError1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png")));
+//                    btnError1.setText("Nombre usuario en uso");
+//
+//                }
 //        if (consulta != null) {
 //            try {
 //
@@ -246,7 +315,7 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
 //                    
 //                    Equipo equipo = new Equipo(liga, "n", consulta, WIDTH, WIDTH);
 //                    us1.setEquipo(consulta);
-//                    
+//
 //                    
 //                } else {
 //                    System.out.println("No encontrado");
@@ -275,6 +344,26 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
         System.exit(0);
 
     }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void btnError1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnError1ActionPerformed
+        btnError1.setVisible(false);
+        pantallaIniciarSesion pantalla = new pantallaIniciarSesion();
+        pantalla.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnError1ActionPerformed
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        int y = evt.getYOnScreen();
+        int x = evt.getXOnScreen();
+        setLocation(x - xMouse, y - yMouse);
+
+    }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+
+    }//GEN-LAST:event_jPanel1MousePressed
 
     /**
      * @param args the command line arguments
@@ -315,8 +404,11 @@ public class pantallaIniciarSesion extends javax.swing.JFrame {
     private javax.swing.JLayeredPane BG;
     private javax.swing.JButton btnCCCreate;
     private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnError1;
     private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnRetroceder;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblCrearCuenta;
     private javax.swing.JLabel lblUsername;

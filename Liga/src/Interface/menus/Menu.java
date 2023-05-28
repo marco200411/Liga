@@ -3,10 +3,10 @@ package Interface.menus;
 import java.awt.geom.RoundRectangle2D;
 
 public class Menu extends javax.swing.JFrame {
-
+    int xMouse, yMouse;
     public Menu() {
         initComponents();
-        System.out.println("");
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -21,6 +21,7 @@ public class Menu extends javax.swing.JFrame {
         btnMinimizar = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
         lblIcon = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(650, 650));
@@ -144,6 +145,31 @@ public class Menu extends javax.swing.JFrame {
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
         BG.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 170, 170));
 
+        jPanel1.setBackground(new java.awt.Color(51, 61, 87));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 570, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        BG.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -182,6 +208,17 @@ public class Menu extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        int y = evt.getYOnScreen();
+        int x = evt.getXOnScreen();
+        setLocation(x - xMouse, y - yMouse);
+    }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_jPanel1MousePressed
+
     public static void main(String args[]) {
 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -219,6 +256,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnCrearCuenta;
     private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JButton btnMinimizar;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblIcon;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLayeredPane panelAcciones;

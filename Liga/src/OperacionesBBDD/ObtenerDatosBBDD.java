@@ -60,7 +60,6 @@ public class ObtenerDatosBBDD {
               
                 sobre = new Sobre(mysqlResult.getString(1), mysqlResult.getInt(2), mysqlResult.getInt(3));
                 us.getEquipo().getSobresAbiertos().add(sobre);
-                  System.out.println(sobre.getNombre());
             }
         } catch (SQLException ex) {
             Logger.getLogger(ObtenerDatosBBDD.class.getName()).log(Level.SEVERE, null, ex);
@@ -165,7 +164,6 @@ public class ObtenerDatosBBDD {
                 + "FROM TBL_USUARIO\n"
                 + "WHERE USUARIO='" + usuario.getNombre() + "'\n"
                 + "));");
-        System.out.println(consulta);
         OperacionesBBDD escritura = new OperacionesBBDD();
         ResultSet mysqlResult = escritura.getSQL(consulta);
         Futbolista futbolista = null;
@@ -283,7 +281,7 @@ public class ObtenerDatosBBDD {
     }
 
     public void getPartidosBBDD(Liga liga) {
-
+       
         String consulta = null;
 
         consulta = ("SELECT E.NOMBRE_PLANTILLA, E2.NOMBRE_PLANTILLA,P.FECHA_INICIO, \n"
@@ -318,7 +316,7 @@ public class ObtenerDatosBBDD {
                 }
                 Partido p1 = new Partido(usLocal, usVisitante, mysqlResult.getDate(3), mysqlResult.getDate(4), mysqlResult.getString(5), mysqlResult.getInt(6), mysqlResult.getInt(7));
                 liga.getPartidos().add(p1);
-                System.out.println(liga.getPartidos().size());
+                
             }
 
         } catch (SQLException ex) {

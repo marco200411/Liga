@@ -1,20 +1,15 @@
 package Interface.juego;
 
+import claseExterna.ImageTableCellRenderer;
 import Interface.menus.Menu;
 import Methods.*;
 import OperacionesBBDD.EnviarDatosBBDD;
-import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -24,14 +19,18 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
     ImageTableModel model = new ImageTableModel();
     Usuario Actual = null;
     Sobre sobre = null;
+    int xMouse, yMouse;
     DecimalFormat df = new DecimalFormat("0.##M");
     private TableRowSorter trsfiltro;
     String filtro;
 
     public pantallaSobreAbierto(Usuario usuarioActual, Sobre sobre1) {
+        initComponents();
         sobre = sobre1;
         Actual = usuarioActual;
-        initComponents();
+        lblNombreUsu.setText(Actual.getNombreUsuario());
+        lbldinero.setText(df.format(Actual.getEquipo().getDinero() / 1000000.0));
+        
         rellenarTbl();
         
     }
@@ -62,6 +61,20 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
         btnRetroceder = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
+        btnVender = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        lblSaldo = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lblPrecio = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        lblNombreUsu = new javax.swing.JLabel();
+        lblDin = new javax.swing.JLabel();
+        lbldinero = new javax.swing.JLabel();
         layerMenu = new javax.swing.JLayeredPane();
         btnHome = new javax.swing.JButton();
         btnPlantilla = new javax.swing.JButton();
@@ -71,16 +84,6 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
         btnTienda = new javax.swing.JButton();
         btnLiga = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
-        btnVender = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        lblSaldo = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        lblNombre = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        lblPrecio = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(900, 700));
@@ -122,7 +125,7 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 680, 390));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 680, 370));
 
         panelAcciones.setMaximumSize(new java.awt.Dimension(95, 25));
         panelAcciones.setMinimumSize(new java.awt.Dimension(95, 25));
@@ -210,12 +213,108 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.add(panelAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 10, -1, -1));
+        jPanel1.add(panelAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 10, -1, -1));
+
+        btnVender.setText("Vender");
+        btnVender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVenderActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 380, 173, 52));
+
+        jLabel1.setText("Saldo:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 150, 50, 30));
+        jPanel1.add(lblSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 180, 180, 30));
+
+        jLabel2.setText("Nombre:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 230, -1, -1));
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 260, 180, 30));
+
+        jLabel3.setText("Valor:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 300, -1, -1));
+        jPanel1.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 330, 180, 30));
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 660, 50));
+
+        jButton2.setText("Guardar todo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 460, 170, 70));
+
+        jPanel2.setBackground(new java.awt.Color(51, 61, 87));
+        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel2MouseDragged(evt);
+            }
+        });
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel2MousePressed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(129, 129, 129));
+        jLabel4.setText("Usuario:");
+
+        lblNombreUsu.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblNombreUsu.setForeground(new java.awt.Color(129, 129, 129));
+
+        lblDin.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblDin.setForeground(new java.awt.Color(129, 129, 129));
+        lblDin.setText("Dinero:");
+
+        lbldinero.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lbldinero.setForeground(new java.awt.Color(129, 129, 129));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(464, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(lblNombreUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(lblDin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(lbldinero, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombreUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbldinero, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 30));
 
         layerMenu.setBackground(new java.awt.Color(51, 61, 87));
         layerMenu.setForeground(new java.awt.Color(51, 61, 87));
         layerMenu.setOpaque(true);
-        layerMenu.setLayout(new java.awt.GridLayout(1, 0));
+        layerMenu.setLayout(new java.awt.GridLayout());
 
         btnHome.setBackground(new java.awt.Color(206, 206, 206));
         btnHome.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -314,6 +413,11 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
         btnTienda.setContentAreaFilled(false);
         btnTienda.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tienda.click.png"))); // NOI18N
         btnTienda.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tienda.hover.png"))); // NOI18N
+        btnTienda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTiendaActionPerformed(evt);
+            }
+        });
         layerMenu.add(btnTienda);
 
         btnLiga.setBackground(new java.awt.Color(206, 206, 206));
@@ -348,56 +452,7 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
         });
         layerMenu.add(btnExit);
 
-        jPanel1.add(layerMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 35, 889, 105));
-
-        btnVender.setText("Vender");
-        btnVender.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVenderActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 380, 173, 52));
-
-        jLabel1.setText("Saldo:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 150, 50, 30));
-        jPanel1.add(lblSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 180, 180, 30));
-
-        jLabel2.setText("Nombre:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 230, -1, -1));
-        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 260, 180, 30));
-
-        jLabel3.setText("Valor:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 300, -1, -1));
-        jPanel1.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 330, 180, 30));
-
-        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNombreKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNombreKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreKeyTyped(evt);
-            }
-        });
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 580, 50));
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 150, -1, 50));
-
-        jButton2.setText("Guardar todo");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 460, 170, 70));
+        jPanel1.add(layerMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 889, 100));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -430,77 +485,8 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnCloseActionPerformed
 
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        pantallaSesionIniciada pantalla = new pantallaSesionIniciada(Actual);
-        pantalla.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnHomeActionPerformed
-
-    private void btnHomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnHomeKeyReleased
-        // TODO add your handling code here:
-        //        btnHome.setIcon(home_90px.hover);
-    }//GEN-LAST:event_btnHomeKeyReleased
-
     
     
-    private void btnPlantillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlantillaActionPerformed
-        // TODO add your handling code here:
-
-        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
-          
-        } else {
-            this.setVisible(false);
-            PantallaPlantilla pantalla = new PantallaPlantilla(Actual);
-            pantalla.setVisible(true);
-        }
-    }//GEN-LAST:event_btnPlantillaActionPerformed
-
-    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
-        this.setVisible(false);
-        pantallaPerfil pantalla = new pantallaPerfil(Actual, Actual);
-        pantalla.setVisible(true);
-    }//GEN-LAST:event_btnPerfilActionPerformed
-
-    private void btnClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClasificacionActionPerformed
-        if (Actual.getEquipo() == null || Actual.getLiga() == null) {
-           
-        } else {
-            this.setVisible(false);
-            pantallaClasificacion pantalla = new pantallaClasificacion(Actual);
-            pantalla.setVisible(true);
-        }
-
-    }//GEN-LAST:event_btnClasificacionActionPerformed
-
-    private void btnBuscarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarJugadorActionPerformed
-        this.setVisible(false);
-        pantallaSobreAbierto pantalla = new pantallaSobreAbierto(Actual, sobre);
-        pantalla.setVisible(true);
-    }//GEN-LAST:event_btnBuscarJugadorActionPerformed
-
-    private void btnLigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLigaActionPerformed
-        // TODO add your handling code here:s
-
-        if (Actual.getLiga() == null || Actual.getLiga().getNombre() == null) {
-            this.setVisible(false);
-            PantallaLiga pantalla = new PantallaLiga(Actual);
-            pantalla.setVisible(true);
-        } else {
-            this.setVisible(false);
-            PantallaLigaAbandonar pantalla = new PantallaLigaAbandonar(Actual);
-            pantalla.setVisible(true);
-        }
-
-    }//GEN-LAST:event_btnLigaActionPerformed
-
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        // TODO add your handling code here:
-        Menu pantalla = new Menu();
-        pantalla.setVisible(true);
-        this.setVisible(false);
-
-    }//GEN-LAST:event_btnExitActionPerformed
-
     private void jTable1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MousePressed
         String nombre = (String) jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 1);
         Iterator it = Actual.getJugadores().iterator();
@@ -578,18 +564,6 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        //        if (txtNombre.getText().isBlank()) {
-            //            System.out.println("empty");
-            //            rellenarTbl();
-            //        } else {
-            //            System.out.println("lleno");
-            //            rellenarTblBusqueda();
-            //
-            //        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
 
         trsfiltro = new TableRowSorter(jTable1.getModel());
@@ -621,6 +595,90 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
 
         });
     }//GEN-LAST:event_txtNombreKeyPressed
+
+    private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
+        int y = evt.getYOnScreen();
+        int x = evt.getXOnScreen();
+        setLocation(x - xMouse, y - yMouse);
+
+    }//GEN-LAST:event_jPanel2MouseDragged
+
+    private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+
+    }//GEN-LAST:event_jPanel2MousePressed
+
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        pantallaSesionIniciada pantalla = new pantallaSesionIniciada(Actual);
+        pantalla.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnHomeActionPerformed
+
+    private void btnHomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnHomeKeyReleased
+
+    }//GEN-LAST:event_btnHomeKeyReleased
+
+    private void btnPlantillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlantillaActionPerformed
+
+       
+            this.setVisible(false);
+            PantallaPlantilla pantalla = new PantallaPlantilla(Actual);
+            pantalla.setVisible(true);
+        
+    }//GEN-LAST:event_btnPlantillaActionPerformed
+
+    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
+        this.setVisible(false);
+        pantallaPerfil pantalla = new pantallaPerfil(Actual, Actual);
+        pantalla.setVisible(true);
+    }//GEN-LAST:event_btnPerfilActionPerformed
+
+    private void btnClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClasificacionActionPerformed
+       
+            this.setVisible(false);
+            pantallaClasificacion pantalla = new pantallaClasificacion(Actual);
+            pantalla.setVisible(true);
+        
+
+    }//GEN-LAST:event_btnClasificacionActionPerformed
+
+    private void btnBuscarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarJugadorActionPerformed
+        
+            this.setVisible(false);
+            pantallaJugadores pantalla = new pantallaJugadores(Actual);
+            pantalla.setVisible(true);
+        
+    }//GEN-LAST:event_btnBuscarJugadorActionPerformed
+
+    private void btnTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiendaActionPerformed
+                    this.setVisible(false);
+            pantallaTienda pantalla = new pantallaTienda(Actual);
+            pantalla.setVisible(true);
+        
+    }//GEN-LAST:event_btnTiendaActionPerformed
+
+    private void btnLigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLigaActionPerformed
+
+        if (Actual.getLiga() == null || Actual.getLiga().getNombre() == null) {
+            this.setVisible(false);
+            PantallaLiga pantalla = new PantallaLiga(Actual);
+            pantalla.setVisible(true);
+        } else {
+            this.setVisible(false);
+            PantallaLigaAbandonar pantalla = new PantallaLigaAbandonar(Actual);
+            pantalla.setVisible(true);
+        }
+
+    }//GEN-LAST:event_btnLigaActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        // TODO add your handling code here:
+        Menu pantalla = new Menu();
+        pantalla.setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_btnExitActionPerformed
     public void filtro() {
         filtro = txtNombre.getText();
         trsfiltro.setRowFilter(RowFilter.regexFilter(txtNombre.getText(), 1));
@@ -680,18 +738,22 @@ public class pantallaSobreAbierto extends javax.swing.JFrame {
     private javax.swing.JButton btnRetroceder;
     private javax.swing.JButton btnTienda;
     private javax.swing.JButton btnVender;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JLayeredPane layerMenu;
+    private javax.swing.JLabel lblDin;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNombreUsu;
     private javax.swing.JLabel lblPrecio;
     private javax.swing.JLabel lblSaldo;
+    private javax.swing.JLabel lbldinero;
     private javax.swing.JLayeredPane panelAcciones;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables

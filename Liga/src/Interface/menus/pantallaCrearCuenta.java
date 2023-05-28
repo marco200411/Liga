@@ -1,13 +1,13 @@
 package Interface.menus;
 
-import Interface.juego.pantallaSesionIniciada;
 import Methods.Usuario;
 import OperacionesBBDD.OperacionesBBDD;
-import java.awt.Color;
 import java.awt.geom.RoundRectangle2D;
 
 public class pantallaCrearCuenta extends javax.swing.JFrame {
-
+    
+     
+    int xMouse, yMouse;
     private static String MYSQLUSER = "root";
 
     private static String MYSQLPASS = "root";
@@ -21,154 +21,44 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
     private void initComponents() {
 
         BG = new javax.swing.JLayeredPane();
-        lblCrearCuenta = new javax.swing.JLabel();
-        lblContraseña = new javax.swing.JLabel();
-        separatorContraseña = new javax.swing.JSeparator();
-        txtCCContraseña = new javax.swing.JPasswordField();
-        btnCCCreate = new javax.swing.JButton();
-        lblUsername = new javax.swing.JLabel();
-        separatorUsername = new javax.swing.JSeparator();
-        txtCCUsername = new javax.swing.JTextField();
-        lblCorreo = new javax.swing.JLabel();
-        separatorCorreo = new javax.swing.JSeparator();
-        txtCCCorreo = new javax.swing.JTextField();
-        lblApellidos = new javax.swing.JLabel();
-        separatorApellidos = new javax.swing.JSeparator();
-        txtCCApellidos = new javax.swing.JTextField();
-        lblNombre = new javax.swing.JLabel();
-        separatorNombre = new javax.swing.JSeparator();
-        txtCCNombre = new javax.swing.JTextField();
-        btnError1 = new javax.swing.JButton();
         panelAcciones = new javax.swing.JLayeredPane();
         btnRetroceder = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
+        separatorApellidos = new javax.swing.JSeparator();
+        txtCCApellidos = new javax.swing.JTextField();
+        separatorContraseña = new javax.swing.JSeparator();
+        lblContraseña = new javax.swing.JLabel();
+        separatorNombre = new javax.swing.JSeparator();
+        separatorUsername = new javax.swing.JSeparator();
+        txtCCUsername = new javax.swing.JTextField();
+        txtCCNombre = new javax.swing.JTextField();
+        btnError1 = new javax.swing.JButton();
+        btnCCCreate = new javax.swing.JButton();
+        lblApellidos = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
+        lblCorreo = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        separatorCorreo = new javax.swing.JSeparator();
+        txtCCContraseña = new javax.swing.JPasswordField();
+        txtCCCorreo = new javax.swing.JTextField();
+        lblCrearCuenta = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(650, 650));
-        setMinimumSize(new java.awt.Dimension(650, 650));
+        setMaximumSize(new java.awt.Dimension(635, 700));
+        setMinimumSize(new java.awt.Dimension(635, 700));
         setUndecorated(true);
         setResizable(false);
-        setShape(new RoundRectangle2D.Double(0, 0, 650, 650, 20, 20));
-        setSize(new java.awt.Dimension(650, 650));
+        setShape(new RoundRectangle2D.Double(0, 0, 635, 650, 20, 20));
+        setSize(new java.awt.Dimension(635, 700));
 
         BG.setBackground(new java.awt.Color(51, 61, 87));
+        BG.setMaximumSize(new java.awt.Dimension(635, 700));
+        BG.setMinimumSize(new java.awt.Dimension(635, 700));
         BG.setOpaque(true);
         BG.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblCrearCuenta.setFont(new java.awt.Font("Roboto", 0, 48)); // NOI18N
-        lblCrearCuenta.setForeground(new java.awt.Color(129, 129, 129));
-        lblCrearCuenta.setText("CREAR CUENTA");
-        BG.add(lblCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 390, 60));
-
-        lblContraseña.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        lblContraseña.setForeground(new java.awt.Color(129, 129, 129));
-        lblContraseña.setText("Contraseña");
-        BG.add(lblContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, -1, -1));
-
-        separatorContraseña.setForeground(new java.awt.Color(129, 129, 129));
-        BG.add(separatorContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 510, 260, 10));
-
-        txtCCContraseña.setBackground(new java.awt.Color(51, 61, 87));
-        txtCCContraseña.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtCCContraseña.setForeground(new java.awt.Color(129, 129, 129));
-        txtCCContraseña.setBorder(null);
-        txtCCContraseña.setMaximumSize(new java.awt.Dimension(64, 22));
-        BG.add(txtCCContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 470, 260, 50));
-
-        btnCCCreate.setBackground(new java.awt.Color(45, 89, 141));
-        btnCCCreate.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        btnCCCreate.setForeground(new java.awt.Color(206, 206, 206));
-        btnCCCreate.setText("Crear cuenta");
-        btnCCCreate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCCCreateActionPerformed(evt);
-            }
-        });
-        BG.add(btnCCCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 550, 180, 80));
-
-        lblUsername.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        lblUsername.setForeground(new java.awt.Color(129, 129, 129));
-        lblUsername.setText("Nombre usuario");
-        BG.add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, -1, -1));
-
-        separatorUsername.setForeground(new java.awt.Color(129, 129, 129));
-        BG.add(separatorUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, 260, 10));
-
-        txtCCUsername.setBackground(new java.awt.Color(51, 61, 87));
-        txtCCUsername.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtCCUsername.setForeground(new java.awt.Color(129, 129, 129));
-        txtCCUsername.setBorder(null);
-        txtCCUsername.setMaximumSize(new java.awt.Dimension(64, 22));
-        BG.add(txtCCUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, 260, 50));
-
-        lblCorreo.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        lblCorreo.setForeground(new java.awt.Color(129, 129, 129));
-        lblCorreo.setText("Correo electronico");
-        BG.add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
-
-        separatorCorreo.setForeground(new java.awt.Color(129, 129, 129));
-        BG.add(separatorCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 260, 10));
-
-        txtCCCorreo.setBackground(new java.awt.Color(51, 61, 87));
-        txtCCCorreo.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtCCCorreo.setForeground(new java.awt.Color(129, 129, 129));
-        txtCCCorreo.setBorder(null);
-        txtCCCorreo.setMaximumSize(new java.awt.Dimension(64, 22));
-        BG.add(txtCCCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 260, 50));
-
-        lblApellidos.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        lblApellidos.setForeground(new java.awt.Color(129, 129, 129));
-        lblApellidos.setText("Apellidos");
-        BG.add(lblApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, -1, -1));
-
-        separatorApellidos.setForeground(new java.awt.Color(129, 129, 129));
-        BG.add(separatorApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 260, 20));
-
-        txtCCApellidos.setBackground(new java.awt.Color(51, 61, 87));
-        txtCCApellidos.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtCCApellidos.setForeground(new java.awt.Color(129, 129, 129));
-        txtCCApellidos.setBorder(null);
-        txtCCApellidos.setMaximumSize(new java.awt.Dimension(64, 22));
-        BG.add(txtCCApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 260, 50));
-
-        lblNombre.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        lblNombre.setForeground(new java.awt.Color(129, 129, 129));
-        lblNombre.setText("Nombre");
-        BG.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
-
-        separatorNombre.setForeground(new java.awt.Color(129, 129, 129));
-        BG.add(separatorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 260, 20));
-
-        txtCCNombre.setBackground(new java.awt.Color(51, 61, 87));
-        txtCCNombre.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtCCNombre.setForeground(new java.awt.Color(129, 129, 129));
-        txtCCNombre.setBorder(null);
-        txtCCNombre.setMaximumSize(new java.awt.Dimension(64, 22));
-        BG.add(txtCCNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 260, 50));
-
-        btnError1.setBackground(new java.awt.Color(51, 61, 87));
-        btnError1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnError1.setForeground(new java.awt.Color(153, 0, 0));
-        btnError1.setBorder(null);
-        btnError1.setBorderPainted(false);
-        btnError1.setContentAreaFilled(false);
-        btnError1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnError1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        btnError1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnError1.setMaximumSize(new java.awt.Dimension(390, 80));
-        btnError1.setMinimumSize(new java.awt.Dimension(390, 80));
-        btnError1.setOpaque(true);
-        btnError1.setPreferredSize(new java.awt.Dimension(390, 80));
-        btnError1.setRequestFocusEnabled(false);
-        btnError1.setRolloverEnabled(false);
-        btnError1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnError1ActionPerformed(evt);
-            }
-        });
-        BG.setLayer(btnError1, javax.swing.JLayeredPane.POPUP_LAYER);
-        BG.add(btnError1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, -1, -1));
 
         panelAcciones.setForeground(new java.awt.Color(51, 61, 87));
         panelAcciones.setMaximumSize(new java.awt.Dimension(95, 25));
@@ -257,17 +147,159 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
                 .addGap(31, 31, 31))
         );
 
-        BG.add(panelAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, 30));
+        BG.add(panelAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, -1, 30));
+
+        separatorApellidos.setForeground(new java.awt.Color(255, 255, 243));
+        BG.add(separatorApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 260, 20));
+
+        txtCCApellidos.setBackground(new java.awt.Color(51, 61, 87));
+        txtCCApellidos.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtCCApellidos.setForeground(new java.awt.Color(255, 255, 255));
+        txtCCApellidos.setBorder(null);
+        txtCCApellidos.setMaximumSize(new java.awt.Dimension(64, 22));
+        BG.add(txtCCApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 260, 50));
+
+        separatorContraseña.setForeground(new java.awt.Color(255, 255, 243));
+        BG.add(separatorContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 520, 260, 10));
+
+        lblContraseña.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblContraseña.setForeground(new java.awt.Color(255, 255, 255));
+        lblContraseña.setText("Contraseña");
+        BG.add(lblContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, -1, -1));
+
+        separatorNombre.setForeground(new java.awt.Color(255, 255, 243));
+        BG.add(separatorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 260, 20));
+
+        separatorUsername.setForeground(new java.awt.Color(255, 255, 243));
+        BG.add(separatorUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, 260, 10));
+
+        txtCCUsername.setBackground(new java.awt.Color(51, 61, 87));
+        txtCCUsername.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtCCUsername.setForeground(new java.awt.Color(255, 255, 255));
+        txtCCUsername.setBorder(null);
+        txtCCUsername.setMaximumSize(new java.awt.Dimension(64, 22));
+        BG.add(txtCCUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, 260, 50));
+
+        txtCCNombre.setBackground(new java.awt.Color(51, 61, 87));
+        txtCCNombre.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtCCNombre.setForeground(new java.awt.Color(255, 255, 255));
+        txtCCNombre.setBorder(null);
+        txtCCNombre.setMaximumSize(new java.awt.Dimension(64, 22));
+        BG.add(txtCCNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 260, 50));
+
+        btnError1.setBackground(new java.awt.Color(51, 61, 87));
+        btnError1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnError1.setForeground(new java.awt.Color(153, 0, 0));
+        btnError1.setBorder(null);
+        btnError1.setBorderPainted(false);
+        btnError1.setContentAreaFilled(false);
+        btnError1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnError1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnError1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnError1.setMaximumSize(new java.awt.Dimension(390, 80));
+        btnError1.setMinimumSize(new java.awt.Dimension(390, 80));
+        btnError1.setOpaque(true);
+        btnError1.setPreferredSize(new java.awt.Dimension(390, 80));
+        btnError1.setRequestFocusEnabled(false);
+        btnError1.setRolloverEnabled(false);
+        btnError1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnError1ActionPerformed(evt);
+            }
+        });
+        BG.setLayer(btnError1, javax.swing.JLayeredPane.POPUP_LAYER);
+        BG.add(btnError1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 400, -1));
+
+        btnCCCreate.setBackground(new java.awt.Color(45, 89, 141));
+        btnCCCreate.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        btnCCCreate.setForeground(new java.awt.Color(206, 206, 206));
+        btnCCCreate.setText("Crear cuenta");
+        btnCCCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCCCreateActionPerformed(evt);
+            }
+        });
+        BG.add(btnCCCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 540, 150, 80));
+
+        lblApellidos.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblApellidos.setForeground(new java.awt.Color(255, 255, 255));
+        lblApellidos.setText("Apellidos");
+        BG.add(lblApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, -1, -1));
+
+        lblUsername.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblUsername.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsername.setText("Nombre usuario");
+        BG.add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, -1, -1));
+
+        lblCorreo.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblCorreo.setForeground(new java.awt.Color(255, 255, 255));
+        lblCorreo.setText("Correo electronico");
+        BG.add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, -1, -1));
+
+        lblNombre.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombre.setText("Nombre");
+        BG.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, -1, -1));
+
+        separatorCorreo.setForeground(new java.awt.Color(255, 255, 243));
+        BG.add(separatorCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, 260, 10));
+
+        txtCCContraseña.setBackground(new java.awt.Color(51, 61, 87));
+        txtCCContraseña.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtCCContraseña.setForeground(new java.awt.Color(255, 255, 255));
+        txtCCContraseña.setBorder(null);
+        txtCCContraseña.setMaximumSize(new java.awt.Dimension(64, 22));
+        BG.add(txtCCContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 480, 260, 50));
+
+        txtCCCorreo.setBackground(new java.awt.Color(51, 61, 87));
+        txtCCCorreo.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtCCCorreo.setForeground(new java.awt.Color(255, 255, 255));
+        txtCCCorreo.setBorder(null);
+        txtCCCorreo.setMaximumSize(new java.awt.Dimension(64, 22));
+        BG.add(txtCCCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 260, 50));
+
+        lblCrearCuenta.setFont(new java.awt.Font("Roboto", 0, 48)); // NOI18N
+        lblCrearCuenta.setForeground(new java.awt.Color(255, 255, 255));
+        lblCrearCuenta.setText("CREAR CUENTA");
+        BG.add(lblCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 350, 60));
+
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 243));
+        BG.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 340, 20));
+
+        jPanel1.setBackground(new java.awt.Color(51, 61, 87));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 520, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+
+        BG.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BG, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+            .addComponent(BG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+            .addComponent(BG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -276,46 +308,81 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
 
 
     private void btnCCCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCCCreateActionPerformed
+       
 
-        String usuario = txtCCUsername.getText();
-        String contraseña = txtCCContraseña.getText();
-        String nombre = txtCCNombre.getText();
-        String apellidos = txtCCApellidos.getText();
-        String correo = txtCCCorreo.getText();
-        if (!usuario.contains("*") && !usuario.contains("@")) {
-            String insertString = "INSERT INTO tbl_usuario (`USUARIO`, `CONTRASENA`, `NOMBRE`, `APELLIDOS`, `CORREO`)\n"
-                    + "SELECT '" + usuario + "', MD5('" + contraseña + "'), '" + nombre + "','" + apellidos + "' , '" + correo + "'\n"
-                    + "WHERE NOT EXISTS (SELECT * FROM TBL_USUARIO WHERE USUARIO = '" + usuario + "');";
-            OperacionesBBDD escritura = new OperacionesBBDD();
+        if ( comprobarFormulario() == true) {
+            String usuario = txtCCUsername.getText();
+            String contraseña = txtCCContraseña.getText();
+            String nombre = txtCCNombre.getText();
+            String apellidos = txtCCApellidos.getText();
+            String correo = txtCCCorreo.getText();
+            if (!usuario.contains("*") && !usuario.contains("@")) {
+                String insertString = "INSERT INTO tbl_usuario (`USUARIO`, `CONTRASENA`, `NOMBRE`, `APELLIDOS`, `CORREO`)\n"
+                        + "SELECT '" + usuario + "', MD5('" + contraseña + "'), '" + nombre + "','" + apellidos + "' , '" + correo + "'\n"
+                        + "WHERE NOT EXISTS (SELECT * FROM TBL_USUARIO WHERE USUARIO = '" + usuario + "');";
+                OperacionesBBDD escritura = new OperacionesBBDD();
 
-            if (escritura.escrituraSql(insertString)) {
-                Usuario us1 = new Usuario(nombre, apellidos, usuario, contraseña, correo, null, null);
+                if (escritura.escrituraSql(insertString)) {
+                    btnError1.setForeground(new java.awt.Color(0, 100, 0));
+                    btnError1.setVisible(true);
+                    btnError1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/INSERT.png")));
+                    btnError1.setText("Usuario creado con exito, haga click aqui para iniciar sesion");
 
-                btnError1.setForeground(new java.awt.Color(0, 100, 0));
-                btnError1.setVisible(true);
-                btnError1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/INSERT.png")));
-                btnError1.setText("Usuario creado con exito, haga click aqui para iniciar sesion");
+                } else {
+                    btnError1.setForeground(new java.awt.Color(100, 0, 0));
+                    btnError1.setVisible(true);
+                    btnError1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png")));
+                    btnError1.setText("Nombre usuario en uso");
 
-            } else {
-                btnError1.setForeground(new java.awt.Color(100, 0, 0));
-                btnError1.setVisible(true);
-                btnError1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png")));
-                btnError1.setText("Nombre usuario en uso");
+                }
 
             }
-
-        } 
+        }
 
 
     }//GEN-LAST:event_btnCCCreateActionPerformed
 
+    private boolean comprobarFormulario() {
+        boolean valido = true;
+        if (txtCCNombre.getText().isEmpty()) {
+            valido = false;
+            btnError1.setForeground(new java.awt.Color(100, 0, 0));
+            btnError1.setVisible(true);
+            btnError1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png")));
+            btnError1.setText("El formato de campo nombre no es valido");
+        } else if (txtCCApellidos.getText().isEmpty()) {
+            valido = false;
+            btnError1.setForeground(new java.awt.Color(100, 0, 0));
+            btnError1.setVisible(true);
+            btnError1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png")));
+            btnError1.setText("El formato de campo apellidos no es valido");
+        } else if (txtCCCorreo.getText().isEmpty()) {
+            valido = false;
+            btnError1.setForeground(new java.awt.Color(100, 0, 0));
+            btnError1.setVisible(true);
+            btnError1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png")));
+            btnError1.setText("El formato de campo correo no es valido");
+        } else if (txtCCUsername.getText().isEmpty()) {
+            valido = false;
+            btnError1.setForeground(new java.awt.Color(100, 0, 0));
+            btnError1.setVisible(true);
+            btnError1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png")));
+            btnError1.setText("El formato de campo nombre usuario no es valido");
+        } else if (txtCCContraseña.getText().isEmpty()) {
+            valido = false;
+            btnError1.setForeground(new java.awt.Color(100, 0, 0));
+            btnError1.setVisible(true);
+            btnError1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/error.png")));
+            btnError1.setText("El formato de campo contraseña no es valido");
+        }
+        return valido;
+    }
+
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         System.exit(0);
-
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnError1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnError1ActionPerformed
-        // TODO add your handling code here:
         btnError1.setVisible(false);
         pantallaIniciarSesion pantalla = new pantallaIniciarSesion();
         pantalla.setVisible(true);
@@ -328,7 +395,6 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
     private void btnRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrocederActionPerformed
-        // TODO add your handling code here:
         Menu pantalla = new Menu();
         pantalla.setVisible(true);
         this.setVisible(false);
@@ -336,15 +402,19 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnRetrocederActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        int y = evt.getYOnScreen();
+        int x = evt.getXOnScreen();
+        setLocation(x - xMouse, y - yMouse);
+    }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_jPanel1MousePressed
+
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -363,7 +433,6 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new pantallaCrearCuenta().setVisible(true);
@@ -378,6 +447,8 @@ public class pantallaCrearCuenta extends javax.swing.JFrame {
     private javax.swing.JButton btnError1;
     private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnRetroceder;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblCorreo;

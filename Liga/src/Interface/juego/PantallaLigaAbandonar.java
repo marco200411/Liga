@@ -1,18 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Interface.juego;
 
 import Interface.menus.Menu;
-import Methods.Liga;
+
 import Methods.Usuario;
 import OperacionesBBDD.OperacionesBBDD;
 import java.awt.geom.RoundRectangle2D;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -20,9 +13,7 @@ import java.util.logging.Logger;
  */
 public class PantallaLigaAbandonar extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PantallaLiga
-     */
+   int xMouse, yMouse;
     Usuario Actual = null;
     
     public PantallaLigaAbandonar(Usuario us1) {
@@ -72,6 +63,9 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
         lblNombreLiga = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         btnInfoUnirse1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        lblNombreUsu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -355,6 +349,48 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
 
         layerBG.add(layerUnirseLiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 154, 840, 497));
 
+        jPanel1.setBackground(new java.awt.Color(51, 61, 87));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(129, 129, 129));
+        jLabel5.setText("Usuario:");
+
+        lblNombreUsu.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblNombreUsu.setForeground(new java.awt.Color(129, 129, 129));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(594, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(lblNombreUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombreUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        layerBG.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -399,7 +435,7 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
             insertString = " DELETE FROM tbl_liga WHERE ADMINISTRADOR=(SELECT ID_USUARIO FROM TBL_USUARIO WHERE USUARIO='" + Actual.getNombreUsuario() + "');";
             Actual.setLiga(null);
         } else {
-            insertString = " UPDATE bbdd_fantasy.tbl_usuario SET LIGA_INSCRITO=(SELECT  L.ID_LIGA FROM TBL_LIGA AS L WHERE L.NOMBRE='" + "" + "') WHERE USUARIO='" + Actual.getNombreUsuario() + "';";
+            insertString = "  DELETE FROM TBL_EQUIPO WHERE ID_USUARIO = (SELECT ID_USUARIO FROM TBL_USUARIO WHERE USUARIO='"+Actual.getNombreUsuario()+"');";
             Actual.setLiga(null);
         }
         
@@ -438,6 +474,17 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
     private void btnLigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLigaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLigaActionPerformed
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        int y = evt.getYOnScreen();
+        int x = evt.getXOnScreen();
+        setLocation(x - xMouse, y - yMouse);
+    }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_jPanel1MousePressed
 
     /**
      * @param args the command line arguments
@@ -490,6 +537,8 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
     private javax.swing.JButton btnRetroceder;
     private javax.swing.JButton btnTienda;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLayeredPane layerBG;
@@ -497,6 +546,7 @@ public class PantallaLigaAbandonar extends javax.swing.JFrame {
     private javax.swing.JLayeredPane layerUnirseLiga;
     private javax.swing.JLabel lblAdministrador;
     private javax.swing.JLabel lblNombreLiga;
+    private javax.swing.JLabel lblNombreUsu;
     private javax.swing.JLayeredPane panelAcciones;
     // End of variables declaration//GEN-END:variables
 }

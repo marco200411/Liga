@@ -6,23 +6,33 @@ import Methods.Sobre;
 import Methods.Usuario;
 import OperacionesBBDD.EnviarDatosBBDD;
 import OperacionesBBDD.ObtenerDatosBBDD;
+import java.awt.Color;
 import java.awt.geom.RoundRectangle2D;
+import java.text.DecimalFormat;
 import java.util.Iterator;
 
 public class pantallaTienda extends javax.swing.JFrame {
     
     Usuario Actual = null;
-    
+    int xMouse, yMouse;
+    DecimalFormat df = new DecimalFormat("0.##M");
     public pantallaTienda(Usuario us) {
         initComponents();
         Actual = us;
+        lblNombreUsu.setText(Actual.getNombreUsuario());
+        lbldinero.setText(df.format(Actual.getEquipo().getDinero() / 1000000.0));
         ObtenerDatosBBDD get = new ObtenerDatosBBDD();
         get.getSobres(us);
         get.gethistorialSobre(us);
-        if (Actual.getEquipo().getSobresAbiertos().contains(Actual.getLiga().getSobreDisponible().get(3))) {
-            Actual.getLiga().getSobreDisponible().remove(3);
-            
+        Iterator it = Actual.getEquipo().getSobresAbiertos().iterator();
+        while(it.hasNext()){
+            Sobre sobre = (Sobre) it.next();
+            if(sobre.getNombre() == "Sobre incial"){
+                 Actual.getLiga().getSobreDisponible().remove(3);
+            }
         }
+        
+       
         mostrarSobres();
     }
     
@@ -78,8 +88,11 @@ public class pantallaTienda extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         lblNombreSobre3 = new javax.swing.JLabel();
         btnError = new javax.swing.JButton();
-        jLabel25 = new javax.swing.JLabel();
-        lblSaldo = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        lblNombreUsu = new javax.swing.JLabel();
+        lblDin = new javax.swing.JLabel();
+        lbldinero = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -648,9 +661,58 @@ public class pantallaTienda extends javax.swing.JFrame {
         jLayeredPane1.setLayer(btnError, javax.swing.JLayeredPane.POPUP_LAYER);
         jLayeredPane1.add(btnError, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
 
-        jLabel25.setText("Saldo:");
-        jLayeredPane1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, 50, 30));
-        jLayeredPane1.add(lblSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, 180, 30));
+        jPanel2.setBackground(new java.awt.Color(51, 61, 87));
+        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel2MouseDragged(evt);
+            }
+        });
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel2MousePressed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(129, 129, 129));
+        jLabel6.setText("Usuario:");
+
+        lblNombreUsu.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblNombreUsu.setForeground(new java.awt.Color(129, 129, 129));
+
+        lblDin.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblDin.setForeground(new java.awt.Color(129, 129, 129));
+        lblDin.setText("Dinero:");
+
+        lbldinero.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lbldinero.setForeground(new java.awt.Color(129, 129, 129));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(464, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(lblNombreUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(lblDin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(lbldinero, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombreUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbldinero, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -660,7 +722,8 @@ public class pantallaTienda extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(791, 791, 791)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelAcciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(layerMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 889, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -672,11 +735,13 @@ public class pantallaTienda extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelAcciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
+                        .addContainerGap()
+                        .addComponent(panelAcciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
                         .addComponent(layerMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -773,7 +838,7 @@ public class pantallaTienda extends javax.swing.JFrame {
         lblPrecioSobre3.setText("" + sobre3.getPrecio());
         lblContenidoSobre3.setText("" + sobre3.getCantidad_jugadores());
         
-        if (Actual.getLiga().getSobreDisponible().size() == 4) {
+        if (Actual.getLiga().getSobreDisponible().size() == 3) {
             pnlSobreInicio.setVisible(true);
             Sobre sobre4 = Actual.getLiga().getSobreDisponible().get(3);
             lblNombreSobre4.setText(sobre4.getNombre());
@@ -840,10 +905,17 @@ public class pantallaTienda extends javax.swing.JFrame {
     }
 
     private void btnOpen1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpen1ActionPerformed
-        
+      
         Sobre sobre = new Sobre(lblNombreSobre1.getText(), Integer.parseInt(lblContenidoSobre1.getText()), Integer.parseInt(lblPrecioSobre1.getText()));
-     
-      abrirSobre(sobre);
+      if(Actual.getEquipo().getDinero()- sobre.getPrecio() > 0){
+          abrirSobre(sobre);
+           lblDin.setForeground(Color.black);
+          lbldinero.setForeground(Color.black);
+      }else{
+          lblDin.setForeground(new java.awt.Color(150, 0, 0));
+          lbldinero.setForeground(new java.awt.Color(150, 0, 0));
+      }
+      
 
     }//GEN-LAST:event_btnOpen1ActionPerformed
 
@@ -865,6 +937,19 @@ public class pantallaTienda extends javax.swing.JFrame {
       
       abrirSobre(sobre);
     }//GEN-LAST:event_btnOpen4ActionPerformed
+
+    private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
+        int y = evt.getYOnScreen();
+        int x = evt.getXOnScreen();
+        setLocation(x - xMouse, y - yMouse);
+
+    }//GEN-LAST:event_jPanel2MouseDragged
+
+    private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+
+    }//GEN-LAST:event_jPanel2MousePressed
 
     /**
      * @param args the command line arguments
@@ -924,28 +1009,31 @@ public class pantallaTienda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLayeredPane layerMenu;
     private javax.swing.JLabel lblContenidoSobre1;
     private javax.swing.JLabel lblContenidoSobre2;
     private javax.swing.JLabel lblContenidoSobre3;
     private javax.swing.JLabel lblContenidoSobre4;
+    private javax.swing.JLabel lblDin;
     private javax.swing.JLabel lblNombreSobre1;
     private javax.swing.JLabel lblNombreSobre2;
     private javax.swing.JLabel lblNombreSobre3;
     private javax.swing.JLabel lblNombreSobre4;
+    private javax.swing.JLabel lblNombreUsu;
     private javax.swing.JLabel lblPrecioSobre1;
     private javax.swing.JLabel lblPrecioSobre2;
     private javax.swing.JLabel lblPrecioSobre3;
     private javax.swing.JLabel lblPrecioSobre4;
-    private javax.swing.JLabel lblSaldo;
+    private javax.swing.JLabel lbldinero;
     private javax.swing.JLayeredPane panelAcciones;
     private javax.swing.JPanel panelSobre1;
     private javax.swing.JPanel panelSobre2;
